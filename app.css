@@ -1,0 +1,58 @@
+/* Sundō — app shell. Screens style themselves inline (ported from the design). */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; height: 100%; }
+body {
+  background: #241C16;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  color: #382C24;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+}
+
+/* Phone-shaped app column — fills small screens, floats on large ones */
+.sundo-frame {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  background: #FBF8F2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+@media (min-width: 460px) {
+  body { align-items: center; }
+  .sundo-frame {
+    height: min(880px, 96dvh);
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 0 11px #2A211B;
+  }
+}
+
+.sundo-screen { flex: 1; min-height: 0; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+
+/* Tab bar */
+.sundo-tabs {
+  flex: 0 0 auto;
+  border-top: 1px solid rgba(56,44,36,.10);
+  background: #FBF6EC;
+  padding: 11px 26px calc(18px + env(safe-area-inset-bottom, 8px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sundo-tab { background: none; border: none; cursor: pointer; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; font-family: inherit; }
+.sundo-tab .ico { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 11px; }
+.sundo-tab.active .ico { background: #4A3527; }
+.sundo-tab .lbl { font-size: 10px; color: #9a8a76; font-weight: 500; }
+.sundo-tab.active .lbl { color: #382C24; font-weight: 600; }
+
+/* image-slot fallback frame bg while loading */
+image-slot { background: rgba(56,44,36,.04); }
+
+/* Loader / motion (from the design helmet) */
+@keyframes sundoSteamDrift { to { background-position-y:-44px; } }
+@keyframes sundoSteamSway { 0%,100%{transform:translateX(0)} 50%{transform:translateX(2px)} }
+@keyframes sundoBreathe { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-2px) scale(1.035)} }
+@keyframes sundoPulse { 0%,100%{opacity:.55} 50%{opacity:1} }
