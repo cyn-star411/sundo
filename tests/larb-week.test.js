@@ -37,6 +37,11 @@ assert.strictEqual(chickenMeals.length, 5, 'the main rotation should contain fiv
 assert.strictEqual(beefMeals.length, 5, 'the main rotation should contain five beef meals');
 assert.strictEqual(app.recipes['Chicken Larb Bulk Prep'].base, 10, 'chicken bulk prep should make ten portions for the five planned larb meals');
 assert.strictEqual(app.recipes['Sticky Beef Mince Bulk Prep'].base, 10, 'beef bulk prep should make ten portions for the five planned beef meals');
+assert.ok(source.includes("Prep:['Chicken Larb Bulk Prep','Sticky Beef Mince Bulk Prep']"), 'both bulk-prep recipes should be directly available in the in-app recipe browser');
+assert.ok(app.recipes['Chicken Larb Bulk Prep'].method.some((step) => step.includes('2 kg chicken mince')) && app.recipes['Chicken Larb Bulk Prep'].method.some((step) => step.includes('160 g jasmine rice')), 'the chicken bulk-prep method should repeat its gram measurements');
+assert.ok(app.recipes['Sticky Beef Mince Bulk Prep'].method.some((step) => step.includes('4 tbsp oyster sauce') && step.includes('4 tbsp light soy sauce')), 'the beef bulk-prep method should repeat its sauce measurements');
+assert.ok(app.recipes['Chicken Larb Tahini Noodles'].method.some((step) => step.includes('60 g tahini') && step.includes('1 tbsp light soy sauce') && step.includes('2 tsp sesame oil')), 'the tahini-noodle method should include exact dressing measurements');
+assert.ok(app.recipes['Sticky Beef Mince Brothy Rice'].method.some((step) => step.includes('700 ml beef stock') && step.includes('20 g fresh ginger')), 'the brothy-rice method should include its stock and ginger measurements');
 chickenMeals.forEach((meal) => assert.ok(
   app.recipes[meal].ingredients.some((ingredient) => ingredient.n === 'Prepared chicken larb'),
   `${meal} should be built from the shared chicken larb prep`,
