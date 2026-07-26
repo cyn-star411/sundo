@@ -1,6 +1,6 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
-// v5 clears Safari's old cached recipe bundle and installs the current one.
-const CACHE = 'sundo-app-v5';
+// v6 clears Safari's old cached recipe bundle and refreshes open pages after activation.
+const CACHE = 'sundo-app-v6';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];
@@ -19,8 +19,13 @@ self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
 self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))));
-  self.clients.claim();
+  e.waitUntil(
+    caches.keys()
+      .then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then((clients) => Promise.all(clients.map((client) => client.navigate(client.url).catch(() => undefined))))
+  );
 });
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
