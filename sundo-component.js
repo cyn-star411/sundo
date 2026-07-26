@@ -2,15 +2,16 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack','Lunch','Dinner'];
-  days = [{k:'Tue',sub:'Rest'},{k:'Wed',sub:'Gym'},{k:'Thu',sub:'Rest'},{k:'Fri',sub:'Gym'}];
+  // This week's five-day rotation: one chicken-larb bulk prep, used in several ways, plus beef dinners.
+  days = [{k:'Mon',sub:'Gym'},{k:'Tue',sub:'Rest'},{k:'Wed',sub:'Gym'},{k:'Thu',sub:'Rest'},{k:'Fri',sub:'Gym'}];
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E' };
   options = {
-    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats','Smoked Salmon Eggs'],
-    Snack:['Edamame Sesame','Rice Cakes & PB','Boiled Eggs & Apple','Matcha Yogurt Cup'],
-    Lunch:['Miso Salmon Bowl','Crispy Tofu Poke','Salmon Sushi Bowl','Sesame Tofu Soba'],
-    Dinner:['Teriyaki Tofu Soba','Ginger Soy Salmon','Tofu Bibimbap','Honey Garlic Salmon'],
+    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats','Smoked Salmon Eggs','Matcha Yogurt Cup'],
+    Snack:['Edamame Sesame','Boiled Eggs & Apple','Rice Cakes & PB','Matcha Yogurt Cup','Edamame Sesame'],
+    Lunch:['Chicken Larb Tahini Noodles','Chicken Larb Crunchy Rice Bowl','Chicken Larb Lettuce Cups','Chicken Larb Tahini Noodles','Chicken Larb Crunchy Rice Bowl'],
+    Dinner:['Beef Pad Krapow','Sticky Beef Mince Brothy Rice','Beef Pad Krapow','Sticky Beef Mince Brothy Rice','Chicken Larb Lettuce Cups'],
   };
-  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520};
+  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Lettuce Cups':430,'Sticky Beef Mince Brothy Rice':510,'Beef Pad Krapow':510};
   recipes = {
     'Miso Salmon Bowl': { cuisine:'Japanese · Main', time:'25 min', kcal:450, base:2, protein:52, fiber:6, slug:'miso-salmon',
       ingredients:[{n:'Salmon fillet, skin-on',q:130,u:'g',cat:'protein',prot:29,short:'Salmon'},{n:'Cooked jasmine rice',q:100,u:'g',cat:'carb',prot:3,short:'Rice'},{n:'Shelled edamame',q:60,u:'g',cat:'veg',prot:7,short:'Edamame'},{n:'Spring onions',q:2,u:'',cat:'veg',prot:0},{n:'White miso paste',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Soy sauce',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Honey',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Rice vinegar',q:1,u:'tsp',cat:'sauce',prot:0}],
@@ -21,6 +22,21 @@ class Component extends DCLogic {
     'Chicken Katsu Curry': { cuisine:'Japanese · Main', time:'45 min', kcal:520, base:3, protein:66, fiber:8, slug:'katsu-curry',
       ingredients:[{n:'Chicken thigh',q:600,u:'g',cat:'protein',prot:108,short:'Chicken'},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Jasmine rice',q:240,u:'g',cat:'carb',prot:7,short:'Rice'},{n:'Panko breadcrumbs',q:1,u:'cup',cat:'carb',prot:6},{n:'Plain flour',q:3,u:'tbsp',cat:'carb',prot:3},{n:'Onion',q:1,u:'',cat:'veg',prot:1},{n:'Carrot',q:1,u:'',cat:'veg',prot:1},{n:'Curry roux',q:0.5,u:'pack',cat:'sauce',prot:2},{n:'Oil, for frying',q:2,u:'tbsp',cat:'sauce',prot:0}],
       method:['Slice onion and carrot; simmer with 400ml water and the roux for 15 min into a smooth sauce.','Butterfly the chicken and season well.','Set up a flour → beaten egg → panko coating line.','Coat each piece, pressing the panko on firmly.','Shallow-fry 3–4 min each side until deep golden and cooked through.','Rest 3 min, then slice into thick strips.','Serve over rice and ladle the hot curry sauce alongside.'] },
+    'Chicken Larb Bulk Prep': { cuisine:'Thai · Bulk prep', time:'55 min', kcal:410, base:12, protein:300, fiber:4, slug:'chicken-larb-bulk-prep',
+      ingredients:[{n:'Chicken mince',q:2000,u:'g',cat:'protein',prot:380,short:'Chicken'},{n:'Jasmine rice, dry',q:160,u:'g',cat:'carb',prot:12,short:'Rice'},{n:'Spring onions',q:10,u:'',cat:'veg',prot:2},{n:'Fresh coriander',q:50,u:'g',cat:'veg',prot:2},{n:'Garlic',q:10,u:'cloves',cat:'sauce',prot:0},{n:'Chilli flakes',q:5,u:'tsp',cat:'sauce',prot:0},{n:'Fish sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Light soy sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Caster sugar',q:30,u:'g',cat:'sauce',prot:0},{n:'Limes',q:6,u:'',cat:'sauce',prot:0}],
+      method:['Dry-toast the rice in a frying pan for 4–5 min until golden and fragrant; crush to a sandy powder.','Cook the chicken mince in three batches over high heat until its moisture has evaporated and edges are golden.','Mix spring onion, garlic, chilli, fish sauce, soy, sugar and lime juice until the sugar dissolves.','Return chicken to the pan, add the dressing and simmer 1 min. Fold through coriander and most of the toasted rice powder.','Cool promptly, then portion: refrigerate up to 3 days; freeze the Thursday and Friday portions on prep day.'] },
+    'Chicken Larb Tahini Noodles': { cuisine:'Thai · Lunch', time:'15 min', kcal:525, base:2, protein:54, fiber:7, slug:'chicken-larb-tahini-noodles',
+      ingredients:[{n:'Prepared chicken larb',q:320,u:'g',cat:'protein',prot:50,short:'Chicken'},{n:'Dried udon noodles',q:170,u:'g',cat:'carb',prot:12,short:'Noodles'},{n:'Baby spinach',q:220,u:'g',cat:'veg',prot:6,short:'Spinach'},{n:'Fresh mint',q:15,u:'g',cat:'veg',prot:1},{n:'Spring onions',q:2,u:'',cat:'veg',prot:0},{n:'Tahini',q:60,u:'g',cat:'sauce',prot:10},{n:'Light soy sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Sesame oil',q:2,u:'tsp',cat:'sauce',prot:0}],
+      method:['Wilt the spinach by pouring boiling water over it in a colander; press out excess liquid.','Cook noodles to the packet instructions, then drain.','Whisk tahini, soy, rice vinegar, sesame oil and a splash of warm water into a glossy dressing.','Toss noodles and spinach through the dressing. Reheat the larb until piping hot, then spoon it over.','Finish with mint and spring onion. Keep the noodle base and larb separate until serving for the best texture.'] },
+    'Chicken Larb Crunchy Rice Bowl': { cuisine:'Thai · Lunch', time:'12 min', kcal:500, base:2, protein:52, fiber:6, slug:'chicken-larb-crunchy-rice-bowl',
+      ingredients:[{n:'Prepared chicken larb',q:320,u:'g',cat:'protein',prot:50,short:'Chicken'},{n:'Cooked jasmine rice',q:260,u:'g',cat:'carb',prot:8,short:'Rice'},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1,short:'Cucumber'},{n:'Carrots',q:2,u:'',cat:'veg',prot:1,short:'Carrots'},{n:'Red cabbage, shredded',q:160,u:'g',cat:'veg',prot:2,short:'Cabbage'},{n:'Lime',q:1,u:'',cat:'sauce',prot:0},{n:'Fish sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Chilli flakes',q:1,u:'tsp',cat:'sauce',prot:0}],
+      method:['Reheat the larb and rice until steaming hot.','Shred cabbage, ribbon the carrot and slice cucumber.','Mix lime juice, fish sauce, chilli flakes and a splash of water for a quick sharp dressing.','Build bowls with rice, larb and the crunchy vegetables; drizzle the dressing just before eating.'] },
+    'Chicken Larb Lettuce Cups': { cuisine:'Thai · Light meal', time:'10 min', kcal:430, base:2, protein:50, fiber:7, slug:'chicken-larb-lettuce-cups',
+      ingredients:[{n:'Prepared chicken larb',q:320,u:'g',cat:'protein',prot:50,short:'Chicken'},{n:'Little Gem lettuce',q:2,u:'heads',cat:'veg',prot:2,short:'Lettuce'},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1,short:'Cucumber'},{n:'Carrots',q:2,u:'',cat:'veg',prot:1,short:'Carrots'},{n:'Fresh mint',q:15,u:'g',cat:'veg',prot:1},{n:'Cooked jasmine rice',q:180,u:'g',cat:'carb',prot:5,short:'Rice'},{n:'Lime',q:1,u:'',cat:'sauce',prot:0},{n:'Toasted rice powder',q:2,u:'tbsp',cat:'sauce',prot:2}],
+      method:['Separate, wash and dry lettuce leaves; slice cucumber and carrot into matchsticks.','Reheat the larb until piping hot and loosen with a squeeze of lime if needed.','Spoon larb into lettuce leaves with cucumber, carrot and mint.','Serve with rice alongside and finish with the reserved toasted rice powder for crunch.'] },
+    'Sticky Beef Mince Brothy Rice': { cuisine:'Thai-inspired · Dinner', time:'25 min', kcal:510, base:2, protein:58, fiber:5, slug:'sticky-beef-brothy-rice',
+      ingredients:[{n:'Lean beef mince',q:500,u:'g',cat:'protein',prot:105,short:'Beef'},{n:'Jasmine rice, dry',q:140,u:'g',cat:'carb',prot:10,short:'Rice'},{n:'Beef stock',q:700,u:'ml',cat:'sauce',prot:5},{n:'Ginger',q:20,u:'g',cat:'sauce',prot:0},{n:'Onion',q:1,u:'',cat:'veg',prot:1,short:'Onion'},{n:'Fresh coriander',q:15,u:'g',cat:'veg',prot:1},{n:'Red chilli',q:1,u:'',cat:'veg',prot:0},{n:'Oyster sauce',q:2,u:'tbsp',cat:'sauce',prot:2},{n:'Sriracha',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Soy sauce',q:2,u:'tbsp',cat:'sauce',prot:2},{n:'Rice vinegar',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Limes',q:2,u:'',cat:'sauce',prot:0}],
+      method:['Cook the rice. Slice the onion and soak it in ice-cold water for a crisp topping.','Simmer stock with bashed ginger for 10 min.','Brown the beef mince hard in a hot pan until crisp at the edges. Stir in oyster sauce, sriracha, soy and rice vinegar; reduce until sticky.','Season the broth with lime juice and fish sauce to taste.','Divide rice between bowls, ladle over broth and top with sticky beef, onion, coriander and chilli.'] },
     'Pad Thai': { cuisine:'Thai · Main', time:'20 min', kcal:475, base:2, protein:30, fiber:5, slug:'pad-thai',
       ingredients:[{n:'Firm tofu',q:150,u:'g',cat:'protein',prot:22,short:'Tofu'},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Flat rice noodles',q:120,u:'g',cat:'carb',prot:4,short:'Noodles'},{n:'Beansprouts',q:80,u:'g',cat:'veg',prot:2,short:'Sprouts'},{n:'Spring onions',q:2,u:'',cat:'veg',prot:0},{n:'Tamarind paste',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Fish sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Palm sugar',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Roasted peanuts',q:2,u:'tbsp',cat:'sauce',prot:5},{n:'Lime',q:0.5,u:'',cat:'sauce',prot:0}],
       method:['Soak the noodles in warm water for 10 min until pliable, then drain.','Stir tamarind, fish sauce and palm sugar into a quick sauce.','Fry cubed tofu in a hot wok until crisp; push to one side.','Crack in the egg and scramble lightly.','Add noodles and sauce; toss over high heat until glossy.','Fold through beansprouts and spring onion off the heat.','Finish with crushed peanuts and a squeeze of lime.'] },
@@ -194,16 +210,16 @@ class Component extends DCLogic {
       { n:'Mapo Tofu Rice', kcal:480, protein:30, uses:'Eggs', alts:['Teriyaki Tofu Soba','Tofu Katsu'] },
     ],
     Chicken:[
-      { n:'Chicken Satay Skewers', kcal:480, protein:44, uses:'Eggs', alts:['Lemongrass Chicken','Peanut Chicken Bowl'] },
-      { n:'Hainanese Chicken Rice', kcal:520, protein:42, uses:'Jasmine rice', alts:['Chicken Larb Bowl','Soy Poached Chicken'] },
+      { n:'Chicken Larb Tahini Noodles', kcal:525, protein:54, uses:'Spring onions', alts:['Chicken Larb Crunchy Rice Bowl','Chicken Larb Lettuce Cups'] },
+      { n:'Chicken Larb Bulk Prep', kcal:410, protein:50, uses:'Jasmine rice', alts:['Chicken Larb Lettuce Cups','Chicken Larb Crunchy Rice Bowl'] },
     ],
     Pork:[
       { n:'Char Siu Pork Rice', kcal:540, protein:38, uses:'Jasmine rice', alts:['Pork Larb Bowl','Ginger Pork Donburi'] },
       { n:'Lemongrass Pork Bowl', kcal:495, protein:36, uses:'Spring onions', alts:['Pork Bánh Mì Bowl','Pork Gyoza Bowl'] },
     ],
     Beef:[
-      { n:'Beef Pad Krapow', kcal:510, protein:40, uses:'Jasmine rice', alts:['Beef Bulgogi Bowl','Thai Beef Salad'] },
-      { n:'Korean Beef Bibimbap', kcal:525, protein:38, uses:'Eggs', alts:['Beef Teriyaki Don','Vietnamese Beef Noodles'] },
+      { n:'Beef Pad Krapow', kcal:510, protein:54, uses:'Jasmine rice', alts:['Sticky Beef Mince Brothy Rice','Thai Beef Salad'] },
+      { n:'Sticky Beef Mince Brothy Rice', kcal:510, protein:58, uses:'Spring onions', alts:['Beef Pad Krapow','Vietnamese Beef Noodles'] },
     ],
     Prawn:[
       { n:'Prawn Pad See Ew', kcal:495, protein:34, uses:'Spring onions', alts:['Drunken Noodles, Prawn','Prawn Fried Rice'] },
@@ -232,10 +248,10 @@ class Component extends DCLogic {
   defaultTicks = {'Spring onions':true,'Salmon fillets':true};
   groceryFor() {
     const plan = this.state.activePlan;
-    if (!plan) return { label:'5 dishes · 7 dinners', skipped:[], groups:[
-      {h:'PRODUCE', items:[{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Carrots',q:'4',img:'gr-carrots'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}]},
-      {h:'PROTEINS', items:[{n:'Salmon fillets',q:'2',img:'gr-salmon'},{n:'Chicken thigh',q:'600 g',img:'gr-chicken'}]},
-      {h:'PANTRY', items:[{n:'White miso paste',q:'1 tub',img:'gr-miso'},{n:'Jasmine rice',q:'1 kg',img:'gr-rice'}]},
+    if (!plan) return { label:'5-day Chicken Larb & Beef Week', skipped:[], groups:[
+      {h:'PRODUCE', items:[{n:'Spring onions',q:'3 bunches',img:'gr-spring-onions'},{n:'Fresh coriander',q:'2 × 30 g packs'},{n:'Fresh mint',q:'2 × 30 g packs'},{n:'Baby spinach',q:'500 g',img:'gr-spinach'},{n:'Cucumbers',q:'4'},{n:'Carrots',q:'1 kg',img:'gr-carrots'},{n:'Red cabbage',q:'1 small'},{n:'Little Gem lettuce',q:'4 heads'},{n:'Limes',q:'12'},{n:'Ginger',q:'1 large thumb'},{n:'Onions',q:'2'},{n:'Red chillies',q:'4'}]},
+      {h:'PROTEINS', items:[{n:'Chicken mince',q:'2 kg',img:'gr-chicken'},{n:'Lean beef mince',q:'1.6 kg'}]},
+      {h:'PANTRY', items:[{n:'Jasmine rice',q:'2 kg',img:'gr-rice'},{n:'Dried udon noodles',q:'400 g'},{n:'Tahini',q:'1 jar'},{n:'Fish sauce',q:'1 bottle'},{n:'Light soy sauce',q:'1 bottle'},{n:'Oyster sauce',q:'1 bottle'},{n:'Rice vinegar',q:'1 bottle'},{n:'Sriracha',q:'1 bottle'},{n:'Chilli flakes',q:'1 jar'}]},
     ]};
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -311,7 +327,7 @@ class Component extends DCLogic {
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:30,lineHeight:1.08,color:C.sumi,marginTop:8}},'Week ',e('span',{style:{fontWeight:600}},'complete'),' 🎉')),
       e('div',{key:'stats',style:{flex:'0 0 auto',margin:'18px 22px 0',display:'flex',gap:10}},
         e('div',{style:{flex:1,background:C.peri,borderRadius:18,padding:'16px 14px',textAlign:'center'}},
-          e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:27,color:C.sumi}},cookedCount,e('span',{style:{fontSize:14,color:'#6B5D50'}},'/16')),
+          e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:27,color:C.sumi}},cookedCount,e('span',{style:{fontSize:14,color:'#6B5D50'}},'/20')),
           e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9,letterSpacing:'.08em',color:'#6B5D50',marginTop:3}},'MEALS COOKED')),
         e('div',{style:{flex:1,background:'#F6ECE1',borderRadius:18,padding:'16px 14px',textAlign:'center'}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:27,color:C.sumi}},'94',e('span',{style:{fontSize:14,color:'#b07a63'}},'%')),
@@ -733,7 +749,7 @@ class Component extends DCLogic {
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:8}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:17,color:C.sumi}},"This week's meals"),
           e('div',{onClick:()=>this.setState({homeView:'glance'}),style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,fontWeight:600,color:'#8C5B3F',cursor:'pointer',display:'flex',alignItems:'center',gap:3}},'See all',e('span',{style:{fontSize:14}},'›'))),
-        ['Miso Salmon Bowl','Tofu Bibimbap','Chicken Katsu Curry'].map(n=>{
+        this.thisWeekMains().slice(0,3).map(n=>{
           const r=this.recipes[n];
           return e('div',{key:n,'data-dish':n,style:{display:'flex',alignItems:'center',gap:13,background:'#fff',borderRadius:16,padding:'10px 12px',cursor:'pointer',boxShadow:'0 3px 12px rgba(40,30,22,.05)',marginBottom:9}},
             e('img',{src:this.dishSrc(n),alt:'',style:{width:42,height:42,borderRadius:11,flexShrink:0,objectFit:'cover'}}),
@@ -747,6 +763,10 @@ class Component extends DCLogic {
 
   // ============ MEALS AT A GLANCE ============
   buildWeek() { const w={}; this.slots.forEach(s=>{w[s]=this.options[s].slice();}); return w; }
+  thisWeekMains() {
+    const week = this.state.week || this.buildWeek();
+    return Array.from(new Set([...(week.Lunch||[]), ...(week.Dinner||[])]));
+  }
   renderMeals(fromHome) {
     const C=this.C, st=this.state, week=st.week||this.buildWeek();
     const visDays = st.dayFilter==='all' ? this.days.map((_,i)=>i) : [st.dayFilter];
@@ -778,7 +798,7 @@ class Component extends DCLogic {
         fromHome ? e('button',{onClick:()=>this.setState({homeView:'home'}),style:{border:'none',background:'transparent',cursor:'pointer',padding:0,marginBottom:10,display:'flex',alignItems:'center',gap:6,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13,fontWeight:600,color:C.mut}},e('span',{style:{fontSize:17,lineHeight:1}},'‹'),'Home') : null,
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline'}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:27,color:C.sumi}},plan?'Week '+plan.week:'This week'),
-          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / 16 cooked')),
+          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / 20 cooked')),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,color:C.mut,marginTop:3}},plan?(plan.theme+' · tap to open · swap · check off'):'Tap a meal to open · swap · check off')),
       e('div',{key:'fl',style:{display:'flex',gap:8,padding:'14px 24px 4px',overflowX:'auto',flex:'0 0 auto'}},
         chip('All days','all'), this.days.map((d,i)=>chip(d.k,i))),
