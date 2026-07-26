@@ -1,5 +1,6 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
-const CACHE = 'sundo-app-v4';
+// v5 clears Safari's old cached recipe bundle and installs the current one.
+const CACHE = 'sundo-app-v5';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];
