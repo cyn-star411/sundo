@@ -19,7 +19,7 @@ assert.strictEqual(app.recipes['Leftover Beef & Greens Bulk Prep'].base, 6, '1 k
 assert.ok(app.recipes['Leftover Beef & Greens Bulk Prep'].ingredients.some((item) => item.n === 'Minced beef' && item.q === 1000), 'the plan must use exactly the supplied 1 kg beef');
 
 const variedMains = [
-  'Sticky Beef Ginger Rice Soup',
+  'Sticky Beef Mince Brothy Rice',
   'Gochujang Beef & Tenderstem Bowl',
   'Peanut-Lime Savoy Beef Noodles',
   'Sesame-Ginger Kale Fried Rice',
@@ -30,11 +30,11 @@ const variedMains = [
 assert.deepStrictEqual(
   Array.from([...week.Lunch, ...week.Dinner]),
   [
-    'Sticky Beef Ginger Rice Soup',
+    'Sticky Beef Mince Brothy Rice',
     'Gochujang Beef & Tenderstem Bowl',
     'Peanut-Lime Savoy Beef Noodles',
     'Sesame-Ginger Kale Fried Rice',
-    'Sticky Beef Ginger Rice Soup',
+    'Sticky Beef Mince Brothy Rice',
     'Peanut-Lime Savoy Beef Noodles',
   ],
   'the schedule should use four distinct recipes across its six portions',

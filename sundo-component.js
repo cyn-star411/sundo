@@ -8,8 +8,8 @@ class Component extends DCLogic {
   options = {
     Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats'],
     Snack:['Edamame Sesame','Boiled Eggs & Apple','Rice Cakes & PB'],
-    Lunch:['Sticky Beef Ginger Rice Soup','Gochujang Beef & Tenderstem Bowl','Peanut-Lime Savoy Beef Noodles'],
-    Dinner:['Sesame-Ginger Kale Fried Rice','Sticky Beef Ginger Rice Soup','Peanut-Lime Savoy Beef Noodles'],
+    Lunch:['Sticky Beef Mince Brothy Rice','Gochujang Beef & Tenderstem Bowl','Peanut-Lime Savoy Beef Noodles'],
+    Dinner:['Sesame-Ginger Kale Fried Rice','Sticky Beef Mince Brothy Rice','Peanut-Lime Savoy Beef Noodles'],
   };
   kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510,'Leftover Beef & Greens Bulk Prep':430,'Beef & Tenderstem Broccoli Rice Bowl':495,'Savoy Cabbage Beef Noodles':480,'Beef, Kale & Spinach Fried Rice':505,'Sticky Beef Ginger Rice Soup':470,'Gochujang Beef & Tenderstem Bowl':500,'Peanut-Lime Savoy Beef Noodles':520,'Sesame-Ginger Kale Fried Rice':495};
   recipes = {
