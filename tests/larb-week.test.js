@@ -3,6 +3,7 @@ const fs = require('fs');
 const vm = require('vm');
 
 const source = fs.readFileSync('sundo-component.js', 'utf8');
+const swSource = fs.readFileSync('sw.js', 'utf8');
 const context = {
   React: { createElement: () => ({}) },
   DCLogic: class { setState(patch) { this.state = { ...(this.state || {}), ...patch }; } },
@@ -63,5 +64,7 @@ assert.ok(groceryItems.some((item) => item.n === 'Minced beef' && item.q === '1 
   assert.ok(groceryItems.some((groceryItem) => groceryItem.n === item && groceryItem.q === 'only if needed'), `${item} should be an optional pantry item for flavour variety`);
 });
 assert.deepStrictEqual(Array.from(app.thisWeekMains()), variedMains, 'the home preview should present all four flavour profiles');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v7';"), 'the app should invalidate the prior cached recipe bundle after this recipe update');
+assert.ok(fs.existsSync('refresh.html'), 'a cache-reset page should exist so installed browsers can receive the corrected recipe immediately');
 
 console.log('varied leftover beef plan checks passed');
