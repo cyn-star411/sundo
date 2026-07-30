@@ -2,16 +2,16 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack','Lunch','Dinner'];
-  days = [{k:'Mon',sub:'Gym'},{k:'Tue',sub:'Rest'},{k:'Wed',sub:'Gym'},{k:'Thu',sub:'Rest'},{k:'Fri',sub:'Gym'}];
+  days = [{k:'Mon',sub:'Prep'},{k:'Tue',sub:'Leftovers'},{k:'Wed',sub:'Use it up'}];
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E' };
-  // Five-day rotation: each day has one chicken-larb meal and one beef meal.
+  // Three-day fridge-clearout: 1 kg beef becomes six balanced, ready-to-reheat portions.
   options = {
-    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats','Smoked Salmon Eggs','Matcha Yogurt Cup'],
-    Snack:['Edamame Sesame','Boiled Eggs & Apple','Rice Cakes & PB','Matcha Yogurt Cup','Edamame Sesame'],
-    Lunch:['Chicken Larb Tahini Noodles','Sticky Beef Mince Brothy Rice','Chicken Larb Crunchy Rice Bowl','Sticky Beef Mince Brothy Rice','Chicken Larb Cabbage Cups'],
-    Dinner:['Sticky Beef Mince Crunchy Rice Bowl','Chicken Larb Tahini Noodles','Sticky Beef Mince Crunchy Rice Bowl','Chicken Larb Crunchy Rice Bowl','Sticky Beef Mince Brothy Rice'],
+    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats'],
+    Snack:['Edamame Sesame','Boiled Eggs & Apple','Rice Cakes & PB'],
+    Lunch:['Beef & Tenderstem Broccoli Rice Bowl','Savoy Cabbage Beef Noodles','Beef, Kale & Spinach Fried Rice'],
+    Dinner:['Savoy Cabbage Beef Noodles','Beef, Kale & Spinach Fried Rice','Beef & Tenderstem Broccoli Rice Bowl'],
   };
-  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510};
+  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510,'Leftover Beef & Greens Bulk Prep':430,'Beef & Tenderstem Broccoli Rice Bowl':495,'Savoy Cabbage Beef Noodles':480,'Beef, Kale & Spinach Fried Rice':505};
   recipes = {
     'Miso Salmon Bowl': { cuisine:'Japanese · Main', time:'25 min', kcal:450, base:2, protein:52, fiber:6, slug:'miso-salmon',
       ingredients:[{n:'Salmon fillet, skin-on',q:130,u:'g',cat:'protein',prot:29,short:'Salmon'},{n:'Cooked jasmine rice',q:100,u:'g',cat:'carb',prot:3,short:'Rice'},{n:'Shelled edamame',q:60,u:'g',cat:'veg',prot:7,short:'Edamame'},{n:'Spring onions',q:2,u:'',cat:'veg',prot:0},{n:'White miso paste',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Soy sauce',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Honey',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Rice vinegar',q:1,u:'tsp',cat:'sauce',prot:0}],
@@ -22,6 +22,18 @@ class Component extends DCLogic {
     'Chicken Katsu Curry': { cuisine:'Japanese · Main', time:'45 min', kcal:520, base:3, protein:66, fiber:8, slug:'katsu-curry',
       ingredients:[{n:'Chicken thigh',q:600,u:'g',cat:'protein',prot:108,short:'Chicken'},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Jasmine rice',q:240,u:'g',cat:'carb',prot:7,short:'Rice'},{n:'Panko breadcrumbs',q:1,u:'cup',cat:'carb',prot:6},{n:'Plain flour',q:3,u:'tbsp',cat:'carb',prot:3},{n:'Onion',q:1,u:'',cat:'veg',prot:1},{n:'Carrot',q:1,u:'',cat:'veg',prot:1},{n:'Curry roux',q:0.5,u:'pack',cat:'sauce',prot:2},{n:'Oil, for frying',q:2,u:'tbsp',cat:'sauce',prot:0}],
       method:['Slice onion and carrot; simmer with 400ml water and the roux for 15 min into a smooth sauce.','Butterfly the chicken and season well.','Set up a flour → beaten egg → panko coating line.','Coat each piece, pressing the panko on firmly.','Shallow-fry 3–4 min each side until deep golden and cooked through.','Rest 3 min, then slice into thick strips.','Serve over rice and ladle the hot curry sauce alongside.'] },
+    'Leftover Beef & Greens Bulk Prep': { cuisine:'Fridge-clearout · Bulk prep', time:'35 min', kcal:430, base:6, protein:250, fiber:6, slug:'leftover-beef-greens-bulk-prep',
+      ingredients:[{n:'Minced beef',q:1000,u:'g',cat:'protein',prot:250,short:'Beef'},{n:'Garlic',q:6,u:'cloves',cat:'sauce',prot:0},{n:'Light soy sauce',q:4,u:'tbsp',cat:'sauce',prot:4},{n:'Rice vinegar',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Sesame oil',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Chilli flakes',q:2,u:'tsp',cat:'sauce',prot:0}],
+      method:['Cook 1 kg minced beef in two wide batches over high heat, leaving it untouched briefly so it browns rather than steams.','Stir together 6 minced garlic cloves, 4 tbsp light soy sauce, 2 tbsp rice vinegar, 2 tsp sesame oil and 2 tsp chilli flakes.','Return all of the beef to the pan, add the measured sauce and cook for 1–2 min until glossy.','Cool promptly, then divide into six portions (about 165 g each). Refrigerate the first four portions for up to 3 days and freeze the final two portions; thaw them overnight in the fridge.'] },
+    'Beef & Tenderstem Broccoli Rice Bowl': { cuisine:'Asian-inspired · Leftovers', time:'15 min', kcal:495, base:2, protein:52, fiber:9, slug:'beef-tenderstem-rice-bowl',
+      ingredients:[{n:'Prepared leftover beef',q:167,u:'g',cat:'protein',prot:42,short:'Beef'},{n:'Cooked jasmine rice',q:260,u:'g',cat:'carb',prot:8,short:'Rice'},{n:'Tenderstem broccoli',q:200,u:'g',cat:'veg',prot:6,short:'Broccoli'},{n:'Carrots',q:100,u:'g',cat:'veg',prot:1,short:'Carrots'},{n:'Red cabbage',q:150,u:'g',cat:'veg',prot:2,short:'Cabbage'},{n:'Parsley',q:15,u:'g',cat:'veg',prot:1},{n:'Light soy sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0}],
+      method:['Steam 200 g tenderstem broccoli for 4–5 min until bright and tender-crisp; ribbon 100 g carrots and shred 150 g red cabbage.','Reheat one 167 g portion of prepared leftover beef until piping hot and warm 260 g cooked jasmine rice.','Toss the cabbage and carrots with 1 tbsp rice vinegar and a pinch of salt.','Build two bowls with rice, beef, broccoli and crunchy slaw. Finish with 1 tbsp light soy sauce and 15 g chopped parsley.'] },
+    'Savoy Cabbage Beef Noodles': { cuisine:'Asian-inspired · Leftovers', time:'15 min', kcal:480, base:2, protein:50, fiber:10, slug:'savoy-beef-noodles',
+      ingredients:[{n:'Prepared leftover beef',q:167,u:'g',cat:'protein',prot:42,short:'Beef'},{n:'Dried noodles',q:160,u:'g',cat:'carb',prot:10,short:'Noodles'},{n:'Savoy cabbage',q:250,u:'g',cat:'veg',prot:3,short:'Cabbage'},{n:'Carrots',q:100,u:'g',cat:'veg',prot:1,short:'Carrots'},{n:'Kale',q:120,u:'g',cat:'veg',prot:4,short:'Kale'},{n:'Spinach',q:100,u:'g',cat:'veg',prot:3,short:'Spinach'},{n:'Light soy sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0}],
+      method:['Cook 160 g dried noodles, reserving a splash of cooking water before draining.','Stir-fry 250 g shredded savoy cabbage, 100 g carrot ribbons and 120 g chopped kale for 4 min; add 100 g spinach and let it wilt.','Add one 167 g portion of prepared leftover beef, the noodles, 1 tbsp light soy sauce, 1 tbsp rice vinegar and 2 tbsp noodle water.','Toss over high heat for 1–2 min until glossy and hot. Divide between two containers or bowls.'] },
+    'Beef, Kale & Spinach Fried Rice': { cuisine:'Asian-inspired · Leftovers', time:'15 min', kcal:505, base:2, protein:51, fiber:9, slug:'beef-kale-spinach-fried-rice',
+      ingredients:[{n:'Prepared leftover beef',q:167,u:'g',cat:'protein',prot:42,short:'Beef'},{n:'Cooked jasmine rice',q:300,u:'g',cat:'carb',prot:9,short:'Rice'},{n:'Kale',q:100,u:'g',cat:'veg',prot:3,short:'Kale'},{n:'Spinach',q:120,u:'g',cat:'veg',prot:4,short:'Spinach'},{n:'Red cabbage',q:150,u:'g',cat:'veg',prot:2,short:'Cabbage'},{n:'Parsley',q:15,u:'g',cat:'veg',prot:1},{n:'Light soy sauce',q:1.5,u:'tbsp',cat:'sauce',prot:1},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0}],
+      method:['Heat a wide pan until very hot. Stir-fry 100 g chopped kale for 2 min, then add 120 g spinach and 150 g shredded red cabbage.','Add 300 g cold cooked jasmine rice and one 167 g portion of prepared leftover beef; spread it out for 1 min so the rice can toast.','Season with 1½ tbsp light soy sauce and 1 tsp sesame oil, then toss until every grain is hot.','Fold through 15 g chopped parsley just before serving. Divide between two containers; cool quickly if packing for later.'] },
     'Chicken Larb Bulk Prep': { cuisine:'Thai · Bulk prep', time:'55 min', kcal:410, base:10, protein:250, fiber:4, slug:'chicken-larb-bulk-prep',
       ingredients:[{n:'Chicken mince',q:2000,u:'g',cat:'protein',prot:380,short:'Chicken'},{n:'Jasmine rice, dry',q:160,u:'g',cat:'carb',prot:12,short:'Rice'},{n:'Spring onions',q:8,u:'',cat:'veg',prot:2},{n:'Fresh coriander',q:50,u:'g',cat:'veg',prot:2},{n:'Garlic',q:10,u:'cloves',cat:'sauce',prot:0},{n:'Chilli flakes',q:5,u:'tsp',cat:'sauce',prot:0},{n:'Fish sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Light soy sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Caster sugar',q:30,u:'g',cat:'sauce',prot:0},{n:'Limes',q:6,u:'',cat:'sauce',prot:0}],
       method:['Dry-toast 160 g jasmine rice in a frying pan for 4–5 min until golden and fragrant; crush it to a sandy powder, reserving 20 g for the cabbage cups.','Cook 2 kg chicken mince in three batches over high heat until its moisture has evaporated and the edges are golden.','Mix 8 sliced spring onions, 10 minced garlic cloves, 5 tsp chilli flakes, 6 tbsp fish sauce, 6 tbsp light soy sauce, 30 g caster sugar and the juice of 6 limes until the sugar dissolves.','Return the chicken to the pan, add the measured dressing and simmer for 1 min. Fold through 50 g chopped coriander and 140 g toasted rice powder.','Cool promptly, then portion into ten 160 g servings; refrigerate up to 3 days and freeze the Thursday and Friday portions on prep day.'] },
@@ -123,7 +135,7 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
   };
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Miso Salmon Bowl','Tofu Bibimbap','Chicken Katsu Curry','Pad Thai'];
+  recipeOrder = ['Beef & Tenderstem Broccoli Rice Bowl','Savoy Cabbage Beef Noodles','Beef, Kale & Spinach Fried Rice'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -150,14 +162,12 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Rice on'},{t:'0:15',l:'Toast larb rice'},{t:'0:30',l:'Cook chicken larb'},{t:'1:05',l:'Cook sticky beef'},{t:'1:40',l:'Prep shared veg'},{t:'1:55',l:'Mix dressings'},{t:'2:10',l:'Done'}];
+  timeline = [{t:'0:00',l:'Rice on'},{t:'0:10',l:'Brown beef'},{t:'0:25',l:'Steam broccoli'},{t:'0:35',l:'Prep greens'},{t:'0:50',l:'Portion meals'},{t:'1:05',l:'Done'}];
   prepSections = [
-    {id:'larb',title:'Chicken larb bulk prep',time:'55 min',color:'#CB9C8B',steps:['Toast and crush the rice powder first, then cook the chicken in three batches so it browns instead of steams.','Dress the larb with lime, fish sauce, soy, spring onion, coriander and chilli; portion into ten 160 g servings.','Refrigerate Monday–Wednesday portions; freeze Thursday and Friday portions immediately. Thaw overnight in the fridge.']},
-    {id:'beef',title:'Sticky beef bulk prep',time:'45 min',color:'#C8754E',steps:['Brown the beef in three batches for crisp edges, then reduce with the shared garlic, spring onion, chilli, oyster, soy, sriracha and vinegar sauce.','Portion into ten 160 g servings for the three brothy-rice bowls and two crunchy-rice bowls.','Refrigerate Monday–Wednesday portions; freeze Thursday and Friday portions immediately.']},
-    {id:'rice',title:'Rice, noodles & stock',time:'35 min',color:'#7C8A5E',steps:['Cook the jasmine rice for the bowls; cool it quickly in shallow containers and refrigerate.','Cook the brothy-rice portions fresh, or batch-cook and reheat until steaming hot with a splash of water.','Keep udon and tahini dressing separate until the two noodle lunches so the noodles stay springy.','Make the ginger beef stock base; refrigerate it separately from the beef mince.']},
-    {id:'veg',title:'One vegetable prep box',time:'25 min',color:'#8FB3C8',steps:['Shred both cabbages, ribbon the carrots and slice the cucumbers; store in one large paper-towel-lined box.','Trim spring onions, chop coriander, peel garlic and slice chillies — these are shared by both bulk preps.','Keep the largest cabbage leaves aside for the larb cabbage cups; use the rest in bowls and noodles.']},
-    {id:'sauces',title:'Two simple dressings',time:'10 min',color:'#9A8A76',steps:['Tahini noodle dressing: tahini, soy, rice vinegar, sesame oil and warm water.','Larb bowl dressing: lime, fish sauce, chilli flakes and water.','Everything else uses the sauces already built into the chicken larb or sticky beef bulk prep.']},
-    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Label containers by protein and day: chicken larb or sticky beef.','Keep cooked rice, vegetable prep and sauces in separate containers until serving.','Reheat mince and rice until piping hot; keep crunchy vegetables cold and add them last.']},
+    {id:'beef',title:'1 kg leftover beef bulk prep',time:'35 min',color:'#C8754E',steps:['Brown the 1 kg minced beef in two batches, then toss with garlic, soy, rice vinegar, sesame oil and chilli flakes.','Cool promptly and divide into six roughly 165 g portions: four for the fridge, two for the freezer.','Use one portion for each lunch or dinner container; reheat it until piping hot before serving.']},
+    {id:'veg',title:'One shared vegetable prep box',time:'30 min',color:'#8FB3C8',steps:['Shred the red and savoy cabbage, ribbon the carrots, chop the kale and pick the parsley leaves.','Trim the tenderstem broccoli; steam it for 4–5 minutes, cool, then refrigerate.','Keep spinach dry and add it only while reheating the noodles or fried rice so it stays fresh.']},
+    {id:'carbs',title:'Cook your base',time:'25 min',color:'#7C8A5E',steps:['Cook enough jasmine rice for the two rice recipes; cool it quickly in shallow containers before refrigerating.','Keep dried noodles separate and cook them on the day you are eating the noodle boxes for the best texture.','If you have neither rice nor noodles, serve the beef and vegetables in a big cabbage bowl instead.']},
+    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Keep cooked beef, rice/noodles and crunchy vegetables separate until reheating.','Refrigerate cooked food for up to 3 days; freeze the final two beef portions straight away.','Reheat beef and rice thoroughly; add the cold cabbage or parsley at the end.']},
   ];
 
   state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'larb', prepDone:{}, currentRecipe:'Miso Salmon Bowl', recipeGlow:false,
@@ -254,10 +264,9 @@ class Component extends DCLogic {
   defaultTicks = {'Spring onions':true,'Salmon fillets':true};
   groceryFor() {
     const plan = this.state.activePlan;
-    if (!plan) return { label:'5-day Chicken Larb & Beef Week', skipped:[], groups:[
-      {h:'PRODUCE', items:[{n:'Spring onions',q:'4 bunches',img:'gr-spring-onions'},{n:'Fresh coriander',q:'4 × 30 g packs'},{n:'Garlic',q:'3 bulbs'},{n:'Red chillies',q:'8'},{n:'Ginger',q:'1 large thumb'},{n:'Cucumbers',q:'5'},{n:'Carrots',q:'1.5 kg',img:'gr-carrots'},{n:'Red cabbage',q:'2 large'},{n:'Limes',q:'16'}]},
-      {h:'PROTEINS', items:[{n:'Chicken mince',q:'2 kg',img:'gr-chicken'},{n:'Lean beef mince',q:'2 kg'}]},
-      {h:'PANTRY', items:[{n:'Jasmine rice',q:'1.5 kg',img:'gr-rice'},{n:'Dried udon noodles',q:'400 g'},{n:'Tahini',q:'1 jar'},{n:'Beef stock',q:'2.1 L'},{n:'Fish sauce',q:'1 bottle'},{n:'Light soy sauce',q:'1 bottle'},{n:'Oyster sauce',q:'1 bottle'},{n:'Rice vinegar',q:'1 bottle'},{n:'Sriracha',q:'1 bottle'},{n:'Sesame oil',q:'1 bottle'},{n:'Chilli flakes',q:'1 jar'}]},
+    if (!plan) return { label:'3-day Beef & Greens Leftover Prep', skipped:[], groups:[
+      {h:'FROM YOUR FRIDGE', items:[{n:'Minced beef',q:'1 kg · already have',img:'gr-chicken'},{n:'Carrots',q:'already have'},{n:'Red cabbage',q:'already have'},{n:'Savoy cabbage',q:'already have'},{n:'Spinach',q:'already have'},{n:'Parsley',q:'already have'},{n:'Tenderstem broccoli',q:'already have'},{n:'Kale',q:'already have'}]},
+      {h:'PANTRY · ONLY IF NEEDED', items:[{n:'Jasmine rice or noodles',q:'only if needed',img:'gr-rice'},{n:'Light soy sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Sesame oil',q:'only if needed'},{n:'Garlic',q:'only if needed'},{n:'Chilli flakes',q:'only if needed'}]},
     ]};
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -804,7 +813,7 @@ class Component extends DCLogic {
         fromHome ? e('button',{onClick:()=>this.setState({homeView:'home'}),style:{border:'none',background:'transparent',cursor:'pointer',padding:0,marginBottom:10,display:'flex',alignItems:'center',gap:6,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13,fontWeight:600,color:C.mut}},e('span',{style:{fontSize:17,lineHeight:1}},'‹'),'Home') : null,
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline'}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:27,color:C.sumi}},plan?'Week '+plan.week:'This week'),
-          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / 20 cooked')),
+          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / 12 cooked')),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,color:C.mut,marginTop:3}},plan?(plan.theme+' · tap to open · swap · check off'):'Tap a meal to open · swap · check off')),
       e('div',{key:'fl',style:{display:'flex',gap:8,padding:'14px 24px 4px',overflowX:'auto',flex:'0 0 auto'}},
         chip('All days','all'), this.days.map((d,i)=>chip(d.k,i))),
@@ -1100,7 +1109,7 @@ class Component extends DCLogic {
       Japanese:['Miso Salmon Bowl','Salmon Sushi Bowl','Garlic Prawn Donburi'],
       Korean:['Tofu Bibimbap','Korean Beef Bibimbap'],
       Thai:['Pad Thai','Thai Basil Tofu','Beef Pad Krapow'],
-      Prep:['Chicken Larb Bulk Prep','Sticky Beef Mince Bulk Prep'],
+      Prep:['Leftover Beef & Greens Bulk Prep'],
     };
     const cat = cuisineDishes[st.discoverCat] ? st.discoverCat : 'Japanese';
     const dishes = cuisineDishes[cat];

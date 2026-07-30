@@ -16,72 +16,63 @@ vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
 
-assert.strictEqual(app.days.length, 5, 'the weekly plan should cover five weekdays');
-assert.strictEqual(week.Lunch.length, 5, 'the lunch rotation should cover five weekdays');
-assert.strictEqual(week.Dinner.length, 5, 'the dinner rotation should cover five weekdays');
+assert.strictEqual(app.days.length, 3, 'the leftovers meal prep should be a practical three-day plan');
+assert.deepStrictEqual(Array.from(app.days, (day) => day.k), ['Mon', 'Tue', 'Wed'], 'the plan should run Monday through Wednesday');
+assert.strictEqual(week.Lunch.length, 3, 'the lunch prep rotation should cover three days');
+assert.strictEqual(week.Dinner.length, 3, 'the dinner prep rotation should cover three days');
 
+const leftoverMains = [
+  'Beef & Tenderstem Broccoli Rice Bowl',
+  'Savoy Cabbage Beef Noodles',
+  'Beef, Kale & Spinach Fried Rice',
+];
 [
-  'Chicken Larb Bulk Prep',
-  'Chicken Larb Tahini Noodles',
-  'Chicken Larb Crunchy Rice Bowl',
-  'Chicken Larb Cabbage Cups',
-  'Sticky Beef Mince Bulk Prep',
-  'Sticky Beef Mince Brothy Rice',
-  'Sticky Beef Mince Crunchy Rice Bowl',
+  'Leftover Beef & Greens Bulk Prep',
+  ...leftoverMains,
 ].forEach((recipe) => assert.ok(app.recipes[recipe], `${recipe} should be available in Sundō`));
 
 const mains = [...week.Lunch, ...week.Dinner];
-const chickenMeals = mains.filter((meal) => meal.startsWith('Chicken Larb'));
-const beefMeals = mains.filter((meal) => meal === 'Sticky Beef Mince Brothy Rice' || meal === 'Sticky Beef Mince Crunchy Rice Bowl');
-assert.strictEqual(chickenMeals.length, 5, 'the main rotation should contain five chicken-larb meals');
-assert.strictEqual(beefMeals.length, 5, 'the main rotation should contain five beef meals');
-assert.strictEqual(app.recipes['Chicken Larb Bulk Prep'].base, 10, 'chicken bulk prep should make ten portions for the five planned larb meals');
-assert.strictEqual(app.recipes['Sticky Beef Mince Bulk Prep'].base, 10, 'beef bulk prep should make ten portions for the five planned beef meals');
-assert.ok(source.includes("Prep:['Chicken Larb Bulk Prep','Sticky Beef Mince Bulk Prep']"), 'both bulk-prep recipes should be directly available in the in-app recipe browser');
-assert.ok(app.recipes['Chicken Larb Bulk Prep'].method.some((step) => step.includes('2 kg chicken mince')) && app.recipes['Chicken Larb Bulk Prep'].method.some((step) => step.includes('160 g jasmine rice')), 'the chicken bulk-prep method should repeat its gram measurements');
-assert.ok(app.recipes['Sticky Beef Mince Bulk Prep'].method.some((step) => step.includes('4 tbsp oyster sauce') && step.includes('4 tbsp light soy sauce')), 'the beef bulk-prep method should repeat its sauce measurements');
-assert.ok(app.recipes['Chicken Larb Tahini Noodles'].method.some((step) => step.includes('60 g tahini') && step.includes('1 tbsp light soy sauce') && step.includes('2 tsp sesame oil')), 'the tahini-noodle method should include exact dressing measurements');
-assert.ok(app.recipes['Sticky Beef Mince Brothy Rice'].method.some((step) => step.includes('700 ml beef stock') && step.includes('20 g fresh ginger')), 'the brothy-rice method should include its stock and ginger measurements');
-chickenMeals.forEach((meal) => assert.ok(
-  app.recipes[meal].ingredients.some((ingredient) => ingredient.n === 'Prepared chicken larb'),
-  `${meal} should be built from the shared chicken larb prep`,
-));
-beefMeals.forEach((meal) => assert.ok(
-  app.recipes[meal].ingredients.some((ingredient) => ingredient.n === 'Prepared sticky beef mince'),
-  `${meal} should be built from the shared sticky beef prep`,
-));
-week.Lunch.forEach((meal, day) => {
-  const dinner = week.Dinner[day];
-  assert.notStrictEqual(
-    meal.startsWith('Chicken Larb'),
-    dinner.startsWith('Chicken Larb'),
-    `day ${day + 1} should alternate chicken and beef rather than serving chicken twice`,
+assert.deepStrictEqual(
+  Array.from(mains),
+  [
+    'Beef & Tenderstem Broccoli Rice Bowl',
+    'Savoy Cabbage Beef Noodles',
+    'Beef, Kale & Spinach Fried Rice',
+    'Savoy Cabbage Beef Noodles',
+    'Beef, Kale & Spinach Fried Rice',
+    'Beef & Tenderstem Broccoli Rice Bowl',
+  ],
+  'each of the three recipes should appear twice for six ready-to-reheat portions',
+);
+assert.strictEqual(app.recipes['Leftover Beef & Greens Bulk Prep'].base, 6, 'the bulk prep should make six portions from the 1 kg beef supply');
+assert.ok(
+  app.recipes['Leftover Beef & Greens Bulk Prep'].ingredients.some((item) => item.n === 'Minced beef' && item.q === 1000 && item.u === 'g'),
+  'the bulk prep must use exactly the supplied 1 kg minced beef',
+);
+assert.ok(
+  app.recipes['Leftover Beef & Greens Bulk Prep'].method.some((step) => step.includes('1 kg minced beef')) &&
+  app.recipes['Leftover Beef & Greens Bulk Prep'].method.some((step) => step.includes('six portions')),
+  'bulk-prep instructions should state the real beef quantity and yield',
+);
+
+const requiredVegetables = ['Carrots', 'Red cabbage', 'Savoy cabbage', 'Spinach', 'Parsley', 'Tenderstem broccoli', 'Kale'];
+requiredVegetables.forEach((vegetable) => {
+  assert.ok(
+    leftoverMains.some((meal) => app.recipes[meal].ingredients.some((item) => item.n === vegetable)),
+    `${vegetable} should be used by at least one new leftover recipe`,
   );
 });
+assert.ok(source.includes("Prep:['Leftover Beef & Greens Bulk Prep']"), 'the bulk prep should be discoverable in the recipe browser');
 
 const grocery = app.groceryFor();
-assert.strictEqual(grocery.label, '5-day Chicken Larb & Beef Week', 'the cart should identify this week’s plan');
+assert.strictEqual(grocery.label, '3-day Beef & Greens Leftover Prep', 'the cart should identify the new leftovers plan');
 const groceryItems = grocery.groups.flatMap((group) => group.items);
-assert.ok(
-  groceryItems.some((item) => item.n === 'Chicken mince' && item.q === '2 kg'),
-  'the cart should include the 2 kg chicken mince required for five larb meals',
-);
-assert.ok(
-  groceryItems.some((item) => item.n === 'Lean beef mince' && item.q === '2 kg'),
-  'the cart should include the 2 kg beef bulk prep required for five beef meals',
-);
-assert.ok(
-  groceryItems.some((item) => item.n === 'Beef stock' && item.q === '2.1 L'),
-  'the cart should include broth for the three brothy beef rice meals',
-);
-['Fresh mint', 'Baby spinach', 'Little Gem lettuce', 'Thai basil', 'Green beans'].forEach((item) => {
-  assert.ok(!groceryItems.some((groceryItem) => groceryItem.n === item), `${item} should not be on the condensed shopping list`);
+assert.ok(groceryItems.some((item) => item.n === 'Minced beef' && item.q === '1 kg · already have'), 'the cart should mark the supplied beef as already in the fridge');
+requiredVegetables.forEach((vegetable) => {
+  assert.ok(groceryItems.some((item) => item.n === vegetable && item.q.includes('already have')), `${vegetable} should be marked as a fridge leftover`);
 });
-assert.ok(source.includes("' / 20 cooked'"), 'the progress label should use the five-day, 20-meal total');
-assert.deepStrictEqual(
-  Array.from(app.thisWeekMains()),
-  ['Chicken Larb Tahini Noodles', 'Sticky Beef Mince Brothy Rice', 'Chicken Larb Crunchy Rice Bowl', 'Chicken Larb Cabbage Cups', 'Sticky Beef Mince Crunchy Rice Bowl'],
-  'the home screen should preview the balanced chicken-larb and beef rotation',
-);
+assert.ok(groceryItems.some((item) => item.n === 'Jasmine rice or noodles' && item.q === 'only if needed'), 'only staple carbs should be optional purchases');
+assert.ok(source.includes("' / 12 cooked'"), 'progress should match the three-day plan: breakfast, snack, lunch and dinner');
+assert.deepStrictEqual(Array.from(app.thisWeekMains()), leftoverMains, 'the home preview should show the three new recipes');
 
-console.log('larb five-day plan checks passed');
+console.log('leftover beef plan checks passed');
