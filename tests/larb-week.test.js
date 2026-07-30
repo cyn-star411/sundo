@@ -40,6 +40,12 @@ assert.deepStrictEqual(
   'the schedule should use four distinct recipes across its six portions',
 );
 assert.ok(app.recipes['Sticky Beef Ginger Rice Soup'].method.some((step) => step.includes('700 ml beef stock')) && app.recipes['Sticky Beef Ginger Rice Soup'].method.some((step) => step.includes('20 g thinly sliced ginger')), 'the sticky beef soup should keep its ginger-stock flavour');
+const mobBrothyRice = app.recipes['Sticky Beef Mince Brothy Rice'];
+assert.strictEqual(mobBrothyRice.base, 4, 'the saved Mob sticky beef brothy rice recipe should retain its four-serving yield');
+assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Beef stock (for broth)' && item.q === 700) && mobBrothyRice.ingredients.some((item) => item.n === 'Beef stock (for sticky sauce)' && item.q === 40), 'the Mob recipe should show the broth and sauce stock quantities separately');
+assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Star anise' && item.q === 1), 'the Mob broth must include its star anise');
+assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Cardamom pods' && item.q === 4), 'the Mob broth must include its four cardamom pods');
+assert.ok(mobBrothyRice.method.some((step) => step.includes('Toast 1 star anise and 4 crushed cardamom pods')), 'the Mob method must toast the whole spices before making the broth');
 assert.ok(app.recipes['Gochujang Beef & Tenderstem Bowl'].ingredients.some((item) => item.n === 'Gochujang'), 'the broccoli bowl should use gochujang rather than a soy-vinegar dressing');
 assert.ok(app.recipes['Peanut-Lime Savoy Beef Noodles'].ingredients.some((item) => item.n === 'Peanut butter') && app.recipes['Peanut-Lime Savoy Beef Noodles'].ingredients.some((item) => item.n === 'Lime'), 'the noodles should have a peanut-lime flavour');
 assert.ok(app.recipes['Sesame-Ginger Kale Fried Rice'].ingredients.some((item) => item.n === 'Fresh ginger'), 'the fried rice should have a distinct sesame-ginger flavour');
