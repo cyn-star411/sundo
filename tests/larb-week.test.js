@@ -15,56 +15,75 @@ vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
 
-assert.strictEqual(app.days.length, 3, 'the leftovers meal prep should remain a practical three-day plan');
-assert.strictEqual(app.recipes['Leftover Beef & Greens Bulk Prep'].base, 6, '1 kg beef should still yield six portions');
-assert.ok(app.recipes['Leftover Beef & Greens Bulk Prep'].ingredients.some((item) => item.n === 'Minced beef' && item.q === 1000), 'the plan must use exactly the supplied 1 kg beef');
-
-const variedMains = [
-  'Sticky Beef Mince Brothy Rice',
-  'Gochujang Beef & Tenderstem Bowl',
-  'Peanut-Lime Savoy Beef Noodles',
-  'Sesame-Ginger Kale Fried Rice',
-];
-['Leftover Beef & Greens Bulk Prep', ...variedMains].forEach((recipe) => {
-  assert.ok(app.recipes[recipe], `${recipe} should be available in Sundō`);
-});
+assert.deepStrictEqual(Array.from(app.days.map((day) => day.k)), ['Thu', 'Fri'], 'the new fridge-clearout plan should run Thursday and Friday');
 assert.deepStrictEqual(
-  Array.from([...week.Lunch, ...week.Dinner]),
-  [
-    'Sticky Beef Mince Brothy Rice',
-    'Gochujang Beef & Tenderstem Bowl',
-    'Peanut-Lime Savoy Beef Noodles',
-    'Sesame-Ginger Kale Fried Rice',
-    'Sticky Beef Mince Brothy Rice',
-    'Peanut-Lime Savoy Beef Noodles',
-  ],
-  'the schedule should use four distinct recipes across its six portions',
+  Array.from(week.Lunch),
+  ['Chicken, Cucumber & Herb Salad', 'Egg, Spinach & Cucumber Salad'],
+  'lunches should match the supplied Thursday and Friday recipes',
 );
-assert.ok(app.recipes['Sticky Beef Ginger Rice Soup'].method.some((step) => step.includes('700 ml beef stock')) && app.recipes['Sticky Beef Ginger Rice Soup'].method.some((step) => step.includes('20 g thinly sliced ginger')), 'the sticky beef soup should keep its ginger-stock flavour');
-const mobBrothyRice = app.recipes['Sticky Beef Mince Brothy Rice'];
-assert.strictEqual(mobBrothyRice.base, 4, 'the saved Mob sticky beef brothy rice recipe should retain its four-serving yield');
-assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Beef stock (for broth)' && item.q === 700) && mobBrothyRice.ingredients.some((item) => item.n === 'Beef stock (for sticky sauce)' && item.q === 40), 'the Mob recipe should show the broth and sauce stock quantities separately');
-assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Star anise' && item.q === 1), 'the Mob broth must include its star anise');
-assert.ok(mobBrothyRice.ingredients.some((item) => item.n === 'Cardamom pods' && item.q === 4), 'the Mob broth must include its four cardamom pods');
-assert.ok(mobBrothyRice.method.some((step) => step.includes('Toast 1 star anise and 4 crushed cardamom pods')), 'the Mob method must toast the whole spices before making the broth');
-assert.ok(app.recipes['Gochujang Beef & Tenderstem Bowl'].ingredients.some((item) => item.n === 'Gochujang'), 'the broccoli bowl should use gochujang rather than a soy-vinegar dressing');
-assert.ok(app.recipes['Peanut-Lime Savoy Beef Noodles'].ingredients.some((item) => item.n === 'Peanut butter') && app.recipes['Peanut-Lime Savoy Beef Noodles'].ingredients.some((item) => item.n === 'Lime'), 'the noodles should have a peanut-lime flavour');
-assert.ok(app.recipes['Sesame-Ginger Kale Fried Rice'].ingredients.some((item) => item.n === 'Fresh ginger'), 'the fried rice should have a distinct sesame-ginger flavour');
+assert.deepStrictEqual(
+  Array.from(week.Dinner),
+  ['Chicken, Cabbage & Carrot Stir-Fry', 'Five-Spice Chicken, Cabbage & Kale Noodles'],
+  'dinners should match the supplied Thursday and Friday recipes',
+);
 
-const requiredVegetables = ['Carrots', 'Red cabbage', 'Savoy cabbage', 'Spinach', 'Parsley', 'Tenderstem broccoli', 'Kale'];
-requiredVegetables.forEach((vegetable) => assert.ok(
-  variedMains.some((meal) => app.recipes[meal].ingredients.some((item) => item.n === vegetable)),
-  `${vegetable} should be used by at least one leftovers recipe`,
-));
-assert.ok(source.includes("Prep:['Leftover Beef & Greens Bulk Prep']"), 'the shared beef prep should remain discoverable in Recipes');
+const activeMains = [
+  'Chicken, Cucumber & Herb Salad',
+  'Egg, Spinach & Cucumber Salad',
+  'Chicken, Cabbage & Carrot Stir-Fry',
+  'Five-Spice Chicken, Cabbage & Kale Noodles',
+];
+activeMains.forEach((recipe) => assert.ok(app.recipes[recipe], `${recipe} should be available in Sundō`));
+assert.deepStrictEqual(Array.from(app.thisWeekMains()), activeMains, 'the home preview should show all four new meals');
+assert.ok(activeMains.every((meal) => app.recipes[meal].fixedPlan), 'active recipes should keep their displayed ingredient totals aligned with the fixed grocery plan');
+const eggRecipeTotal = app.recipes['Egg, Spinach & Cucumber Salad'].ingredients.find((item) => item.n === 'Eggs').q;
+assert.strictEqual(eggRecipeTotal, 4, 'the recipe card must retain the four eggs purchased and prepped for two people');
+assert.deepStrictEqual(Array.from(app.recipeOrder), activeMains, 'the recipe list should focus on the active chicken-and-eggs plan');
+
+const stirFry = app.recipes['Chicken, Cabbage & Carrot Stir-Fry'];
+assert.ok(stirFry.ingredients.some((item) => item.n === 'Chicken breast' && item.q === 320), 'the Thursday stir-fry should use chicken breast');
+assert.ok(stirFry.ingredients.some((item) => item.n === 'Savoy cabbage') && stirFry.ingredients.some((item) => item.n === 'Kale'), 'the Thursday stir-fry should use cabbage and kale');
+assert.ok(stirFry.method.some((step) => step.includes('browned bits')), 'the Thursday stir-fry method should scrape up the browned bits');
+
+const noodles = app.recipes['Five-Spice Chicken, Cabbage & Kale Noodles'];
+['Garlic', 'Fresh ginger', 'Chinese five spice', 'Light soy sauce', 'Honey', 'Toasted sesame seeds'].forEach((ingredient) => {
+  assert.ok(noodles.ingredients.some((item) => item.n === ingredient), `the five-spice noodles should include ${ingredient}`);
+});
+assert.ok(noodles.ingredients.some((item) => item.n === 'Red cabbage') && noodles.ingredients.some((item) => item.n === 'Kale') && noodles.ingredients.some((item) => item.n === 'Carrots'), 'the Friday noodles should use the specified vegetables');
+
+const chickenSalad = app.recipes['Chicken, Cucumber & Herb Salad'];
+assert.ok(chickenSalad.ingredients.some((item) => item.n === 'Chicken breast') && chickenSalad.ingredients.some((item) => item.n === 'Cucumber') && chickenSalad.ingredients.some((item) => item.n === 'Fresh coriander') && chickenSalad.ingredients.some((item) => item.n === 'Parsley'), 'the Thursday lunch should include chicken, cucumber, and both herbs');
+assert.ok(chickenSalad.method.some((step) => step.includes('lime')) && chickenSalad.method.some((step) => step.includes('sesame oil')), 'the Thursday lunch dressing should use lime and sesame oil');
+
+const eggSalad = app.recipes['Egg, Spinach & Cucumber Salad'];
+assert.ok(eggSalad.ingredients.some((item) => item.n === 'Eggs' && item.q === 4), 'the Friday lunch should provide two soft-boiled eggs per person');
+assert.ok(eggSalad.ingredients.some((item) => item.n === 'Baby spinach') && eggSalad.ingredients.some((item) => item.n === 'Cucumber') && eggSalad.ingredients.some((item) => item.n === 'Fresh coriander'), 'the Friday lunch should use spinach, cucumber, and coriander');
+assert.ok(eggSalad.method.some((step) => step.includes('four egg halves') && step.includes('two eggs per bowl')), 'the Friday lunch method should clearly allocate two eggs to each person');
+
+const planIngredients = activeMains.flatMap((meal) => app.recipes[meal].ingredients.map((item) => item.n));
+['Savoy cabbage', 'Red cabbage', 'Carrots', 'Kale', 'Baby spinach', 'Cucumber', 'Fresh coriander', 'Parsley'].forEach((vegetable) => {
+  assert.ok(planIngredients.includes(vegetable), `${vegetable} should be used across the four new meals`);
+});
 
 const groceryItems = app.groceryFor().groups.flatMap((group) => group.items);
-assert.ok(groceryItems.some((item) => item.n === 'Minced beef' && item.q === '1 kg · already have'), 'the cart should retain the supplied beef');
-['Beef stock', 'Gochujang', 'Peanut butter', 'Lime', 'Fresh ginger'].forEach((item) => {
-  assert.ok(groceryItems.some((groceryItem) => groceryItem.n === item && groceryItem.q === 'only if needed'), `${item} should be an optional pantry item for flavour variety`);
+assert.ok(groceryItems.some((item) => item.n === 'Chicken breast' && item.q === '960 g'), 'the shopping list should total the three chicken meals');
+assert.ok(groceryItems.some((item) => item.n === 'Eggs' && item.q === '4'), 'the shopping list should include the Friday lunch eggs');
+['Cucumber', 'Fresh coriander', 'Parsley', 'Shallot', 'Garlic', 'Fresh ginger', 'Chinese five spice', 'Toasted sesame seeds', 'Noodles'].forEach((item) => {
+  assert.ok(groceryItems.some((groceryItem) => groceryItem.n === item), `${item} should be included in the consolidated grocery list`);
 });
-assert.deepStrictEqual(Array.from(app.thisWeekMains()), variedMains, 'the home preview should present all four flavour profiles');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v7';"), 'the app should invalidate the prior cached recipe bundle after this recipe update');
-assert.ok(fs.existsSync('refresh.html'), 'a cache-reset page should exist so installed browsers can receive the corrected recipe immediately');
+assert.ok(groceryItems.some((item) => item.n === 'Carrots' && item.q === 'already have'), 'the grocery list should retain fridge vegetables as already owned');
+assert.ok(groceryItems.some((item) => item.n === 'Fresh coriander' && item.q === '1 × 40 g pack'), 'the grocery list should cover the 35 g coriander required by the recipes');
+assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Fresh coriander' && item.q === 35), 'the prep card should match the planned coriander total');
+assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Parsley' && item.q === 20), 'the prep card should match the planned parsley total');
+assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Garlic' && item.q === 4), 'the prep card should match the planned garlic total');
+assert.ok(source.includes("totalCooked+' / '+(this.days.length*this.slots.length)+' cooked'"), 'the cooked counter should match the dynamic number of displayed meal slots');
+assert.ok(source.includes("'THU–FRI · THIS PLAN'"), 'the Home header should match the active Thursday–Friday plan');
+['chicken-cucumber-herb-salad', 'egg-spinach-cucumber-salad', 'chicken-cabbage-carrot-stir-fry', 'five-spice-chicken-kale-noodles'].forEach((slug) => {
+  assert.ok(swSource.includes(`'${slug}'`), `${slug} should be precached for offline use`);
+  assert.ok(fs.existsSync(`assets/dish-${slug}.png`), `${slug} should have a dish image`);
+});
+assert.ok(!groceryItems.some((item) => item.n === 'Minced beef'), 'the grocery list should no longer foreground the old beef plan');
+assert.ok(source.includes("Prep:['Chicken & Egg Meal Prep']"), 'the shared prep should remain discoverable in Recipes');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v8';"), 'the app should invalidate the old cached recipe bundle after this update');
 
-console.log('varied leftover beef plan checks passed');
+console.log('chicken and eggs fridge-clearout plan checks passed');

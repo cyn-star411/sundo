@@ -2,17 +2,32 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack','Lunch','Dinner'];
-  days = [{k:'Mon',sub:'Prep'},{k:'Tue',sub:'Leftovers'},{k:'Wed',sub:'Use it up'}];
+  days = [{k:'Thu',sub:'Fresh & fast'},{k:'Fri',sub:'Use it up'}];
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E' };
-  // Three-day fridge-clearout: 1 kg beef becomes six balanced, ready-to-reheat portions.
+  // Two-day fridge-clearout: chicken across three meals, with eggs for Friday lunch.
   options = {
-    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie','Coconut Mango Oats'],
-    Snack:['Edamame Sesame','Boiled Eggs & Apple','Rice Cakes & PB'],
-    Lunch:['Sticky Beef Mince Brothy Rice','Gochujang Beef & Tenderstem Bowl','Peanut-Lime Savoy Beef Noodles'],
-    Dinner:['Sesame-Ginger Kale Fried Rice','Sticky Beef Mince Brothy Rice','Peanut-Lime Savoy Beef Noodles'],
+    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie'],
+    Snack:['Edamame Sesame','Boiled Eggs & Apple'],
+    Lunch:['Chicken, Cucumber & Herb Salad','Egg, Spinach & Cucumber Salad'],
+    Dinner:['Chicken, Cabbage & Carrot Stir-Fry','Five-Spice Chicken, Cabbage & Kale Noodles'],
   };
-  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510,'Leftover Beef & Greens Bulk Prep':430,'Beef & Tenderstem Broccoli Rice Bowl':495,'Savoy Cabbage Beef Noodles':480,'Beef, Kale & Spinach Fried Rice':505,'Sticky Beef Ginger Rice Soup':470,'Gochujang Beef & Tenderstem Bowl':500,'Peanut-Lime Savoy Beef Noodles':520,'Sesame-Ginger Kale Fried Rice':495};
+  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken, Cucumber & Herb Salad':430,'Egg, Spinach & Cucumber Salad':350,'Chicken, Cabbage & Carrot Stir-Fry':500,'Five-Spice Chicken, Cabbage & Kale Noodles':540,'Chicken & Egg Meal Prep':390,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510,'Leftover Beef & Greens Bulk Prep':430,'Beef & Tenderstem Broccoli Rice Bowl':495,'Savoy Cabbage Beef Noodles':480,'Beef, Kale & Spinach Fried Rice':505,'Sticky Beef Ginger Rice Soup':470,'Gochujang Beef & Tenderstem Bowl':500,'Peanut-Lime Savoy Beef Noodles':520,'Sesame-Ginger Kale Fried Rice':495};
   recipes = {
+    'Chicken & Egg Meal Prep': { cuisine:'Fridge-clearout · Prep', time:'30 min', kcal:390, base:4, protein:154, fiber:7, slug:'chicken-egg-meal-prep',
+      ingredients:[{n:'Chicken breast',q:960,u:'g',cat:'protein',prot:220,short:'Chicken'},{n:'Eggs',q:4,u:'',cat:'protein',prot:24,short:'Eggs'},{n:'Carrots',q:300,u:'g',cat:'veg',prot:3,short:'Carrots'},{n:'Red cabbage',q:250,u:'g',cat:'veg',prot:3,short:'Cabbage'},{n:'Savoy cabbage',q:350,u:'g',cat:'veg',prot:4,short:'Cabbage'},{n:'Kale',q:180,u:'g',cat:'veg',prot:6,short:'Kale'},{n:'Baby spinach',q:160,u:'g',cat:'veg',prot:5,short:'Spinach'},{n:'Cucumber',q:2,u:'',cat:'veg',prot:2},{n:'Fresh coriander',q:35,u:'g',cat:'veg',prot:1},{n:'Parsley',q:20,u:'g',cat:'veg',prot:1},{n:'Garlic',q:4,u:'cloves',cat:'sauce',prot:0},{n:'Fresh ginger',q:25,u:'g',cat:'sauce',prot:0}],
+      method:['Thinly slice 960 g chicken breast and divide it into three labelled 320 g portions: Thursday lunch, Thursday dinner and Friday dinner.','Shred 250 g red cabbage and 350 g savoy cabbage, ribbon 300 g carrots, strip 180 g kale, wash 160 g spinach, slice 2 cucumbers and chop 35 g coriander with 20 g parsley. Store components separately.','Soft-boil 4 eggs for 7 minutes, chill in cold water and refrigerate unpeeled for Friday lunch.','Grate 25 g ginger and mince 4 garlic cloves; keep them ready for the stir-fry and five-spice noodles.'] },
+    'Chicken, Cucumber & Herb Salad': { cuisine:'Asian-inspired · Thursday lunch', time:'15 min', kcal:430, base:2, fixedPlan:true, protein:74, fiber:5, slug:'chicken-cucumber-herb-salad',
+      ingredients:[{n:'Chicken breast',q:320,u:'g',cat:'protein',prot:74,short:'Chicken'},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1,short:'Cucumber'},{n:'Carrots',q:100,u:'g',cat:'veg',prot:1,short:'Carrots'},{n:'Fresh coriander',q:20,u:'g',cat:'veg',prot:1},{n:'Parsley',q:20,u:'g',cat:'veg',prot:1},{n:'Lime',q:1,u:'',cat:'sauce',prot:0},{n:'Light soy sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0}],
+      method:['Poach 320 g chicken breast at a bare simmer for 12–14 minutes, or pan-sear it until cooked through; rest for 5 minutes then slice.','Slice 1 cucumber, ribbon 100 g carrots and roughly chop 20 g coriander with 20 g parsley.','Whisk the juice of 1 lime with 1 tbsp light soy sauce and 1 tsp sesame oil.','Toss the vegetables and herbs with the dressing, top with the sliced chicken and divide between two bowls.'] },
+    'Egg, Spinach & Cucumber Salad': { cuisine:'Asian-inspired · Friday lunch', time:'10 min', kcal:350, base:2, fixedPlan:true, protein:30, fiber:5, slug:'egg-spinach-cucumber-salad',
+      ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24,short:'Eggs'},{n:'Baby spinach',q:160,u:'g',cat:'veg',prot:5,short:'Spinach'},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1,short:'Cucumber'},{n:'Fresh coriander',q:15,u:'g',cat:'veg',prot:1},{n:'Light soy sauce',q:1,u:'tbsp',cat:'sauce',prot:1},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0}],
+      method:['Soft-boil 4 eggs for 7 minutes, then cool under cold water, peel and halve.','Divide 160 g baby spinach and 1 sliced cucumber between two bowls; scatter over 15 g chopped coriander.','Whisk 1 tbsp light soy sauce, 1 tbsp rice vinegar and 1 tsp sesame oil.','Nestle four egg halves (two eggs per bowl) on each salad and spoon over the dressing just before eating.'] },
+    'Chicken, Cabbage & Carrot Stir-Fry': { cuisine:'Asian-inspired · Thursday dinner', time:'20 min', kcal:500, base:2, fixedPlan:true, protein:76, fiber:9, slug:'chicken-cabbage-carrot-stir-fry',
+      ingredients:[{n:'Chicken breast',q:320,u:'g',cat:'protein',prot:74,short:'Chicken'},{n:'Savoy cabbage',q:350,u:'g',cat:'veg',prot:4,short:'Cabbage'},{n:'Carrots',q:100,u:'g',cat:'veg',prot:1,short:'Carrots'},{n:'Kale',q:100,u:'g',cat:'veg',prot:3,short:'Kale'},{n:'Shallot',q:1,u:'',cat:'veg',prot:0},{n:'Garlic',q:2,u:'cloves',cat:'sauce',prot:0},{n:'Fresh ginger',q:10,u:'g',cat:'sauce',prot:0},{n:'Light soy sauce',q:1.5,u:'tbsp',cat:'sauce',prot:1},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0}],
+      method:['Mix 1½ tbsp light soy sauce, 1 tbsp rice vinegar, 1 tsp sesame oil, 2 minced garlic cloves and 10 g grated ginger; coat 320 g sliced chicken with half the mixture for 10 minutes.','Sear the chicken in a hot skillet until browned and cooked through, then transfer it to a plate.','In the same skillet, add 350 g shredded savoy cabbage, 100 g carrot ribbons and 1 sliced shallot with the remaining marinade and a splash of water, tossing to scrape up the browned bits.','Add 100 g kale with the cabbage and cook until all vegetables are crisp-tender. Stir the chicken back in, toss until hot and divide between two bowls.'] },
+    'Five-Spice Chicken, Cabbage & Kale Noodles': { cuisine:'Chinese-inspired · Friday dinner', time:'25 min', kcal:540, base:2, fixedPlan:true, protein:78, fiber:10, slug:'five-spice-chicken-kale-noodles',
+      ingredients:[{n:'Chicken breast',q:320,u:'g',cat:'protein',prot:74,short:'Chicken'},{n:'Dried noodles',q:160,u:'g',cat:'carb',prot:10,short:'Noodles'},{n:'Red cabbage',q:250,u:'g',cat:'veg',prot:3,short:'Cabbage'},{n:'Kale',q:80,u:'g',cat:'veg',prot:3,short:'Kale'},{n:'Carrots',q:100,u:'g',cat:'veg',prot:1,short:'Carrots'},{n:'Garlic',q:2,u:'cloves',cat:'sauce',prot:0},{n:'Fresh ginger',q:15,u:'g',cat:'sauce',prot:0},{n:'Chinese five spice',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Light soy sauce',q:1.5,u:'tbsp',cat:'sauce',prot:1},{n:'Honey',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Toasted sesame seeds',q:2,u:'tsp',cat:'sauce',prot:1}],
+      method:['Mix 2 minced garlic cloves, 15 g grated ginger, 1 tsp Chinese five spice, 1½ tbsp light soy sauce and 2 tsp honey; coat 320 g thinly sliced chicken and marinate for 10 minutes.','Cook 160 g dried noodles, reserve a splash of cooking water, then drain.','Stir-fry the chicken until browned and cooked through. Add 250 g shredded red cabbage, 80 g kale and 100 g shredded carrot; cook until tender-crisp.','Toss in the noodles with a splash of noodle water until glossy, then divide between two bowls and finish with 2 tsp toasted sesame seeds.'] },
     'Miso Salmon Bowl': { cuisine:'Japanese · Main', time:'25 min', kcal:450, base:2, protein:52, fiber:6, slug:'miso-salmon',
       ingredients:[{n:'Salmon fillet, skin-on',q:130,u:'g',cat:'protein',prot:29,short:'Salmon'},{n:'Cooked jasmine rice',q:100,u:'g',cat:'carb',prot:3,short:'Rice'},{n:'Shelled edamame',q:60,u:'g',cat:'veg',prot:7,short:'Edamame'},{n:'Spring onions',q:2,u:'',cat:'veg',prot:0},{n:'White miso paste',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Soy sauce',q:1,u:'tbsp',cat:'sauce',prot:2},{n:'Honey',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Sesame oil',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Rice vinegar',q:1,u:'tsp',cat:'sauce',prot:0}],
       method:['Take salmon out of the fridge 10 min before cooking — room-temp fish cooks evenly.','Mix the glaze: miso, soy, honey, sesame oil, vinegar. Set half aside for serving.','Pat salmon dry. Brush the flesh side with half the glaze.','Heat 1 tsp oil in a non-stick pan on medium-high until shimmering.','Cook skin-side down 4 min without moving — the skin crisps and releases.','Flip and cook 2 min, until it flakes and the centre is just translucent.','Rest the salmon 3 min off the heat to keep it juicy.','Assemble rice, edamame, spring onion, salmon. Drizzle glaze; finish with sesame.'] },
@@ -147,7 +162,7 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
   };
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Sticky Beef Ginger Rice Soup','Gochujang Beef & Tenderstem Bowl','Peanut-Lime Savoy Beef Noodles','Sesame-Ginger Kale Fried Rice'];
+  recipeOrder = ['Chicken, Cucumber & Herb Salad','Egg, Spinach & Cucumber Salad','Chicken, Cabbage & Carrot Stir-Fry','Five-Spice Chicken, Cabbage & Kale Noodles'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -174,15 +189,15 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Rice on'},{t:'0:10',l:'Brown beef'},{t:'0:25',l:'Steam broccoli'},{t:'0:35',l:'Prep greens'},{t:'0:50',l:'Portion meals'},{t:'1:05',l:'Done'}];
+  timeline = [{t:'0:00',l:'Chicken portions'},{t:'0:10',l:'Eggs on'},{t:'0:18',l:'Prep vegetables'},{t:'0:30',l:'Dressings ready'},{t:'0:35',l:'Done'}];
   prepSections = [
-    {id:'beef',title:'1 kg leftover beef bulk prep',time:'35 min',color:'#C8754E',steps:['Brown the 1 kg minced beef in two batches, then toss with garlic, soy, rice vinegar, sesame oil and chilli flakes.','Cool promptly and divide into six roughly 165 g portions: four for the fridge, two for the freezer.','Use one portion for each lunch or dinner container; reheat it until piping hot before serving.']},
-    {id:'veg',title:'One shared vegetable prep box',time:'30 min',color:'#8FB3C8',steps:['Shred the red and savoy cabbage, ribbon the carrots, chop the kale and pick the parsley leaves.','Trim the tenderstem broccoli; steam it for 4–5 minutes, cool, then refrigerate.','Keep spinach dry and add it only while reheating the noodles or fried rice so it stays fresh.']},
-    {id:'carbs',title:'Cook your base',time:'25 min',color:'#7C8A5E',steps:['Cook enough jasmine rice for the two rice recipes; cool it quickly in shallow containers before refrigerating.','Keep dried noodles separate and cook them on the day you are eating the noodle boxes for the best texture.','If you have neither rice nor noodles, serve the beef and vegetables in a big cabbage bowl instead.']},
-    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Keep cooked beef, rice/noodles and crunchy vegetables separate until reheating.','Refrigerate cooked food for up to 3 days; freeze the final two beef portions straight away.','Reheat beef and rice thoroughly; add the cold cabbage or parsley at the end.']},
+    {id:'chicken',title:'Chicken & egg prep',time:'30 min',color:'#C8754E',steps:['Slice 960 g chicken breast into three 320 g portions: Thursday lunch, Thursday dinner and Friday dinner.','Soft-boil 4 eggs for 7 minutes, cool and refrigerate unpeeled for Friday lunch.','Keep the chicken raw until each meal so it stays juicy; cook it through until no pink remains.']},
+    {id:'veg',title:'One shared vegetable prep box',time:'20 min',color:'#8FB3C8',steps:['Shred the red and savoy cabbage, ribbon the carrots, strip the kale and chop the coriander and parsley.','Slice the cucumbers only when serving so they stay crisp; wash and dry the spinach.','Store each vegetable separately so the salads remain fresh and the stir-fries stay crisp-tender.']},
+    {id:'flavour',title:'Small flavour kit',time:'5 min',color:'#7C8A5E',steps:['Mince the garlic and grate the ginger for the stir-fry and noodles.','Keep soy sauce, rice vinegar, sesame oil, honey and Chinese five spice together for quick cooking.','Toast sesame seeds if needed; they finish the Friday noodles.']},
+    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Keep chicken and raw vegetables refrigerated separately; use the chicken within 2 days.','Keep the soft-boiled eggs unpeeled until Friday lunch.','Dress salads immediately before serving and reheat cooked chicken until piping hot.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'larb', prepDone:{}, currentRecipe:'Miso Salmon Bowl', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'chicken', prepDone:{}, currentRecipe:'Chicken, Cucumber & Herb Salad', recipeGlow:false,
     people: {
       me: { name:'Me', heightLabel:'5\'6"', weight:62, workouts:3, color:'#CB9C8B' },
       partner: { name:'Partner', heightLabel:'5\'10"', weight:80, workouts:4, color:'#8FB3C8' },
@@ -276,9 +291,10 @@ class Component extends DCLogic {
   defaultTicks = {'Spring onions':true,'Salmon fillets':true};
   groceryFor() {
     const plan = this.state.activePlan;
-    if (!plan) return { label:'3-day Beef & Greens Leftover Prep', skipped:[], groups:[
-      {h:'FROM YOUR FRIDGE', items:[{n:'Minced beef',q:'1 kg · already have',img:'gr-chicken'},{n:'Carrots',q:'already have'},{n:'Red cabbage',q:'already have'},{n:'Savoy cabbage',q:'already have'},{n:'Spinach',q:'already have'},{n:'Parsley',q:'already have'},{n:'Tenderstem broccoli',q:'already have'},{n:'Kale',q:'already have'}]},
-      {h:'PANTRY · ONLY IF NEEDED', items:[{n:'Jasmine rice or noodles',q:'only if needed',img:'gr-rice'},{n:'Light soy sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Sesame oil',q:'only if needed'},{n:'Garlic',q:'only if needed'},{n:'Chilli flakes',q:'only if needed'},{n:'Beef stock',q:'only if needed'},{n:'Fresh ginger',q:'only if needed'},{n:'Fish sauce',q:'only if needed'},{n:'Lime',q:'only if needed'},{n:'Gochujang',q:'only if needed'},{n:'Peanut butter',q:'only if needed'}]},
+    if (!plan) return { label:'Thursday–Friday Chicken & Greens Plan', skipped:[], groups:[
+      {h:'FROM YOUR FRIDGE', items:[{n:'Carrots',q:'already have'},{n:'Red cabbage',q:'already have'},{n:'Savoy cabbage',q:'already have'},{n:'Baby spinach',q:'already have'},{n:'Parsley',q:'already have'},{n:'Kale',q:'already have'}]},
+      {h:'BUY', items:[{n:'Chicken breast',q:'960 g',img:'gr-chicken'},{n:'Eggs',q:'4'},{n:'Cucumber',q:'2'},{n:'Fresh coriander',q:'1 × 40 g pack'},{n:'Shallot',q:'1'},{n:'Lime',q:'1'},{n:'Noodles',q:'160 g'}]},
+      {h:'PANTRY · ONLY IF NEEDED', items:[{n:'Light soy sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Sesame oil',q:'only if needed'},{n:'Garlic',q:'only if needed'},{n:'Fresh ginger',q:'only if needed'},{n:'Chinese five spice',q:'only if needed'},{n:'Honey',q:'only if needed'},{n:'Toasted sesame seeds',q:'only if needed'}]},
     ]};
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -768,11 +784,11 @@ class Component extends DCLogic {
           e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
         e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
       e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'SUN · JUN 28 · THIS WEEK'),
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'THU–FRI · THIS PLAN'),
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
       e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
         this.personCard('me'), this.personCard('partner'),
-        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',textAlign:'center',margin:'2px 4px 16px'}},'Planned this week averages ~'+plannedAvg+' kcal/day across chosen meals'),
+        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',textAlign:'center',margin:'2px 4px 16px'}},'Planned meals average ~'+plannedAvg+' kcal each'),
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:8}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:17,color:C.sumi}},"This week's meals"),
           e('div',{onClick:()=>this.setState({homeView:'glance'}),style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,fontWeight:600,color:'#8C5B3F',cursor:'pointer',display:'flex',alignItems:'center',gap:3}},'See all',e('span',{style:{fontSize:14}},'›'))),
@@ -825,7 +841,7 @@ class Component extends DCLogic {
         fromHome ? e('button',{onClick:()=>this.setState({homeView:'home'}),style:{border:'none',background:'transparent',cursor:'pointer',padding:0,marginBottom:10,display:'flex',alignItems:'center',gap:6,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13,fontWeight:600,color:C.mut}},e('span',{style:{fontSize:17,lineHeight:1}},'‹'),'Home') : null,
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline'}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:27,color:C.sumi}},plan?'Week '+plan.week:'This week'),
-          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / 12 cooked')),
+          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:C.mut}},totalCooked+' / '+(this.days.length*this.slots.length)+' cooked')),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,color:C.mut,marginTop:3}},plan?(plan.theme+' · tap to open · swap · check off'):'Tap a meal to open · swap · check off')),
       e('div',{key:'fl',style:{display:'flex',gap:8,padding:'14px 24px 4px',overflowX:'auto',flex:'0 0 auto'}},
         chip('All days','all'), this.days.map((d,i)=>chip(d.k,i))),
@@ -869,6 +885,7 @@ class Component extends DCLogic {
   // per-person portion scale: this meal assumed to cover ~1/3 of the person's daily protein goal
   personPortionScale(person) {
     const r = this.curRec();
+    if (r.fixedPlan) return 1;
     const t = this.targetsFor(person);
     const mealProteinTarget = t.protein/3;
     const perServingProtein = r.protein/r.base;
@@ -1075,7 +1092,7 @@ class Component extends DCLogic {
       e('div',{key:'h',style:{flex:'0 0 auto',padding:'14px 24px 0'}},
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
           e('div',null,
-            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'MONDAY EVENING · WEEK 4'),
+            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'THURSDAY · FRIDAY PLAN'),
             e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:29,color:C.sumi,marginTop:5}},'The prep ritual')),
           e('span',{style:{display:'inline-flex',flexDirection:'column',alignItems:'center',gap:2,marginTop:4}},
             e('span',{style:{width:24,height:22,background:'#C8754E',borderRadius:'50% 50% 47% 53% / 55% 55% 46% 46%'}}),
@@ -1121,7 +1138,7 @@ class Component extends DCLogic {
       Japanese:['Miso Salmon Bowl','Salmon Sushi Bowl','Garlic Prawn Donburi'],
       Korean:['Tofu Bibimbap','Korean Beef Bibimbap'],
       Thai:['Pad Thai','Thai Basil Tofu','Beef Pad Krapow'],
-      Prep:['Leftover Beef & Greens Bulk Prep'],
+      Prep:['Chicken & Egg Meal Prep'],
     };
     const cat = cuisineDishes[st.discoverCat] ? st.discoverCat : 'Japanese';
     const dishes = cuisineDishes[cat];
