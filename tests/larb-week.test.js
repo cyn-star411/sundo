@@ -56,6 +56,17 @@ assert.ok(tofu.portions && tofu.portions.Cynthia && tofu.portions.Gabriel, 'meal
 assert.ok(tofu.portions.Gabriel.kcal > tofu.portions.Cynthia.kcal, 'Gabriel serving should be larger than Cynthia serving');
 assert.ok(app.recipes['Lemon Parsley Chicken Lentil Rice Bowls'].portions.Gabriel.protein >= app.recipes['Lemon Parsley Chicken Lentil Rice Bowls'].portions.Cynthia.protein, 'lunch portions should scale for Gabriel');
 
+const chickenPrep = app.prepSections.find((section) => section.id === 'mains');
+assert.ok(chickenPrep, 'Prep must include the shared chicken batch-cook section');
+const prepText = chickenPrep.steps.join(' ');
+['2.6 kg', '1.2 kg', '600 g', '800 g', '75°C', 'Thursday', 'Friday'].forEach((detail) => {
+  assert.ok(prepText.includes(detail), `chicken prep must state ${detail}`);
+});
+assert.ok(prepText.includes('freeze') && prepText.includes('refrigerator'), 'chicken prep must give explicit fridge and freezer storage guidance');
+['Lemon Parsley Chicken Lentil Rice Bowls', 'Chicken Chickpea Potato Traybake', 'Chicken Fajita Rice Bowls'].forEach((meal) => {
+  assert.ok(app.recipes[meal].method.some((step) => step.toLowerCase().includes('prepped chicken')), `${meal} must explain how to use the shared batch-cooked chicken`);
+});
+
 assert.ok(source.includes("'MON–FRI · THIS PLAN'"), 'Home header should name the five-day plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v9';"), 'service-worker cache must be bumped for the new plan');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v10';"), 'service-worker cache must refresh for the batch-chicken prep update');
 console.log('five-day Cynthia and Gabriel plan checks passed');
