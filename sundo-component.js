@@ -2,17 +2,31 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack','Lunch','Dinner'];
-  days = [{k:'Thu',sub:'Fresh & fast'},{k:'Fri',sub:'Use it up'}];
+  days = [{k:'Mon',sub:'Fresh start'},{k:'Tue',sub:'Prep smart'},{k:'Wed',sub:'Midweek fuel'},{k:'Thu',sub:'Fresh & fast'},{k:'Fri',sub:'Use it up'}];
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E' };
-  // Two-day fridge-clearout: chicken across three meals, with eggs for Friday lunch.
+  // Five-day, high-fibre plan. Every slot is deliberate, including breakfasts and snacks.
   options = {
-    Breakfast:['Matcha Chia Pudding','Banana Matcha Smoothie'],
-    Snack:['Edamame Sesame','Boiled Eggs & Apple'],
-    Lunch:['Chicken, Cucumber & Herb Salad','Egg, Spinach & Cucumber Salad'],
-    Dinner:['Chicken, Cabbage & Carrot Stir-Fry','Five-Spice Chicken, Cabbage & Kale Noodles'],
+    Breakfast:['Berry Protein Overnight Oats','Egg & Bean Breakfast Wraps','Berry Protein Overnight Oats','Egg & Bean Breakfast Wraps','Berry Protein Overnight Oats'],
+    Snack:['Apple & Yogurt','Crunchy Veg & Hummus','Cottage Cheese Berry Cup','Banana Protein Yogurt','Apple, Yogurt & Nuts'],
+    Lunch:['Lemon Parsley Chicken Lentil Rice Bowls','Lemon Parsley Chicken Lentil Rice Bowls','Lemon Parsley Chicken Lentil Rice Bowls','Turkey Bean Vegetable Pasta','Turkey Bean Vegetable Pasta'],
+    Dinner:['Crispy Tofu Red Cabbage Noodle Bowls','Chicken Chickpea Potato Traybake','Red Lentil Spinach Curry','Turkey Chilli Loaded Potatoes','Chicken Fajita Rice Bowls'],
   };
-  kcal = {'Matcha Chia Pudding':290,'Banana Matcha Smoothie':330,'Coconut Mango Oats':375,'Smoked Salmon Eggs':315,'Edamame Sesame':168,'Rice Cakes & PB':330,'Boiled Eggs & Apple':220,'Matcha Yogurt Cup':210,'Miso Salmon Bowl':450,'Crispy Tofu Poke':490,'Salmon Sushi Bowl':470,'Sesame Tofu Soba':460,'Teriyaki Tofu Soba':475,'Ginger Soy Salmon':490,'Tofu Bibimbap':495,'Honey Garlic Salmon':520,'Chicken, Cucumber & Herb Salad':430,'Egg, Spinach & Cucumber Salad':350,'Chicken, Cabbage & Carrot Stir-Fry':500,'Five-Spice Chicken, Cabbage & Kale Noodles':540,'Chicken & Egg Meal Prep':390,'Chicken Larb Bulk Prep':410,'Chicken Larb Tahini Noodles':525,'Chicken Larb Crunchy Rice Bowl':500,'Chicken Larb Cabbage Cups':430,'Sticky Beef Mince Bulk Prep':450,'Sticky Beef Mince Brothy Rice':510,'Sticky Beef Mince Crunchy Rice Bowl':500,'Beef Pad Krapow':510,'Leftover Beef & Greens Bulk Prep':430,'Beef & Tenderstem Broccoli Rice Bowl':495,'Savoy Cabbage Beef Noodles':480,'Beef, Kale & Spinach Fried Rice':505,'Sticky Beef Ginger Rice Soup':470,'Gochujang Beef & Tenderstem Bowl':500,'Peanut-Lime Savoy Beef Noodles':520,'Sesame-Ginger Kale Fried Rice':495};
+  kcal = {'Berry Protein Overnight Oats':450,'Egg & Bean Breakfast Wraps':465,'Apple & Yogurt':210,'Crunchy Veg & Hummus':220,'Cottage Cheese Berry Cup':240,'Banana Protein Yogurt':260,'Apple, Yogurt & Nuts':285,'Lemon Parsley Chicken Lentil Rice Bowls':570,'Turkey Bean Vegetable Pasta':590,'Crispy Tofu Red Cabbage Noodle Bowls':570,'Chicken Chickpea Potato Traybake':600,'Red Lentil Spinach Curry':560,'Turkey Chilli Loaded Potatoes':620,'Chicken Fajita Rice Bowls':625};
   recipes = {
+    'Berry Protein Overnight Oats': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:450, base:2, fixedPlan:true, protein:58, fiber:18, slug:'berry-protein-oats', portions:{Cynthia:{kcal:430,protein:28},Gabriel:{kcal:610,protein:36}}, ingredients:[{n:'Greek yogurt',q:400,u:'g',cat:'protein',prot:40},{n:'Rolled oats',q:140,u:'g',cat:'carb',prot:16},{n:'Protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Mixed berries',q:300,u:'g',cat:'veg',prot:3},{n:'Chia seeds',q:30,u:'g',cat:'carb',prot:5},{n:'Milk',q:400,u:'ml',cat:'sauce',prot:12}], method:['Stir the oats, chia, protein powder and milk until smooth.','Fold through half the berries, then refrigerate in two jars overnight.','Top with Greek yogurt and the remaining berries before eating.'] },
+    'Egg & Bean Breakfast Wraps': { cuisine:'Breakfast · Prep ahead', time:'20 min', kcal:465, base:2, fixedPlan:true, protein:56, fiber:16, slug:'egg-bean-wraps', ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Wholemeal wraps',q:2,u:'',cat:'carb',prot:12},{n:'Baby spinach',q:100,u:'g',cat:'veg',prot:3},{n:'Salsa',q:100,u:'g',cat:'sauce',prot:1},{n:'Cheddar',q:40,u:'g',cat:'protein',prot:10}], method:['Warm the beans with salsa until thick.','Scramble the eggs and wilt in the spinach.','Fill each wrap with bean mixture, eggs and cheese; roll tightly and toast seam-side down.'] },
+    'Apple & Yogurt': { cuisine:'Snack', time:'3 min', kcal:210, base:2, fixedPlan:true, protein:22, fiber:8, slug:'apple-yogurt', ingredients:[{n:'Apples',q:2,u:'',cat:'veg',prot:0},{n:'Greek yogurt',q:300,u:'g',cat:'protein',prot:30},{n:'Cinnamon',q:1,u:'tsp',cat:'sauce',prot:0}], method:['Slice the apples.','Divide yogurt between two pots and dust with cinnamon.','Pack the apples separately so they stay crisp.'] },
+    'Crunchy Veg & Hummus': { cuisine:'Snack', time:'5 min', kcal:220, base:2, fixedPlan:true, protein:12, fiber:12, slug:'veg-hummus', ingredients:[{n:'Hummus',q:160,u:'g',cat:'protein',prot:10},{n:'Carrots',q:250,u:'g',cat:'veg',prot:2},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1},{n:'Red pepper',q:1,u:'',cat:'veg',prot:1}], method:['Cut the vegetables into batons.','Divide hummus into two pots.','Keep chilled until snack time.'] },
+    'Cottage Cheese Berry Cup': { cuisine:'Snack', time:'3 min', kcal:240, base:2, fixedPlan:true, protein:34, fiber:7, slug:'cottage-cheese-berries', ingredients:[{n:'Cottage cheese',q:400,u:'g',cat:'protein',prot:48},{n:'Mixed berries',q:250,u:'g',cat:'veg',prot:3},{n:'Pumpkin seeds',q:30,u:'g',cat:'protein',prot:9}], method:['Divide cottage cheese and berries between two pots.','Scatter with pumpkin seeds just before eating.'] },
+    'Banana Protein Yogurt': { cuisine:'Snack', time:'3 min', kcal:260, base:2, fixedPlan:true, protein:34, fiber:6, slug:'banana-protein-yogurt', ingredients:[{n:'Greek yogurt',q:350,u:'g',cat:'protein',prot:35},{n:'Bananas',q:2,u:'',cat:'veg',prot:2},{n:'Peanut butter',q:30,u:'g',cat:'protein',prot:8}], method:['Slice bananas over the yogurt.','Swirl through peanut butter and divide between two pots.'] },
+    'Apple, Yogurt & Nuts': { cuisine:'Snack', time:'3 min', kcal:285, base:2, fixedPlan:true, protein:28, fiber:9, slug:'apple-yogurt-nuts', ingredients:[{n:'Apples',q:2,u:'',cat:'veg',prot:0},{n:'Greek yogurt',q:350,u:'g',cat:'protein',prot:35},{n:'Mixed nuts',q:40,u:'g',cat:'protein',prot:8}], method:['Slice apples.','Divide yogurt and nuts between two pots and pack apples alongside.'] },
+    'Lemon Parsley Chicken Lentil Rice Bowls': { cuisine:'Mediterranean-inspired · Lunch', time:'25 min', kcal:570, base:2, fixedPlan:true, protein:76, fiber:18, slug:'lemon-parsley-chicken-lentil-rice', portions:{Cynthia:{kcal:520,protein:34},Gabriel:{kcal:720,protein:48}}, ingredients:[{n:'Chicken thighs or breast',q:400,u:'g',cat:'protein',prot:92,short:'Chicken'},{n:'Cooked lentils',q:300,u:'g',cat:'protein',prot:27},{n:'Cooked brown rice',q:300,u:'g',cat:'carb',prot:8},{n:'Cucumber',q:1,u:'',cat:'veg',prot:1},{n:'Parsley',q:30,u:'g',cat:'veg',prot:1},{n:'Lemon',q:1,u:'',cat:'sauce',prot:0},{n:'Olive oil',q:1,u:'tbsp',cat:'sauce',prot:0}], method:['Season and sear 400 g chicken until cooked through; rest and slice.','Toss lentils, rice, cucumber, parsley, lemon juice and olive oil.','Divide into bowls and top with chicken.'] },
+    'Turkey Bean Vegetable Pasta': { cuisine:'Weeknight · Lunch', time:'25 min', kcal:590, base:2, fixedPlan:true, protein:70, fiber:17, slug:'turkey-bean-pasta', ingredients:[{n:'Turkey mince',q:300,u:'g',cat:'protein',prot:66,short:'Turkey'},{n:'Wholewheat pasta',q:180,u:'g',cat:'carb',prot:23},{n:'Cannellini beans',q:240,u:'g',cat:'protein',prot:16},{n:'Courgette',q:1,u:'',cat:'veg',prot:2},{n:'Cherry tomatoes',q:250,u:'g',cat:'veg',prot:3},{n:'Tomato passata',q:300,u:'g',cat:'sauce',prot:4}], method:['Cook pasta until just tender.','Brown turkey mince, then cook courgette and tomatoes until softened.','Add passata and beans, simmer 8 minutes, then toss with pasta.'] },
+    'Crispy Tofu Red Cabbage Noodle Bowls': { cuisine:'Asian-inspired · Dinner', time:'25 min', kcal:570, base:2, fixedPlan:true, protein:58, fiber:15, slug:'crispy-tofu-red-cabbage-noodles', portions:{Cynthia:{kcal:520,protein:26},Gabriel:{kcal:720,protein:38}}, ingredients:[{n:'Firm tofu',q:400,u:'g',cat:'protein',prot:48,short:'Tofu'},{n:'Wholewheat noodles',q:180,u:'g',cat:'carb',prot:22},{n:'Red cabbage',q:300,u:'g',cat:'veg',prot:4},{n:'Spring onions',q:4,u:'',cat:'veg',prot:1},{n:'Coriander',q:20,u:'g',cat:'veg',prot:1},{n:'Light soy sauce',q:2,u:'tbsp',cat:'sauce',prot:2},{n:'Lime',q:1,u:'',cat:'sauce',prot:0}], method:['Press and cube tofu, then pan-fry until crisp.','Cook noodles and shred the cabbage.','Toss noodles with soy, lime, cabbage and spring onions; top with tofu and coriander.'] },
+    'Chicken Chickpea Potato Traybake': { cuisine:'Traybake · Dinner', time:'45 min', kcal:600, base:2, fixedPlan:true, protein:76, fiber:17, slug:'chicken-chickpea-potato-traybake', ingredients:[{n:'Chicken thighs or breast',q:600,u:'g',cat:'protein',prot:138,short:'Chicken'},{n:'Chickpeas',q:400,u:'g',cat:'protein',prot:28},{n:'Potatoes',q:600,u:'g',cat:'carb',prot:12},{n:'Red onion',q:1,u:'',cat:'veg',prot:1},{n:'Spinach',q:120,u:'g',cat:'veg',prot:4},{n:'Lemon',q:1,u:'',cat:'sauce',prot:0}], method:['Roast potatoes, chickpeas and onion at 210°C for 25 minutes.','Add seasoned chicken and roast 18–20 minutes until cooked through.','Fold through spinach to wilt and finish with lemon.'] },
+    'Red Lentil Spinach Curry': { cuisine:'Indian-inspired · Dinner', time:'30 min', kcal:560, base:2, fixedPlan:true, protein:38, fiber:24, slug:'red-lentil-spinach-curry', ingredients:[{n:'Red lentils',q:250,u:'g',cat:'protein',prot:63},{n:'Light coconut milk',q:400,u:'ml',cat:'sauce',prot:6},{n:'Chopped tomatoes',q:400,u:'g',cat:'veg',prot:6},{n:'Spinach',q:250,u:'g',cat:'veg',prot:8},{n:'Brown rice',q:160,u:'g',cat:'carb',prot:12},{n:'Curry powder',q:2,u:'tbsp',cat:'sauce',prot:0}], method:['Toast curry powder briefly, then add lentils, tomatoes and coconut milk.','Simmer 20 minutes until lentils are tender.','Wilt in spinach and serve with cooked brown rice.'] },
+    'Turkey Chilli Loaded Potatoes': { cuisine:'Comfort food · Dinner', time:'40 min', kcal:620, base:2, fixedPlan:true, protein:78, fiber:19, slug:'turkey-chilli-potatoes', ingredients:[{n:'Turkey mince',q:450,u:'g',cat:'protein',prot:99,short:'Turkey'},{n:'Potatoes',q:700,u:'g',cat:'carb',prot:14},{n:'Kidney beans',q:400,u:'g',cat:'protein',prot:28},{n:'Chopped tomatoes',q:400,u:'g',cat:'veg',prot:6},{n:'Red pepper',q:1,u:'',cat:'veg',prot:1},{n:'Greek yogurt',q:120,u:'g',cat:'protein',prot:12}], method:['Bake potatoes at 210°C until tender.','Brown turkey with pepper, add beans and tomatoes, then simmer until thick.','Split potatoes and fill with chilli; top with yogurt.'] },
+    'Chicken Fajita Rice Bowls': { cuisine:'Mexican-inspired · Dinner', time:'25 min', kcal:625, base:2, fixedPlan:true, protein:82, fiber:15, slug:'chicken-fajita-rice-bowls', ingredients:[{n:'Chicken thighs or breast',q:800,u:'g',cat:'protein',prot:184,short:'Chicken'},{n:'Brown rice',q:180,u:'g',cat:'carb',prot:14},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Red peppers',q:2,u:'',cat:'veg',prot:2},{n:'Onion',q:1,u:'',cat:'veg',prot:1},{n:'Lime',q:1,u:'',cat:'sauce',prot:0},{n:'Fajita seasoning',q:2,u:'tbsp',cat:'sauce',prot:0}], method:['Cook brown rice.','Sear chicken strips with fajita seasoning until cooked through.','Cook peppers and onion until charred at the edges, then build bowls with rice, black beans, chicken and lime.'] },
     'Chicken & Egg Meal Prep': { cuisine:'Fridge-clearout · Prep', time:'30 min', kcal:390, base:4, protein:154, fiber:7, slug:'chicken-egg-meal-prep',
       ingredients:[{n:'Chicken breast',q:960,u:'g',cat:'protein',prot:220,short:'Chicken'},{n:'Eggs',q:4,u:'',cat:'protein',prot:24,short:'Eggs'},{n:'Carrots',q:300,u:'g',cat:'veg',prot:3,short:'Carrots'},{n:'Red cabbage',q:250,u:'g',cat:'veg',prot:3,short:'Cabbage'},{n:'Savoy cabbage',q:350,u:'g',cat:'veg',prot:4,short:'Cabbage'},{n:'Kale',q:180,u:'g',cat:'veg',prot:6,short:'Kale'},{n:'Baby spinach',q:160,u:'g',cat:'veg',prot:5,short:'Spinach'},{n:'Cucumber',q:2,u:'',cat:'veg',prot:2},{n:'Fresh coriander',q:35,u:'g',cat:'veg',prot:1},{n:'Parsley',q:20,u:'g',cat:'veg',prot:1},{n:'Garlic',q:4,u:'cloves',cat:'sauce',prot:0},{n:'Fresh ginger',q:25,u:'g',cat:'sauce',prot:0}],
       method:['Thinly slice 960 g chicken breast and divide it into three labelled 320 g portions: Thursday lunch, Thursday dinner and Friday dinner.','Shred 250 g red cabbage and 350 g savoy cabbage, ribbon 300 g carrots, strip 180 g kale, wash 160 g spinach, slice 2 cucumbers and chop 35 g coriander with 20 g parsley. Store components separately.','Soft-boil 4 eggs for 7 minutes, chill in cold water and refrigerate unpeeled for Friday lunch.','Grate 25 g ginger and mince 4 garlic cloves; keep them ready for the stir-fry and five-spice noodles.'] },
@@ -162,7 +176,7 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
   };
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Chicken, Cucumber & Herb Salad','Egg, Spinach & Cucumber Salad','Chicken, Cabbage & Carrot Stir-Fry','Five-Spice Chicken, Cabbage & Kale Noodles'];
+  recipeOrder = ['Berry Protein Overnight Oats','Egg & Bean Breakfast Wraps','Apple & Yogurt','Crunchy Veg & Hummus','Cottage Cheese Berry Cup','Banana Protein Yogurt','Apple, Yogurt & Nuts','Lemon Parsley Chicken Lentil Rice Bowls','Turkey Bean Vegetable Pasta','Crispy Tofu Red Cabbage Noodle Bowls','Chicken Chickpea Potato Traybake','Red Lentil Spinach Curry','Turkey Chilli Loaded Potatoes','Chicken Fajita Rice Bowls'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -189,23 +203,25 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Chicken portions'},{t:'0:10',l:'Eggs on'},{t:'0:18',l:'Prep vegetables'},{t:'0:30',l:'Dressings ready'},{t:'0:35',l:'Done'}];
+  timeline = [{t:'0:00',l:'Oats & wraps'},{t:'0:15',l:'Chicken & rice'},{t:'0:35',l:'Veg prep'},{t:'0:55',l:'Turkey chilli'},{t:'1:15',l:'Done'}];
   prepSections = [
-    {id:'chicken',title:'Chicken & egg prep',time:'30 min',color:'#C8754E',steps:['Slice 960 g chicken breast into three 320 g portions: Thursday lunch, Thursday dinner and Friday dinner.','Soft-boil 4 eggs for 7 minutes, cool and refrigerate unpeeled for Friday lunch.','Keep the chicken raw until each meal so it stays juicy; cook it through until no pink remains.']},
-    {id:'veg',title:'One shared vegetable prep box',time:'20 min',color:'#8FB3C8',steps:['Shred the red and savoy cabbage, ribbon the carrots, strip the kale and chop the coriander and parsley.','Slice the cucumbers only when serving so they stay crisp; wash and dry the spinach.','Store each vegetable separately so the salads remain fresh and the stir-fries stay crisp-tender.']},
-    {id:'flavour',title:'Small flavour kit',time:'5 min',color:'#7C8A5E',steps:['Mince the garlic and grate the ginger for the stir-fry and noodles.','Keep soy sauce, rice vinegar, sesame oil, honey and Chinese five spice together for quick cooking.','Toast sesame seeds if needed; they finish the Friday noodles.']},
-    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Keep chicken and raw vegetables refrigerated separately; use the chicken within 2 days.','Keep the soft-boiled eggs unpeeled until Friday lunch.','Dress salads immediately before serving and reheat cooked chicken until piping hot.']},
+    {id:'breakfast',title:'Breakfast & snack prep',time:'20 min',color:'#C8754E',steps:['Make three days of berry protein overnight oats and two egg-and-bean breakfast wraps.','Portion yogurt snacks, berries, nuts and hummus; keep apples and vegetable sticks separate.','Refrigerate wraps for up to 3 days or freeze the second pair and thaw overnight.']},
+    {id:'mains',title:'Cook the shared bases',time:'35 min',color:'#8FB3C8',steps:['Cook brown rice and lentils for the chicken bowls, curry and fajita bowls.','Season 2.6 kg chicken in labelled portions for the three lentil bowls, traybake and fajita bowls.','Brown turkey mince for the pasta sauce and chilli; cool portions quickly before refrigerating.']},
+    {id:'veg',title:'One shared vegetable prep box',time:'20 min',color:'#7C8A5E',steps:['Shred red cabbage, slice spring onions, chop parsley and portion the supplied cucumber and coriander for Monday noodles.','Wash spinach and cut peppers, onions, carrots and potatoes for the remaining meals.','Keep wet vegetables and dressings separate so the meals stay fresh.']},
+    {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate cooked meals for up to 3 days; freeze Thursday and Friday portions on prep day.','Reheat chicken and turkey until piping hot; add fresh herbs, cucumber and lime just before serving.','Keep snack pots chilled and assemble crisp vegetables on the day.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'chicken', prepDone:{}, currentRecipe:'Chicken, Cucumber & Herb Salad', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Berry Protein Overnight Oats', recipeGlow:false,
     people: {
-      me: { name:'Me', heightLabel:'5\'6"', weight:62, workouts:3, color:'#CB9C8B' },
-      partner: { name:'Partner', heightLabel:'5\'10"', weight:80, workouts:4, color:'#8FB3C8' },
+      me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
+      partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
     },
   };
 
   // ---- goal math ----
   targetsFor(p) {
+    if (p.name==='Cynthia') return { kcal:1650, protein:120, fiber:30 };
+    if (p.name==='Gabriel') return { kcal:2750, protein:153, fiber:38 };
     const kcal = Math.round(p.weight*24*(1.3+0.07*p.workouts)/10)*10;
     const protein = Math.round(p.weight*(1.6+0.05*p.workouts));
     const fiber = Math.round(p.weight*0.5);
@@ -276,7 +292,18 @@ class Component extends DCLogic {
   }
   dishSrc(name) {
     const key = this.resolveRecipe(name);
-    return 'assets/dish-'+(this.recipes[key]?this.recipes[key].slug:'miso-salmon')+'.png';
+    // The five-day cards intentionally reuse existing offline dish photography until their new shoots land.
+    // This avoids broken images in installed/offline copies of the app.
+    const planPhotos = {
+      'Berry Protein Overnight Oats':'mango-oats', 'Egg & Bean Breakfast Wraps':'salmon-eggs',
+      'Apple & Yogurt':'matcha-yogurt', 'Crunchy Veg & Hummus':'edamame-sesame',
+      'Cottage Cheese Berry Cup':'matcha-yogurt', 'Banana Protein Yogurt':'banana-smoothie', 'Apple, Yogurt & Nuts':'rice-cakes-pb',
+      'Lemon Parsley Chicken Lentil Rice Bowls':'chicken-cucumber-herb-salad', 'Turkey Bean Vegetable Pasta':'beef-krapow',
+      'Crispy Tofu Red Cabbage Noodle Bowls':'sesame-tofu-soba', 'Chicken Chickpea Potato Traybake':'chicken-satay',
+      'Red Lentil Spinach Curry':'katsu-curry', 'Turkey Chilli Loaded Potatoes':'beef-bibimbap', 'Chicken Fajita Rice Bowls':'chicken-satay',
+    };
+    const slug = planPhotos[key] || (this.recipes[key] ? this.recipes[key].slug : 'miso-salmon');
+    return 'assets/dish-'+slug+'.png';
   }
   slugOf(name) {
     return this.recipes[name] ? this.recipes[name].slug+'-sw' : name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
@@ -291,10 +318,11 @@ class Component extends DCLogic {
   defaultTicks = {'Spring onions':true,'Salmon fillets':true};
   groceryFor() {
     const plan = this.state.activePlan;
-    if (!plan) return { label:'Thursday–Friday Chicken & Greens Plan', skipped:[], groups:[
-      {h:'FROM YOUR FRIDGE', items:[{n:'Carrots',q:'already have'},{n:'Red cabbage',q:'already have'},{n:'Savoy cabbage',q:'already have'},{n:'Baby spinach',q:'already have'},{n:'Parsley',q:'already have'},{n:'Kale',q:'already have'}]},
-      {h:'BUY', items:[{n:'Chicken breast',q:'960 g',img:'gr-chicken'},{n:'Eggs',q:'4'},{n:'Cucumber',q:'2'},{n:'Fresh coriander',q:'1 × 40 g pack'},{n:'Shallot',q:'1'},{n:'Lime',q:'1'},{n:'Noodles',q:'160 g'}]},
-      {h:'PANTRY · ONLY IF NEEDED', items:[{n:'Light soy sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Sesame oil',q:'only if needed'},{n:'Garlic',q:'only if needed'},{n:'Fresh ginger',q:'only if needed'},{n:'Chinese five spice',q:'only if needed'},{n:'Honey',q:'only if needed'},{n:'Toasted sesame seeds',q:'only if needed'}]},
+    if (!plan) return { label:'Monday–Friday High-Fibre Plan', skipped:[], groups:[
+      {h:'FROM YOUR FRIDGE', items:[{n:'Firm tofu',q:'already have'},{n:'Red cabbage',q:'already have'},{n:'Spring onions',q:'already have'},{n:'Parsley',q:'already have'},{n:'Cucumber',q:'already have'},{n:'Coriander',q:'already have'}]},
+      {h:'PROTEINS & DAIRY', items:[{n:'Chicken thighs or breast',q:'2.6 kg',img:'gr-chicken'},{n:'Turkey mince',q:'1.5 kg'},{n:'Greek yogurt',q:'2 kg'},{n:'Cottage cheese',q:'400 g'},{n:'Eggs',q:'8'}]},
+      {h:'PRODUCE & CARBS', items:[{n:'Mixed berries',q:'1 kg'},{n:'Apples',q:'6'},{n:'Bananas',q:'2'},{n:'Carrots',q:'500 g'},{n:'Red peppers',q:'4'},{n:'Potatoes',q:'1.5 kg'},{n:'Spinach',q:'500 g'},{n:'Lemons or limes',q:'5'},{n:'Brown rice',q:'1 kg'},{n:'Wholewheat noodles',q:'180 g'},{n:'Wholewheat pasta',q:'360 g'},{n:'Wholemeal wraps',q:'4'}]},
+      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Red lentils',q:'500 g'},{n:'Chickpeas',q:'2 × 400 g tins'},{n:'Black beans',q:'2 × 400 g tins'},{n:'Kidney beans',q:'1 × 400 g tin'},{n:'Cannellini beans',q:'2 × 400 g tins'},{n:'Chopped tomatoes',q:'2 × 400 g tins'},{n:'Light coconut milk',q:'1 × 400 ml tin'},{n:'Rolled oats',q:'500 g'},{n:'Protein powder',q:'5 scoops'},{n:'Hummus',q:'200 g'},{n:'Light soy sauce',q:'only if needed'},{n:'Fajita seasoning',q:'only if needed'},{n:'Curry powder',q:'only if needed'}]},
     ]};
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -784,7 +812,7 @@ class Component extends DCLogic {
           e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
         e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
       e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'THU–FRI · THIS PLAN'),
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'MON–FRI · THIS PLAN'),
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
       e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
         this.personCard('me'), this.personCard('partner'),
@@ -808,7 +836,7 @@ class Component extends DCLogic {
   buildWeek() { const w={}; this.slots.forEach(s=>{w[s]=this.options[s].slice();}); return w; }
   thisWeekMains() {
     const week = this.state.week || this.buildWeek();
-    return Array.from(new Set([...(week.Lunch||[]), ...(week.Dinner||[])]));
+    return [...(week.Lunch||[]), ...(week.Dinner||[])];
   }
   renderMeals(fromHome) {
     const C=this.C, st=this.state, week=st.week||this.buildWeek();

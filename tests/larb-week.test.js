@@ -14,76 +14,48 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
+const scheduled = app.slots.flatMap((slot) => week[slot]);
 
-assert.deepStrictEqual(Array.from(app.days.map((day) => day.k)), ['Thu', 'Fri'], 'the new fridge-clearout plan should run Thursday and Friday');
-assert.deepStrictEqual(
-  Array.from(week.Lunch),
-  ['Chicken, Cucumber & Herb Salad', 'Egg, Spinach & Cucumber Salad'],
-  'lunches should match the supplied Thursday and Friday recipes',
-);
-assert.deepStrictEqual(
-  Array.from(week.Dinner),
-  ['Chicken, Cabbage & Carrot Stir-Fry', 'Five-Spice Chicken, Cabbage & Kale Noodles'],
-  'dinners should match the supplied Thursday and Friday recipes',
-);
+assert.deepStrictEqual(Array.from(app.days.map((day) => day.k)), ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], 'the active plan should cover Monday through Friday');
+assert.deepStrictEqual(Array.from(app.slots), ['Breakfast', 'Snack', 'Lunch', 'Dinner'], 'all four daily slots should remain active');
+app.slots.forEach((slot) => assert.strictEqual(week[slot].length, 5, `${slot} needs one meal per weekday`));
+assert.strictEqual(scheduled.length, 20, 'the plan should contain 20 meal slots');
 
-const activeMains = [
-  'Chicken, Cucumber & Herb Salad',
-  'Egg, Spinach & Cucumber Salad',
-  'Chicken, Cabbage & Carrot Stir-Fry',
-  'Five-Spice Chicken, Cabbage & Kale Noodles',
-];
-activeMains.forEach((recipe) => assert.ok(app.recipes[recipe], `${recipe} should be available in Sundō`));
-assert.deepStrictEqual(Array.from(app.thisWeekMains()), activeMains, 'the home preview should show all four new meals');
-assert.ok(activeMains.every((meal) => app.recipes[meal].fixedPlan), 'active recipes should keep their displayed ingredient totals aligned with the fixed grocery plan');
-const eggRecipeTotal = app.recipes['Egg, Spinach & Cucumber Salad'].ingredients.find((item) => item.n === 'Eggs').q;
-assert.strictEqual(eggRecipeTotal, 4, 'the recipe card must retain the four eggs purchased and prepped for two people');
-assert.deepStrictEqual(Array.from(app.recipeOrder), activeMains, 'the recipe list should focus on the active chicken-and-eggs plan');
+assert.deepStrictEqual(Array.from(week.Breakfast), ['Berry Protein Overnight Oats', 'Egg & Bean Breakfast Wraps', 'Berry Protein Overnight Oats', 'Egg & Bean Breakfast Wraps', 'Berry Protein Overnight Oats']);
+assert.deepStrictEqual(Array.from(week.Snack), ['Apple & Yogurt', 'Crunchy Veg & Hummus', 'Cottage Cheese Berry Cup', 'Banana Protein Yogurt', 'Apple, Yogurt & Nuts']);
+assert.deepStrictEqual(Array.from(week.Lunch), ['Lemon Parsley Chicken Lentil Rice Bowls', 'Lemon Parsley Chicken Lentil Rice Bowls', 'Lemon Parsley Chicken Lentil Rice Bowls', 'Turkey Bean Vegetable Pasta', 'Turkey Bean Vegetable Pasta']);
+assert.deepStrictEqual(Array.from(week.Dinner), ['Crispy Tofu Red Cabbage Noodle Bowls', 'Chicken Chickpea Potato Traybake', 'Red Lentil Spinach Curry', 'Turkey Chilli Loaded Potatoes', 'Chicken Fajita Rice Bowls']);
+assert.ok(!scheduled.includes('Miso Salmon Bowl') && !scheduled.includes('Matcha Chia Pudding'), 'no stale salmon or two-day-clearout meals should remain in the current plan');
 
-const stirFry = app.recipes['Chicken, Cabbage & Carrot Stir-Fry'];
-assert.ok(stirFry.ingredients.some((item) => item.n === 'Chicken breast' && item.q === 320), 'the Thursday stir-fry should use chicken breast');
-assert.ok(stirFry.ingredients.some((item) => item.n === 'Savoy cabbage') && stirFry.ingredients.some((item) => item.n === 'Kale'), 'the Thursday stir-fry should use cabbage and kale');
-assert.ok(stirFry.method.some((step) => step.includes('browned bits')), 'the Thursday stir-fry method should scrape up the browned bits');
-
-const noodles = app.recipes['Five-Spice Chicken, Cabbage & Kale Noodles'];
-['Garlic', 'Fresh ginger', 'Chinese five spice', 'Light soy sauce', 'Honey', 'Toasted sesame seeds'].forEach((ingredient) => {
-  assert.ok(noodles.ingredients.some((item) => item.n === ingredient), `the five-spice noodles should include ${ingredient}`);
+scheduled.forEach((meal) => {
+  assert.ok(app.recipes[meal], `${meal} must have a live recipe card`);
+  assert.strictEqual(app.resolveRecipe(meal), meal, `${meal} must not resolve to a stale fallback recipe`);
+  assert.ok(app.recipes[meal].ingredients.length > 0 && app.recipes[meal].method.length > 0, `${meal} needs ingredients and method`);
 });
-assert.ok(noodles.ingredients.some((item) => item.n === 'Red cabbage') && noodles.ingredients.some((item) => item.n === 'Kale') && noodles.ingredients.some((item) => item.n === 'Carrots'), 'the Friday noodles should use the specified vegetables');
+assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.concat(week.Dinner)), 'Home and See all should use the active main-meal order');
+assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes screen should not foreground stale-week meals');
 
-const chickenSalad = app.recipes['Chicken, Cucumber & Herb Salad'];
-assert.ok(chickenSalad.ingredients.some((item) => item.n === 'Chicken breast') && chickenSalad.ingredients.some((item) => item.n === 'Cucumber') && chickenSalad.ingredients.some((item) => item.n === 'Fresh coriander') && chickenSalad.ingredients.some((item) => item.n === 'Parsley'), 'the Thursday lunch should include chicken, cucumber, and both herbs');
-assert.ok(chickenSalad.method.some((step) => step.includes('lime')) && chickenSalad.method.some((step) => step.includes('sesame oil')), 'the Thursday lunch dressing should use lime and sesame oil');
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.state.people.me)), { name: 'Cynthia', heightLabel: '163 cm', weight: 60, age: 30, workouts: 3, activity: 'desk job + 2–3 training sessions', goal: 'fat loss + muscle gain', sex: 'female', color: '#CB9C8B' });
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.state.people.partner)), { name: 'Gabriel', heightLabel: '180 cm', weight: 85, age: 30, workouts: 3, activity: 'mostly seated + some walking + 2–3 training sessions', goal: 'lean muscle gain + cardio support', sex: 'male', color: '#8FB3C8' });
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.targetsFor(app.state.people.me))), { kcal: 1650, protein: 120, fiber: 30 });
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.targetsFor(app.state.people.partner))), { kcal: 2750, protein: 153, fiber: 38 });
 
-const eggSalad = app.recipes['Egg, Spinach & Cucumber Salad'];
-assert.ok(eggSalad.ingredients.some((item) => item.n === 'Eggs' && item.q === 4), 'the Friday lunch should provide two soft-boiled eggs per person');
-assert.ok(eggSalad.ingredients.some((item) => item.n === 'Baby spinach') && eggSalad.ingredients.some((item) => item.n === 'Cucumber') && eggSalad.ingredients.some((item) => item.n === 'Fresh coriander'), 'the Friday lunch should use spinach, cucumber, and coriander');
-assert.ok(eggSalad.method.some((step) => step.includes('four egg halves') && step.includes('two eggs per bowl')), 'the Friday lunch method should clearly allocate two eggs to each person');
-
-const planIngredients = activeMains.flatMap((meal) => app.recipes[meal].ingredients.map((item) => item.n));
-['Savoy cabbage', 'Red cabbage', 'Carrots', 'Kale', 'Baby spinach', 'Cucumber', 'Fresh coriander', 'Parsley'].forEach((vegetable) => {
-  assert.ok(planIngredients.includes(vegetable), `${vegetable} should be used across the four new meals`);
+const groceries = app.groceryFor().groups.flatMap((group) => group.items);
+['Firm tofu', 'Red cabbage', 'Spring onions', 'Parsley', 'Cucumber', 'Coriander'].forEach((item) => {
+  assert.ok(groceries.some((grocery) => grocery.n === item && grocery.q === 'already have'), `${item} should use the supplied leftovers`);
 });
+assert.ok(groceries.some((item) => item.n === 'Chicken thighs or breast' && item.q === '2.6 kg'), 'the cart should cover the chicken meals');
+assert.ok(groceries.some((item) => item.n === 'Turkey mince' && item.q === '1.5 kg'), 'the cart should cover turkey meals');
+assert.ok(groceries.some((item) => item.n === 'Greek yogurt' && item.q === '2 kg'), 'the cart should cover breakfast and snack yogurt');
+assert.ok(groceries.some((item) => item.n === 'Red lentils' && item.q === '500 g'), 'the cart should cover the high-fibre curry');
 
-const groceryItems = app.groceryFor().groups.flatMap((group) => group.items);
-assert.ok(groceryItems.some((item) => item.n === 'Chicken breast' && item.q === '960 g'), 'the shopping list should total the three chicken meals');
-assert.ok(groceryItems.some((item) => item.n === 'Eggs' && item.q === '4'), 'the shopping list should include the Friday lunch eggs');
-['Cucumber', 'Fresh coriander', 'Parsley', 'Shallot', 'Garlic', 'Fresh ginger', 'Chinese five spice', 'Toasted sesame seeds', 'Noodles'].forEach((item) => {
-  assert.ok(groceryItems.some((groceryItem) => groceryItem.n === item), `${item} should be included in the consolidated grocery list`);
-});
-assert.ok(groceryItems.some((item) => item.n === 'Carrots' && item.q === 'already have'), 'the grocery list should retain fridge vegetables as already owned');
-assert.ok(groceryItems.some((item) => item.n === 'Fresh coriander' && item.q === '1 × 40 g pack'), 'the grocery list should cover the 35 g coriander required by the recipes');
-assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Fresh coriander' && item.q === 35), 'the prep card should match the planned coriander total');
-assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Parsley' && item.q === 20), 'the prep card should match the planned parsley total');
-assert.ok(app.recipes['Chicken & Egg Meal Prep'].ingredients.some((item) => item.n === 'Garlic' && item.q === 4), 'the prep card should match the planned garlic total');
-assert.ok(source.includes("totalCooked+' / '+(this.days.length*this.slots.length)+' cooked'"), 'the cooked counter should match the dynamic number of displayed meal slots');
-assert.ok(source.includes("'THU–FRI · THIS PLAN'"), 'the Home header should match the active Thursday–Friday plan');
-['chicken-cucumber-herb-salad', 'egg-spinach-cucumber-salad', 'chicken-cabbage-carrot-stir-fry', 'five-spice-chicken-kale-noodles'].forEach((slug) => {
-  assert.ok(swSource.includes(`'${slug}'`), `${slug} should be precached for offline use`);
-  assert.ok(fs.existsSync(`assets/dish-${slug}.png`), `${slug} should have a dish image`);
-});
-assert.ok(!groceryItems.some((item) => item.n === 'Minced beef'), 'the grocery list should no longer foreground the old beef plan');
-assert.ok(source.includes("Prep:['Chicken & Egg Meal Prep']"), 'the shared prep should remain discoverable in Recipes');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v8';"), 'the app should invalidate the old cached recipe bundle after this update');
+const tofu = app.recipes['Crispy Tofu Red Cabbage Noodle Bowls'];
+assert.ok(tofu.ingredients.some((item) => item.n === 'Firm tofu' && item.q === 400), 'the tofu dinner should use all supplied tofu');
+assert.ok(tofu.ingredients.some((item) => item.n === 'Red cabbage') && tofu.ingredients.some((item) => item.n === 'Spring onions') && tofu.ingredients.some((item) => item.n === 'Coriander'), 'the tofu dinner should use supplied vegetables and herbs');
+assert.ok(tofu.portions && tofu.portions.Cynthia && tofu.portions.Gabriel, 'meal cards should retain Cynthia and Gabriel portion guidance');
+assert.ok(tofu.portions.Gabriel.kcal > tofu.portions.Cynthia.kcal, 'Gabriel serving should be larger than Cynthia serving');
+assert.ok(app.recipes['Lemon Parsley Chicken Lentil Rice Bowls'].portions.Gabriel.protein >= app.recipes['Lemon Parsley Chicken Lentil Rice Bowls'].portions.Cynthia.protein, 'lunch portions should scale for Gabriel');
 
-console.log('chicken and eggs fridge-clearout plan checks passed');
+assert.ok(source.includes("'MON–FRI · THIS PLAN'"), 'Home header should name the five-day plan');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v9';"), 'service-worker cache must be bumped for the new plan');
+console.log('five-day Cynthia and Gabriel plan checks passed');
