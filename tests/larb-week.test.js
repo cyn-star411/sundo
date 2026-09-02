@@ -24,7 +24,7 @@ assert.strictEqual(scheduled.length, 12, 'the plan should contain 12 rest-of-wee
 assert.deepStrictEqual(Array.from(week.Breakfast), ['Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding']);
 assert.deepStrictEqual(Array.from(week.Snack), ['Apple & Yogurt', 'Apple & Yogurt', 'Apple & Yogurt']);
 assert.deepStrictEqual(Array.from(week.Lunch), ['Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad']);
-assert.deepStrictEqual(Array.from(week.Dinner), ['Honey Garlic Chicken Rice Bowls', 'Honey Garlic Chicken Rice Bowls', 'Honey Garlic Chicken Rice Bowls']);
+assert.deepStrictEqual(Array.from(week.Dinner), ['Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls']);
 
 scheduled.forEach((meal) => {
   assert.ok(app.recipes[meal], `${meal} must have a live recipe card`);
@@ -57,5 +57,5 @@ const prepText = mainPrep.steps.join(' ');
 assert.ok(prepText.includes('bean salad') && prepText.includes('rice'), 'chicken prep must explain both daily meal formats');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should name the three-day plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v11';"), 'service-worker cache must refresh for the rest-of-week meal prep update');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v12';"), 'service-worker cache must refresh for the rest-of-week meal prep update');
 console.log('rest-of-week Cynthia and Gabriel plan checks passed');

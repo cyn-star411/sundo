@@ -24,9 +24,9 @@ assert.strictEqual(scheduled.length, 12, 'the rest-of-week plan should contain 1
 assert.deepStrictEqual(Array.from(week.Breakfast), ['Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding']);
 assert.deepStrictEqual(Array.from(week.Snack), ['Apple & Yogurt', 'Apple & Yogurt', 'Apple & Yogurt']);
 assert.deepStrictEqual(Array.from(week.Lunch), ['Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad']);
-assert.deepStrictEqual(Array.from(week.Dinner), ['Honey Garlic Chicken Rice Bowls', 'Honey Garlic Chicken Rice Bowls', 'Honey Garlic Chicken Rice Bowls']);
+assert.deepStrictEqual(Array.from(week.Dinner), ['Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls']);
 
-['Pumpkin Chia Seed Pudding', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken Rice Bowls'].forEach((meal) => {
+['Pumpkin Chia Seed Pudding', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Enoki Rice Bowls'].forEach((meal) => {
   assert.ok(app.recipes[meal], `${meal} must have a live recipe card`);
   assert.strictEqual(app.resolveRecipe(meal), meal, `${meal} must resolve directly rather than through a stale fallback`);
   assert.ok(app.recipes[meal].ingredients.length > 0, `${meal} needs an ingredient list`);
@@ -60,5 +60,5 @@ assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v11';"), 'service-worker cache must refresh for the new meal plan');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v12';"), 'service-worker cache must refresh for the new meal plan');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');
