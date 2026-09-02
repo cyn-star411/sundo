@@ -63,5 +63,5 @@ assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v14';"), 'service-worker cache must refresh for the corrected shopping list');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v15';"), 'service-worker cache must refresh for the Prep scrolling fix');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');

@@ -1114,7 +1114,7 @@ class Component extends DCLogic {
     const allSteps = this.prepSections.reduce((a,s)=>a+s.steps.length,0);
     const doneCount = Object.values(st.prepDone).filter(Boolean).length;
     const pct = Math.round(doneCount/allSteps*100);
-    return e('div',{style:{height:'100%',display:'flex',flexDirection:'column'}},
+    return e('div',{style:{height:'100%',minHeight:0,display:'flex',flexDirection:'column'}},
       this.statusBar(false),
       e('div',{key:'h',style:{flex:'0 0 auto',padding:'14px 24px 0'}},
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
@@ -1135,7 +1135,7 @@ class Component extends DCLogic {
             e('span',{style:{width:6,height:6,borderRadius:'50%',background:i*allSteps/7<=doneCount?'#4A3527':'rgba(56,44,36,.22)'}}),
             e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:8,color:'rgba(56,44,36,.5)'}},tp.t),
             e('span',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:7.5,color:'rgba(56,44,36,.4)',maxWidth:42,textAlign:'center',lineHeight:1.15}},tp.l))))),
-      e('div',{key:'sec',style:{flex:1,overflowY:'auto',padding:'16px 24px 22px',display:'flex',flexDirection:'column',gap:10}},
+      e('div',{key:'sec',style:{flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',padding:'16px 24px 22px',display:'flex',flexDirection:'column',gap:10}},
         this.prepSections.map((sec,si)=>this.prepCard(sec,si)))); 
   }
   prepCard(sec,si) {
