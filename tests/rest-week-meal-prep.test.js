@@ -24,9 +24,9 @@ assert.strictEqual(scheduled.length, 12, 'the rest-of-week plan should contain 1
 assert.deepStrictEqual(Array.from(week.Breakfast), ['Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding', 'Pumpkin Chia Seed Pudding']);
 assert.deepStrictEqual(Array.from(week.Snack), ['Apple & Yogurt', 'Apple & Yogurt', 'Apple & Yogurt']);
 assert.deepStrictEqual(Array.from(week.Lunch), ['Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Miso Sesame Bean Salad']);
-assert.deepStrictEqual(Array.from(week.Dinner), ['Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls', 'Honey Garlic Chicken & Enoki Rice Bowls']);
+assert.deepStrictEqual(Array.from(week.Dinner), ['Ginger-Scallion Tofu & Enoki Soba', 'Ginger-Scallion Tofu & Enoki Soba', 'Ginger-Scallion Tofu & Enoki Soba']);
 
-['Pumpkin Chia Seed Pudding', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Honey Garlic Chicken & Enoki Rice Bowls'].forEach((meal) => {
+['Pumpkin Chia Seed Pudding', 'Honey Garlic Chicken & Miso Sesame Bean Salad', 'Ginger-Scallion Tofu & Enoki Soba'].forEach((meal) => {
   assert.ok(app.recipes[meal], `${meal} must have a live recipe card`);
   assert.strictEqual(app.resolveRecipe(meal), meal, `${meal} must resolve directly rather than through a stale fallback`);
   assert.ok(app.recipes[meal].ingredients.length > 0, `${meal} needs an ingredient list`);
@@ -39,12 +39,13 @@ assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes sc
 
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 [
-  ['Chicken thighs', '1.8 kg'],
+  ['Chicken thighs', '900 g'],
+  ['Firm tofu', '900 g'],
   ['Pumpkin purée', '1 × 425 g tin'],
   ['Chia seeds', '250 g'],
   ['White miso', '1 small tub'],
-  ['Shelled edamame', '600 g'],
-  ['Short-grain or jasmine rice', '1 kg'],
+  ['Soba noodles', '600 g'],
+  ['Pak choi', '900 g'],
 ].forEach(([name, quantity]) => {
   assert.ok(groceries.some((item) => item.n === name && item.q === quantity), `shopping list should include ${quantity} ${name}`);
 });
@@ -55,10 +56,10 @@ const mainPrep = prep.find((section) => section.id === 'mains');
 const storagePrep = prep.find((section) => section.id === 'store');
 assert.ok(breakfastPrep && mainPrep && storagePrep, 'the plan needs breakfast, main, and storage prep sections');
 assert.ok(breakfastPrep.steps.join(' ').includes('6'), 'breakfast prep should make six pumpkin chia portions');
-['1.8 kg', '12', '75°C', 'Wednesday', 'Friday'].forEach((detail) => assert.ok(mainPrep.steps.join(' ').includes(detail), `main prep must state ${detail}`));
-assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join(' ').includes('rice'), 'main prep must explain the bean-salad and rice components');
+['900 g', '6 lunch portions', '75°C', 'Wednesday', 'Friday'].forEach((detail) => assert.ok(mainPrep.steps.join(' ').includes(detail), `main prep must state ${detail}`));
+assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join(' ').includes('tofu'), 'main prep must explain the bean-salad and tofu components');
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v12';"), 'service-worker cache must refresh for the new meal plan');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v13';"), 'service-worker cache must refresh for the new meal plan');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');

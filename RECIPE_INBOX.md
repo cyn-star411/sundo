@@ -104,6 +104,10 @@ Cabbage, spring onions, edamame, soy sauce, rice vinegar, sesame oil, lime and s
 
 Soy sauce, dark soy, oyster sauce, honey, sriracha and chicken thighs work with stir-fries, rice bowls, noodles and the bean salad above.
 
+### Current-plan pairing clarification
+
+Honey Garlic Chicken Thighs and Miso Sesame Dense Bean Salad are **separate source recipes** in this inbox; the Instagram source does not establish them as one recipe. For the current Wednesday–Friday Sundō plan, they are intentionally paired as the lunch: honey garlic chicken served alongside the cold, crunchy bean salad.
+
 ---
 
 ## 4. High-Protein Beef Bulgogi Bibimbap
@@ -218,5 +222,5 @@ Before selecting any of these for a live week, retrieve or confirm the full reci
 
 - **Fully captured recipes saved:** 4
 - **Video-only source collections saved:** 1
-- **Recipes added to the current live plan:** 3 — Pumpkin Chia Seed Pudding, Miso Sesame Dense Bean Salad, and Honey Garlic Chicken Thighs (combined for the Wednesday–Friday meal prep)
+- **Recipes added to the current live plan:** 3 — Pumpkin Chia Seed Pudding, Miso Sesame Dense Bean Salad, and Honey Garlic Chicken Thighs. The chicken and bean salad are separate inbox recipes intentionally paired for the current Wednesday–Friday lunches.
 - **Last updated:** 2026-09-02
