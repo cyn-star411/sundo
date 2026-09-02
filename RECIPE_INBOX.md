@@ -163,6 +163,27 @@ Ground beef, mushrooms, carrots, spinach, rice, eggs, spring onions, soy sauce, 
 
 ---
 
+## 5. Weekly Meal-Prep Lineup — video-only capture (needs recipe transcription)
+
+- **Source:** [Instagram reel by @stephinguyen](https://www.instagram.com/reel/Dalyb9Ru_gQ/)
+- **Type:** Multi-recipe weekly meal-prep lineup
+- **Source note:** The public caption says, “loving this week’s lineup! so many healthy and delicious meals,” and tags `#chiaseedpudding` and `#densebeansalad`. It does **not** include ingredient quantities, servings, nutrition, or written methods.
+- **Status:** Saved as a source collection, not a live Sundō meal and not yet a fully transcribed recipe set.
+
+### Distinct prep components visibly observed
+
+1. **Pink berry chia pudding** — a milk-based pink mixture is blended with strawberries, then portioned into jars and topped with more strawberries. Chia seeds are visibly stirred in; exact recipe name, quantities, and other additions are unconfirmed.
+2. **Green chia pudding** — a green milk-based mixture is blended, stirred with chia seeds, and portioned into jars. The flavoring and exact ingredients are unconfirmed from the video alone.
+3. **Air-fried glazed chicken thighs** — chicken is marinated in a dark sauce, air-fried, then sliced for containers. This may overlap with the saved Honey Garlic Chicken Thighs, but the reel does not provide enough written detail to treat it as the same recipe.
+4. **Crunchy dense bean salad** — purple cabbage, carrot, edamame, and diced bell pepper are visibly combined with a brown dressing. This may overlap with the saved Miso Sesame Dense Bean Salad, but the exact dressing and quantities are unconfirmed.
+5. **Vanilla protein oat bites** — the visible base includes oats and vanilla-bean protein powder; a brown wet ingredient is mixed in, rolled into bite-size balls, and stored in a container. Exact ingredient amounts and the wet ingredient(s) are unconfirmed.
+
+### Future-use note
+
+Before selecting any of these for a live week, retrieve or confirm the full recipe details. Do not calculate portions, macros, or shopping-list quantities from this video-only capture. The two chia puddings and protein bites could be useful breakfast/snack options; the chicken and bean salad can be evaluated alongside the existing matching inbox recipes for duplicate or complementary ingredient overlap.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -195,6 +216,7 @@ Ground beef, mushrooms, carrots, spinach, rice, eggs, spring onions, soy sauce, 
 
 ## Inbox status
 
-- **Recipes saved:** 4
+- **Fully captured recipes saved:** 4
+- **Video-only source collections saved:** 1
 - **Recipes added to the current live plan:** 0
 - **Last updated:** 2026-09-02
