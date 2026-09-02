@@ -33,14 +33,15 @@ assert.deepStrictEqual(Array.from(week.Dinner), ['Ginger-Scallion Tofu & Enoki S
   assert.ok(app.recipes[meal].method.length > 0, `${meal} needs a method`);
   assert.ok(app.recipes[meal].portions.Cynthia && app.recipes[meal].portions.Gabriel, `${meal} needs Cynthia and Gabriel portion guidance`);
 });
-assert.deepStrictEqual(JSON.parse(JSON.stringify(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Gabriel)), JSON.parse(JSON.stringify(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Cynthia)), 'Cynthia and Gabriel should receive equal chicken-and-bean-salad lunch portions');
+const lunchTotals = app.weeklyRecipeTotals(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad']);
+assert.ok(lunchTotals.Gabriel.ingredients['Chicken thighs, raw'] > lunchTotals.Cynthia.ingredients['Chicken thighs, raw'], 'Gabriel should receive a larger chicken-and-bean-salad lunch portion');
 assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.concat(week.Dinner)), 'Home and See all should use the active rest-of-week main-meal order');
 assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes screen should foreground only active rest-of-week meals');
 
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 [
-  ['Chicken thighs', '900 g'],
-  ['Firm tofu', '900 g'],
+  ['Chicken thighs', '960 g'],
+  ['Firm tofu', '1200 g'],
   ['Apples', '9'],
   ['Plain non-fat Greek yogurt', '1 kg'],
   ['Pumpkin purée', '1 × 425 g tin'],
@@ -58,10 +59,10 @@ const mainPrep = prep.find((section) => section.id === 'mains');
 const storagePrep = prep.find((section) => section.id === 'store');
 assert.ok(breakfastPrep && mainPrep && storagePrep, 'the plan needs breakfast, main, and storage prep sections');
 assert.ok(breakfastPrep.steps.join(' ').includes('6'), 'breakfast prep should make six pumpkin chia portions');
-['900 g', '6 lunch portions', '75°C', 'Wednesday', 'Friday'].forEach((detail) => assert.ok(mainPrep.steps.join(' ').includes(detail), `main prep must state ${detail}`));
+['6 lunch portions', '75°C', 'Wednesday', 'Friday'].forEach((detail) => assert.ok(mainPrep.steps.join(' ').includes(detail), `main prep must state ${detail}`));
 assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join(' ').includes('tofu'), 'main prep must explain the bean-salad and tofu components');
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v17';"), 'service-worker cache must refresh for the batch total and equal-split correction');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v18';"), 'service-worker cache must refresh for the batch total and equal-split correction');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');

@@ -37,26 +37,26 @@ assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes sc
 assert.deepStrictEqual(JSON.parse(JSON.stringify(app.state.people.me)), { name: 'Cynthia', heightLabel: '163 cm', weight: 60, age: 30, workouts: 3, activity: 'desk job + 2–3 training sessions', goal: 'fat loss + muscle gain', sex: 'female', color: '#CB9C8B' });
 assert.deepStrictEqual(JSON.parse(JSON.stringify(app.state.people.partner)), { name: 'Gabriel', heightLabel: '180 cm', weight: 85, age: 30, workouts: 3, activity: 'mostly seated + some walking + 2–3 training sessions', goal: 'lean muscle gain + cardio support', sex: 'male', color: '#8FB3C8' });
 assert.deepStrictEqual(JSON.parse(JSON.stringify(app.targetsFor(app.state.people.me))), { kcal: 1650, protein: 120, fiber: 30 });
-assert.deepStrictEqual(JSON.parse(JSON.stringify(app.targetsFor(app.state.people.partner))), { kcal: 2750, protein: 153, fiber: 38 });
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.targetsFor(app.state.people.partner))), { kcal: 2750, protein: 136, fiber: 38 });
 
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-assert.ok(groceries.some((item) => item.n === 'Chicken thighs' && item.q === '900 g'), 'the cart should cover the six chicken lunch portions');
-assert.ok(groceries.some((item) => item.n === 'Firm tofu' && item.q === '900 g'), 'the cart should cover the three tofu-and-enoki dinner pairs');
+assert.ok(groceries.some((item) => item.n === 'Chicken thighs' && item.q === '960 g'), 'the cart should cover the calculated chicken lunch portions');
+assert.ok(groceries.some((item) => item.n === 'Firm tofu' && item.q === '1200 g'), 'the cart should cover the three tofu-and-enoki dinner pairs');
 assert.ok(groceries.some((item) => item.n === 'Pumpkin purée' && item.q === '1 × 425 g tin'), 'the cart should cover the breakfast chia jars');
 assert.ok(groceries.some((item) => item.n === 'Soba noodles' && item.q === '600 g'), 'the cart should cover the tofu-and-enoki dinners');
 
 const lunch = app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'];
 assert.ok(lunch.portions && lunch.portions.Cynthia && lunch.portions.Gabriel, 'meal cards should retain Cynthia and Gabriel portion guidance');
-assert.deepStrictEqual(JSON.parse(JSON.stringify(lunch.portions.Gabriel)), JSON.parse(JSON.stringify(lunch.portions.Cynthia)), 'Cynthia and Gabriel should receive equal lunch portions');
+assert.ok(lunch.weeklyReference && app.weeklyRecipeTotals(lunch).Gabriel.ingredients['Chicken thighs, raw'] > app.weeklyRecipeTotals(lunch).Cynthia.ingredients['Chicken thighs, raw'], 'Cynthia and Gabriel should receive calculated unequal lunch portions');
 
 const mainPrep = app.prepSections.find((section) => section.id === 'mains');
 assert.ok(mainPrep, 'Prep must include the shared chicken batch-cook section');
 const prepText = mainPrep.steps.join(' ');
-['900 g', '6 lunch portions', '75°C', 'Wednesday', 'Friday'].forEach((detail) => {
+['6 lunch portions', '75°C', 'Wednesday', 'Friday'].forEach((detail) => {
   assert.ok(prepText.includes(detail), `chicken prep must state ${detail}`);
 });
 assert.ok(prepText.includes('bean salad') && prepText.includes('tofu'), 'chicken prep must explain both daily meal formats');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should name the three-day plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v17';"), 'service-worker cache must refresh for the batch total and equal-split correction');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v18';"), 'service-worker cache must refresh for profile-driven portions and shopping totals');
 console.log('rest-of-week Cynthia and Gabriel plan checks passed');

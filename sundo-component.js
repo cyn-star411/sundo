@@ -28,8 +28,8 @@ class Component extends DCLogic {
     'Turkey Chilli Loaded Potatoes': { cuisine:'Comfort food · Dinner', time:'40 min', kcal:620, base:2, fixedPlan:true, protein:78, fiber:19, slug:'turkey-chilli-potatoes', ingredients:[{n:'Turkey mince',q:450,u:'g',cat:'protein',prot:99,short:'Turkey'},{n:'Potatoes',q:700,u:'g',cat:'carb',prot:14},{n:'Kidney beans',q:400,u:'g',cat:'protein',prot:28},{n:'Chopped tomatoes',q:400,u:'g',cat:'veg',prot:6},{n:'Red pepper',q:1,u:'',cat:'veg',prot:1},{n:'Greek yogurt',q:120,u:'g',cat:'protein',prot:12}], method:['Bake potatoes at 210°C until tender.','Brown turkey with pepper, add beans and tomatoes, then simmer until thick.','Split potatoes and fill with chilli; top with yogurt.'] },
     'Chicken Fajita Rice Bowls': { cuisine:'Mexican-inspired · Dinner', time:'15 min with prep', kcal:625, base:2, fixedPlan:true, protein:82, fiber:15, slug:'chicken-fajita-rice-bowls', ingredients:[{n:'Prepped chicken',q:800,u:'g',cat:'protein',prot:184,short:'Chicken'},{n:'Brown rice',q:180,u:'g',cat:'carb',prot:14},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Red peppers',q:2,u:'',cat:'veg',prot:2},{n:'Onion',q:1,u:'',cat:'veg',prot:1},{n:'Lime',q:1,u:'',cat:'sauce',prot:0},{n:'Fajita seasoning',q:2,u:'tbsp',cat:'sauce',prot:0}], method:['Cook brown rice.','Cook peppers and onion until charred, then add 800 g prepped chicken with fajita seasoning and toss until piping hot.','Build bowls with rice, black beans, prepped chicken and lime.'] },
     'Pumpkin Chia Seed Pudding': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:260, base:6, fixedPlan:true, protein:36, fiber:48, slug:'pumpkin-chia', portions:{Cynthia:{kcal:250,protein:6},Gabriel:{kcal:330,protein:8}}, ingredients:[{n:'Milk of choice',q:480,u:'ml',cat:'sauce',prot:14},{n:'Pumpkin purée',q:240,u:'g',cat:'veg',prot:3},{n:'Plain non-fat Greek yogurt',q:60,u:'g',cat:'protein',prot:6},{n:'Chia seeds',q:120,u:'g',cat:'carb',prot:20},{n:'Maple syrup',q:60,u:'ml',cat:'sauce',prot:0},{n:'Pumpkin pie spice',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Apples',q:3,u:'',cat:'veg',prot:0},{n:'Pumpkin seeds',q:45,u:'g',cat:'protein',prot:14}], method:['Whisk milk, pumpkin purée, maple syrup, pumpkin pie spice and salt until smooth. Stir in the Greek yogurt, then the chia seeds.','Leave for 5 minutes, stir again to break up any chia clumps, then divide into six lidded jars. Refrigerate overnight.','For each breakfast, top one jar with diced apple and pumpkin seeds. Gabriel adds an extra spoonful of pumpkin seeds or a side of Greek yogurt if he needs more fuel.'] },
-    'Honey Garlic Chicken & Miso Sesame Bean Salad': { cuisine:'Asian-inspired · Weekly lunch prep', time:'35 min', kcal:560, base:6, fixedPlan:true, protein:54, fiber:17, slug:'honey-garlic-chicken-bean-salad', portions:{Cynthia:{kcal:560,protein:27},Gabriel:{kcal:560,protein:27}}, ingredients:[{n:'Chicken thighs, raw',q:900,u:'g',cat:'protein',prot:144,short:'Chicken'},{n:'Soy sauce (chicken)',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Dark soy sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Oyster sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Garlic powder',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Honey (chicken)',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Sriracha',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Chickpeas, drained',q:240,u:'g',cat:'protein',prot:21},{n:'Shelled edamame',q:150,u:'g',cat:'protein',prot:18},{n:'Snap peas',q:105,u:'g',cat:'veg',prot:3},{n:'Purple cabbage, shredded',q:150,u:'g',cat:'veg',prot:3},{n:'Green onions',q:3,u:'',cat:'veg',prot:0},{n:'White miso',q:3,u:'tbsp',cat:'sauce',prot:6},{n:'Soy sauce (salad)',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Rice vinegar',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Toasted sesame oil',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Lime',q:1.5,u:'',cat:'sauce',prot:0},{n:'Sesame seeds',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Honey (salad)',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Red pepper flakes',q:1.5,u:'tsp',cat:'sauce',prot:0}], method:['This is the full Wednesday–Friday lunch batch: six equal portions — three for Cynthia and three for Gabriel. The ingredient list above is the complete amount to have ready before you begin.','Toss all 900 g raw chicken with the chicken soy sauce, dark soy, oyster sauce, garlic powder, honey and sriracha. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.','Toss the chickpeas, edamame, snap peas, cabbage and green onions with white miso, salad soy sauce, rice vinegar, lime juice, sesame oil, honey, red pepper flakes and sesame seeds.','Cool the chicken promptly. Divide both the chicken and cold salad evenly into six containers: each portion has one-sixth of the chicken and vegetables. Reheat only the chicken until steaming; keep the salad cold and crisp.'] },
-    'Ginger-Scallion Tofu & Enoki Soba': { cuisine:'Japanese-inspired · Dinner', time:'20 min', kcal:570, base:2, fixedPlan:true, protein:48, fiber:12, slug:'sesame-tofu-soba', portions:{Cynthia:{kcal:520,protein:22},Gabriel:{kcal:720,protein:30}}, ingredients:[{n:'Firm tofu',q:300,u:'g',cat:'protein',prot:36,short:'Tofu'},{n:'Soba noodles',q:180,u:'g',cat:'carb',prot:18,short:'Soba'},{n:'Enoki mushrooms',q:200,u:'g',cat:'veg',prot:5,short:'Enoki'},{n:'Pak choi',q:300,u:'g',cat:'veg',prot:5},{n:'Green onions',q:4,u:'',cat:'veg',prot:1},{n:'Fresh ginger',q:20,u:'g',cat:'sauce',prot:0},{n:'Soy sauce',q:2,u:'tbsp',cat:'sauce',prot:2},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Toasted sesame oil',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Sesame seeds',q:2,u:'tsp',cat:'sauce',prot:1}], method:['Press and cube 300 g firm tofu, then pan-sear it in a hot non-stick pan until golden on all sides.','Trim the root end from 200 g enoki mushrooms, separate the clusters, then cook them in the hot pan for 3–4 minutes until tender and steaming; do not eat them raw.','Cook 180 g soba noodles, adding 300 g chopped pak choi for the final 2 minutes; drain well.','Stir grated ginger, sliced green onions, soy sauce, rice vinegar and toasted sesame oil together. Toss with the soba, pak choi and cooked enoki, then top with tofu and sesame seeds. Cynthia takes the smaller noodle portion; Gabriel takes the larger portion and any extra tofu.'] },
+    'Honey Garlic Chicken & Miso Sesame Bean Salad': { cuisine:'Asian-inspired · Weekly lunch prep', time:'35 min', kcal:560, base:2, portionProtein:30, weeklyReference:true, fixedPlan:true, protein:54, fiber:17, slug:'honey-garlic-chicken-bean-salad', portions:{Cynthia:{kcal:560,protein:27},Gabriel:{kcal:560,protein:27}}, ingredients:[{n:'Chicken thighs, raw',q:900,u:'g',cat:'protein',prot:144,short:'Chicken'},{n:'Soy sauce (chicken)',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Dark soy sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Oyster sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Garlic powder',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Honey (chicken)',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Sriracha',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Chickpeas, drained',q:240,u:'g',cat:'protein',prot:21},{n:'Shelled edamame',q:150,u:'g',cat:'protein',prot:18},{n:'Snap peas',q:105,u:'g',cat:'veg',prot:3},{n:'Purple cabbage, shredded',q:150,u:'g',cat:'veg',prot:3},{n:'Green onions',q:3,u:'',cat:'veg',prot:0},{n:'White miso',q:3,u:'tbsp',cat:'sauce',prot:6},{n:'Soy sauce (salad)',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Rice vinegar',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Toasted sesame oil',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Lime',q:1.5,u:'',cat:'sauce',prot:0},{n:'Sesame seeds',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Honey (salad)',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Red pepper flakes',q:1.5,u:'tsp',cat:'sauce',prot:0}], method:['This is the full Wednesday–Friday lunch batch: six equal portions — three for Cynthia and three for Gabriel. The ingredient list above is the complete amount to have ready before you begin.','Toss all 900 g raw chicken with the chicken soy sauce, dark soy, oyster sauce, garlic powder, honey and sriracha. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.','Toss the chickpeas, edamame, snap peas, cabbage and green onions with white miso, salad soy sauce, rice vinegar, lime juice, sesame oil, honey, red pepper flakes and sesame seeds.','Cool the chicken promptly. Divide both the chicken and cold salad evenly into six containers: each portion has one-sixth of the chicken and vegetables. Reheat only the chicken until steaming; keep the salad cold and crisp.'] },
+    'Ginger-Scallion Tofu & Enoki Soba': { cuisine:'Japanese-inspired · Dinner', time:'20 min', kcal:570, base:2, weeklyDynamic:true, fixedPlan:true, protein:48, fiber:12, slug:'sesame-tofu-soba', portions:{Cynthia:{kcal:520,protein:22},Gabriel:{kcal:720,protein:30}}, ingredients:[{n:'Firm tofu',q:300,u:'g',cat:'protein',prot:36,short:'Tofu'},{n:'Soba noodles',q:180,u:'g',cat:'carb',prot:18,short:'Soba'},{n:'Enoki mushrooms',q:200,u:'g',cat:'veg',prot:5,short:'Enoki'},{n:'Pak choi',q:300,u:'g',cat:'veg',prot:5},{n:'Green onions',q:4,u:'',cat:'veg',prot:1},{n:'Fresh ginger',q:20,u:'g',cat:'sauce',prot:0},{n:'Soy sauce',q:2,u:'tbsp',cat:'sauce',prot:2},{n:'Rice vinegar',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Toasted sesame oil',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Sesame seeds',q:2,u:'tsp',cat:'sauce',prot:1}], method:['Press and cube 300 g firm tofu, then pan-sear it in a hot non-stick pan until golden on all sides.','Trim the root end from 200 g enoki mushrooms, separate the clusters, then cook them in the hot pan for 3–4 minutes until tender and steaming; do not eat them raw.','Cook 180 g soba noodles, adding 300 g chopped pak choi for the final 2 minutes; drain well.','Stir grated ginger, sliced green onions, soy sauce, rice vinegar and toasted sesame oil together. Toss with the soba, pak choi and cooked enoki, then top with tofu and sesame seeds. Cynthia takes the smaller noodle portion; Gabriel takes the larger portion and any extra tofu.'] },
     'Chicken & Egg Meal Prep': { cuisine:'Fridge-clearout · Prep', time:'30 min', kcal:390, base:4, protein:154, fiber:7, slug:'chicken-egg-meal-prep',
       ingredients:[{n:'Chicken breast',q:960,u:'g',cat:'protein',prot:220,short:'Chicken'},{n:'Eggs',q:4,u:'',cat:'protein',prot:24,short:'Eggs'},{n:'Carrots',q:300,u:'g',cat:'veg',prot:3,short:'Carrots'},{n:'Red cabbage',q:250,u:'g',cat:'veg',prot:3,short:'Cabbage'},{n:'Savoy cabbage',q:350,u:'g',cat:'veg',prot:4,short:'Cabbage'},{n:'Kale',q:180,u:'g',cat:'veg',prot:6,short:'Kale'},{n:'Baby spinach',q:160,u:'g',cat:'veg',prot:5,short:'Spinach'},{n:'Cucumber',q:2,u:'',cat:'veg',prot:2},{n:'Fresh coriander',q:35,u:'g',cat:'veg',prot:1},{n:'Parsley',q:20,u:'g',cat:'veg',prot:1},{n:'Garlic',q:4,u:'cloves',cat:'sauce',prot:0},{n:'Fresh ginger',q:25,u:'g',cat:'sauce',prot:0}],
       method:['Thinly slice 960 g chicken breast and divide it into three labelled 320 g portions: Thursday lunch, Thursday dinner and Friday dinner.','Shred 250 g red cabbage and 350 g savoy cabbage, ribbon 300 g carrots, strip 180 g kale, wash 160 g spinach, slice 2 cucumbers and chop 35 g coriander with 20 g parsley. Store components separately.','Soft-boil 4 eggs for 7 minutes, chill in cold water and refrigerate unpeeled for Friday lunch.','Grate 25 g ginger and mince 4 garlic cloves; keep them ready for the stir-fry and five-spice noodles.'] },
@@ -209,7 +209,7 @@ class Component extends DCLogic {
   timeline = [{t:'0:00',l:'Chia jars'},{t:'0:15',l:'Chicken thighs'},{t:'0:35',l:'Bean salad'},{t:'0:55',l:'Tofu & soba'},{t:'1:15',l:'Done'}];
   prepSections = [
     {id:'breakfast',title:'Pumpkin chia breakfasts',time:'20 min + chill',color:'#C8754E',steps:['Whisk the pumpkin chia mixture, wait 5 minutes, stir again, then divide it into 6 lidded jars — one breakfast each for Cynthia and Gabriel from Wednesday through Friday.','Keep the apple and pumpkin-seed toppings separate until breakfast so they stay crisp. Gabriel can add extra pumpkin seeds or Greek yogurt on the side.','Refrigerate all 6 jars; they hold well for the remaining 3 days.']},
-    {id:'mains',title:'Batch lunches + dinner mise en place',time:'60 min',color:'#8FB3C8',steps:['The chicken recipe card already lists the full six-lunch batch. Mix its 900 g raw chicken thighs with 1 tbsp each soy sauce, dark soy sauce, oyster sauce and sriracha, plus 2 tsp garlic powder and 2 tbsp honey. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.','Cool promptly, then divide the cooked chicken into 6 lunch portions, labelled for Cynthia and Gabriel on Wednesday, Thursday and Friday. Keep each chicken portion separate from the cold bean salad until serving.','Make the miso sesame bean salad 3× for those six lunches: 240 g drained chickpeas, 150 g edamame, 105 g snap peas and 150 g shredded cabbage, plus the dressing. Do not put the salad on the hot chicken.','This is not a three-day cooked dinner batch: press and cube 900 g tofu, wash 900 g pak choi and keep 600 g leftover enoki dry and refrigerated. Each night, cook one fresh two-person tofu-and-enoki soba recipe: 300 g tofu, 200 g enoki and 180 g soba.']},
+    {id:'mains',title:'Batch lunches + dinner mise en place',time:'60 min',color:'#8FB3C8',steps:['The chicken recipe card is calculated from the Home protein goals. Use its current Total to prep amount with the listed chicken marinade; air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.','Cool promptly, then divide the cooked chicken into 6 lunch portions, labelled for Cynthia and Gabriel on Wednesday, Thursday and Friday. Keep each chicken portion separate from the cold bean salad until serving.','Make the miso sesame bean salad 3× for those six lunches: 240 g drained chickpeas, 150 g edamame, 105 g snap peas and 150 g shredded cabbage, plus the dressing. Do not put the salad on the hot chicken.','This is not a three-day cooked dinner batch: press and cube 900 g tofu, wash 900 g pak choi and keep 600 g leftover enoki dry and refrigerated. Each night, cook one fresh two-person tofu-and-enoki soba recipe: 300 g tofu, 200 g enoki and 180 g soba.']},
     {id:'veg',title:'Lunch crunch & dinner greens',time:'20 min',color:'#7C8A5E',steps:['Shred purple cabbage, trim snap peas and slice green onions. Keep cabbage dry in one large container.','Mix the bean-salad dressing separately; toss the lunch salad only on prep day or the night before so it stays crunchy.','Wash and chop pak choi; keep it separate with the limes, ginger and sesame seeds ready for the tofu soba.']},
     {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate all meals for the remaining 3 days. Cool cooked chicken promptly; keep cold food cold.','Reheat chicken until steaming and at least 75°C; keep the bean salad, apple toppings and fresh lime cold until serving. Cook tofu, soba, pak choi and enoki fresh at dinner for their best texture.','If Friday will run late, freeze its chicken portion now and thaw it overnight in the refrigerator on Thursday.']},
   ];
@@ -223,12 +223,53 @@ class Component extends DCLogic {
 
   // ---- goal math ----
   targetsFor(p) {
-    if (p.name==='Cynthia') return { kcal:1650, protein:120, fiber:30 };
-    if (p.name==='Gabriel') return { kcal:2750, protein:153, fiber:38 };
-    const kcal = Math.round(p.weight*24*(1.3+0.07*p.workouts)/10)*10;
-    const protein = Math.round(p.weight*(1.6+0.05*p.workouts));
-    const fiber = Math.round(p.weight*0.5);
+    const recomp = (p.goal||'').includes('fat loss');
+    const protein = Math.round(p.weight*(recomp ? 2 : 1.6));
+    const kcal = Math.round(p.weight*(recomp ? 27.5 : 32.35)/10)*10;
+    const fiber = Math.round(p.weight*(recomp ? .5 : .45));
     return { kcal, protein, fiber };
+  }
+  mealProteinTarget(p) { return Math.round(this.targetsFor(p).protein/4); }
+  portionScaleFor(recipe, person) {
+    const reference = recipe.portionProtein || recipe.protein/(recipe.base||2);
+    return this.mealProteinTarget(person)/reference;
+  }
+  weeklyRecipeTotals(recipe) {
+    const week=this.state.week||this.buildWeek();
+    const occurrences=this.slots.reduce((n,slot)=>n+(week[slot]||[]).filter(name=>name===this.recipeNameFor(recipe)).length,0);
+    const people=[['Cynthia',this.state.people.me],['Gabriel',this.state.people.partner]];
+    const out={occurrences,totalIngredients:{}};
+    people.forEach(([label,person])=>{
+      const scale=this.portionScaleFor(recipe,person), divisor=(recipe.base||2)*(recipe.weeklyReference?3:1), ingredients={};
+      recipe.ingredients.forEach(ing=>{ ingredients[ing.n]=ing.q/divisor*scale; });
+      out[label]={protein:this.mealProteinTarget(person),scale,ingredients};
+    });
+    recipe.ingredients.forEach(ing=>{
+      out.totalIngredients[ing.n]=(out.Cynthia.ingredients[ing.n]+out.Gabriel.ingredients[ing.n])*occurrences;
+    });
+    return out;
+  }
+  recipeNameFor(recipe) { return Object.keys(this.recipes).find(name=>this.recipes[name]===recipe); }
+  methodFor(recipe=this.curRec()) {
+    if (recipe.weeklyDynamic) {
+      const totals=this.weeklyRecipeTotals(recipe), fmt=n=>Math.round(n)+' g';
+      const c=totals.Cynthia.ingredients['Firm tofu'], g=totals.Gabriel.ingredients['Firm tofu'];
+      return [
+        `The ingredients tab shows the three-dinner total, calculated from Home. Each night, use about ${fmt(c)} tofu for ${this.state.people.me.name} and ${fmt(g)} tofu for ${this.state.people.partner.name}.`,
+        'Press and cube the tofu, then pan-sear it in a hot non-stick pan until golden on all sides.',
+        'Trim the enoki root end, separate the clusters, then cook them in the hot pan for 3–4 minutes until tender and steaming; do not eat them raw.',
+        'Cook the soba, adding pak choi for the final 2 minutes; drain well. Toss with ginger, green onions, soy sauce, rice vinegar and sesame oil, then top with the tofu and sesame seeds.',
+      ];
+    }
+    if (!recipe.weeklyReference) return recipe.method;
+    const totals=this.weeklyRecipeTotals(recipe), fmt=n=>Math.round(n)+' g';
+    const c=totals.Cynthia.ingredients['Chicken thighs, raw'], g=totals.Gabriel.ingredients['Chicken thighs, raw'];
+    return [
+      `This Wednesday–Friday batch follows the protein goals on Home: ${this.state.people.me.name} gets ${totals.Cynthia.protein} g protein per lunch and ${this.state.people.partner.name} gets ${totals.Gabriel.protein} g. The Ingredients tab is recalculated from those goals.`,
+      `Toss all ${fmt(totals.totalIngredients['Chicken thighs, raw'])} raw chicken with the chicken soy sauce, dark soy, oyster sauce, garlic powder, honey and sriracha. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.`,
+      'Toss the chickpeas, edamame, snap peas, cabbage and green onions with white miso, salad soy sauce, rice vinegar, lime juice, sesame oil, honey, red pepper flakes and sesame seeds.',
+      `Cool the chicken promptly. Make three ${this.state.people.me.name} containers with about ${fmt(c)} chicken each and three ${this.state.people.partner.name} containers with about ${fmt(g)} chicken each; divide the salad in the same proportion. Reheat only the chicken until steaming; keep the salad cold and crisp.`,
+    ];
   }
   updatePerson(key, patch) {
     const people = {...this.state.people, [key]: {...this.state.people[key], ...patch}};
@@ -318,11 +359,17 @@ class Component extends DCLogic {
   defaultTicks = {'Spring onions':true,'Salmon fillets':true};
   groceryFor() {
     const plan = this.state.activePlan;
-    if (!plan) return { label:'Wednesday–Friday Meal Prep', skipped:[], groups:[
-      {h:'PROTEINS & DAIRY', items:[{n:'Chicken thighs',q:'900 g',img:'gr-chicken'},{n:'Firm tofu',q:'900 g'},{n:'Plain non-fat Greek yogurt',q:'1 kg'},{n:'Milk of choice',q:'1 L'}]},
-      {h:'PRODUCE & CARBS', items:[{n:'Apples',q:'9'},{n:'Enoki mushrooms',q:'600 g leftover / use what you have'},{n:'Pak choi',q:'900 g'},{n:'Purple cabbage',q:'1 small head'},{n:'Snap peas',q:'300 g'},{n:'Green onions',q:'3 bunches'},{n:'Limes',q:'2'},{n:'Soba noodles',q:'600 g'}]},
-      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Pumpkin purée',q:'1 × 425 g tin'},{n:'Chia seeds',q:'250 g'},{n:'Pumpkin pie spice',q:'1 jar'},{n:'Pumpkin seeds',q:'100 g'},{n:'Maple syrup',q:'1 small bottle'},{n:'Chickpeas',q:'1 × 400 g tin'},{n:'Shelled edamame',q:'150 g'},{n:'White miso',q:'1 small tub'},{n:'Soy sauce',q:'only if needed'},{n:'Dark soy sauce',q:'only if needed'},{n:'Oyster sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Toasted sesame oil',q:'only if needed'},{n:'Sesame seeds',q:'only if needed'},{n:'Honey',q:'only if needed'},{n:'Sriracha',q:'only if needed'},{n:'Garlic powder',q:'only if needed'},{n:'Fresh ginger',q:'60 g'}]},
+    if (!plan) {
+      const lunch=this.weeklyRecipeTotals(this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad']);
+      const dinner=this.weeklyRecipeTotals(this.recipes['Ginger-Scallion Tofu & Enoki Soba']);
+      const q=(name)=>Math.round(lunch.totalIngredients[name])+' g';
+      const dinnerQ=(name)=>Math.round(dinner.totalIngredients[name])+' g';
+      return { label:'Wednesday–Friday Meal Prep', skipped:[], groups:[
+      {h:'PROTEINS & DAIRY', items:[{n:'Chicken thighs',q:q('Chicken thighs, raw'),img:'gr-chicken'},{n:'Firm tofu',q:dinnerQ('Firm tofu')},{n:'Plain non-fat Greek yogurt',q:'1 kg'},{n:'Milk of choice',q:'1 L'}]},
+      {h:'PRODUCE & CARBS', items:[{n:'Apples',q:'9'},{n:'Enoki mushrooms',q:'600 g leftover / use what you have'},{n:'Pak choi',q:'900 g'},{n:'Purple cabbage',q:q('Purple cabbage, shredded')},{n:'Snap peas',q:q('Snap peas')},{n:'Green onions',q:'3 bunches'},{n:'Limes',q:'2'},{n:'Soba noodles',q:'600 g'}]},
+      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Pumpkin purée',q:'1 × 425 g tin'},{n:'Chia seeds',q:'250 g'},{n:'Pumpkin pie spice',q:'1 jar'},{n:'Pumpkin seeds',q:'100 g'},{n:'Maple syrup',q:'1 small bottle'},{n:'Chickpeas',q:'1 × 400 g tin'},{n:'Shelled edamame',q:q('Shelled edamame')},{n:'White miso',q:'1 small tub'},{n:'Soy sauce',q:'only if needed'},{n:'Dark soy sauce',q:'only if needed'},{n:'Oyster sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Toasted sesame oil',q:'only if needed'},{n:'Sesame seeds',q:'only if needed'},{n:'Honey',q:'only if needed'},{n:'Sriracha',q:'only if needed'},{n:'Garlic powder',q:'only if needed'},{n:'Fresh ginger',q:'60 g'}]},
     ]};
+    }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
     const pantry = [{n:'Jasmine rice',q:'1 kg',img:'gr-rice'},{n:'Eggs',q:'6'},{n:'White miso paste',q:'1 tub',img:'gr-miso'}];
@@ -910,14 +957,7 @@ class Component extends DCLogic {
     return Math.round(v*100)/100;
   }
   // per-person portion scale: this meal assumed to cover ~1/3 of the person's daily protein goal
-  personPortionScale(person) {
-    const r = this.curRec();
-    if (r.fixedPlan) return 1;
-    const t = this.targetsFor(person);
-    const mealProteinTarget = t.protein/3;
-    const perServingProtein = r.protein/r.base;
-    return mealProteinTarget/perServingProtein;
-  }
+  personPortionScale(person) { return this.portionScaleFor(this.curRec(), person); }
   swapIcon(color) {
     const c = color||'#EC7F5E';
     return e('svg',{width:18,height:18,viewBox:'0 0 24 24',fill:'none',stroke:c,strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round'},
@@ -930,16 +970,16 @@ class Component extends DCLogic {
     const sCyn = this.personPortionScale(me), sGab = this.personPortionScale(partner);
     const fmt = (v)=>{ const x=Math.round(v*10)/10; return x%1===0?x:x.toFixed(1); };
     // per-person macro split: food grams per category + nutrient protein total
-    const split = (scale)=>{
-      const out={protein:0,carb:0,veg:0,protG:0};
+    const split = (person)=>{
+      const scale=this.personPortionScale(person), divisor=(r.base||2)*(r.weeklyReference?3:1);
+      const out={protein:0,carb:0,veg:0};
       r.ingredients.forEach(ing=>{
-        const amt = ing.q/r.base*scale;
+        const amt = ing.q/divisor*scale;
         if (ing.u==='g' && out[ing.cat]!==undefined) out[ing.cat]+=amt;
-        out.protG += (ing.prot||0)/r.base*scale;
       });
-      return {protein:Math.round(out.protein),carb:Math.round(out.carb),veg:Math.round(out.veg),protG:Math.round(out.protG)};
+      return {protein:Math.round(out.protein),carb:Math.round(out.carb),veg:Math.round(out.veg),protG:this.mealProteinTarget(person)};
     };
-    const spCyn = split(sCyn), spGab = split(sGab);
+    const spCyn = split(me), spGab = split(partner);
     // named main items per category, per person: e.g. Salmon 98g / Rice 75g / Edamame 45g
     const mainItems = ['protein','carb','veg'].map(cat=>{
       const gItems = r.ingredients.filter(ing=>ing.cat===cat && ing.u==='g');
@@ -954,7 +994,7 @@ class Component extends DCLogic {
       e('div',{style:{display:'flex',flexDirection:'column',gap:4}},
         mainItems.map(ing=>e('div',{key:ing.n,style:{display:'flex',justifyContent:'space-between',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,color:'#57493C'}},
           e('span',{style:{fontWeight:600}},ing.short||ing.n),
-          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11}},Math.round(ing.q/r.base*scale)+'g'))),
+          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11}},Math.round(ing.q/((r.base||2)*(r.weeklyReference?3:1))*scale)+'g'))),
         e('div',{style:{display:'flex',justifyContent:'space-between',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:p.color,borderTop:'1px solid rgba(56,44,36,.10)',paddingTop:5,marginTop:2}},
           e('span',{style:{fontWeight:700}},'Protein'),
           e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,fontWeight:700}},sp.protG+'g'))));
@@ -965,9 +1005,10 @@ class Component extends DCLogic {
       {id:'sauce', label:'SAUCE & EXTRAS', color:'#9a8a76'},
     ];
     const sTot = sCyn + sGab;
-    const totalLabel = r.fixedPlan && r.base>2 ? 'TOTAL TO PREP' : 'TOTAL TO COOK';
+    const weeklyTotals = (r.weeklyReference || r.weeklyDynamic) ? this.weeklyRecipeTotals(r) : null;
+    const totalLabel = weeklyTotals ? 'TOTAL TO PREP' : (r.fixedPlan && r.base>2 ? 'TOTAL TO PREP' : 'TOTAL TO COOK');
     const row = (ing,i) => {
-      const total = r.fixedPlan ? ing.q : ing.q/r.base*sTot;
+      const total = weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (r.fixedPlan ? ing.q : ing.q/r.base*sTot);
       return e('div',{key:i,style:{display:'flex',alignItems:'center',padding:'9px 4px',borderBottom:'1px solid '+C.line}},
         e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},ing.n),
         e('span',{style:{flex:1,textAlign:'right',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,fontWeight:600,color:C.sumi}},fmt(total)+(ing.u?' '+ing.u:'')),
@@ -1005,7 +1046,7 @@ class Component extends DCLogic {
       tip?e('div',{key:'tip',style:{background:'#F6ECE1',borderRadius:14,padding:'12px 14px',marginBottom:16}},
         e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.12em',color:'#8C5B3F',marginBottom:5}},tip.k),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,lineHeight:1.55,color:this.C.body}},tip.t)):null,
-      this.curRec().method.map((m,i)=>e('div',{key:i,style:{display:'flex',gap:14,paddingBottom:18}},
+      this.methodFor().map((m,i)=>e('div',{key:i,style:{display:'flex',gap:14,paddingBottom:18}},
         e('div',{style:{flex:'0 0 auto',width:28,height:28,borderRadius:'50%',background:i===0?'#4A3527':C.paper,color:i===0?'#fff':C.sumi,boxShadow:i===0?'none':'inset 0 0 0 1.5px rgba(56,44,36,.18)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Newsreader',serif",fontSize:15}},i+1),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:14,lineHeight:1.5,color:C.body,paddingTop:3}},m))));
   }

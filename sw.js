@@ -1,6 +1,6 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
-// v17 refreshes installed copies after aligning the chicken recipe totals and equal portions with the weekly plan.
-const CACHE = 'sundo-app-v17';
+// v18 refreshes installed copies after profile-driven meal portions and shopping totals.
+const CACHE = 'sundo-app-v18';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','chicken-cucumber-herb-salad','egg-spinach-cucumber-salad','chicken-cabbage-carrot-stir-fry','five-spice-chicken-kale-noodles','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];

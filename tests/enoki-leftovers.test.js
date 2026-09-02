@@ -30,8 +30,8 @@ assert.ok(recipe.portions.Cynthia && recipe.portions.Gabriel, 'the enoki dinner 
 
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 assert.ok(groceries.some((item) => item.n === 'Enoki mushrooms' && item.q === '600 g leftover / use what you have'), 'the cart should explicitly use the leftover enoki rather than buying more');
-assert.ok(groceries.some((item) => item.n === 'Firm tofu' && item.q === '900 g'), 'the cart should include tofu for the three dinner pairs');
-assert.ok(groceries.some((item) => item.n === 'Chicken thighs' && item.q === '900 g'), 'the cart should keep chicken only for the six lunch portions');
+assert.ok(groceries.some((item) => item.n === 'Firm tofu' && item.q === '1200 g'), 'the cart should include tofu for the three dinner pairs');
+assert.ok(groceries.some((item) => item.n === 'Chicken thighs' && item.q === Math.round(app.weeklyRecipeTotals(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad']).totalIngredients['Chicken thighs, raw'])+' g'), 'the cart should calculate chicken for the six lunch portions');
 
 const mainsPrep = app.prepSections.find((section) => section.id === 'mains');
 assert.ok(mainsPrep.steps.join(' ').includes('enoki') && mainsPrep.steps.join(' ').includes('tofu'), 'prep guidance should account for the tofu-and-enoki dinner component');
