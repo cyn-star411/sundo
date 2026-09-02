@@ -47,7 +47,7 @@ assert.ok(groceries.some((item) => item.n === 'Soba noodles' && item.q === '600 
 
 const lunch = app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'];
 assert.ok(lunch.portions && lunch.portions.Cynthia && lunch.portions.Gabriel, 'meal cards should retain Cynthia and Gabriel portion guidance');
-assert.ok(lunch.portions.Gabriel.kcal > lunch.portions.Cynthia.kcal, 'Gabriel serving should be larger than Cynthia serving');
+assert.deepStrictEqual(JSON.parse(JSON.stringify(lunch.portions.Gabriel)), JSON.parse(JSON.stringify(lunch.portions.Cynthia)), 'Cynthia and Gabriel should receive equal lunch portions');
 
 const mainPrep = app.prepSections.find((section) => section.id === 'mains');
 assert.ok(mainPrep, 'Prep must include the shared chicken batch-cook section');
@@ -58,5 +58,5 @@ const prepText = mainPrep.steps.join(' ');
 assert.ok(prepText.includes('bean salad') && prepText.includes('tofu'), 'chicken prep must explain both daily meal formats');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should name the three-day plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v16';"), 'service-worker cache must refresh for the batch-prep clarification');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v17';"), 'service-worker cache must refresh for the batch total and equal-split correction');
 console.log('rest-of-week Cynthia and Gabriel plan checks passed');

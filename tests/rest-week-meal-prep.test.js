@@ -33,7 +33,7 @@ assert.deepStrictEqual(Array.from(week.Dinner), ['Ginger-Scallion Tofu & Enoki S
   assert.ok(app.recipes[meal].method.length > 0, `${meal} needs a method`);
   assert.ok(app.recipes[meal].portions.Cynthia && app.recipes[meal].portions.Gabriel, `${meal} needs Cynthia and Gabriel portion guidance`);
 });
-assert.ok(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Gabriel.kcal > app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Cynthia.kcal, 'Gabriel should receive the larger chicken-and-bean-salad lunch portion');
+assert.deepStrictEqual(JSON.parse(JSON.stringify(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Gabriel)), JSON.parse(JSON.stringify(app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].portions.Cynthia)), 'Cynthia and Gabriel should receive equal chicken-and-bean-salad lunch portions');
 assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.concat(week.Dinner)), 'Home and See all should use the active rest-of-week main-meal order');
 assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes screen should foreground only active rest-of-week meals');
 
@@ -63,5 +63,5 @@ assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v16';"), 'service-worker cache must refresh for the batch-prep clarification');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v17';"), 'service-worker cache must refresh for the batch total and equal-split correction');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');
