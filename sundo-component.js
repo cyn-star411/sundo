@@ -319,8 +319,8 @@ class Component extends DCLogic {
   groceryFor() {
     const plan = this.state.activePlan;
     if (!plan) return { label:'Wednesday–Friday Meal Prep', skipped:[], groups:[
-      {h:'PROTEINS & DAIRY', items:[{n:'Chicken thighs',q:'900 g',img:'gr-chicken'},{n:'Firm tofu',q:'900 g'},{n:'Plain non-fat Greek yogurt',q:'500 g'},{n:'Milk of choice',q:'1 L'}]},
-      {h:'PRODUCE & CARBS', items:[{n:'Apples',q:'6'},{n:'Enoki mushrooms',q:'600 g leftover / use what you have'},{n:'Pak choi',q:'900 g'},{n:'Purple cabbage',q:'1 small head'},{n:'Snap peas',q:'300 g'},{n:'Green onions',q:'3 bunches'},{n:'Limes',q:'2'},{n:'Soba noodles',q:'600 g'}]},
+      {h:'PROTEINS & DAIRY', items:[{n:'Chicken thighs',q:'900 g',img:'gr-chicken'},{n:'Firm tofu',q:'900 g'},{n:'Plain non-fat Greek yogurt',q:'1 kg'},{n:'Milk of choice',q:'1 L'}]},
+      {h:'PRODUCE & CARBS', items:[{n:'Apples',q:'9'},{n:'Enoki mushrooms',q:'600 g leftover / use what you have'},{n:'Pak choi',q:'900 g'},{n:'Purple cabbage',q:'1 small head'},{n:'Snap peas',q:'300 g'},{n:'Green onions',q:'3 bunches'},{n:'Limes',q:'2'},{n:'Soba noodles',q:'600 g'}]},
       {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Pumpkin purée',q:'1 × 425 g tin'},{n:'Chia seeds',q:'250 g'},{n:'Pumpkin pie spice',q:'1 jar'},{n:'Pumpkin seeds',q:'100 g'},{n:'Maple syrup',q:'1 small bottle'},{n:'Chickpeas',q:'1 × 400 g tin'},{n:'Shelled edamame',q:'300 g'},{n:'White miso',q:'1 small tub'},{n:'Soy sauce',q:'only if needed'},{n:'Dark soy sauce',q:'only if needed'},{n:'Oyster sauce',q:'only if needed'},{n:'Rice vinegar',q:'only if needed'},{n:'Toasted sesame oil',q:'only if needed'},{n:'Sesame seeds',q:'only if needed'},{n:'Honey',q:'only if needed'},{n:'Sriracha',q:'only if needed'},{n:'Garlic powder',q:'only if needed'},{n:'Fresh ginger',q:'60 g'}]},
     ]};
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };

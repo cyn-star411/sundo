@@ -58,5 +58,5 @@ const prepText = mainPrep.steps.join(' ');
 assert.ok(prepText.includes('bean salad') && prepText.includes('tofu'), 'chicken prep must explain both daily meal formats');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should name the three-day plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v13';"), 'service-worker cache must refresh for the rest-of-week meal prep update');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v14';"), 'service-worker cache must refresh for the corrected shopping list');
 console.log('rest-of-week Cynthia and Gabriel plan checks passed');

@@ -41,6 +41,8 @@ const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 [
   ['Chicken thighs', '900 g'],
   ['Firm tofu', '900 g'],
+  ['Apples', '9'],
+  ['Plain non-fat Greek yogurt', '1 kg'],
   ['Pumpkin purée', '1 × 425 g tin'],
   ['Chia seeds', '250 g'],
   ['White miso', '1 small tub'],
@@ -61,5 +63,5 @@ assert.ok(mainPrep.steps.join(' ').includes('bean salad') && mainPrep.steps.join
 assert.ok(storagePrep.steps.join(' ').includes('3 days') && storagePrep.steps.join(' ').includes('75°C'), 'storage guidance must cover the remaining three days and safe reheating');
 
 assert.ok(source.includes("'WED–FRI · REST OF WEEK'"), 'Home header should identify the shortened plan window');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v13';"), 'service-worker cache must refresh for the new meal plan');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v14';"), 'service-worker cache must refresh for the corrected shopping list');
 console.log('rest-of-week Cynthia and Gabriel meal-prep checks passed');
