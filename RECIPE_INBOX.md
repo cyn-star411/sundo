@@ -218,5 +218,5 @@ Before selecting any of these for a live week, retrieve or confirm the full reci
 
 - **Fully captured recipes saved:** 4
 - **Video-only source collections saved:** 1
-- **Recipes added to the current live plan:** 0
+- **Recipes added to the current live plan:** 3 — Pumpkin Chia Seed Pudding, Miso Sesame Dense Bean Salad, and Honey Garlic Chicken Thighs (combined for the Wednesday–Friday meal prep)
 - **Last updated:** 2026-09-02

@@ -4,7 +4,7 @@ const fs = require('fs');
 const source = fs.readFileSync('sw.js', 'utf8');
 
 assert.ok(
-  source.includes("const CACHE = 'sundo-app-v10';"),
+  source.includes("const CACHE = 'sundo-app-v11';"),
   'the service-worker cache must refresh so existing installs fetch the batch-chicken prep update',
 );
 assert.ok(source.includes('self.skipWaiting();'), 'the new worker should activate without waiting for the old worker to close');
