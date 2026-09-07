@@ -188,6 +188,103 @@ Before selecting any of these for a live week, retrieve or confirm the full reci
 
 ---
 
+## 6. Pumpkin Overnight Oats, Dense Bean Salad & Cottage Cheese Protein Balls
+
+- **Source:** [Instagram reel by @stephinguyen](https://www.instagram.com/reel/Dc9aBjgP6XL/)
+- **Type:** Multi-recipe meal-prep collection — breakfast, salad, and snack
+- **Status:** Ingredients are creator-provided. The cottage-cheese protein balls include a creator-provided method; the oats and salad do not have a written assembly method or stated yield. This is not part of the active Sundō plan.
+
+### 6.1 Pumpkin Overnight Oats
+
+- **Yield / nutrition:** Unspecified by the creator.
+
+#### Ingredients
+
+- 2 cups milk of choice
+- 1 cup pumpkin purée
+- 4 tbsp maple syrup
+- 2 tsp pumpkin pie spice
+- 1 tsp vanilla extract
+- 1/4 cup plain non-fat Greek yogurt
+- 1 cup rolled oats
+
+#### Pumpkin whipped cream
+
+- 1/4 cup heavy whipping cream
+- 1 tbsp pumpkin purée
+- 1/4 tsp pumpkin pie spice
+- 1 tbsp maple syrup
+
+#### Captured method
+
+1. **Creator-stated:** Whip the pumpkin-whipped-cream ingredients with a mixer until stiff.
+2. **Unconfirmed:** The creator provides no written mixing, chilling, topping, or portioning method for the overnight oats themselves; retain the reel as the method reference before this is selected for a live plan.
+
+### 6.2 Dense Bean Salad
+
+- **Yield / nutrition:** Unspecified by the creator.
+
+#### Ingredients
+
+- 1 can chickpeas
+- 1 can black beans
+- 1 pint cherry tomatoes
+- 1 English cucumber
+- 1/2 red onion
+- 2 orange bell peppers
+- 1 block feta
+
+#### Dressing
+
+- 1/4 cup olive oil
+- Juice of 1 lemon
+- 2 tbsp red wine vinegar
+- 2 tsp Dijon mustard
+- 2 tsp maple syrup
+- 1 tsp salt, or to taste
+- 1/4 tsp pepper
+- 1 tsp oregano
+
+#### Capture note
+
+The caption supplies ingredients and dressing amounts but no written preparation, storage, serving, or yield guidance. Do not calculate shopping quantities or portions from it until those details are confirmed.
+
+### 6.3 Cottage Cheese Protein Balls
+
+- **Yield / nutrition:** Unspecified by the creator.
+
+#### Ingredients
+
+- 1 cup cottage cheese
+- 1/4 cup honey
+- 3/4 cup almond flour
+- 1/2 cup oat flour
+- 3 tbsp almond butter
+- 1 tsp vanilla extract
+- 1 cup dark chocolate chips, for melting
+- 1 tbsp coconut oil
+- Optional sea salt
+
+#### Captured method
+
+1. Blend the cottage cheese with honey, almond butter, and vanilla extract.
+2. Transfer to a mixing bowl and fold in the dry ingredients.
+3. Roll the mixture into balls.
+4. Melt the chocolate chips with coconut oil; dip the balls in the chocolate.
+5. Optionally sprinkle with sea salt; refrigerate for 1 hour before eating.
+
+### Useful overlap
+
+- The pumpkin overnight oats may overlap with the existing Pumpkin Chia Seed Pudding through pumpkin purée, milk, maple syrup, pumpkin pie spice, Greek yogurt, and apples if used as a topping; they remain separate recipes.
+- The dense bean salad may complement or differ from the Miso Sesame Dense Bean Salad: both use chickpeas and crunchy vegetables, but this source uses black beans, feta, tomato, cucumber, lemon, and a red-wine-vinegar dressing.
+- Cottage cheese, oats, honey, and Greek yogurt can support protein-focused breakfast and snack weeks. Almond flour, almond butter, chocolate chips, coconut oil, feta, and red wine vinegar are specialty additions to buy only if selected.
+
+### Future-use note
+
+Confirm desired servings, nutrition targets, and the unprovided preparation/storage details before adding any of these to a live menu, portions, prep instructions, or shopping list.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -207,6 +304,7 @@ Before selecting any of these for a live week, retrieve or confirm the full reci
 - Ground beef — Beef Bulgogi Bibimbap
 - Chickpeas + edamame — Miso Sesame Dense Bean Salad
 - Greek yogurt + chia — Pumpkin Chia Seed Pudding
+- Cottage cheese + almond flour + almond butter — Cottage Cheese Protein Balls
 
 ### Speciality / buy only when selected
 
@@ -215,12 +313,14 @@ Before selecting any of these for a live week, retrieve or confirm the full reci
 - Oyster sauce and dark soy sauce
 - Gochujang and mirin
 - Kimchi and bean sprouts
+- Feta, almond flour, almond butter, dark chocolate chips, and coconut oil
 
 ---
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 4
+- **Fully captured recipes saved:** 5 — including Cottage Cheese Protein Balls (yield unspecified).
+- **Partially captured recipe collections saved:** 1 — Pumpkin Overnight Oats and Dense Bean Salad have creator-provided ingredients, but their yield and written preparation details are incomplete.
 - **Video-only source collections saved:** 1
 - **Recipes added to the current live plan:** 3 — Pumpkin Chia Seed Pudding, Miso Sesame Dense Bean Salad, and Honey Garlic Chicken Thighs. The chicken and bean salad are separate inbox recipes intentionally paired for the current Wednesday–Friday lunches.
-- **Last updated:** 2026-09-02
+- **Last updated:** 2026-09-07
