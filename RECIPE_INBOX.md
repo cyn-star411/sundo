@@ -588,6 +588,46 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 18. Frozen Instant Hot-Pot Meal-Prep Kit
+
+- **Source:** [Instagram reel by @joexfitness](https://www.instagram.com/reel/Dc4FuGCiVMH/)
+- **Type:** Frozen beef, tofu and Korean rice-cake soup kit
+- **Yield:** 2 soup portions
+- **Creator’s stated nutrition:** 453 kcal · 38 g protein · 40 g carbs · 16 g fat per serving
+- **Status:** Fully captured from the creator’s Instagram caption.
+
+### Ingredients for 2 servings
+
+- 40 g bean sprouts
+- 4 large napa-cabbage leaves (approximately 60 g)
+- 4 oz thinly sliced chuck steak
+- 1/2 block medium-firm tofu
+- 1/2 cup sliced Korean rice cakes
+- 30 g enoki mushrooms
+- 3 cups beef bone broth
+- 1 tbsp minced garlic
+- 1 tbsp honey
+- 2 tbsp soy sauce
+- 2 tsp black pepper
+- Salt, to taste
+
+### Creator’s method
+
+1. Chop the napa cabbage into chunks and the tofu into small cubes.
+2. Mix the garlic, honey, soy sauce, black pepper and salt into the broth sauce.
+3. In a meal-prep container, combine half the cabbage, broth sauce, meat, tofu, Korean rice cakes, bean sprouts and enoki. Repeat for the second portion.
+4. Seal and freeze overnight or until ready to eat.
+5. When ready, remove the lid and microwave the container for 15 seconds so the frozen ingredient block releases easily.
+6. Add the frozen block and beef bone broth to a pot over high heat; cover as it comes to a boil.
+7. Boil until everything is cooked through.
+
+### Useful overlap
+
+- Beef, tofu, bean sprouts, mushrooms, garlic, soy sauce and broth align with Korean/Asian soup and rice-bowl weeks.
+- **Safety note for a future Sundō adaptation:** freeze promptly in food-safe containers, thaw/reheat safely, and use a thermometer to verify the beef reaches a safe internal temperature rather than relying only on appearance.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -622,7 +662,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 10 — including Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 11 — including Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 4 — Pumpkin Protein Overnight Oats, Cottage Cheese Protein Balls, Beef Bulgogi Bibimbap, and Ginger Beef, Mushroom & Spinach Rice Soup. Inbox recipes and Sundō adaptations are intentionally kept distinct.
