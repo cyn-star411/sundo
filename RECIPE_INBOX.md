@@ -285,6 +285,269 @@ Confirm desired servings, nutrition targets, and the unprovided preparation/stor
 
 ---
 
+## 7. Laurel Anisa’s Chicken & Rice Rotation — source collection (individual recipes need transcription)
+
+- **Source:** [Instagram carousel by @laurelanisa](https://www.instagram.com/p/Dc_4vIskRny/?img_index=1)
+- **Type:** Six chicken-and-rice dinner ideas / weekly rotation
+- **Source note:** The carousel’s caption identifies the menu below and says the individual recipes already appear elsewhere on Laurel Anisa’s Instagram page. The post itself does not provide ingredient quantities, yields, nutrition, or methods.
+- **Status:** Saved as a source collection only — **not** part of the live Sundō plan. Individual recipe posts must be located and transcribed before any are selected for a week; do not infer their ingredients, portions, macros, prep steps, or shopping quantities from the menu names.
+
+### Recipes named in the source post
+
+1. **Brothy Miso Chicken** — noted by the creator as suitable for cold nights.
+2. **Thai Chicken Satay Kebabs**
+3. **Lime & Coconut Chicken**
+4. **“Fried” Gochujang Chicken** — creator says it is made in the air fryer.
+5. **Super Garlicky Chicken** — described as part of the creator’s lazy rotation.
+6. **Greek-Style Chicken with Tzatziki & Hummus**
+
+### Useful overlap (high-level only)
+
+- The collection is positioned as chicken with rice, so it may make a practical protein-and-grain starting point for a future week.
+- Miso, satay/peanut flavors, coconut, gochujang, garlic, Greek yogurt/tzatziki, hummus, and rice could be used to create ingredient overlap **only after** the original individual recipes confirm the actual ingredients and quantities.
+
+### Retrieval note
+
+At capture time, Instagram exposed the menu carousel but directed profile browsing to a login screen, so the historical individual posts could not be reliably opened or transcribed. Preserve this collection and retrieve the recipe posts from an authenticated view (or have Cynthia share their direct links/screenshots) before promoting anything to a live meal plan.
+
+---
+
+## 8. Sweet Potato Brownies
+
+- **Source:** [Instagram reel by @her_rebuild](https://www.instagram.com/reel/DdB1M5XJMyx/)
+- **Type:** Low-calorie chocolate snack / dessert
+- **Yield:** 8 servings
+- **Creator’s stated nutrition:** 59 kcal per serving
+
+### Ingredients
+
+- 390 g baked sweet potato
+- 20 g unsweetened 100% cocoa powder
+- 1 large egg (50 g)
+- 70 g water or milk of choice
+- Pinch of salt
+- Optional: 20 g / 2 tbsp monk-fruit sweetener
+- Optional topping: 42 g 100% unsweetened chocolate, melted
+
+### Captured method
+
+1. Mash the baked sweet potato, cocoa powder and egg until well combined; add salt.
+2. Add water or milk and mix until smooth. Add monk-fruit sweetener if using.
+3. Transfer to a baking dish and smooth the top.
+4. Bake at 170°C / 340°F for 25 minutes.
+5. Serve warm or chill for a firmer brownie. If using, spread the melted chocolate over the top and let it set before slicing.
+
+### Useful overlap
+
+- Sweet potato can overlap with savory bowl weeks; cocoa, milk and eggs can overlap with protein desserts.
+
+---
+
+## 9. No-Bake Fudge Brownie Cheesecake Bars
+
+- **Source:** [Instagram reel by @alexandraterzi](https://www.instagram.com/reel/DciliwJJIHb/), credited by the poster to @nora.dora99
+- **Type:** Gluten-free, refined-sugar-free dessert bar
+- **Yield:** Not stated
+
+### Ingredients
+
+**Brownie base**
+- 150 g almond flour (or oat flour)
+- 30 g unsweetened cocoa powder
+- 2 tbsp maple syrup or sweetener of choice
+- 1 tbsp melted coconut oil
+- 3 tbsp milk of choice
+- 1 tsp vanilla paste
+
+**Cheesecake middle**
+- 250 g fat-free cream cheese
+- 10 g maple syrup
+- 1 tsp vanilla paste
+- Squeeze of lemon juice
+
+**Fudge topping**
+- 40 g unsweetened cocoa powder
+- 2 tbsp maple syrup
+- 1 tbsp melted coconut oil
+- 2 tbsp milk of choice
+
+### Captured method
+
+1. Combine brownie-base ingredients in a dish and freeze for 10 minutes.
+2. Blend cheesecake-middle ingredients, spread over the base and freeze for 45 minutes.
+3. Mix and spread the fudge topping, then freeze for a further 30 minutes.
+
+### Future-use note
+
+Yield, portions and nutrition were not provided; confirm them before using this in a live plan.
+
+---
+
+## 10. Chocolate Orange Truffles — source only
+
+- **Source:** [Instagram reel by @coachcadman](https://www.instagram.com/reel/DbsUWSCtIk1/)
+- **Type:** Freezer-stored snack / iron-focused treat
+- **Caption information:** Cacao, pumpkin seeds and tahini are described as iron sources; orange is included for vitamin C. The creator directs viewers to a Substack or DM for the full recipe.
+- **Status:** Source saved only — ingredient quantities and method were not published in the accessible caption, so do not use for a live plan yet.
+
+---
+
+## 11. High-Protein Carrot Cake
+
+- **Source:** [Instagram reel by @raziyyz](https://www.instagram.com/reel/DadPc2zgaFR/)
+- **Type:** Protein dessert / snack bake
+- **Yield:** 10 slices
+- **Creator’s stated nutrition:** 97 kcal, 8.5 g protein, 9 g carbs and 3 g fat per slice
+
+### Ingredients
+
+- 2 eggs
+- 1/2 cup 0% Greek yogurt
+- 1/2 cup milk
+- 1 tsp vanilla extract
+- 2 tsp coconut oil
+- 1 heaping cup flour (creator used blended rolled oats)
+- 2 scoops vanilla protein powder
+- 1 tsp baking powder
+- 1/2 tsp baking soda
+- 1 tsp cinnamon
+- 1/2 tsp ginger
+- 1/3 cup sweetener
+- 1 cup grated carrot
+
+### Icing
+
+- 1/4 cup light cream cheese
+- 1 tbsp sweetener
+- 1/4 tsp vanilla extract
+- Optional: 1/2 scoop vanilla protein powder
+
+### Captured method
+
+1. Combine the cake ingredients, bake at 350°F for 28–30 minutes, then cool.
+2. Mix the icing ingredients and spread over the cooled cake.
+
+### Useful overlap
+
+- Greek yogurt, milk, oats, protein powder, carrot, cinnamon, ginger and vanilla can overlap with breakfast and snack weeks.
+
+---
+
+## 12. Healthy Carrot Cake — source only
+
+- **Source:** [Instagram reel by @naomi_senggg](https://www.instagram.com/reel/DcOeLLEySXr/)
+- **Type:** Healthy carrot-cake dessert
+- **Status:** Source saved only. The accessible caption gives the title and diet/dessert positioning, but no dependable ingredient amounts, yield, nutrition or method. Retrieve an authenticated transcript or direct recipe before live use.
+
+---
+
+## 13. Two-Ingredient-Dough Cinnamon Roll Bites
+
+- **Source:** [Instagram reel by @fitwaffle](https://www.instagram.com/reel/DcylMPDsNFi/)
+- **Type:** Fresh breakfast / sweet snack
+- **Yield:** About 20 bites
+
+### Ingredients
+
+**Dough**
+- 180 g 0% Greek yogurt
+- 150 g self-raising flour
+
+**Filling**
+- 30 g unsalted butter, melted
+- 3 tbsp light brown sugar
+- 1 tsp cinnamon
+
+**Glaze**
+- 6 tbsp icing sugar
+- 4 tsp milk
+
+### Captured notes
+
+- Do not overmix or overbake the dough; seal the edges when rolling so the bites do not unravel.
+- Serve fresh and warm.
+- The caption directs viewers to the video for full shaping and baking instructions; cooking temperature and time were not captured.
+
+---
+
+## 14. High-Protein Imitation Crab, Tofu & Corn Cheese Fritters
+
+- **Source:** [Instagram reel by @explorewithtaka](https://www.instagram.com/reel/DcFNwgKv5AV/)
+- **Type:** Japanese-inspired savory snack / light meal
+- **Yield:** Not stated
+
+### Ingredients
+
+- 8–10 imitation-crab sticks
+- 1 pack silken tofu (400 g)
+- Salt and pepper
+- 5 tbsp potato starch or cornstarch
+- 1 tbsp sesame oil
+- 1 cup shredded mozzarella
+- 1/2 cup corn
+- Oil for the pan; spicy mayo or another sauce to serve
+
+### Captured method
+
+1. Whisk tofu, sesame oil, salt and pepper until smooth.
+2. Lightly fold in starch, imitation crab, corn and cheese.
+3. Pan-fry spoonfuls for 2–3 minutes per side.
+4. Add 1–2 tbsp water, cover, and steam lightly; serve with sauce.
+
+### Future-use note
+
+Yield and nutrition are unprovided. Confirm portions before adding to a live meal plan.
+
+---
+
+## 15. Crispy Rice Sushi Salad with Salmon & Spicy Mayo Dressing
+
+- **Source:** [Instagram reel by @avocado_skillet](https://www.instagram.com/reel/DbJGzSkR3pt/)
+- **Type:** High-protein salmon rice salad
+- **Creator’s stated nutrition:** About 500 kcal and 30 g protein per serving
+- **Status:** Partial capture — creator withheld exact amounts and full instructions behind a DM/link-in-bio recipe.
+
+### Ingredients named by the creator
+
+- Mayonnaise, mustard, maple syrup, rice vinegar, toasted sesame oil, fresh ginger, soy sauce/tamari, garlic and water
+- Cooked jasmine or sushi rice, salmon, cucumber, carrots, cilantro, seaweed snacks, avocado and optional sesame seeds
+
+### Useful overlap
+
+- Rice, salmon, cucumber, carrots, ginger, soy sauce, rice vinegar, sesame oil and sesame seeds work well with Japanese/Korean-style weeks.
+
+---
+
+## 16. Five-Serving Beef Gochujang Crispy Rice Meal Prep
+
+- **Source:** [Instagram reel by @cooklikeimbook](https://www.instagram.com/reel/DceA4oKMUQA/)
+- **Type:** Korean-inspired beef rice meal prep
+- **Yield:** 5 servings
+- **Creator’s stated nutrition:** About 710 kcal and 52 g protein per serving
+
+### Ingredients
+
+- 900 g 93/7 lean ground beef
+- 1000 g cooked day-old white rice
+- 1 bag shredded carrots
+- 1 bag spinach
+- 25 g sesame oil
+- 6 tbsp gochujang
+- Sweetener to taste
+- 60 ml warm water
+
+### Captured method
+
+1. Mix gochujang, warm water and sweetener to taste.
+2. Cook the beef, add carrots and spinach, then add rice, sauce and sesame oil.
+3. Fry until the rice gets lightly crispy; divide into 5 servings.
+
+### Useful overlap
+
+- Ground beef, rice, carrots, spinach, sesame oil and gochujang overlap strongly with Beef Bulgogi Bibimbap and other Korean-inspired prep weeks.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -319,8 +582,8 @@ Confirm desired servings, nutrition targets, and the unprovided preparation/stor
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 5 — including Cottage Cheese Protein Balls (yield unspecified).
-- **Partially captured recipe collections saved:** 1 — Pumpkin Overnight Oats and Dense Bean Salad have creator-provided ingredients, but their yield and written preparation details are incomplete.
-- **Video-only source collections saved:** 1
-- **Recipes added to the current live plan:** 3 — Pumpkin Chia Seed Pudding, Miso Sesame Dense Bean Salad, and Honey Garlic Chicken Thighs. The chicken and bean salad are separate inbox recipes intentionally paired for the current Wednesday–Friday lunches.
-- **Last updated:** 2026-09-07
+- **Fully captured recipes saved:** 9 — including Sweet Potato Brownies, High-Protein Carrot Cake, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
+- **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
+- **Recipes added to the current live plan:** 4 — Pumpkin Protein Overnight Oats, Cottage Cheese Protein Balls, Beef Bulgogi Bibimbap, and Ginger Beef, Mushroom & Spinach Rice Soup. Inbox recipes and Sundō adaptations are intentionally kept distinct.
+- **Last updated:** 2026-09-09
