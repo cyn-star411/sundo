@@ -4,8 +4,8 @@ const fs = require('fs');
 const source = fs.readFileSync('sw.js', 'utf8');
 
 assert.ok(
-  source.includes("const CACHE = 'sundo-app-v18';"),
-  'the service-worker cache must refresh so existing installs fetch profile-driven portions and shopping totals',
+  source.includes("const CACHE = 'sundo-app-v19';"),
+  'the service-worker cache must refresh so existing installs fetch the inbox-based rest-of-week meal plan',
 );
 assert.ok(source.includes('self.skipWaiting();'), 'the new worker should activate without waiting for the old worker to close');
 assert.ok(source.includes('self.clients.claim()'), 'the new worker should control open app pages after activation');

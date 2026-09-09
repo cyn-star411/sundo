@@ -1,32 +1,30 @@
 const assert = require('assert');
 const fs = require('fs');
 const vm = require('vm');
-
 const source = fs.readFileSync('sundo-component.js', 'utf8');
-const context = {
-  React: { createElement: () => ({}) },
-  DCLogic: class { setState(patch) { this.state = { ...(this.state || {}), ...patch }; } },
-  setTimeout,
-  clearTimeout,
-};
+const context = { React:{createElement:()=>({})}, DCLogic:class { setState(p){ this.state={...(this.state||{}),...p}; } }, setTimeout, clearTimeout };
 vm.createContext(context);
-vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
+vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
-const recipe = app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'];
+const lunch = app.recipes['Beef Bulgogi Bibimbap'];
+const dinner = app.recipes['Ginger Beef, Mushroom & Spinach Rice Soup'];
+const initialLunch = app.weeklyRecipeTotals(lunch);
+const initialDinner = app.weeklyRecipeTotals(dinner);
 
-const initial = app.weeklyRecipeTotals(recipe);
-assert.strictEqual(app.targetsFor(app.state.people.me).protein, 120, 'Cynthia’s home target should derive from her current profile');
-assert.strictEqual(app.targetsFor(app.state.people.partner).protein, 136, 'Gabriel’s home target should derive from his current profile');
-assert.strictEqual(initial.Cynthia.protein, 30, 'Cynthia’s lunch portion should receive a quarter of her daily protein target');
-assert.strictEqual(initial.Gabriel.protein, 34, 'Gabriel’s lunch portion should receive a quarter of his daily protein target');
-assert.ok(initial.Gabriel.ingredients['Chicken thighs, raw'] > initial.Cynthia.ingredients['Chicken thighs, raw'], 'Gabriel’s chicken portion should be larger');
-assert.strictEqual(initial.totalIngredients['Chicken thighs, raw'], initial.Cynthia.ingredients['Chicken thighs, raw'] * 3 + initial.Gabriel.ingredients['Chicken thighs, raw'] * 3, 'the recipe total must equal three lunch portions for each person');
-assert.strictEqual(app.groceryFor().groups.flatMap((group) => group.items).find((item) => item.n === 'Chicken thighs').q, initial.totalIngredients['Chicken thighs, raw'] + ' g', 'the shopping list must use the calculated recipe total');
+assert.strictEqual(app.targetsFor(app.state.people.me).protein, 120, 'Cynthia target derives from her saved profile');
+assert.strictEqual(app.targetsFor(app.state.people.partner).protein, 136, 'Gabriel target derives from his saved profile');
+assert.strictEqual(initialLunch.Cynthia.protein, 30, 'Cynthia gets one quarter of her protein target at lunch');
+assert.strictEqual(initialLunch.Gabriel.protein, 34, 'Gabriel gets one quarter of his protein target at lunch');
+assert.ok(initialLunch.Gabriel.ingredients['Lean beef mince, raw'] > initialLunch.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel has the larger lunch beef portion');
+assert.ok(initialDinner.Gabriel.ingredients['Lean beef mince, raw'] > initialDinner.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel has the larger dinner beef portion');
 
-app.updatePerson('me', { weight: 65 });
-const changed = app.weeklyRecipeTotals(recipe);
-assert.strictEqual(app.targetsFor(app.state.people.me).protein, 130, 'changing Cynthia’s weight must recalculate her home protein target');
-assert.strictEqual(changed.Cynthia.protein, 33, 'changing Cynthia’s home protein target must recalculate her lunch protein portion');
-assert.ok(changed.Cynthia.ingredients['Chicken thighs, raw'] > initial.Cynthia.ingredients['Chicken thighs, raw'], 'changing Cynthia’s target must increase her recipe portion');
-assert.ok(changed.totalIngredients['Chicken thighs, raw'] > initial.totalIngredients['Chicken thighs, raw'], 'changing Cynthia’s target must increase the weekly shopping total');
-console.log('profile-driven portions and shopping totals stay in sync');
+app.updatePerson('me', {weight:65});
+const changedLunch = app.weeklyRecipeTotals(lunch);
+const changedDinner = app.weeklyRecipeTotals(dinner);
+assert.strictEqual(app.targetsFor(app.state.people.me).protein, 130, 'changing Cynthia weight recalculates her home target');
+assert.strictEqual(changedLunch.Cynthia.protein, 33, 'changing Cynthia target recalculates her lunch protein share');
+assert.ok(changedLunch.Cynthia.ingredients['Lean beef mince, raw'] > initialLunch.Cynthia.ingredients['Lean beef mince, raw'], 'Cynthia lunch beef responds to profile changes');
+assert.ok(changedDinner.Cynthia.ingredients['Lean beef mince, raw'] > initialDinner.Cynthia.ingredients['Lean beef mince, raw'], 'Cynthia dinner beef responds to profile changes');
+const expected = Math.round(changedLunch.totalIngredients['Lean beef mince, raw'] + changedDinner.totalIngredients['Lean beef mince, raw']) + ' g';
+assert.strictEqual(app.groceryFor().groups.flatMap((group)=>group.items).find((item)=>item.n==='Lean beef mince').q, expected, 'cart must use the changed combined beef total');
+console.log('profile-driven beef portions and shopping totals stay in sync');

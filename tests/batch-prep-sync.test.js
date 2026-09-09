@@ -1,31 +1,24 @@
 const assert = require('assert');
 const fs = require('fs');
 const vm = require('vm');
-
 const source = fs.readFileSync('sundo-component.js', 'utf8');
-const context = {
-  React: { createElement: () => ({}) },
-  DCLogic: class { setState(patch) { this.state = { ...(this.state || {}), ...patch }; } },
-  setTimeout,
-  clearTimeout,
-};
+const context = { React:{createElement:()=>({})}, DCLogic:class { setState(p){ this.state={...(this.state||{}),...p}; } }, setTimeout, clearTimeout };
 vm.createContext(context);
-vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
+vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
-const lunch = app.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'];
-const totals = app.weeklyRecipeTotals(lunch);
+const lunch = app.recipes['Beef Bulgogi Bibimbap'];
+const dinner = app.recipes['Ginger Beef, Mushroom & Spinach Rice Soup'];
+const lunchTotals = app.weeklyRecipeTotals(lunch);
+const dinnerTotals = app.weeklyRecipeTotals(dinner);
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-const methods = app.methodFor(lunch);
 
-assert.strictEqual(lunch.weeklyReference, true, 'the chicken recipe must identify its weekly reference quantities');
-assert.strictEqual(totals.occurrences, 3, 'the home plan must schedule three lunches');
-assert.strictEqual(totals.Cynthia.protein, 30, 'Cynthia’s lunch target must follow Home');
-assert.strictEqual(totals.Gabriel.protein, 34, 'Gabriel’s lunch target must follow Home');
-assert.strictEqual(Math.round(totals.Cynthia.ingredients['Chicken thighs, raw']), 150, 'Cynthia should receive 150 g raw chicken per lunch');
-assert.strictEqual(Math.round(totals.Gabriel.ingredients['Chicken thighs, raw']), 170, 'Gabriel should receive a larger 170 g raw-chicken portion per lunch');
-assert.strictEqual(Math.round(totals.totalIngredients['Chicken thighs, raw']), 960, 'the weekly chicken total must sum the three calculated portions for each person');
-assert.ok(methods[1].includes('960 g raw chicken'), 'the cooking method must use the live ingredient total');
-assert.ok(methods.at(-1).includes('150 g chicken') && methods.at(-1).includes('170 g chicken'), 'the method must label the unequal portions');
-assert.ok(groceries.some((item) => item.n === 'Chicken thighs' && item.q === '960 g'), 'shopping must match the calculated chicken total');
-assert.ok(groceries.some((item) => item.n === 'Shelled edamame' && item.q === '160 g'), 'shopping must match the calculated vegetable total');
-console.log('weekly chicken batch, calculated portions, and ingredient totals stay in sync');
+[lunch, dinner].forEach((recipe) => assert.strictEqual(app.weeklyRecipeTotals(recipe).occurrences, 3, `${app.recipeNameFor(recipe)} must occur three times`));
+[lunchTotals, dinnerTotals].forEach((totals) => {
+  assert.ok(totals.Gabriel.ingredients['Lean beef mince, raw'] > totals.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel needs the larger calculated beef portion');
+  assert.strictEqual(Math.round(totals.totalIngredients['Lean beef mince, raw']), Math.round((totals.Cynthia.ingredients['Lean beef mince, raw'] + totals.Gabriel.ingredients['Lean beef mince, raw']) * 3), 'weekly beef must equal three calculated meals each');
+});
+const expectedBeef = Math.round(lunchTotals.totalIngredients['Lean beef mince, raw'] + dinnerTotals.totalIngredients['Lean beef mince, raw']) + ' g';
+assert.ok(groceries.some((item) => item.n === 'Lean beef mince' && item.q === expectedBeef), 'cart must combine both calculated beef batches');
+assert.ok(app.methodFor(lunch).join(' ').includes('75°C'), 'bulgogi method must state the safe cooking temperature');
+assert.ok(app.methodFor(dinner).join(' ').includes('75°C'), 'rice soup method must state the safe cooking temperature');
+console.log('weekly beef batches, calculated portions, and cart totals stay in sync');
