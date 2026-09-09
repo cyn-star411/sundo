@@ -548,6 +548,46 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 17. High-Protein Sichuan Mouthwatering Chicken (口水雞)
+
+- **Source:** [Instagram reel by @daigasikfaan](https://www.instagram.com/reel/DcqaVxqIWnq/) · [full recipe by Karen / daigasikfaan](https://daigasikfaan.co/high-protein-sichuan-mouthwatering-chicken/)
+- **Type:** Chinese / Sichuan-style poached chicken-breast main
+- **Yield:** 2 servings
+- **Time:** 10 minutes prep + 20 minutes cooking (30 minutes total)
+- **Status:** Fully captured from the creator's linked recipe. Nutrition was not stated on the source page.
+
+### Creator's ingredients
+
+- 3 chicken breasts
+- 5 slices ginger
+- 2 green onions, cut in half
+- 1 tsp salt
+- 2 tbsp minced garlic
+- 1 spring onion, chopped
+- 5 tbsp chilli oil
+- 2 tbsp light soy sauce
+- 1 tbsp Chinese black vinegar
+- 1/2 tbsp Sichuan peppercorn oil
+- 1 tbsp white sugar
+- 1/2 tbsp dark soy sauce
+- 1 tbsp toasted sesame seeds
+- 3 tbsp water
+
+### Creator's method
+
+1. Fill a large pot with enough water to cover the chicken. Add ginger, green onions and salt; bring to a boil. Add chicken, cover, reduce to a gentle simmer and cook 2–3 minutes.
+2. Turn off the heat, keep covered and let the chicken finish in the hot water for 15 minutes.
+3. Check the thickest part is done (the creator specifies clear juices when pierced), then remove, cool slightly and shred.
+4. Mix the garlic, chopped spring onion, chilli oil, light and dark soy sauces, black vinegar, sugar, Sichuan peppercorn oil, sesame seeds and water.
+5. Plate the shredded chicken, pour over the sauce and serve immediately, or chill for 30 minutes and serve cold.
+
+### Useful overlap
+
+- Chicken breast, ginger, green/spring onions, garlic, light and dark soy sauce, sesame seeds and chilli oil can share a Chinese/Sichuan-style week.
+- **Safety note for a future Sundō adaptation:** use a thermometer and verify the chicken reaches 75°C at its thickest point; do not rely on clear juices alone.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -582,7 +622,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 9 — including Sweet Potato Brownies, High-Protein Carrot Cake, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 10 — including Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 4 — Pumpkin Protein Overnight Oats, Cottage Cheese Protein Balls, Beef Bulgogi Bibimbap, and Ginger Beef, Mushroom & Spinach Rice Soup. Inbox recipes and Sundō adaptations are intentionally kept distinct.
