@@ -212,7 +212,7 @@ class Component extends DCLogic {
   timeline = [{t:'0:00',l:'Overnight oats'},{t:'0:15',l:'Protein balls'},{t:'0:35',l:'Bulgogi bowls'},{t:'0:55',l:'Ginger rice soup'},{t:'1:20',l:'Done'}];
   prepSections = [
     {id:'breakfast',title:'Pumpkin overnight oats + protein balls',time:'35 min + chill',color:'#C8754E',steps:['Make six pumpkin protein overnight oats: whisk the pumpkin mixture, fold in Greek yogurt and oats, then divide into six jars. Keep diced apple separate until breakfast.','Make 18 cottage cheese protein balls, chill them, then pack three balls per snack. Keep the chocolate-coated balls refrigerated.','Label each breakfast and snack for Cynthia or Gabriel so the larger portions remain attached to the right person.']},
-    {id:'mains',title:'Shared beef prep: bibimbap + rice soup',time:'70 min',color:'#8FB3C8',steps:['The bibimbap and rice-soup cards calculate their beef from the Home protein goals. Use the current Total to prep amounts in each Ingredients tab; Gabriel’s beef allocation is larger when his Home target is larger.','Cook the bulgogi beef with mushrooms, onion, garlic, soy, oyster sauce, honey and sesame oil until it reaches 75°C. Keep its rice, vegetables and gochujang in separate labelled lunch containers.','Cook the ginger beef, mushroom and spinach rice soup in a separate pot. Brown its beef to 75°C before adding stock; cool the soup promptly, then pair it with its cooked rice in six labelled dinner portions.']},
+    {id:'mains',title:'Shared beef prep: bibimbap + rice soup',time:'70 min',color:'#8FB3C8',steps:['Cook one shared neutral beef batch for both lunch and dinner.','Portion the shared neutral beef batch into labelled Cynthia/Gabriel lunch and dinner allocations before adding either recipe’s flavours.','Finish each labelled allocation with its own bibimbap or rice-soup aromatics and sauce, then refrigerate Wednesday/Thursday and freeze Friday portions.']},
     {id:'veg',title:'One shared vegetable and rice prep',time:'25 min',color:'#7C8A5E',steps:['Cook all jasmine rice for the bibimbap and rice soup, then cool it quickly in shallow containers.','Julienne carrots, wilt spinach, blanch bean sprouts and slice spring onions. Use the first three for lunch; reserve spinach and spring onions for dinner.','Buy one mushroom pack family: finely chop the lunch portion for bulgogi and slice the dinner portion for the soup. This is the grocery-saving bit.']},
     {id:'store',title:'Storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Wednesday and Thursday meals promptly. Freeze Friday lunch and dinner portions on prep day if you will not eat them within 3 days.','Reheat beef and soup until steaming and at least 75°C; add gochujang, spring onions and apple toppings just before serving.','Thaw frozen Friday portions overnight in the refrigerator. Keep overnight oats and protein balls chilled.']},
   ];
@@ -253,12 +253,46 @@ class Component extends DCLogic {
     return out;
   }
   recipeNameFor(recipe) { return Object.keys(this.recipes).find(name=>this.recipes[name]===recipe); }
+  sharedBeefBatchPrep() {
+    const lunch=this.weeklyRecipeTotals(this.recipes['Beef Bulgogi Bibimbap']);
+    const dinner=this.weeklyRecipeTotals(this.recipes['Ginger Beef, Mushroom & Spinach Rice Soup']);
+    const ingredient='Lean beef mince, raw';
+    const allocation=(meal, person, totals)=>{
+      const portionRawGrams=totals[person].ingredients[ingredient];
+      return { meal, person, portions:totals.occurrences, portionRawGrams, totalRawGrams:portionRawGrams*totals.occurrences };
+    };
+    const allocations=[
+      allocation('Bulgogi bibimbap lunches','Cynthia',lunch), allocation('Bulgogi bibimbap lunches','Gabriel',lunch),
+      allocation('Ginger beef rice-soup dinners','Cynthia',dinner), allocation('Ginger beef rice-soup dinners','Gabriel',dinner),
+    ];
+    const totalRawGrams=allocations.reduce((sum,item)=>sum+item.totalRawGrams,0);
+    const fmt=n=>Math.round(n)+' g';
+    return {
+      totalRawGrams,
+      allocations,
+      method:[
+        `Cook one shared neutral beef batch: brown all ${fmt(totalRawGrams)} raw lean beef mince in two wide batches, without either recipe’s sauces, until it reaches 75°C.`,
+        'Cool the cooked mince promptly in shallow containers, then weigh and label the four meal/person allocations below. Add each recipe’s aromatics and sauce only when assembling its lunch or dinner.',
+        `Refrigerate Wednesday and Thursday portions promptly; freeze Friday portions on prep day and thaw them overnight in the refrigerator. Reheat each finished meal until steaming hot.`,
+      ],
+    };
+  }
+  prepSectionsForCurrentPlan() {
+    const batch=this.sharedBeefBatchPrep(), fmt=n=>Math.round(n)+' g';
+    const allocations=batch.allocations.map(item=>`${item.person}: ${item.portions} × ${fmt(item.portionRawGrams)} for ${item.meal}`).join(' · ');
+    return this.prepSections.map(section=>section.id==='mains'?{...section,steps:[
+      batch.method[0],
+      `Portion the shared neutral beef batch before adding flavours — ${allocations}.`,
+      'For lunch, sauté the bibimbap mushrooms, onion and garlic, then warm its labelled beef with soy, oyster sauce, honey and sesame oil. For dinner, simmer the separately labelled beef with ginger, mushrooms, stock, soy sauce and rice vinegar; wilt in spinach at the end.',
+      batch.method[2],
+    ]}:section);
+  }
   methodFor(recipe=this.curRec()) {
     if (recipe.weeklyDynamic) {
       const totals=this.weeklyRecipeTotals(recipe), fmt=n=>Math.round(n)+' g';
       const c=totals.Cynthia.ingredients['Firm tofu'], g=totals.Gabriel.ingredients['Firm tofu'];
       return [
-        `The ingredients tab shows the three-dinner total, calculated from Home. Each night, use about ${fmt(c)} tofu for ${this.state.people.me.name} and ${fmt(g)} tofu for ${this.state.people.partner.name}.`,
+        `The ingredients tab covers all three dinners. Each night, use about ${fmt(c)} tofu for ${this.state.people.me.name} and ${fmt(g)} tofu for ${this.state.people.partner.name}.`,
         'Press and cube the tofu, then pan-sear it in a hot non-stick pan until golden on all sides.',
         'Trim the enoki root end, separate the clusters, then cook them in the hot pan for 3–4 minutes until tender and steaming; do not eat them raw.',
         'Cook the soba, adding pak choi for the final 2 minutes; drain well. Toss with ginger, green onions, soy sauce, rice vinegar and sesame oil, then top with the tofu and sesame seeds.',
@@ -267,25 +301,25 @@ class Component extends DCLogic {
     if (!recipe.weeklyReference) return recipe.method;
     const totals=this.weeklyRecipeTotals(recipe), fmt=n=>Math.round(n)+' g';
     if (recipe.planKind==='bulgogi') {
-      const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'];
+      const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'], shared=this.sharedBeefBatchPrep();
       return [
-        `This Wednesday–Friday batch follows the protein goals on Home: ${this.state.people.me.name} gets ${totals.Cynthia.protein} g protein per lunch and ${this.state.people.partner.name} gets ${totals.Gabriel.protein} g. The Ingredients tab is recalculated from those goals.`,
-        `Brown all ${fmt(totals.totalIngredients['Lean beef mince, raw'])} lean beef mince with mushrooms, onion and garlic until it reaches 75°C. Stir through soy sauce, oyster sauce, honey and sesame oil until glossy.`,
+        `This Wednesday–Friday lunch batch makes three portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
+        `Use the lunch-labelled portion from the shared neutral beef batch — ${fmt(shared.totalRawGrams)} raw lean beef mince is batch-cooked once across both lunches and dinners to 75°C. Sauté mushrooms, onion and garlic; warm the portioned beef through with soy sauce, oyster sauce, honey and sesame oil until glossy.`,
         'Cook the rice, sauté the carrots, wilt the spinach and blanch the bean sprouts. Keep each vegetable component separate for the bibimbap bowl texture.',
-        `Cool promptly. Make three ${this.state.people.me.name} lunch containers with about ${fmt(c)} beef each and three ${this.state.people.partner.name} containers with about ${fmt(g)} beef each; divide rice and vegetables in the same proportion. Keep gochujang separate until serving.`,
+        `Make three ${this.state.people.me.name} lunch containers with about ${fmt(c)} beef each and three ${this.state.people.partner.name} containers with about ${fmt(g)} beef each; divide rice and vegetables in the same proportion. Keep gochujang separate until serving.`,
       ];
     }
     if (recipe.planKind==='riceSoup') {
-      const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'];
+      const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'], shared=this.sharedBeefBatchPrep();
       return [
-        `This Wednesday–Friday dinner batch follows Home: ${this.state.people.me.name} receives ${totals.Cynthia.protein} g protein per dinner and ${this.state.people.partner.name} receives ${totals.Gabriel.protein} g. The Ingredients tab is recalculated from those goals.`,
-        `Brown all ${fmt(totals.totalIngredients['Lean beef mince, raw'])} lean beef mince with onion, garlic and ginger until it reaches 75°C. Add mushrooms, stock, soy sauce and rice vinegar; simmer for 10 minutes, then wilt in the spinach.`,
+        `This Wednesday–Friday dinner batch makes three portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
+        `Use the dinner-labelled portion from the shared neutral beef batch — ${fmt(shared.totalRawGrams)} raw lean beef mince is batch-cooked once across both lunches and dinners to 75°C. Add onion, garlic, ginger and mushrooms, then stock, soy sauce and rice vinegar; simmer for 10 minutes and wilt in spinach.`,
         `Cook the rice separately. Make three ${this.state.people.me.name} dinners with about ${fmt(c)} beef each and three ${this.state.people.partner.name} dinners with about ${fmt(g)} beef each; add spring onions only when serving.`,
       ];
     }
     const c=totals.Cynthia.ingredients['Chicken thighs, raw'], g=totals.Gabriel.ingredients['Chicken thighs, raw'];
     return [
-      `This Wednesday–Friday batch follows the protein goals on Home: ${this.state.people.me.name} gets ${totals.Cynthia.protein} g protein per lunch and ${this.state.people.partner.name} gets ${totals.Gabriel.protein} g. The Ingredients tab is recalculated from those goals.`,
+      `This Wednesday–Friday batch makes three lunch portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
       `Toss all ${fmt(totals.totalIngredients['Chicken thighs, raw'])} raw chicken with the chicken soy sauce, dark soy, oyster sauce, garlic powder, honey and sriracha. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.`,
       'Toss the chickpeas, edamame, snap peas, cabbage and green onions with white miso, salad soy sauce, rice vinegar, lime juice, sesame oil, honey, red pepper flakes and sesame seeds.',
       `Cool the chicken promptly. Make three ${this.state.people.me.name} containers with about ${fmt(c)} chicken each and three ${this.state.people.partner.name} containers with about ${fmt(g)} chicken each; divide the salad in the same proportion. Reheat only the chicken until steaming; keep the salad cold and crisp.`,
@@ -983,6 +1017,26 @@ class Component extends DCLogic {
       e('path',{key:'a',d:'M4 8h13'}), e('path',{key:'b',d:'M14 5l3 3-3 3'}),
       e('path',{key:'c',d:'M20 16H7'}), e('path',{key:'d',d:'M10 13l-3 3 3 3'}));
   }
+  prepNoteFor(ing) {
+    const name=(ing.n||'').toLowerCase();
+    const recipe=this.state.currentRecipe;
+    if (name.includes('mushroom')) return recipe==='Beef Bulgogi Bibimbap' ? 'Wipe clean, trim and finely chop.' : 'Wipe clean, trim and thinly slice.';
+    if (name.includes('yellow onion') || name==='onion' || name.includes('brown onion')) return 'Peel, halve and dice finely.';
+    if (name.includes('garlic')) return 'Peel, then mince finely.';
+    if (name.includes('ginger')) return 'Peel with a spoon, then finely grate.';
+    if (name.includes('carrot')) return 'Peel, then cut into fine matchsticks (julienne).';
+    if (name.includes('spinach')) return 'Rinse well and spin or pat completely dry.';
+    if (name.includes('bean sprout')) return 'Rinse, drain very well and remove any loose hulls.';
+    if (name.includes('spring onion') || name.includes('green onion')) return 'Trim root ends, then thinly slice on the diagonal.';
+    if (name.includes('rice') && name.includes('dry')) return 'Rinse in cold water until it runs mostly clear.';
+    if (name.includes('mince')) return 'Keep cold until cooking; break it into small, even crumbles in the pan.';
+    if (name.includes('chicken')) return 'Pat dry; trim excess fat and cut into even bite-size pieces if needed.';
+    if (name.includes('cabbage')) return 'Remove any tough core, then shred finely.';
+    if (name.includes('cucumber')) return 'Trim the ends; halve lengthways and thinly slice.';
+    if (name.includes('herb') || name.includes('coriander') || name.includes('parsley') || name.includes('basil')) return 'Rinse, dry thoroughly and roughly chop; keep a little for garnish.';
+    if (name.includes('broccoli') || name.includes('pak choi')) return 'Rinse well; cut into bite-size pieces, keeping stems and leaves separate.';
+    return 'Measure and have ready before you start cooking.';
+  }
   ingredientsPanel() {
     const C=this.C, st=this.state, r=this.curRec();
     const me = st.people.me, partner = st.people.partner;
@@ -1029,7 +1083,9 @@ class Component extends DCLogic {
     const row = (ing,i) => {
       const total = weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (r.fixedPlan ? ing.q : ing.q/r.base*sTot);
       return e('div',{key:i,style:{display:'flex',alignItems:'center',padding:'9px 4px',borderBottom:'1px solid '+C.line}},
-        e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},ing.n),
+        e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},
+          e('span',{style:{display:'block'}},ing.n),
+          e('span',{style:{display:'block',fontSize:11.5,lineHeight:1.35,color:C.mut,marginTop:2}},'Prep: '+this.prepNoteFor(ing))),
         e('span',{style:{flex:1,textAlign:'right',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,fontWeight:600,color:C.sumi}},fmt(total)+(ing.u?' '+ing.u:'')),
         this.isSpecialty(ing)?e('button',{onClick:()=>this.setState({subOpen:ing,subVote:null}),title:'Hard to find? Tap for swaps',style:{flex:'0 0 auto',marginLeft:12,width:30,height:30,borderRadius:'50%',border:'none',cursor:'pointer',background:'rgba(236,127,94,.1)',display:'flex',alignItems:'center',justifyContent:'center'}}, this.swapIcon()):null);
     };
@@ -1171,8 +1227,8 @@ class Component extends DCLogic {
 
   // ============ SUNDAY PREP ============
   renderPrep() {
-    const C=this.C, st=this.state;
-    const allSteps = this.prepSections.reduce((a,s)=>a+s.steps.length,0);
+    const C=this.C, st=this.state, sections=this.prepSectionsForCurrentPlan();
+    const allSteps = sections.reduce((a,s)=>a+s.steps.length,0);
     const doneCount = Object.values(st.prepDone).filter(Boolean).length;
     const pct = Math.round(doneCount/allSteps*100);
     return e('div',{style:{height:'100%',minHeight:0,display:'flex',flexDirection:'column'}},
@@ -1197,7 +1253,7 @@ class Component extends DCLogic {
             e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:8,color:'rgba(56,44,36,.5)'}},tp.t),
             e('span',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:7.5,color:'rgba(56,44,36,.4)',maxWidth:42,textAlign:'center',lineHeight:1.15}},tp.l))))),
       e('div',{key:'sec',style:{flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',padding:'16px 24px 22px',display:'flex',flexDirection:'column',gap:10}},
-        this.prepSections.map((sec,si)=>this.prepCard(sec,si)))); 
+        sections.map((sec,si)=>this.prepCard(sec,si))));
   }
   prepCard(sec,si) {
     const C=this.C, st=this.state, open=st.openSection===sec.id;
