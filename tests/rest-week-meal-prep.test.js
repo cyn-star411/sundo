@@ -15,7 +15,7 @@ assert.strictEqual(scheduled.length, 25, 'rest-week plan has all twenty-five mea
 assert.ok(app.recipeOrder.every((meal)=>scheduled.includes(meal)), 'Recipes only foregrounds active meals');
 assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.concat(week.Dinner)), 'Home and See all stay in active-main order');
 const prep = app.prepSections.map((section)=>section.steps.join(' ')).join(' ').toLowerCase();
-['ten pumpkin protein overnight oats','30 cottage cheese protein balls','matcha yogurt desserts','bulgogi','rice soup','75°c','freeze friday–sunday'].forEach((detail)=>assert.ok(prep.includes(detail), `prep needs ${detail}`));
+['berry protein overnight oats','banana protein-yogurt','cottage-cheese berry cups','turkey batch','pasta','chilli','75°c','freeze friday–sunday'].forEach((detail)=>assert.ok(prep.includes(detail), `prep needs ${detail}`));
 assert.ok(source.includes("'WED–SUN · REST OF WEEK'"), 'Home header identifies the shortened plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v22';"), 'service worker must refresh installed copies after the five-day update');
-console.log('rest-of-week inbox-based meal-prep checks passed');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v23';"), 'service worker must refresh installed copies after the fresh-plan update');
+console.log('fresh rest-of-week meal-prep checks passed');

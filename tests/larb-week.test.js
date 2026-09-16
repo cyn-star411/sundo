@@ -7,12 +7,11 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
-const expected = ['Pumpkin Protein Overnight Oats','Cottage Cheese Protein Balls','Beef Bulgogi Bibimbap','Ginger Beef, Mushroom & Spinach Rice Soup'];
+const expected = ['Berry Protein Overnight Oats','Banana Protein Yogurt','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','Cottage Cheese Berry Cup'];
 expected.forEach((meal)=>{
   assert.ok(app.recipes[meal], `${meal} must be available`);
   assert.ok(fs.existsSync(app.dishSrc(meal)), `${meal} needs an existing offline image`);
-  assert.ok(app.recipes[meal].portions.Cynthia && app.recipes[meal].portions.Gabriel, `${meal} needs per-person guidance`);
+  assert.ok(app.recipes[meal].weeklyReferenceDays === 5, `${meal} must scale through the five-day active window`);
 });
-assert.ok(!week.Lunch.includes('Honey Garlic Chicken & Miso Sesame Bean Salad'), 'the old lunch must not remain scheduled');
-assert.ok(!week.Dinner.includes('Ginger-Scallion Tofu & Enoki Soba'), 'the old dinner must not remain scheduled');
-console.log('active inbox plan recipes, portions, and offline images check passed');
+['Pumpkin Protein Overnight Oats','Cottage Cheese Protein Balls','Beef Bulgogi Bibimbap','Ginger Beef, Mushroom & Spinach Rice Soup','Matcha Yogurt Cup'].forEach((meal) => assert.ok(!week.Breakfast.concat(week.Snack, week.Lunch, week.Dinner, week.Dessert).includes(meal), `${meal} from last week must not remain scheduled`));
+console.log('fresh active-plan recipes, portions, and offline images check passed');

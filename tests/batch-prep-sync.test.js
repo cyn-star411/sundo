@@ -6,19 +6,17 @@ const context = { React:{createElement:()=>({})}, DCLogic:class { setState(p){ t
 vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
-const lunch = app.recipes['Beef Bulgogi Bibimbap'];
-const dinner = app.recipes['Ginger Beef, Mushroom & Spinach Rice Soup'];
+const lunch = app.recipes['Turkey Bean Vegetable Pasta'];
+const dinner = app.recipes['Turkey Chilli Loaded Potatoes'];
 const lunchTotals = app.weeklyRecipeTotals(lunch);
 const dinnerTotals = app.weeklyRecipeTotals(dinner);
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-
 [lunch, dinner].forEach((recipe) => assert.strictEqual(app.weeklyRecipeTotals(recipe).occurrences, 5, `${app.recipeNameFor(recipe)} must occur five times`));
 [lunchTotals, dinnerTotals].forEach((totals) => {
-  assert.ok(totals.Gabriel.ingredients['Lean beef mince, raw'] > totals.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel needs the larger calculated beef portion');
-  assert.strictEqual(Math.round(totals.totalIngredients['Lean beef mince, raw']), Math.round((totals.Cynthia.ingredients['Lean beef mince, raw'] + totals.Gabriel.ingredients['Lean beef mince, raw']) * 5), 'weekly beef must equal five calculated meals each');
+  assert.ok(totals.Gabriel.ingredients['Turkey mince'] > totals.Cynthia.ingredients['Turkey mince'], 'Gabriel needs the larger calculated turkey portion');
+  assert.strictEqual(Math.round(totals.totalIngredients['Turkey mince']), Math.round((totals.Cynthia.ingredients['Turkey mince'] + totals.Gabriel.ingredients['Turkey mince']) * 5), 'weekly turkey must equal five calculated meals each');
 });
-const expectedBeef = Math.round(lunchTotals.totalIngredients['Lean beef mince, raw'] + dinnerTotals.totalIngredients['Lean beef mince, raw']) + ' g';
-assert.ok(groceries.some((item) => item.n === 'Lean beef mince' && item.q === expectedBeef), 'cart must combine both calculated beef batches');
-assert.ok(app.methodFor(lunch).join(' ').includes('75°C'), 'bulgogi method must state the safe cooking temperature');
-assert.ok(app.methodFor(dinner).join(' ').includes('75°C'), 'rice soup method must state the safe cooking temperature');
-console.log('weekly beef batches, calculated portions, and cart totals stay in sync');
+const expectedTurkey = Math.round(lunchTotals.totalIngredients['Turkey mince'] + dinnerTotals.totalIngredients['Turkey mince']) + ' g';
+assert.ok(groceries.some((item) => item.n === 'Turkey mince' && item.q === expectedTurkey), 'cart must combine both calculated turkey batches');
+assert.ok(app.prepSections.find((section) => section.id === 'mains').steps.join(' ').includes('75°C'), 'shared turkey prep must state the safe cooking temperature');
+console.log('weekly turkey batches, calculated portions, and cart totals stay in sync');
