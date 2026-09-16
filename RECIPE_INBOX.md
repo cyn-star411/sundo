@@ -665,6 +665,56 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 20. Healthy Cinnamon Roll Muffins
+
+- **Instagram source:** [Reel by @saltnsprinkles](https://www.instagram.com/reel/DdUICI8xJeq/)
+- **Creator’s recipe page:** [Healthy Cinnamon Roll Muffins — salt n sprinkles](https://saltnsprinkles.com/gluten-free-cinnamon-roll-muffins/)
+- **Type:** Gluten-free breakfast / snack / dessert muffin
+- **Capture status:** Fully captured from the creator’s linked recipe page.
+- **Yield:** 9 muffins
+- **Time:** 30 minutes prep, 20–25 minutes bake, 55 minutes total (creator-stated).
+- **Nutrition:** Not provided by the creator; do not infer.
+
+### Ingredients
+
+#### Cinnamon muffin batter
+
+- 1/3 cup melted coconut oil
+- 2/3 cup maple syrup, or honey
+- 4 room-temperature eggs
+- 2 tbsp vanilla
+- 2 1/2 cups almond flour
+- 1 tsp baking soda
+- 1/2 tsp cinnamon
+- Pinch of salt
+
+#### Cinnamon swirl
+
+- 1/4 cup softened coconut oil
+- 1/4 cup brown sugar, or coconut sugar
+- 1/2 tbsp cinnamon
+- Optional creator-linked refined-sugar-free icing
+
+### Creator’s method
+
+1. Heat the oven to 350°F / 175°C and line a muffin pan with 9 liners.
+2. Whisk the melted coconut oil, maple syrup or honey, eggs, and vanilla until smooth.
+3. Mix in almond flour, baking soda, cinnamon, and salt until a mostly smooth batter forms. Divide among the liners.
+4. Mix the softened coconut oil, sugar, and cinnamon until creamy; put it in a piping bag fitted with a small round tip, or snip a small tip from the bag.
+5. Pipe a thin, non-overlapping spiral flush with the muffin batter, beginning in the centre and moving toward the edge.
+6. Bake 20–25 minutes, until lightly golden and firm to the touch. Cool on a rack; store airtight at room temperature for 2–3 days.
+
+### Useful overlap
+
+- Coconut oil, maple syrup or honey, eggs, vanilla, almond flour, cinnamon, and baking soda can overlap with baking and dessert weeks.
+- This is a close but distinct variant from the existing Two-Ingredient-Dough Cinnamon Roll Bites: it is a baked almond-flour muffin with a cinnamon swirl, not a yogurt-dough bite.
+
+### Future-use note
+
+- This has usable source ingredients, yield, and method. If selected for Sundō, scale through the saved profiles and convert shopper-facing grocery quantities to practical whole packages and kitchen measures; retain the creator’s source record here.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -699,7 +749,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 12 — including Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 13 — including Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
