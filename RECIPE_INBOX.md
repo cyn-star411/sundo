@@ -628,6 +628,43 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 19. Salted Date & Banana Chia Pots
+
+- **Source:** [Instagram reel by @nourishwithrosa_](https://www.instagram.com/reel/DdUOFR-xnSh/)
+- **Type:** Prep-ahead breakfast / snack / dessert
+- **Capture status:** Fully captured from the creator’s public caption.
+- **Yield:** 1 pot
+- **Creator’s stated nutrition:** 25 g protein and 6 g fibre per pot.
+
+### Creator’s ingredients (for one)
+
+- 150 g Greek yogurt (0–5%)
+- 10 g chia seeds
+- 10 g oats
+- 1/2 banana
+- 1 pitted Medjool date
+- 1 pinch cinnamon
+- 50 ml milk of choice — omit when using a thin yogurt
+- 15 g cashew butter, or another nut butter
+- Optional: extra sliced banana and a pinch of flaky sea salt
+
+### Creator’s method
+
+1. Add the banana, chia seeds, oats, date, yogurt, cinnamon, and milk to a blender; blend until smooth.
+2. Pour into a jar. Top with nut butter, optional sliced banana, and a pinch of flaky sea salt.
+3. Refrigerate overnight to set.
+
+### Useful overlap
+
+- Greek yogurt, chia seeds, oats, bananas, milk, and nut butter overlap with protein-oat, yogurt-snack, chia-pudding, and dessert weeks.
+- Dates and cashew butter are the main recipe-specific additions; another nut butter is creator-approved.
+
+### Future-use note
+
+- Keep the creator’s grams/millilitres as the source record. If selected for a live Sundō week, convert only the shopper-facing plan to Cynthia’s whole-number cups/tbsp/piece convention while retaining profile-responsive portion calculations.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -662,8 +699,8 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 11 — including Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 12 — including Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
-- **Recipes added to the current live plan:** 4 — Pumpkin Protein Overnight Oats, Cottage Cheese Protein Balls, Beef Bulgogi Bibimbap, and Ginger Beef, Mushroom & Spinach Rice Soup. Inbox recipes and Sundō adaptations are intentionally kept distinct.
-- **Last updated:** 2026-09-09
+- **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
+- **Last updated:** 2026-09-16
