@@ -28,7 +28,7 @@
         e('div', { key: 'hd', style: { padding: '12px 26px 0', flex: '0 0 auto' } },
           e('div', { style: { fontFamily: "'Newsreader',serif", fontWeight: 500, fontSize: 32, color: C.sumi } }, 'Grocery list'),
           e('div', { style: { display: 'flex', gap: 16, marginTop: 8, fontFamily: "'Hanken Grotesk',sans-serif", fontSize: 13, color: '#9a8a76' } }, this.renderGrocerySub())),
-        e('div', { key: 'bd', style: { flex: 1, overflowY: 'auto', padding: '14px 26px 8px' } }, this.renderGroceryBody()));
+        e('div', { key: 'bd', style: { flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain', padding: '14px 26px calc(116px + env(safe-area-inset-bottom, 0px))' } }, this.renderGroceryBody()));
     }
 
     tabIcon(kind, col) {
