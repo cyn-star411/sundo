@@ -10,7 +10,7 @@ const lunch = app.weeklyRecipeTotals(app.recipes['Turkey Bean Vegetable Pasta'])
 const dinner = app.weeklyRecipeTotals(app.recipes['Turkey Chilli Loaded Potatoes']);
 const expectedRaw = lunch.totalIngredients['Turkey mince'] + dinner.totalIngredients['Turkey mince'];
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-assert.strictEqual(Math.ceil(expectedRaw) + ' packs', groceries.find((item) => item.n === 'Turkey mince').q, 'shared turkey grocery total must equal both scheduled recipes combined');
+assert.strictEqual(Math.ceil(expectedRaw) + ' g', groceries.find((item) => item.n === 'Turkey mince').q, 'shared turkey grocery weight must equal both scheduled recipes combined');
 assert.ok(lunch.Cynthia.ingredients['Turkey mince'] < lunch.Gabriel.ingredients['Turkey mince'], 'lunch uses distinct profile-driven portions');
 assert.ok(dinner.Cynthia.ingredients['Turkey mince'] < dinner.Gabriel.ingredients['Turkey mince'], 'dinner uses distinct profile-driven portions');
 const mains = app.prepSections.find((section) => section.id === 'mains').steps.join(' ');

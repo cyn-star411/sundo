@@ -16,6 +16,8 @@ assert.strictEqual(breakfast.occurrences, 5, 'chia-pot totals must cover all fiv
 assert.ok(breakfast.totalIngredients['Medjool dates'] > 12, 'dates must be accumulated across five breakfasts, not divided by the week twice');
 assert.match(cart.find((item) => item.n === 'Courgettes').q, /^\d+$/, 'shopping list must round whole courgettes to a readable count');
 assert.match(cart.find((item) => item.n === 'Medjool dates').q, /^\d+$/, 'shopping list must round whole Medjool dates to a readable count');
+assert.match(cart.find((item) => item.n === 'Turkey mince').q, /^\d+ g$/, 'variable-weight proteins must show the calculated gram total, not an arbitrary pack count');
+assert.match(cart.find((item) => item.n === 'Vanilla protein powder').q, /^\d+ g$/, 'variable-weight dry goods must show the calculated gram total');
 assert.ok(source.includes("const fmtIngredient = (v, unit)=>{ const n=Math.max(1,Math.ceil(v));"), 'recipe cards must label quantities with rounded household measures instead of decimals');
 const activeRecipes = app.recipeOrder.map((name) => app.recipes[name]);
 activeRecipes.forEach((recipe) => recipe.ingredients.forEach((ingredient) => {
