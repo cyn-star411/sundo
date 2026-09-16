@@ -1,14 +1,1 @@
-const assert = require('assert');
-const fs = require('fs');
-const vm = require('vm');
-const source = fs.readFileSync('sundo-component.js', 'utf8');
-const context = { React:{createElement:()=>({})}, DCLogic:class { setState(p){ this.state={...(this.state||{}),...p}; } }, setTimeout, clearTimeout };
-vm.createContext(context);
-vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
-const app = new context.SundoComponent();
-const week = app.buildWeek();
-assert.deepStrictEqual(Array.from(week.Dinner), Array(5).fill('Turkey Chilli Loaded Potatoes'), 'the fresh dinner should cover each remaining night');
-const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-['Turkey mince', 'Potatoes', 'Kidney beans', 'Chopped tomatoes'].forEach((name) => assert.ok(groceries.some((item) => item.n === name), `${name} belongs in the new dinner shop`));
-assert.ok(!groceries.some((item) => item.n === 'Enoki mushrooms'), 'a fresh plan must not retain the old enoki purchase line');
-console.log('new turkey dinner replaces the old plan cleanly');
+require('./thursday-friday-plan.test.js');

@@ -1,0 +1,18 @@
+const assert=require('assert'),fs=require('fs'),vm=require('vm');
+const source=fs.readFileSync('sundo-component.js','utf8');
+const sw=fs.readFileSync('sw.js','utf8');
+const context={React:{createElement:()=>({})},DCLogic:class {setState(p){this.state={...(this.state||{}),...p}}},setTimeout,clearTimeout};
+vm.createContext(context);vm.runInContext(`${source}\n;globalThis.App=Component;`,context);
+const app=new context.App(), week=app.buildWeek();
+assert.deepStrictEqual(Array.from(app.days.map(d=>d.k)),['Thu','Fri']);
+app.slots.forEach(slot=>assert.strictEqual(week[slot].length,2));
+const cake=app.weeklyRecipeTotals(app.recipes['High-Protein Carrot Cake Squares']);
+const lunch=app.weeklyRecipeTotals(app.recipes['Turkey Bean Vegetable Pasta']);
+const dinner=app.weeklyRecipeTotals(app.recipes['Turkey Chilli Loaded Potatoes']);
+assert.strictEqual(cake.occurrences,2); assert.strictEqual(Math.round(cake.totalIngredients.Eggs),2);
+assert.strictEqual(Math.round(lunch.totalIngredients['Turkey mince']+dinner.totalIngredients['Turkey mince']),1100);
+const cart=app.groceryFor().groups.flatMap(g=>g.items);
+assert.ok(cart.some(x=>x.n==='Eggs'&&x.q==='4'));assert.ok(cart.some(x=>x.n==='Turkey mince'&&x.q==='1100 g'));
+assert.ok(app.prepSections.find(x=>x.id==='store').steps.join(' ').includes('nothing needs freezing'));
+assert.ok(sw.includes("const CACHE = 'sundo-app-v30';"));
+console.log('Thursday–Friday batches, cart, and storage are synchronized');
