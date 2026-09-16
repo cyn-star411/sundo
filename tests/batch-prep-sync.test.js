@@ -12,10 +12,10 @@ const lunchTotals = app.weeklyRecipeTotals(lunch);
 const dinnerTotals = app.weeklyRecipeTotals(dinner);
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 
-[lunch, dinner].forEach((recipe) => assert.strictEqual(app.weeklyRecipeTotals(recipe).occurrences, 3, `${app.recipeNameFor(recipe)} must occur three times`));
+[lunch, dinner].forEach((recipe) => assert.strictEqual(app.weeklyRecipeTotals(recipe).occurrences, 5, `${app.recipeNameFor(recipe)} must occur five times`));
 [lunchTotals, dinnerTotals].forEach((totals) => {
   assert.ok(totals.Gabriel.ingredients['Lean beef mince, raw'] > totals.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel needs the larger calculated beef portion');
-  assert.strictEqual(Math.round(totals.totalIngredients['Lean beef mince, raw']), Math.round((totals.Cynthia.ingredients['Lean beef mince, raw'] + totals.Gabriel.ingredients['Lean beef mince, raw']) * 3), 'weekly beef must equal three calculated meals each');
+  assert.strictEqual(Math.round(totals.totalIngredients['Lean beef mince, raw']), Math.round((totals.Cynthia.ingredients['Lean beef mince, raw'] + totals.Gabriel.ingredients['Lean beef mince, raw']) * 5), 'weekly beef must equal five calculated meals each');
 });
 const expectedBeef = Math.round(lunchTotals.totalIngredients['Lean beef mince, raw'] + dinnerTotals.totalIngredients['Lean beef mince, raw']) + ' g';
 assert.ok(groceries.some((item) => item.n === 'Lean beef mince' && item.q === expectedBeef), 'cart must combine both calculated beef batches');

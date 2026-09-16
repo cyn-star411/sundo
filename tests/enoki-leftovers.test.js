@@ -7,7 +7,7 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
-assert.deepStrictEqual(Array.from(week.Dinner), Array(3).fill('Ginger Beef, Mushroom & Spinach Rice Soup'), 'the replacement dinner should cover each remaining night');
+assert.deepStrictEqual(Array.from(week.Dinner), Array(5).fill('Ginger Beef, Mushroom & Spinach Rice Soup'), 'the replacement dinner should cover each remaining night');
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 assert.ok(!groceries.some((item) => item.n === 'Enoki mushrooms'), 'a completely different plan must not keep the old enoki purchase line');
 assert.ok(groceries.some((item) => item.n === 'Mushrooms'), 'the shared mushroom base should be in the cart');

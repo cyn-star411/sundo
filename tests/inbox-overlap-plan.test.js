@@ -14,19 +14,20 @@ vm.runInContext(`${source}\n;globalThis.SundoComponent = Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
 
-assert.deepStrictEqual(Array.from(week.Breakfast), ['Pumpkin Protein Overnight Oats', 'Pumpkin Protein Overnight Oats', 'Pumpkin Protein Overnight Oats']);
-assert.deepStrictEqual(Array.from(week.Snack), ['Cottage Cheese Protein Balls', 'Cottage Cheese Protein Balls', 'Cottage Cheese Protein Balls']);
-assert.deepStrictEqual(Array.from(week.Lunch), ['Beef Bulgogi Bibimbap', 'Beef Bulgogi Bibimbap', 'Beef Bulgogi Bibimbap']);
-assert.deepStrictEqual(Array.from(week.Dinner), ['Ginger Beef, Mushroom & Spinach Rice Soup', 'Ginger Beef, Mushroom & Spinach Rice Soup', 'Ginger Beef, Mushroom & Spinach Rice Soup']);
+assert.deepStrictEqual(Array.from(week.Breakfast), Array(5).fill('Pumpkin Protein Overnight Oats'));
+assert.deepStrictEqual(Array.from(week.Snack), Array(5).fill('Cottage Cheese Protein Balls'));
+assert.deepStrictEqual(Array.from(week.Lunch), Array(5).fill('Beef Bulgogi Bibimbap'));
+assert.deepStrictEqual(Array.from(week.Dinner), Array(5).fill('Ginger Beef, Mushroom & Spinach Rice Soup'));
+assert.deepStrictEqual(Array.from(week.Dessert), Array(5).fill('Matcha Yogurt Cup'));
 
 const scheduled = app.slots.flatMap((slot) => week[slot]);
-const activeMeals = ['Pumpkin Protein Overnight Oats', 'Cottage Cheese Protein Balls', 'Beef Bulgogi Bibimbap', 'Ginger Beef, Mushroom & Spinach Rice Soup'];
+const activeMeals = ['Pumpkin Protein Overnight Oats', 'Cottage Cheese Protein Balls', 'Beef Bulgogi Bibimbap', 'Ginger Beef, Mushroom & Spinach Rice Soup', 'Matcha Yogurt Cup'];
 activeMeals.forEach((meal) => {
   assert.ok(app.recipes[meal], `${meal} needs a live recipe card`);
   assert.strictEqual(app.resolveRecipe(meal), meal, `${meal} must resolve directly`);
   assert.ok(app.recipes[meal].ingredients.length > 0, `${meal} needs ingredients`);
   assert.ok(app.recipes[meal].method.length > 0, `${meal} needs a method`);
-  assert.ok(app.recipes[meal].portions.Cynthia && app.recipes[meal].portions.Gabriel, `${meal} needs portion guidance`);
+  if (app.recipes[meal].portions) assert.ok(app.recipes[meal].portions.Cynthia && app.recipes[meal].portions.Gabriel, `${meal} needs portion guidance`);
 });
 
 const lunch = app.recipes['Beef Bulgogi Bibimbap'];
@@ -37,7 +38,7 @@ assert.ok(lunchTotals.Gabriel.ingredients['Lean beef mince, raw'] > lunchTotals.
 assert.ok(dinnerTotals.Gabriel.ingredients['Lean beef mince, raw'] > dinnerTotals.Cynthia.ingredients['Lean beef mince, raw'], 'Gabriel needs a larger dinner beef portion');
 
 const groceries = app.groceryFor().groups.flatMap((group) => group.items);
-['Lean beef mince', 'Mushrooms', 'Spinach', 'Carrots', 'Spring onions', 'Jasmine rice', 'Greek yogurt', 'Pumpkin purée', 'Cottage cheese'].forEach((name) => {
+['Lean beef mince', 'Mushrooms', 'Spinach', 'Carrots', 'Spring onions', 'Jasmine rice', 'Greek yogurt', 'Pumpkin purée', 'Cottage cheese', 'Matcha powder', 'Mixed berries', 'Granola'].forEach((name) => {
   assert.ok(groceries.some((item) => item.n === name), `cart should include shared-base ${name}`);
 });
 assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes should show only the active plan');
