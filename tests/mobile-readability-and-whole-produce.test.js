@@ -8,13 +8,14 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const pasta = app.weeklyRecipeTotals(app.recipes['Turkey Bean Vegetable Pasta']);
-const snack = app.weeklyRecipeTotals(app.recipes['Banana Protein Yogurt']);
+const breakfast = app.weeklyRecipeTotals(app.recipes['Salted Date & Banana Chia Pots']);
 const cart = app.groceryFor().groups.flatMap((group) => group.items);
 assert.strictEqual(pasta.occurrences, 5, 'pasta totals must cover all five scheduled lunches');
 assert.ok(pasta.totalIngredients.Courgette > 4, 'courgettes must be accumulated across five lunches, not divided by the week twice');
-assert.ok(snack.totalIngredients.Bananas > 18, 'bananas must be accumulated across five snacks, not divided by the week twice');
+assert.strictEqual(breakfast.occurrences, 5, 'chia-pot totals must cover all five breakfasts');
+assert.ok(breakfast.totalIngredients['Medjool dates'] > 12, 'dates must be accumulated across five breakfasts, not divided by the week twice');
 assert.match(cart.find((item) => item.n === 'Courgettes').q, /^\d+$/, 'shopping list must round whole courgettes to a readable count');
-assert.match(cart.find((item) => item.n === 'Bananas').q, /^\d+$/, 'shopping list must round whole bananas to a readable count');
+assert.match(cart.find((item) => item.n === 'Medjool dates').q, /^\d+$/, 'shopping list must round whole Medjool dates to a readable count');
 assert.ok(source.includes("const fmtIngredient = (v, unit)=>{ const n=Math.max(1,Math.ceil(v));"), 'recipe cards must label quantities with rounded household measures instead of decimals');
 const activeRecipes = app.recipeOrder.map((name) => app.recipes[name]);
 activeRecipes.forEach((recipe) => recipe.ingredients.forEach((ingredient) => {

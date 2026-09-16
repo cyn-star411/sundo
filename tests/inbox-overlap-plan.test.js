@@ -7,7 +7,7 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
-const activeMeals = ['Berry Protein Overnight Oats','Banana Protein Yogurt','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','Cottage Cheese Berry Cup'];
+const activeMeals = ['Salted Date & Banana Chia Pots','Healthy Cinnamon Roll Protein Muffins','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','High-Protein Carrot Cake Squares'];
 ['Breakfast','Snack','Lunch','Dinner','Dessert'].forEach((slot, index) => assert.deepStrictEqual(Array.from(week[slot]), Array(5).fill(activeMeals[index])));
 const scheduled = app.slots.flatMap((slot) => week[slot]);
 activeMeals.forEach((meal) => {
@@ -20,5 +20,5 @@ const groceries = app.groceryFor().groups.flatMap((group) => group.items);
 assert.ok(app.recipeOrder.every((meal) => scheduled.includes(meal)), 'Recipes should show only the active plan');
 assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.concat(week.Dinner)), 'Home and See all must show the active main-meal order');
 const prep = app.prepSections.map((section) => section.steps.join(' ')).join(' ').toLowerCase();
-['berry protein overnight oats', 'turkey batch', 'pasta', 'chilli', '75°c'].forEach((detail) => assert.ok(prep.includes(detail), `prep must explain ${detail}`));
+['salted date-and-banana chia pots', 'cinnamon-roll protein muffins', 'carrot-cake squares', 'turkey batch', 'pasta', 'chilli', '75°c'].forEach((detail) => assert.ok(prep.includes(detail), `prep must explain ${detail}`));
 console.log('fresh shared-ingredient rest-of-week plan checks passed');

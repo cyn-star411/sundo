@@ -7,7 +7,7 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const week = app.buildWeek();
-const expected = ['Berry Protein Overnight Oats','Banana Protein Yogurt','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','Cottage Cheese Berry Cup'];
+const expected = ['Salted Date & Banana Chia Pots','Healthy Cinnamon Roll Protein Muffins','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','High-Protein Carrot Cake Squares'];
 expected.forEach((meal)=>{
   assert.ok(app.recipes[meal], `${meal} must be available`);
   assert.ok(fs.existsSync(app.dishSrc(meal)), `${meal} needs an existing offline image`);
