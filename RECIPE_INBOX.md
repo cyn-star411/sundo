@@ -715,6 +715,74 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 21. 80/20 Hainanese Chicken and Rice — One-Pot Version
+
+- **Source:** [Instagram reel by @dougdoesdelicious](https://www.instagram.com/reel/DdVJ7C1qyFi/)
+- **Type:** One-pot chicken-and-rice main meal
+- **Capture status:** Fully captured from the creator’s public caption.
+- **Yield / nutrition:** Not provided by the creator; do not infer.
+- **Creator context:** Shared as a “cheat sheet” for a winning 19-person Food Network one-pot-dish challenge. The named recipe quantities below are the creator’s caption quantities, not a stated 19-serving batch.
+
+### Ingredients
+
+#### Chicken and rice
+
+- 2 chicken thighs (450 g)
+- 2 tsp sesame oil (5 g)
+- 1/4 tsp salt (1.5 g)
+- 1 cup jasmine rice (200 g)
+- 6 garlic cloves (15 g)
+- 1/2 inch ginger (15 g)
+- 3 green onions (45 g)
+- 1 1/4 cups chicken broth (300 g)
+- 1 tsp chicken bouillon powder (5 g)
+- 1/2 tsp turmeric powder (1 g)
+
+#### Ginger-scallion sauce
+
+- 1/2 inch ginger (15 g)
+- 1 green onion (15 g)
+- 1 tsp sesame oil (5 g)
+- Salt (1 g)
+- 2 tbsp neutral oil (25 g)
+
+#### Chilli-garlic sauce
+
+- 6 garlic cloves (15 g)
+- 1/2 inch ginger (15 g)
+- 2 tbsp sambal (25 g)
+- 2 tbsp sriracha (25 g)
+- 1 tbsp chicken broth (15 g)
+- 1 tsp lime juice (5 g)
+- 2 tsp sugar (10 g)
+
+#### Toppings
+
+- 1 cucumber (100 g)
+- Cilantro, amount unspecified
+- Green onion, amount unspecified
+
+### Creator’s method
+
+1. Season the chicken thighs with sesame oil and salt.
+2. Put the jasmine rice, garlic, ginger, green onion, chicken broth, bouillon powder, and turmeric in a pot; the creator says not to rinse the rice.
+3. Place the chicken thighs on top.
+4. Bring to a boil, reduce to a covered simmer, and cook for 20 minutes or until the liquid evaporates.
+5. For the ginger-scallion sauce, combine ginger, green onion, and salt in a bowl. Heat the sesame and neutral oils until hot/shimmering, watching carefully to avoid a fire; pour over the aromatics and mix.
+6. For the chilli-garlic sauce, mix garlic, ginger, sambal, sriracha, chicken broth, lime juice, and sugar.
+7. Remove and slice or serve the chicken. Let the rice rest in the pot 10 minutes, then serve with both sauces and optional cucumber, cilantro, and/or green onion.
+
+### Useful overlap
+
+- Chicken thighs, rice, garlic, ginger, green onions, chicken broth, sesame oil, lime, cucumber, sambal, and sriracha support Southeast-Asian-inspired chicken, rice-bowl, and noodle weeks.
+- The chicken-and-rice base and both sauces share garlic, ginger, green onion, oil, and broth, making this a good low-waste lunch/dinner pairing candidate with a compatible second chicken dish.
+
+### Future-use note
+
+- The caption has a usable method but no stated yield, nutrition, storage guidance, or chicken internal-temperature instruction. Confirm the intended servings and add profile-scaled portions plus safe cooked-chicken storage/reheating details before selecting it for a live Sundō week.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -749,7 +817,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 13 — including Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 14 — including 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
