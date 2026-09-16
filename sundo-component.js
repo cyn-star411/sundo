@@ -421,10 +421,18 @@ class Component extends DCLogic {
         const multiplier=ingredient && (ingredient.u==='g' ? 1 : byUnit[ingredient.u]);
         return total+(totals.totalIngredients[name]||0)*(multiplier||0);
       },0)))+' g';
+      const litres=(name, byUnit={}, shelfMl=1000)=>{
+        const needed=active.reduce((total, totals, index)=>{
+          const ingredient=this.recipes[this.recipeOrder[index]].ingredients.find((item)=>item.n===name);
+          return total+(totals.totalIngredients[name]||0)*(byUnit[ingredient&&ingredient.u]||0);
+        },0);
+        const buy=Math.max(shelfMl,Math.ceil(needed/shelfMl)*shelfMl);
+        return (buy/1000).toFixed(buy%1000?2:0).replace(/\.0+$/,'')+' L';
+      };
       return { label:'Wednesday–Sunday Meal Prep', skipped:[], groups:[
-      {h:'PROTEINS & DAIRY', items:[{n:'Turkey mince',q:grams('Turkey mince'),img:'gr-chicken'},{n:'Greek yogurt',q:grams('Greek yogurt',{cup:240,cups:240})},{n:'Milk',q:grams('Milk',{cup:240,cups:240})},{n:'Vanilla protein powder',q:grams('Vanilla protein powder',{scoop:30,scoops:30})},{n:'Light cream cheese',q:grams('Light cream cheese',{cup:240,cups:240})},{n:'Eggs',q:q('Eggs')}]},
+      {h:'PROTEINS & DAIRY', items:[{n:'Turkey mince',q:grams('Turkey mince'),img:'gr-chicken'},{n:'Greek yogurt',q:grams('Greek yogurt',{cup:240,cups:240})},{n:'Milk',q:litres('Milk',{cup:240,cups:240})},{n:'Vanilla protein powder',q:grams('Vanilla protein powder',{scoop:30,scoops:30})},{n:'Light cream cheese',q:grams('Light cream cheese',{cup:240,cups:240})},{n:'Eggs',q:q('Eggs')}]},
       {h:'PRODUCE & CARBS', items:[{n:'Bananas',q:q('Bananas')},{n:'Medjool dates',q:q('Medjool dates')},{n:'Carrots',q:q('Carrots')},{n:'Courgettes',q:q('Courgette')},{n:'Cherry tomatoes',q:q('Cherry tomatoes','punnets')},{n:'Red peppers',q:q('Red pepper')},{n:'Potatoes',q:q('Potatoes')},{n:'Rolled oats',q:grams('Rolled oats',{tbsp:6,cup:90,cups:90})},{n:'Almond flour',q:grams('Almond flour',{cup:96,cups:96})},{n:'Wholewheat pasta',q:grams('Wholewheat pasta',{cup:100,cups:100})},{n:'Chia seeds',q:grams('Chia seeds',{tbsp:12})}]},
-      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Cannellini beans',q:q('Cannellini beans','cans')},{n:'Kidney beans',q:q('Kidney beans','cans')},{n:'Tomato passata',q:grams('Tomato passata',{cup:260,cups:260})},{n:'Chopped tomatoes',q:q('Chopped tomatoes','cans')},{n:'Cashew butter',q:grams('Cashew butter',{tbsp:16})},{n:'Coconut oil',q:grams('Coconut oil',{tbsp:14})},{n:'Maple syrup',q:grams('Maple syrup',{tbsp:20})},{n:'Cinnamon',q:grams('Cinnamon',{tsp:3})},{n:'Vanilla extract',q:grams('Vanilla extract',{tsp:5})},{n:'Brown sugar',q:grams('Brown sugar',{tbsp:13})},{n:'Baking powder',q:grams('Baking powder',{tsp:4})},{n:'Baking soda',q:grams('Baking soda',{tsp:5})},{n:'Ground ginger',q:grams('Ground ginger',{tsp:2})},{n:'Sweetener',q:grams('Sweetener',{tbsp:12})}]},
+      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Cannellini beans',q:q('Cannellini beans','cans')},{n:'Kidney beans',q:q('Kidney beans','cans')},{n:'Tomato passata',q:litres('Tomato passata',{cup:240,cups:240},500)},{n:'Chopped tomatoes',q:q('Chopped tomatoes','cans')},{n:'Cashew butter',q:grams('Cashew butter',{tbsp:16})},{n:'Coconut oil',q:grams('Coconut oil',{tbsp:14})},{n:'Maple syrup',q:litres('Maple syrup',{tbsp:15},250)},{n:'Cinnamon',q:grams('Cinnamon',{tsp:3})},{n:'Vanilla extract',q:litres('Vanilla extract',{tsp:5},50)},{n:'Brown sugar',q:grams('Brown sugar',{tbsp:13})},{n:'Baking powder',q:grams('Baking powder',{tsp:4})},{n:'Baking soda',q:grams('Baking soda',{tsp:5})},{n:'Ground ginger',q:grams('Ground ginger',{tsp:2})},{n:'Sweetener',q:grams('Sweetener',{tbsp:12})}]},
     ]};
     }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };

@@ -18,6 +18,7 @@ assert.match(cart.find((item) => item.n === 'Courgettes').q, /^\d+$/, 'shopping 
 assert.match(cart.find((item) => item.n === 'Medjool dates').q, /^\d+$/, 'shopping list must round whole Medjool dates to a readable count');
 assert.match(cart.find((item) => item.n === 'Turkey mince').q, /^\d+ g$/, 'variable-weight proteins must show the calculated gram total, not an arbitrary pack count');
 assert.match(cart.find((item) => item.n === 'Vanilla protein powder').q, /^\d+ g$/, 'variable-weight dry goods must show the calculated gram total');
+['Milk', 'Tomato passata', 'Maple syrup', 'Vanilla extract'].forEach((name) => assert.match(cart.find((item) => item.n === name).q, /^\d+(\.\d+)? L$/, `${name} must use a shop-facing litre amount instead of grams`));
 assert.ok(source.includes("const fmtIngredient = (v, unit)=>{ const n=Math.max(1,Math.ceil(v));"), 'recipe cards must label quantities with rounded household measures instead of decimals');
 const activeRecipes = app.recipeOrder.map((name) => app.recipes[name]);
 activeRecipes.forEach((recipe) => recipe.ingredients.forEach((ingredient) => {
@@ -25,7 +26,7 @@ activeRecipes.forEach((recipe) => recipe.ingredients.forEach((ingredient) => {
   if (ingredient.cat === 'veg') assert.ok(!['g','ml'].includes(ingredient.u), `${ingredient.n} must be bought by a piece, punnet, can, or cup`);
   if (ingredient.cat === 'sauce') assert.ok(['tsp','tbsp','cup','cups','can'].includes(ingredient.u), `${ingredient.n} must use a practical kitchen measure`);
 }));
-assert.ok(cart.every((item) => !/\d+\.\d/.test(item.q)), 'shopping list must never expose fractional quantities');
+assert.ok(cart.every((item) => / L$/.test(item.q) || !/\d+\.\d/.test(item.q)), 'shopping list must never expose fractional quantities except deliberate shelf-facing litre measurements');
 assert.ok(!source.includes("whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},it.n"), 'cart names must not be ellipsized');
 assert.ok(source.includes("calc(116px + env(safe-area-inset-bottom, 0px))"), 'Prep needs bottom clearance after expanded content');
 assert.ok(boot.includes("calc(116px + env(safe-area-inset-bottom, 0px))"), 'Cart needs bottom clearance after its final item');
