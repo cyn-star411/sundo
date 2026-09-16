@@ -1,6 +1,6 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
-// v24 fixes mobile content scrolling and makes whole-produce quantities readable while refreshing the active plan totals.
-const CACHE = 'sundo-app-v24';
+// v25 uses whole-number kitchen measures, piece-based produce, and practical grocery pack counts.
+const CACHE = 'sundo-app-v25';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','chicken-cucumber-herb-salad','egg-spinach-cucumber-salad','chicken-cabbage-carrot-stir-fry','five-spice-chicken-kale-noodles','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];

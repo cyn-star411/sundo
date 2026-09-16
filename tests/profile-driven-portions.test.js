@@ -23,6 +23,6 @@ assert.strictEqual(app.targetsFor(app.state.people.me).protein, 130, 'changing C
 assert.strictEqual(changedLunch.Cynthia.protein, 33, 'changing Cynthia target recalculates her lunch protein share');
 assert.ok(changedLunch.Cynthia.ingredients['Turkey mince'] > initialLunch.Cynthia.ingredients['Turkey mince'], 'Cynthia lunch turkey responds to profile changes');
 assert.ok(changedDinner.Cynthia.ingredients['Turkey mince'] > initialDinner.Cynthia.ingredients['Turkey mince'], 'Cynthia dinner turkey responds to profile changes');
-const expected = Math.round(changedLunch.totalIngredients['Turkey mince'] + changedDinner.totalIngredients['Turkey mince']) + ' g';
+const expected = Math.ceil(changedLunch.totalIngredients['Turkey mince'] + changedDinner.totalIngredients['Turkey mince']) + ' packs';
 assert.strictEqual(app.groceryFor().groups.flatMap((group)=>group.items).find((item)=>item.n==='Turkey mince').q, expected, 'cart must use the changed combined turkey total');
 console.log('profile-driven turkey portions and shopping totals stay in sync');

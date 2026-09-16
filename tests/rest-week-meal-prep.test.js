@@ -17,5 +17,5 @@ assert.deepStrictEqual(Array.from(app.thisWeekMains()), Array.from(week.Lunch.co
 const prep = app.prepSections.map((section)=>section.steps.join(' ')).join(' ').toLowerCase();
 ['berry protein overnight oats','banana protein-yogurt','cottage-cheese berry cups','turkey batch','pasta','chilli','75°c','freeze friday–sunday'].forEach((detail)=>assert.ok(prep.includes(detail), `prep needs ${detail}`));
 assert.ok(source.includes("'WED–SUN · REST OF WEEK'"), 'Home header identifies the shortened plan');
-assert.ok(swSource.includes("const CACHE = 'sundo-app-v24';"), 'service worker must refresh installed copies after the fresh-plan update');
+assert.ok(swSource.includes("const CACHE = 'sundo-app-v25';"), 'service worker must refresh installed copies after the fresh-plan update');
 console.log('fresh rest-of-week meal-prep checks passed');

@@ -16,7 +16,7 @@ const groceries = app.groceryFor().groups.flatMap((group) => group.items);
   assert.ok(totals.Gabriel.ingredients['Turkey mince'] > totals.Cynthia.ingredients['Turkey mince'], 'Gabriel needs the larger calculated turkey portion');
   assert.strictEqual(Math.round(totals.totalIngredients['Turkey mince']), Math.round((totals.Cynthia.ingredients['Turkey mince'] + totals.Gabriel.ingredients['Turkey mince']) * 5), 'weekly turkey must equal five calculated meals each');
 });
-const expectedTurkey = Math.round(lunchTotals.totalIngredients['Turkey mince'] + dinnerTotals.totalIngredients['Turkey mince']) + ' g';
+const expectedTurkey = Math.ceil(lunchTotals.totalIngredients['Turkey mince'] + dinnerTotals.totalIngredients['Turkey mince']) + ' packs';
 assert.ok(groceries.some((item) => item.n === 'Turkey mince' && item.q === expectedTurkey), 'cart must combine both calculated turkey batches');
 assert.ok(app.prepSections.find((section) => section.id === 'mains').steps.join(' ').includes('75°C'), 'shared turkey prep must state the safe cooking temperature');
 console.log('weekly turkey batches, calculated portions, and cart totals stay in sync');
