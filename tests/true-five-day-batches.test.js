@@ -1,0 +1,26 @@
+const assert = require('assert');
+const fs = require('fs');
+const vm = require('vm');
+const source = fs.readFileSync('sundo-component.js', 'utf8');
+const context = { React:{createElement:()=>({})}, DCLogic:class { setState(p){ this.state={...(this.state||{}),...p}; } }, setTimeout, clearTimeout };
+vm.createContext(context);
+vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
+const app = new context.SundoComponent();
+const batchNames = ['Salted Date & Banana Chia Pots','Healthy Cinnamon Roll Protein Muffins','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','High-Protein Carrot Cake Squares'];
+batchNames.forEach((name) => {
+  const recipe = app.recipes[name];
+  assert.strictEqual(recipe.batchPrep, true, `${name} must be a single five-day prep batch`);
+  assert.strictEqual(app.weeklyRecipeTotals(recipe).occurrences, 5, `${name} still has five scheduled occurrences`);
+});
+const cake = app.weeklyRecipeTotals(app.recipes['High-Protein Carrot Cake Squares']);
+assert.strictEqual(Math.round(cake.totalIngredients.Eggs), 4, 'one ten-square carrot cake batch uses four eggs, not a daily-multiplied egg count');
+const lunch = app.weeklyRecipeTotals(app.recipes['Turkey Bean Vegetable Pasta']);
+const dinner = app.weeklyRecipeTotals(app.recipes['Turkey Chilli Loaded Potatoes']);
+assert.strictEqual(Math.round(lunch.totalIngredients['Turkey mince'] + dinner.totalIngredients['Turkey mince']), 2750, 'one lunch batch plus one dinner batch uses 2.75 kg turkey mince');
+const groceries = app.groceryFor().groups.flatMap((group) => group.items);
+assert.ok(groceries.some((item) => item.n === 'Eggs' && item.q === '8'), 'cart combines four muffin eggs and four carrot-cake eggs');
+assert.ok(groceries.some((item) => item.n === 'Turkey mince' && item.q === '2750 g'), 'cart shows the combined true-batch turkey amount');
+const baseTurkey = lunch.totalIngredients['Turkey mince'];
+app.state.people.partner.weight = 95;
+assert.ok(app.weeklyRecipeTotals(app.recipes['Turkey Bean Vegetable Pasta']).totalIngredients['Turkey mince'] > baseTurkey, 'batch shopping remains profile-responsive when Gabriel’s saved target changes');
+console.log('true five-day batch quantities and profile scaling stay in sync');

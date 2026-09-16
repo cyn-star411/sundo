@@ -13,7 +13,7 @@ const cart = app.groceryFor().groups.flatMap((group) => group.items);
 assert.strictEqual(pasta.occurrences, 5, 'pasta totals must cover all five scheduled lunches');
 assert.ok(pasta.totalIngredients.Courgette > 4, 'courgettes must be accumulated across five lunches, not divided by the week twice');
 assert.strictEqual(breakfast.occurrences, 5, 'chia-pot totals must cover all five breakfasts');
-assert.ok(breakfast.totalIngredients['Medjool dates'] > 12, 'dates must be accumulated across five breakfasts, not divided by the week twice');
+assert.strictEqual(Math.round(breakfast.totalIngredients['Medjool dates']), 10, 'one true five-day chia batch uses ten dates for ten jars, without multiplying the batch again');
 assert.match(cart.find((item) => item.n === 'Courgettes').q, /^\d+$/, 'shopping list must round whole courgettes to a readable count');
 assert.match(cart.find((item) => item.n === 'Medjool dates').q, /^\d+$/, 'shopping list must round whole Medjool dates to a readable count');
 assert.match(cart.find((item) => item.n === 'Turkey mince').q, /^\d+ g$/, 'variable-weight proteins must show the calculated gram total, not an arbitrary pack count');
