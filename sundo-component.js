@@ -1047,6 +1047,51 @@ class Component extends DCLogic {
     const v = q * this.state.servings / (base||2);
     return Math.round(v*100)/100;
   }
+  // Kitchen-weight equivalents used only for the optional ingredient-unit picker.
+  // These are practical averages, not a replacement for a product label or a scale.
+  unitConversionTable = {
+    'greek yogurt': {cup:245,cups:245},
+    'plain non-fat greek yogurt': {cup:245,cups:245},
+    'cottage cheese': {cup:226,cups:226},
+    'rolled oats': {cup:90,cups:90,tbsp:5},
+    'chia seeds': {tbsp:12},
+    'cashew butter': {tbsp:16},
+    'peanut butter': {tbsp:16,tsp:5.3},
+    'almond flour': {cup:96,cups:96},
+    'light cream cheese': {cup:240,cups:240},
+    'milk': {cup:240,cups:240},
+    'milk of choice': {cup:240,cups:240},
+    'coconut milk': {cup:240,cups:240},
+    'maple syrup': {tbsp:20},
+    'coconut oil': {tbsp:14},
+    'brown sugar': {tbsp:13},
+  };
+  conversionFactorsFor(ing) {
+    const name=(ing.n||'').toLowerCase();
+    return Object.keys(this.unitConversionTable).find(key=>name===key || name.includes(key))
+      ? this.unitConversionTable[Object.keys(this.unitConversionTable).find(key=>name===key || name.includes(key))]
+      : null;
+  }
+  unitOptionsFor(ing) {
+    const factors=this.conversionFactorsFor(ing);
+    if (!factors || !ing.u) return [];
+    const options=[ing.u];
+    if (ing.u!=='g') options.push('g');
+    const sourceForm=ing.u.replace(/s$/,'');
+    Object.keys(factors).forEach(unit=>{ if(unit.replace(/s$/,'')!==sourceForm && !options.includes(unit)) options.push(unit); });
+    return options;
+  }
+  displayIngredientQuantity(ing, quantity, unit) {
+    const target=unit||ing.u;
+    if (target===ing.u) return quantity+' '+(ing.u||'whole');
+    const factors=this.conversionFactorsFor(ing);
+    if (!factors) return quantity+' '+(ing.u||'whole');
+    const grams=ing.u==='g' ? quantity : quantity*factors[ing.u];
+    const value=target==='g' ? Math.round(grams) : Math.round((grams/factors[target])*100)/100;
+    const label=value===1 && target.endsWith('s') ? target.slice(0,-1) : target;
+    return value+' '+label;
+  }
+  ingredientUnitKey(ing) { return this.state.currentRecipe+'::'+ing.n; }
   // per-person portion scale: this meal assumed to cover ~1/3 of the person's daily protein goal
   personPortionScale(person) { return this.portionScaleFor(this.curRec(), person); }
   swapIcon(color) {
@@ -1128,11 +1173,18 @@ class Component extends DCLogic {
     const totalLabel = weeklyTotals ? 'TOTAL TO PREP' : (r.fixedPlan && r.base>2 ? 'TOTAL TO PREP' : 'TOTAL TO COOK');
     const row = (ing,i) => {
       const total = weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (r.fixedPlan ? ing.q : ing.q/r.base*sTot);
+      const unitOptions=this.unitOptionsFor(ing), unitKey=this.ingredientUnitKey(ing);
+      const chosenUnit=(st.ingredientUnits||{})[unitKey]||ing.u;
+      const amount=unitOptions.includes(chosenUnit) ? this.displayIngredientQuantity(ing,total,chosenUnit) : fmtIngredient(total,ing.u);
       return e('div',{key:i,style:{display:'flex',alignItems:'center',padding:'9px 4px',borderBottom:'1px solid '+C.line}},
         e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},
           e('span',{style:{display:'block'}},ing.n),
           e('span',{style:{display:'block',fontSize:11.5,lineHeight:1.35,color:C.mut,marginTop:2}},'Prep: '+this.prepNoteFor(ing))),
-        e('span',{style:{flex:1,textAlign:'right',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,fontWeight:600,color:C.sumi}},fmtIngredient(total,ing.u)),
+        e('span',{style:{flex:1,minWidth:0,textAlign:'right',display:'flex',alignItems:'flex-end',flexDirection:'column',gap:4}},
+          e('span',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,fontWeight:600,color:C.sumi,whiteSpace:'nowrap'}},amount),
+          unitOptions.length>1?e('select',{value:chosenUnit,'aria-label':'Choose unit for '+ing.n,onChange:(ev)=>this.setState({ingredientUnits:{...(st.ingredientUnits||{}),[unitKey]:ev.target.value}}),style:{maxWidth:'100%',appearance:'auto',border:'1px solid rgba(56,44,36,.18)',borderRadius:9,background:'#fff',color:'#6b5d50',cursor:'pointer',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:10.5,fontWeight:600,padding:'4px 6px'}},
+            unitOptions.map(unit=>e('option',{key:unit,value:unit},unit==='g'?'grams':unit)))
+          :null),
         this.isSpecialty(ing)?e('button',{onClick:()=>this.setState({subOpen:ing,subVote:null}),title:'Hard to find? Tap for swaps',style:{flex:'0 0 auto',marginLeft:12,width:30,height:30,borderRadius:'50%',border:'none',cursor:'pointer',background:'rgba(236,127,94,.1)',display:'flex',alignItems:'center',justifyContent:'center'}}, this.swapIcon()):null);
     };
     const hasSpecialty = r.ingredients.some(ing=>this.isSpecialty(ing));
