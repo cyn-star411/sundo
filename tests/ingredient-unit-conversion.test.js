@@ -15,11 +15,8 @@ vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 const yogurt = { n: 'Greek yogurt', q: 4, u: 'cups' };
 
-assert.deepStrictEqual(
-  JSON.parse(JSON.stringify(app.unitOptionsFor(yogurt))),
-  ['cups', 'g'],
-  'Greek yogurt measured in cups should offer a grams conversion'
-);
+const yogurtOptions = app.unitOptionsFor(yogurt);
+assert.ok(yogurtOptions.includes('cups') && yogurtOptions.includes('g'), 'Greek yogurt measured in cups should offer a grams conversion');
 assert.strictEqual(
   app.displayIngredientQuantity(yogurt, 4, 'g'),
   '980 g',
@@ -43,5 +40,16 @@ assert.ok(rendered.includes('"grams"'), 'the selector must visibly offer grams')
 app.setState({ ingredientUnits: { 'Salted Date & Banana Chia Pots::Greek yogurt': 'g' } });
 rendered = JSON.stringify(app.ingredientsPanel());
 assert.ok(rendered.includes('980 g'), 'selecting grams must update the amount displayed in the ingredient row');
+
+for (const recipe of Object.values(app.recipes)) {
+  for (const ingredient of recipe.ingredients) {
+    if (['g', 'ml', 'cup', 'cups', 'tbsp', 'tsp'].includes(ingredient.u)) {
+      assert.ok(
+        app.unitOptionsFor(ingredient).length > 1,
+        `${ingredient.n} (${ingredient.u}) needs a safe conversion choice in every recipe`
+      );
+    }
+  }
+}
 
 console.log('ingredient unit conversion checks passed');

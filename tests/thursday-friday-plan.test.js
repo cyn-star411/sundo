@@ -14,5 +14,5 @@ assert.strictEqual(Math.round(lunch.totalIngredients['Turkey mince']+dinner.tota
 const cart=app.groceryFor().groups.flatMap(g=>g.items);
 assert.ok(cart.some(x=>x.n==='Eggs'&&x.q==='4'));assert.ok(cart.some(x=>x.n==='Turkey mince'&&x.q==='1100 g'));
 assert.ok(app.prepSections.find(x=>x.id==='store').steps.join(' ').includes('nothing needs freezing'));
-assert.ok(sw.includes("const CACHE = 'sundo-app-v31';"));
+assert.ok(sw.includes("const CACHE = 'sundo-app-v32';"));
 console.log('Thursday–Friday batches, cart, and storage are synchronized');

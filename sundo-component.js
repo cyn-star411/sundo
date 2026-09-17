@@ -1066,30 +1066,39 @@ class Component extends DCLogic {
     'coconut oil': {tbsp:14},
     'brown sugar': {tbsp:13},
   };
+  volumeMl = {tsp:5,tbsp:15,cup:240,cups:240,ml:1,L:1000};
   conversionFactorsFor(ing) {
     const name=(ing.n||'').toLowerCase();
-    return Object.keys(this.unitConversionTable).find(key=>name===key || name.includes(key))
-      ? this.unitConversionTable[Object.keys(this.unitConversionTable).find(key=>name===key || name.includes(key))]
-      : null;
+    const key=Object.keys(this.unitConversionTable).find(item=>name===item || name.includes(item));
+    return key ? this.unitConversionTable[key] : null;
   }
   unitOptionsFor(ing) {
-    const factors=this.conversionFactorsFor(ing);
-    if (!factors || !ing.u) return [];
+    if (!ing.u) return [];
+    const factors=this.conversionFactorsFor(ing), sourceForm=ing.u.replace(/s$/,'');
     const options=[ing.u];
-    if (ing.u!=='g') options.push('g');
-    const sourceForm=ing.u.replace(/s$/,'');
-    Object.keys(factors).forEach(unit=>{ if(unit.replace(/s$/,'')!==sourceForm && !options.includes(unit)) options.push(unit); });
+    if (ing.u==='g') options.push('kg');
+    if (this.volumeMl[ing.u]) {
+      ['ml','L'].forEach(unit=>{ if (!options.includes(unit)) options.push(unit); });
+      if (factors && factors[ing.u]) options.push('g');
+    }
+    if (ing.u==='g' && factors) Object.keys(factors).forEach(unit=>{
+      if (unit.replace(/s$/,'')!==sourceForm && !options.includes(unit)) options.push(unit);
+    });
     return options;
   }
   displayIngredientQuantity(ing, quantity, unit) {
     const target=unit||ing.u;
     if (target===ing.u) return quantity+' '+(ing.u||'whole');
-    const factors=this.conversionFactorsFor(ing);
-    if (!factors) return quantity+' '+(ing.u||'whole');
-    const grams=ing.u==='g' ? quantity : quantity*factors[ing.u];
-    const value=target==='g' ? Math.round(grams) : Math.round((grams/factors[target])*100)/100;
-    const label=value===1 && target.endsWith('s') ? target.slice(0,-1) : target;
-    return value+' '+label;
+    const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u], targetVolume=this.volumeMl[target];
+    let value;
+    if (ing.u==='g' && target==='kg') value=quantity/1000;
+    else if (ing.u==='g' && factors && factors[target]) value=quantity/factors[target];
+    else if (sourceVolume && targetVolume) value=quantity*sourceVolume/targetVolume;
+    else if (target==='g' && factors && factors[ing.u]) value=quantity*factors[ing.u];
+    else return quantity+' '+(ing.u||'whole');
+    const rounded=Math.round(value*100)/100;
+    const label=rounded===1 && target.endsWith('s') ? target.slice(0,-1) : target;
+    return rounded+' '+label;
   }
   ingredientUnitKey(ing) { return this.state.currentRecipe+'::'+ing.n; }
   // per-person portion scale: this meal assumed to cover ~1/3 of the person's daily protein goal
