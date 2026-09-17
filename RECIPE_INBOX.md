@@ -831,6 +831,48 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 22. 35 g Protein Ham & Cheese Bites
+
+- **Instagram source:** [Carousel by @socialwithcl / Carolina](https://www.instagram.com/p/DWnNns9k3dp/)
+- **Shared URL:** [instagram.com/p/DWnNns9k3dp](https://www.instagram.com/p/DWnNns9k3dp/?stkn=MTh6NmpuYXMxNWdwZQ==)
+- **Type:** Likely savoury protein snack or breakfast bite; meal role is not specified by the creator.
+- **Capture status:** Partially captured. The public caption identifies the dish and a carousel ingredient slide was accessible, but the remaining carousel recipe cards could not be reliably retrieved.
+- **Creator’s stated claim:** “35g protein ham & cheese bites.” The post does not specify whether 35 g applies per bite, per serving, or to the full batch.
+
+### Confirmed source details
+
+- 1 cup plain flour (120 g), visible on an accessible carousel slide.
+- The creator’s public caption calls them “so easy to make,” but gives no written ingredient list, yield, method, or nutrition breakdown.
+
+### Future-use note
+
+- Do not calculate portions, nutrition, or shopping quantities from this record. Please send a screenshot/video of the remaining recipe cards or the creator’s direct recipe link if you want this developed into a confirmed Sundō recipe.
+
+---
+
+## 23. Feta, Chive & Carrot Savoury Muffins
+
+- **Instagram source:** [Reel by @ournourishingtable / Sarah Bell](https://www.instagram.com/reel/DZGIaDizVJw/)
+- **Shared URL:** [instagram.com/reel/DZGIaDizVJw](https://www.instagram.com/reel/DZGIaDizVJw/?stkn=MTNsOThpam9qbGR1eg==)
+- **Type:** Gluten-free high-protein snack or grab-and-go breakfast muffin.
+- **Capture status:** Source-only / recipe link required. The creator identifies the muffin flavour and dietary positioning but asks viewers to comment “recipe” to receive the recipe link; no ingredient list, quantities, yield, method, or nutrition figures were public in the accessible post.
+
+### Creator-confirmed details
+
+- Feta, chive, and carrot savoury muffins.
+- Described by the creator as completely gluten-free and a source of protein, fibre, and healthy fats.
+- Positioned as a between-meal snack and grab-and-go breakfast option.
+
+### Retrieval note
+
+- I checked the accessible reel caption and attempted to locate a public direct recipe from the creator; the supplied post points only to the comment-to-receive link workflow and the creator profile required login. No credible direct recipe page was retrievable, so no adaptation has been invented.
+
+### Future-use note
+
+- Send the creator’s recipe link, an automated DM reply, or a screenshot/transcript of the ingredients and method to make this usable for a future Sundō plan. Until then, it stays source-only and out of portions, nutrition, and shopping calculations.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -870,7 +912,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 ## Inbox status
 
 - **Fully captured recipes saved:** 15 — including Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
-- **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
-- **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
+- **Partially captured recipes / collections saved:** 5 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars, Cinnamon Roll Bites, and 35 g Protein Ham & Cheese Bites also need yield and/or complete recipe details.
+- **Video-only / menu-only source collections saved:** 5 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, Naomi Seng’s Healthy Carrot Cake, and Feta, Chive & Carrot Savoury Muffins lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
 - **Last updated:** 2026-09-16
