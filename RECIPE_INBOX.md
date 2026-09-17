@@ -912,16 +912,42 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
-## 24. Unavailable Instagram Reel — Requested Savoury Snack
+## 24. Everything-Bagel Greek-Yogurt Bagels
 
 - **Instagram source:** [Shared reel](https://www.instagram.com/reel/DbV1v86TRsR/)
 - **Shared URL:** [instagram.com/reel/DbV1v86TRsR](https://www.instagram.com/reel/DbV1v86TRsR/?stkn=MWUzdXM4ZGc0YTdnbQ==)
+- **Recipe evidence:** Recipe screenshots supplied by Cynthia after the reel became unavailable through Instagram.
 - **Intended role:** Savoury snack.
-- **Capture status:** Source-only. Instagram reports that the post is unavailable; the link exposes no creator, dish name, caption, ingredients, video frames, yield, or method. A targeted web search for the reel ID found no reliable repost or creator record.
+- **Capture status:** Fully captured from the supplied recipe screenshots. Creator/account and original caption remain unavailable.
+- **Yield:** 4 bagels.
+- **Nutrition:** Not provided.
+
+### Ingredients
+
+- 1 cup nonfat plain Greek yogurt
+- 1 cup all-purpose flour
+- 1 1/2 tsp baking powder
+- 1/4 tsp salt
+- Egg wash or a light brush of oil, for a golden, crisp top
+- Everything Bagel seasoning, to taste
+
+### Method
+
+1. Preheat the oven to **400°F**.
+2. Mix the Greek yogurt, flour, baking powder, and salt until a dough forms.
+3. Transfer to a lightly floured surface and knead for **1–2 minutes**, just until smooth.
+4. Divide into 4 equal pieces. Roll each into a rope and connect the ends to form a bagel.
+5. Brush the tops with egg wash or a little oil, then sprinkle generously with Everything Bagel seasoning.
+6. Bake for **20–25 minutes**, until golden brown.
+7. Let cool slightly, then slice and serve.
+
+### Creator’s doubled-batch note
+
+- Double the listed dough ingredients to make about **6–8 bagels**: 2 cups nonfat Greek yogurt, 2 cups all-purpose flour, 1 tbsp baking powder, and 1/2 tsp salt. The screenshot does not specify doubled topping quantities.
 
 ### Future-use note
 
-- Send a screenshot, saved reel, creator name, or a description of the dish and I’ll research and capture it properly. Since the dish cannot be identified from the available source, creating a “similar” recipe would be pure culinary fan fiction. Oh no.
+- This is now ready to consider for a savoury snack slot, but remains outside the live plan until selected. Use saved profiles to determine how many bagels belong in the batch and practical shopping quantities.
 
 ---
 
@@ -963,9 +989,9 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 17 — including 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 18 — including Everything-Bagel Greek-Yogurt Bagels, 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Research-backed Sundō adaptations saved:** 0.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
-- **Video-only / source-only collections saved:** 5 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, Naomi Seng’s Healthy Carrot Cake, and an unavailable requested savoury Instagram reel (reel ID `DbV1v86TRsR`) lack enough detail for live-plan calculations.
+- **Video-only / source-only collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes are intentionally kept distinct until deliberately selected.
 - **Last updated:** 2026-09-17
