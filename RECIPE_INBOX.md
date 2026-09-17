@@ -783,6 +783,54 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 21. Savoury Rice Paper Croissants
+
+- **TikTok source:** [Video by @itsmarianova / Maria Nova](https://www.tiktok.com/@itsmarianova/video/7411820906013560082)
+- **Shared short URL:** [vt.tiktok.com/ZSqgdMfE3](https://vt.tiktok.com/ZSqgdMfE3/)
+- **Type:** Baked savoury snack, breakfast, or light lunch
+- **Capture status:** Fully captured from the creator’s public TikTok caption.
+- **Yield:** 8 croissants
+- **Creator’s stated dietary description:** Gluten-free and dairy-free when made with plant milk and dairy-free cheese (or with no cheese).
+
+### Creator’s ingredients (for 8 croissants)
+
+#### Rice-paper mixture
+
+- 16 rice-paper sheets
+- 1/2 cup milk of choice (plant-based or dairy)
+- 2 eggs
+- 1 tsp baking powder
+
+#### Spinach filling
+
+- 2 large handfuls chopped spinach
+- 1 onion, diced
+- 4 garlic cloves
+- Rock salt, described by the creator as “plenty”
+- Dairy-free cheese, or no cheese — quantity unspecified
+- Ghee, tallow, or oil for frying — quantity unspecified
+
+### Creator’s method
+
+1. Whisk together the eggs, milk, and baking powder; set the dipping mixture aside.
+2. Fry the onion and garlic in ghee, tallow, or oil until translucent. Add the spinach and cook until slightly wilted; season generously with salt.
+3. Dip rice paper in the egg mixture, then layer two sheets together.
+4. Cut the layered rice paper into three pieces as demonstrated in the video, then arrange it into the creator’s croissant shape.
+5. Add 1 tbsp spinach filling to the bottom and roll up. Repeat to make 8 croissants.
+6. Place on an oven tray and bake for approximately 30 minutes at **180°C fan-forced**. The creator says she did not preheat her oven.
+7. Serve warm.
+
+### Useful overlap
+
+- Spinach, onion, garlic, eggs, and dairy-free cheese can overlap with egg-based breakfasts, savoury muffins, frittatas, pasta, and chicken or turkey dinner weeks.
+- Rice paper also pairs well with Asian-inspired bowls, soups, salads, and lighter snack-prep options; baking powder is the one more recipe-specific pantry addition.
+
+### Future-use note
+
+- The written recipe is usable, but the shaping step depends on the video demonstration and the oil/cheese quantities are unspecified. Before selecting it for a live Sundō week, confirm whether it should be a snack, breakfast, or lunch and test the assembly method; only then set profile-responsive portions and shopping quantities.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -795,6 +843,9 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 - Spring/green onions
 - Carrots
 - Cabbage or other crunchy vegetables
+- Spinach
+- Onion
+- Eggs
 
 ### Protein options
 
@@ -812,12 +863,13 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 - Gochujang and mirin
 - Kimchi and bean sprouts
 - Feta, almond flour, almond butter, dark chocolate chips, and coconut oil
+- Rice-paper sheets and baking powder
 
 ---
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 14 — including 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 15 — including Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete baking details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
