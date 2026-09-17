@@ -991,6 +991,60 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 26. Filipino Beef Kare-Kare Meal Prep
+
+- **Instagram source:** [Reel by @kaycee.cooks / KAYCEE](https://www.instagram.com/reel/Dc5gFuBzoca/)
+- **Type:** Filipino-inspired savoury beef, vegetable, rice-and-quinoa lunch or dinner meal prep.
+- **Capture status:** Fully captured from the creator’s public Instagram caption.
+- **Yield:** 9 meal-prep containers.
+- **Nutrition:** Not provided.
+
+### Creator’s ingredients (for 9 containers)
+
+- 1.5 kg lean minced beef
+- 20 ml extra-virgin olive oil
+- Atsuete (annatto) powder, quantity unspecified
+- Onion, minced — quantity unspecified
+- Garlic, minced — quantity unspecified
+- 1/3 cup cornstarch
+- Water, quantity unspecified
+- 1 beef stock cube
+- 100–120 g Macro Organic smooth peanut butter
+- 30 ml sautéed shrimp paste
+- 100 g green beans, chopped
+- 500 g eggplant, chopped
+- Bok choy, blanched — quantity unspecified
+- 1 tsp shrimp paste per serving, for topping
+- 3/4 cup uncooked white jasmine rice
+- 1/2 cup uncooked white quinoa
+- Water, for cooking the rice and quinoa — quantity unspecified
+
+### Creator’s method
+
+1. Heat 20 ml olive oil in a large pan over medium heat. Add atsuete powder and stir to release the colour and flavour.
+2. Add the minced onion and garlic; sauté until fragrant.
+3. Add the 1.5 kg lean minced beef and cook until browned and cooked through.
+4. Add the 1/3 cup cornstarch and mix well.
+5. Gradually add water and the beef stock cube, stirring until the sauce thickens.
+6. Add the peanut butter and stir until smooth and well combined.
+7. Add the 30 ml sautéed shrimp paste and mix through.
+8. Add the eggplant and green beans. Simmer until the vegetables are tender and the sauce reaches the desired consistency.
+9. Cook the jasmine rice and quinoa together with water.
+10. Blanch the bok choy until tender-crisp.
+11. Divide the rice-quinoa mixture, kare-kare, and bok choy evenly between 9 meal-prep containers.
+12. Top each serving with 1 tsp shrimp paste.
+
+### Useful overlap
+
+- Lean minced beef, rice, quinoa, eggplant, green beans, bok choy, onion, garlic, olive oil, and stock can overlap with East- and Southeast-Asian-inspired meal-prep weeks.
+- Peanut butter, cornstarch, shrimp paste, and annatto are the more recipe-specific items; shrimp paste is also useful in Filipino and Southeast-Asian dishes when deliberately planned.
+
+### Future-use note
+
+- This is a confirmed creator recipe and remains outside the live plan until selected. The creator leaves several quantities unspecified, including annatto, onion, garlic, water, and bok choy. Confirm practical amounts, cooking-liquid amount, and profile-responsive portions before using it in a live Sundō week; retain the creator’s 9-container yield rather than assuming it suits two people unchanged.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -1029,7 +1083,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 19 — including Creamy Banana Overnight Oats with Miso Date Caramel, Everything-Bagel Greek-Yogurt Bagels, 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 20 — including Filipino Beef Kare-Kare Meal Prep, Creamy Banana Overnight Oats with Miso Date Caramel, Everything-Bagel Greek-Yogurt Bagels, 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Research-backed Sundō adaptations saved:** 0.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
 - **Video-only / source-only collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
