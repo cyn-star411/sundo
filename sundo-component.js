@@ -351,24 +351,25 @@ class Component extends DCLogic {
   }
   beginnerCueFor(step) {
     const text=step.toLowerCase();
-    if (/bake|roast|air-fry/.test(text)) return 'Set a timer as soon as it goes in; it is ready only when the centre is set and the surface is lightly coloured, unless the recipe gives a more specific check.';
-    if (/brown|sear|fry|stir-fry|pan-fry/.test(text)) return 'Keep the food in a single layer where possible, then stir or turn it so it cooks evenly; lower the heat if it starts catching on the pan.';
-    if (/simmer|boil|poach|cook.*noodle|cook.*rice/.test(text)) return 'Keep the heat gentle enough that the liquid does not splash, and taste or check a small piece near the end rather than guessing.';
-    if (/refrigerate|cool|pack|container|label/.test(text)) return 'Let hot food stop steaming in shallow containers, then refrigerate promptly; do not leave cooked food sitting out for hours.';
-    return 'Pause after this step and make sure the ingredients look evenly combined, hot, or ready for the next step before moving on.';
+    if (/bake|roast|air-fry/.test(text)) return 'Watch for a set centre and light colour.';
+    if (/brown|sear|fry|stir-fry|pan-fry/.test(text)) return 'Turn or stir so it colours evenly.';
+    if (/simmer|boil|poach|cook.*noodle|cook.*rice/.test(text)) return 'Keep it at a gentle simmer and check near the end.';
+    if (/refrigerate|cool|pack|container|label/.test(text)) return 'Cool promptly, cover and chill.';
+    return '';
+  }
+  compactCookingSteps(steps) {
+    const groupSize=Math.ceil(steps.length/4);
+    return Array.from({length:Math.ceil(steps.length/groupSize)},(_,i)=>steps.slice(i*groupSize,(i+1)*groupSize).join(' Then '));
   }
   beginnerMethodSteps(recipe, cookingSteps) {
-    const prep=recipe.ingredients.slice(0,4).map(ing=>`${ing.n}: ${this.prepNoteFor(ing)}`).join(' ');
+    const keyIngredients=recipe.ingredients.slice(0,3).map(ing=>ing.n).join(', ');
     const rawProtein=recipe.ingredients.some(ing=>/raw|chicken|turkey|beef mince|pork|prawn/.test(ing.n.toLowerCase()));
-    const safety=rawProtein
-      ? 'For raw meat, poultry or prawns, use a separate board and knife if possible, wash your hands after touching them, and cook them through. Poultry and reheated leftovers should reach 75°C / 165°F or be steaming hot all the way through.'
-      : 'Wash your hands, rinse fresh produce where appropriate, and keep the bench clear so you can work safely and without rushing.';
+    const safety=rawProtein ? ' Use a clean board for raw protein; wash hands, and cook poultry or leftovers to 75°C / steaming hot.' : '';
     return [
-      `Before you start: Wash your hands, read all of the steps once, and place the ingredients, measuring tools, a chopping board, knife, pan or baking dish, and serving containers within reach. ${safety}`,
-      `Prepare the ingredients before heating the pan: ${prep}`,
-      'Set out a clean plate for cooked food and a spoon or spatula for stirring. Turn on the extractor fan if you have one, and keep a tea towel or oven gloves nearby for hot handles and trays.',
-      ...cookingSteps.map(step=>`${step} ${this.beginnerCueFor(step)}`),
-      'Before serving or packing: check that hot food is cooked through, taste carefully and adjust only if needed, then divide it into the planned portions. Refrigerate leftovers promptly in covered containers.'
+      `Quick start: Wash hands, gather the ingredients and equipment, and read the steps once.${safety}`,
+      `Prep: Get ${keyIngredients} ready as shown in the ingredient Prep notes before you heat the pan.`,
+      ...this.compactCookingSteps(cookingSteps).map(step=>`${step}${this.beginnerCueFor(step)?' '+this.beginnerCueFor(step):''}`),
+      'Finish: Check hot food is cooked through, portion it, then cool and refrigerate leftovers promptly.'
     ];
   }
   methodFor(recipe=this.curRec()) {
