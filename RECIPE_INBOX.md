@@ -912,6 +912,19 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 24. Unavailable Instagram Reel — Requested Savoury Snack
+
+- **Instagram source:** [Shared reel](https://www.instagram.com/reel/DbV1v86TRsR/)
+- **Shared URL:** [instagram.com/reel/DbV1v86TRsR](https://www.instagram.com/reel/DbV1v86TRsR/?stkn=MWUzdXM4ZGc0YTdnbQ==)
+- **Intended role:** Savoury snack.
+- **Capture status:** Source-only. Instagram reports that the post is unavailable; the link exposes no creator, dish name, caption, ingredients, video frames, yield, or method. A targeted web search for the reel ID found no reliable repost or creator record.
+
+### Future-use note
+
+- Send a screenshot, saved reel, creator name, or a description of the dish and I’ll research and capture it properly. Since the dish cannot be identified from the available source, creating a “similar” recipe would be pure culinary fan fiction. Oh no.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -953,6 +966,6 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 - **Fully captured recipes saved:** 17 — including 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Research-backed Sundō adaptations saved:** 0.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
-- **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
+- **Video-only / source-only collections saved:** 5 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, Naomi Seng’s Healthy Carrot Cake, and an unavailable requested savoury Instagram reel (reel ID `DbV1v86TRsR`) lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes are intentionally kept distinct until deliberately selected.
 - **Last updated:** 2026-09-17
