@@ -831,36 +831,37 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
-## 22. 35 g Protein Ham & Cheese Bites — Sundō Research-Backed Adaptation
+## 22. 35 g Protein Ham & Cheese Bites
 
-- **Instagram source:** [Carousel by @socialwithcl / Carolina](https://www.instagram.com/p/DWnNns9k3dp/)
-- **Shared URL:** [instagram.com/p/DWnNns9k3dp](https://www.instagram.com/p/DWnNns9k3dp/?stkn=MTh6NmpuYXMxNWdwZQ==)
-- **Comparable recipe source:** [Ham & Cheese Savoury Muffins — Eats Amazing](https://www.eatsamazing.co.uk/family-friendly-recipes/recipes-for-lunch-boxes/lunchbox-recipe-ham-cheese-savoury-muffins)
+- **TikTok source:** [Photo carousel by @keto.core / KetoCore | Health Coach](https://www.tiktok.com/@keto.core/photo/7635747618437696770)
+- **Shared URL:** [vt.tiktok.com/ZSqpFtUTg](https://vt.tiktok.com/ZSqpFtUTg/)
 - **Type:** Savoury snack, breakfast, or lunchbox bite.
-- **Capture status:** Research-backed Sundō adaptation. The Instagram carousel confirms the dish name and **1 cup plain flour (120 g)**; the remaining original recipe cards were inaccessible. This practical whole-egg batch doubles that visible flour quantity, then transparently adapts the batter structure, ham-and-cheese proportions, yield, and method from Eats Amazing’s published 10-muffin recipe.
-- **Creator’s stated claim:** “35g protein ham & cheese bites.” The original post does not state whether 35 g applies per bite, serving, or full batch, so no protein claim is carried into this adaptation.
-- **Adapted yield:** 20 standard muffins or 40 mini bites.
+- **Capture status:** Fully captured from the creator’s 11-slide TikTok photo carousel.
+- **Yield:** 4 bites.
+- **Creator’s stated nutrition (total of 4 bites):** 675 calories; 90 g carbohydrate, 15.5 g fat, and 35.6 g protein. The caption describes the recipe as “35g protein.”
 
-### Sundō adaptation ingredients
+### Creator’s ingredients
 
-- 240 g self-raising flour (two lots of the 120 g quantity visible in the original carousel)
-- 170 g mature cheddar, grated
-- 54 g cooked ham, finely chopped
-- 190 ml milk
-- 1 egg
-- 54 ml olive oil, plus a little extra for the tin
+- 1 cup plain flour (120 g)
+- 60 g Greek yogurt (about 1/4 cup)
+- 60 g cottage cheese (about 1/4 cup)
+- 30 g mozzarella cheese, for the first topping layer
+- 10 g ham
+- 10 g mozzarella cheese, for the final topping layer
+- Optional: olive-oil spray before baking and a little olive oil to drizzle after baking
 
-### Sundō adaptation method
+### Creator’s method
 
-1. Heat the oven to **200°C conventional**. Lightly oil 20 standard muffin wells (two trays, if needed) or 40 mini-muffin wells.
-2. Sift the flour into a bowl. Reserve about 40 g of the cheese for topping; stir the remaining cheese and ham through the flour.
-3. Whisk the milk, egg, and olive oil together. Stir into the dry ingredients just until combined.
-4. Divide between the prepared wells and top with the reserved cheese.
-5. Bake standard muffins for about **20 minutes**, or mini bites for **12–15 minutes**, until golden and cooked through. Cool on a rack.
+1. Mix the flour, Greek yogurt, and cottage cheese until a dough forms.
+2. Divide into 4 even balls and place on a parchment-lined baking tray.
+3. Press each ball down.
+4. Evenly add 30 g mozzarella cheese, then add the ham and evenly top with the final 10 g mozzarella.
+5. Bake at **200°C / 400°F for 20–30 minutes**.
+6. Optionally, lightly spray with olive oil before baking and drizzle with olive oil after baking.
 
-### Provenance and future-use note
+### Future-use note
 
-- The adaptation deliberately retains the one visible original quantity (120 g flour); all other quantities, yield, and method are source-backed adaptation details, **not** claimed as @socialwithcl’s unreleased recipe. No nutrition has been calculated. Confirm the intended serving role and profile-responsive portions before selecting it for a live plan.
+- This replaces the prior research-backed adaptation from a different Instagram source. The TikTok creator’s recipe is now saved as the primary record; it remains outside the live plan until selected. Before adding it to a live week, use saved profiles to determine servings and practical shopping quantities.
 
 ---
 
@@ -949,9 +950,9 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 16 — including Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
-- **Research-backed Sundō adaptations saved:** 1 — 35 g Protein Ham & Cheese Bites uses a practical whole-egg double batch of the original post’s known 120 g flour quantity and Eats Amazing’s published ham-and-cheese savoury-muffin technique; it is explicitly not presented as the original creator’s unreleased recipe.
+- **Fully captured recipes saved:** 17 — including 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Research-backed Sundō adaptations saved:** 0.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
 - **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
-- **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
-- **Last updated:** 2026-09-16
+- **Recipes added to the current live plan:** 0 — inbox recipes are intentionally kept distinct until deliberately selected.
+- **Last updated:** 2026-09-17
