@@ -951,6 +951,46 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
+## 25. Creamy Banana Overnight Oats with Miso Date Caramel
+
+- **Instagram source:** [Reel by @emilyontoast / Emily Lloyd](https://www.instagram.com/reel/DdZNmSCgAWk/)
+- **Creator’s recipe page:** [Creamy Banana Overnight Oats with Miso Date Caramel — The toast chronicles](https://emilyontoast.substack.com/p/creamy-banana-overnight-oats-with)
+- **Type:** Sweet make-ahead breakfast pot.
+- **Capture status:** Fully captured from the creator’s linked public Substack recipe page after the Instagram caption directed viewers there.
+- **Yield:** 3 generous portions.
+- **Creator’s stated nutrition claim:** The Instagram caption describes the breakfast pots as having 29 g protein and 12 g fibre; the caption does not state whether those figures are per portion or for the full batch. No nutrition is stated on the recipe page.
+
+### Creator’s ingredients (for 3 generous portions)
+
+- 2 ripe bananas, preferably very ripe
+- 100 g oats
+- 40 g chia seeds
+- 450 g thick Greek yogurt or skyr (the creator specifies one with around 10 g protein per 100 g)
+- 300 ml milk
+- 100 g pitted dates
+- 1 tsp white miso, plus more to taste if wanted
+- Pinch of salt
+- Optional: honey, to taste
+
+### Creator’s method
+
+1. In a large mixing bowl, mash the bananas. Add the oats, chia seeds, Greek yogurt or skyr, milk, and a pinch of salt; mix well. Leave the mixture to sit and thicken while making the date caramel.
+2. Boil a kettle. Put the dates in a bowl, pour over 150 ml boiling water, and add 1 tsp white miso. Leave for 5 minutes.
+3. Mash the soaked dates with a fork until fairly smooth, or blend. Taste and add more miso if desired.
+4. Taste the oat mixture and, if desired, add a little honey depending on the sweetness of the bananas.
+5. Divide the date caramel between 3 small lidded containers as the bottom layer. Top with the banana-oat mixture, cover, and refrigerate for up to 5 days.
+
+### Useful overlap
+
+- Bananas, oats, chia, Greek yogurt or skyr, milk, dates, and honey overlap with overnight-oat, chia-pot, yogurt-cup, smoothie, and breakfast-bake weeks.
+- White miso is the distinct pantry ingredient; it can also support Japanese-inspired savoury meals, so it is not a one-use purchase when planned alongside those dishes.
+
+### Future-use note
+
+- This is a confirmed creator recipe and remains outside the live plan until selected. Before adding it to a live week, confirm a practical profile-responsive batch size and whether the creator’s Instagram protein/fibre claim applies per pot or to the whole batch; do not use that claim for Sundō nutrition calculations until its basis is clear.
+
+---
+
 ## Cross-recipe ingredient map
 
 ### Strong shared base
@@ -989,7 +1029,7 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 18 — including Everything-Bagel Greek-Yogurt Bagels, 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Fully captured recipes saved:** 19 — including Creamy Banana Overnight Oats with Miso Date Caramel, Everything-Bagel Greek-Yogurt Bagels, 35 g Protein Ham & Cheese Bites, Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
 - **Research-backed Sundō adaptations saved:** 0.
 - **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
 - **Video-only / source-only collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
