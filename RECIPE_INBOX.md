@@ -831,45 +831,83 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ---
 
-## 22. 35 g Protein Ham & Cheese Bites
+## 22. 35 g Protein Ham & Cheese Bites — Sundō Research-Backed Adaptation
 
 - **Instagram source:** [Carousel by @socialwithcl / Carolina](https://www.instagram.com/p/DWnNns9k3dp/)
 - **Shared URL:** [instagram.com/p/DWnNns9k3dp](https://www.instagram.com/p/DWnNns9k3dp/?stkn=MTh6NmpuYXMxNWdwZQ==)
-- **Type:** Likely savoury protein snack or breakfast bite; meal role is not specified by the creator.
-- **Capture status:** Partially captured. The public caption identifies the dish and a carousel ingredient slide was accessible, but the remaining carousel recipe cards could not be reliably retrieved.
-- **Creator’s stated claim:** “35g protein ham & cheese bites.” The post does not specify whether 35 g applies per bite, per serving, or to the full batch.
+- **Comparable recipe source:** [Ham & Cheese Savoury Muffins — Eats Amazing](https://www.eatsamazing.co.uk/family-friendly-recipes/recipes-for-lunch-boxes/lunchbox-recipe-ham-cheese-savoury-muffins)
+- **Type:** Savoury snack, breakfast, or lunchbox bite.
+- **Capture status:** Research-backed Sundō adaptation. The Instagram carousel confirms the dish name and **1 cup plain flour (120 g)**; the remaining original recipe cards were inaccessible. This practical whole-egg batch doubles that visible flour quantity, then transparently adapts the batter structure, ham-and-cheese proportions, yield, and method from Eats Amazing’s published 10-muffin recipe.
+- **Creator’s stated claim:** “35g protein ham & cheese bites.” The original post does not state whether 35 g applies per bite, serving, or full batch, so no protein claim is carried into this adaptation.
+- **Adapted yield:** 20 standard muffins or 40 mini bites.
 
-### Confirmed source details
+### Sundō adaptation ingredients
 
-- 1 cup plain flour (120 g), visible on an accessible carousel slide.
-- The creator’s public caption calls them “so easy to make,” but gives no written ingredient list, yield, method, or nutrition breakdown.
+- 240 g self-raising flour (two lots of the 120 g quantity visible in the original carousel)
+- 170 g mature cheddar, grated
+- 54 g cooked ham, finely chopped
+- 190 ml milk
+- 1 egg
+- 54 ml olive oil, plus a little extra for the tin
 
-### Future-use note
+### Sundō adaptation method
 
-- Do not calculate portions, nutrition, or shopping quantities from this record. Please send a screenshot/video of the remaining recipe cards or the creator’s direct recipe link if you want this developed into a confirmed Sundō recipe.
+1. Heat the oven to **200°C conventional**. Lightly oil 20 standard muffin wells (two trays, if needed) or 40 mini-muffin wells.
+2. Sift the flour into a bowl. Reserve about 40 g of the cheese for topping; stir the remaining cheese and ham through the flour.
+3. Whisk the milk, egg, and olive oil together. Stir into the dry ingredients just until combined.
+4. Divide between the prepared wells and top with the reserved cheese.
+5. Bake standard muffins for about **20 minutes**, or mini bites for **12–15 minutes**, until golden and cooked through. Cool on a rack.
+
+### Provenance and future-use note
+
+- The adaptation deliberately retains the one visible original quantity (120 g flour); all other quantities, yield, and method are source-backed adaptation details, **not** claimed as @socialwithcl’s unreleased recipe. No nutrition has been calculated. Confirm the intended serving role and profile-responsive portions before selecting it for a live plan.
 
 ---
 
 ## 23. Feta, Chive & Carrot Savoury Muffins
 
 - **Instagram source:** [Reel by @ournourishingtable / Sarah Bell](https://www.instagram.com/reel/DZGIaDizVJw/)
-- **Shared URL:** [instagram.com/reel/DZGIaDizVJw](https://www.instagram.com/reel/DZGIaDizVJw/?stkn=MTNsOThpam9qbGR1eg==)
+- **Creator’s recipe page:** [Feta, Chive & Carrot Savoury Muffins — Our Nourishing Table](https://ournourishingtable.com/carrot-savoury-muffins/)
 - **Type:** Gluten-free high-protein snack or grab-and-go breakfast muffin.
-- **Capture status:** Source-only / recipe link required. The creator identifies the muffin flavour and dietary positioning but asks viewers to comment “recipe” to receive the recipe link; no ingredient list, quantities, yield, method, or nutrition figures were public in the accessible post.
+- **Capture status:** Fully captured from the creator’s public recipe page, located by researching the dish name after the Instagram post directed viewers to request a link.
+- **Yield:** 12 muffins.
+- **Creator’s stated nutrition (per muffin):** 238 kcal, 8 g protein, 16 g carbohydrate, 17 g fat, and 3 g fibre.
 
-### Creator-confirmed details
+### Creator’s ingredients
 
-- Feta, chive, and carrot savoury muffins.
-- Described by the creator as completely gluten-free and a source of protein, fibre, and healthy fats.
-- Positioned as a between-meal snack and grab-and-go breakfast option.
+- 3 large carrots, grated (approximately 350 g or 2 firmly packed cups)
+- 3 large eggs
+- 1/3 cup soy milk
+- 1/3 cup extra-virgin olive oil
+- 1 large brown onion, grated and squeezed dry
+- 1/3 cup sun-dried tomatoes, roughly chopped
+- 1 cup almond flour
+- 1/2 cup buckwheat flour
+- 1/2 cup tapioca flour
+- 1 1/2 tsp baking powder
+- 1/2 tsp finely ground sea salt
+- 200 g firm feta, roughly crumbled
+- 1 tbsp fresh chives, finely chopped
+- 1 tbsp sesame seeds
+- 1 tbsp sunflower seeds
+- 1 tbsp pepitas
 
-### Retrieval note
+### Creator’s method
 
-- I checked the accessible reel caption and attempted to locate a public direct recipe from the creator; the supplied post points only to the comment-to-receive link workflow and the creator profile required login. No credible direct recipe page was retrievable, so no adaptation has been invented.
+1. Heat the oven to **200°C conventional / 356°F** and line a 12-hole muffin tin.
+2. In a large bowl, combine the carrot, eggs, soy milk, olive oil, onion, sun-dried tomatoes, almond flour, buckwheat flour, tapioca flour, and salt. Sift in the baking powder and stir until well combined.
+3. Fold in the feta and chives.
+4. Mix the sesame, sunflower, and pumpkin seeds. Divide batter between the liners and scatter about 1 tsp mixed seeds over each muffin.
+5. Bake for **35 minutes**, or until golden and cooked through. Cool on a rack.
+
+### Useful overlap
+
+- Carrots, eggs, feta, onion, chives, olive oil, and seeds can overlap with savoury egg breakfasts, salads, vegetable sides, and Mediterranean-style lunches or dinners.
+- Almond flour, buckwheat flour, tapioca flour, sun-dried tomatoes, and the seed trio are the more recipe-specific items.
 
 ### Future-use note
 
-- Send the creator’s recipe link, an automated DM reply, or a screenshot/transcript of the ingredients and method to make this usable for a future Sundō plan. Until then, it stays source-only and out of portions, nutrition, and shopping calculations.
+- This is a confirmed creator recipe, but it remains outside the live plan until selected. At that point, use the saved profiles to determine servings and scale practical shopping quantities; do not treat the creator’s per-muffin nutrition as a profile-specific meal allocation.
 
 ---
 
@@ -911,8 +949,9 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 
 ## Inbox status
 
-- **Fully captured recipes saved:** 15 — including Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
-- **Partially captured recipes / collections saved:** 5 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars, Cinnamon Roll Bites, and 35 g Protein Ham & Cheese Bites also need yield and/or complete recipe details.
-- **Video-only / menu-only source collections saved:** 5 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, Naomi Seng’s Healthy Carrot Cake, and Feta, Chive & Carrot Savoury Muffins lack enough detail for live-plan calculations.
+- **Fully captured recipes saved:** 16 — including Feta, Chive & Carrot Savoury Muffins, Savoury Rice Paper Croissants, 80/20 Hainanese Chicken and Rice, Healthy Cinnamon Roll Muffins, Salted Date & Banana Chia Pots, Sweet Potato Brownies, High-Protein Carrot Cake, High-Protein Sichuan Mouthwatering Chicken, Frozen Instant Hot-Pot Meal-Prep Kit, Crab-Tofu-Corn Fritters, and Five-Serving Beef Gochujang Crispy Rice Meal Prep.
+- **Research-backed Sundō adaptations saved:** 1 — 35 g Protein Ham & Cheese Bites uses a practical whole-egg double batch of the original post’s known 120 g flour quantity and Eats Amazing’s published ham-and-cheese savoury-muffin technique; it is explicitly not presented as the original creator’s unreleased recipe.
+- **Partially captured recipes / collections saved:** 4 — Pumpkin Overnight Oats and Dense Bean Salad have incomplete preparation or yield details; the Fudge Brownie Cheesecake Bars and Cinnamon Roll Bites also need yield and/or complete recipe details.
+- **Video-only / menu-only source collections saved:** 4 — the @stephinguyen weekly lineup, Laurel Anisa’s Chicken & Rice Rotation, Chocolate Orange Truffles, and Naomi Seng’s Healthy Carrot Cake lack enough detail for live-plan calculations.
 - **Recipes added to the current live plan:** 0 — inbox recipes and Sundō adaptations are intentionally kept distinct until deliberately selected.
 - **Last updated:** 2026-09-16
