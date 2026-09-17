@@ -837,25 +837,25 @@ Yield and nutrition are unprovided. Confirm portions before adding to a live mea
 - **Shared URL:** [vt.tiktok.com/ZSqpFtUTg](https://vt.tiktok.com/ZSqpFtUTg/)
 - **Type:** Savoury snack, breakfast, or lunchbox bite.
 - **Capture status:** Fully captured from the creator’s 11-slide TikTok photo carousel.
-- **Yield:** 4 bites.
-- **Creator’s stated nutrition (total of 4 bites):** 675 calories; 90 g carbohydrate, 15.5 g fat, and 35.6 g protein. The caption describes the recipe as “35g protein.”
+- **Yield:** 8 bites — a practical doubled batch for Cynthia and Gabriel. The creator’s original recipe makes 4 bites.
+- **Creator’s stated nutrition (original 4-bite batch):** 675 calories; 90 g carbohydrate, 15.5 g fat, and 35.6 g protein. The caption describes the original recipe as “35g protein.” Nutrition has not been recalculated for the scaled batch.
 
-### Creator’s ingredients
+### Sundō 8-bite batch ingredients
 
-- 1 cup plain flour (120 g)
-- 60 g Greek yogurt (about 1/4 cup)
-- 60 g cottage cheese (about 1/4 cup)
-- 30 g mozzarella cheese, for the first topping layer
-- 10 g ham
-- 10 g mozzarella cheese, for the final topping layer
+- 2 cups plain flour (240 g)
+- 120 g Greek yogurt (about 1/2 cup)
+- 120 g cottage cheese (about 1/2 cup)
+- 60 g mozzarella cheese, for the first topping layer
+- 20 g ham
+- 20 g mozzarella cheese, for the final topping layer
 - Optional: olive-oil spray before baking and a little olive oil to drizzle after baking
 
-### Creator’s method
+### Sundō 8-bite batch method
 
 1. Mix the flour, Greek yogurt, and cottage cheese until a dough forms.
-2. Divide into 4 even balls and place on a parchment-lined baking tray.
+2. Divide into 8 even balls and place on a parchment-lined baking tray.
 3. Press each ball down.
-4. Evenly add 30 g mozzarella cheese, then add the ham and evenly top with the final 10 g mozzarella.
+4. Evenly add 60 g mozzarella cheese, then add the ham and evenly top with the final 20 g mozzarella.
 5. Bake at **200°C / 400°F for 20–30 minutes**.
 6. Optionally, lightly spray with olive oil before baking and drizzle with olive oil after baking.
 
