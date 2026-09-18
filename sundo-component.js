@@ -191,7 +191,7 @@ class Component extends DCLogic {
     const replace=(name, ingredients, method)=>{ const r=this.recipes[name]; this.recipes[name]={...r,cuisine:r.cuisine.replace('Five-day','Thursday–Friday'),base:4,weeklyReferenceDays:2,ingredients,method}; };
     replace('Salted Date & Banana Chia Pots', [{n:'Greek yogurt',q:4,u:'cups',cat:'protein',prot:40},{n:'Chia seeds',q:4,u:'tbsp',cat:'carb',prot:5},{n:'Rolled oats',q:4,u:'tbsp',cat:'carb',prot:2},{n:'Bananas',q:2,u:'',cat:'veg',prot:1},{n:'Medjool dates',q:4,u:'',cat:'carb',prot:1},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:6},{n:'Cashew butter',q:4,u:'tbsp',cat:'protein',prot:6},{n:'Cinnamon',q:2,u:'tsp',cat:'sauce',prot:0}], ['This Thursday–Friday batch makes four chia pots.','Blend the banana, dates, Greek yogurt, chia, oats, cinnamon, and milk until smooth; divide between four labelled jars.','Top with cashew butter and a pinch of flaky salt, then refrigerate overnight.']);
     replace('Healthy Cinnamon Roll Protein Muffins', [{n:'Almond flour',q:1,u:'cup',cat:'carb',prot:24},{n:'Vanilla protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Eggs',q:2,u:'',cat:'protein',prot:12},{n:'Greek yogurt',q:1,u:'cup',cat:'protein',prot:20},{n:'Maple syrup',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Coconut oil',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Vanilla extract',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Baking powder',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Cinnamon',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Brown sugar',q:2,u:'tbsp',cat:'sauce',prot:0}], ['This Thursday–Friday Sundō batch makes four cinnamon-roll protein muffins.','Heat oven to 175°C / 350°F. Whisk the ingredients, swirl the cinnamon topping over the batter, and bake until firm and lightly golden.','Cool fully, then pack one labelled muffin for each Thursday and Friday snack.']);
-    replace('High-Protein Carrot Cake Squares', [{n:'Eggs',q:2,u:'',cat:'protein',prot:12},{n:'Greek yogurt',q:1,u:'cup',cat:'protein',prot:20},{n:'Milk',q:1,u:'cup',cat:'sauce',prot:6},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:20},{n:'Vanilla protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Carrots',q:2,u:'',cat:'veg',prot:2},{n:'Coconut oil',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Baking powder',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Baking soda',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Cinnamon',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Ground ginger',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Sweetener',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Light cream cheese',q:1,u:'cup',cat:'protein',prot:16}], ['This Thursday–Friday bake makes four carrot-cake squares with 2 eggs. Heat oven to 175°C / 350°F and line a small tin.','Blend oats into flour, then mix with the remaining ingredients and finely grated carrots. Bake 28–30 minutes and cool completely.','Spread with the cream-cheese topping, then cut into four labelled dessert squares.']);
+    replace('High-Protein Carrot Cake Squares', [{n:'Eggs',q:2,u:'',cat:'protein',prot:12},{n:'Greek yogurt',q:1,u:'cup',cat:'protein',prot:20},{n:'Milk',q:1,u:'cup',cat:'sauce',prot:6},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:20},{n:'Vanilla protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Carrots',q:2,u:'',cat:'veg',prot:2},{n:'Coconut oil',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Baking powder',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Baking soda',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Cinnamon',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Ground ginger',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Sweetener',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Light cream cheese',q:1,u:'cup',cat:'protein',prot:16}], ['Combine the cake ingredients. Bake at 350°F / 175°C for 28–30 minutes, then cool.','Mix the icing ingredients and spread over the cooled cake.']);
     replace('Turkey Bean Vegetable Pasta', [{n:'Turkey mince',q:600,u:'g',cat:'protein',prot:66,short:'Turkey'},{n:'Wholewheat pasta',q:4,u:'cups',cat:'carb',prot:23},{n:'Cannellini beans',q:2,u:'cans',cat:'protein',prot:16},{n:'Courgette',q:2,u:'',cat:'veg',prot:2},{n:'Cherry tomatoes',q:2,u:'punnets',cat:'veg',prot:3},{n:'Tomato passata',q:4,u:'cups',cat:'sauce',prot:4}], ['Cook pasta until just tender.','Brown the 600 g turkey mince, then cook courgette and tomatoes until softened.','Add passata and beans, simmer 8 minutes, toss with pasta, and divide into four Thursday–Friday lunch portions.']);
     replace('Turkey Chilli Loaded Potatoes', [{n:'Turkey mince',q:500,u:'g',cat:'protein',prot:99,short:'Turkey'},{n:'Potatoes',q:8,u:'',cat:'carb',prot:14},{n:'Kidney beans',q:2,u:'cans',cat:'protein',prot:28},{n:'Chopped tomatoes',q:2,u:'cans',cat:'veg',prot:6},{n:'Red pepper',q:2,u:'',cat:'veg',prot:1},{n:'Greek yogurt',q:2,u:'cups',cat:'protein',prot:12}], ['Bake potatoes at 210°C until tender.','Brown the 500 g turkey with pepper, add beans and tomatoes, then simmer until thick.','Split potatoes and fill with chilli; top with yogurt and divide into four Thursday–Friday dinner portions.']);
     return true;
@@ -373,7 +373,7 @@ class Component extends DCLogic {
     ];
   }
   methodFor(recipe=this.curRec()) {
-    return this.beginnerMethodSteps(recipe, this.coreMethodFor(recipe));
+    return this.coreMethodFor(recipe);
   }
   updatePerson(key, patch) {
     const people = {...this.state.people, [key]: {...this.state.people[key], ...patch}};
@@ -1212,9 +1212,7 @@ class Component extends DCLogic {
       const chosenUnit=(st.ingredientUnits||{})[unitKey]||ing.u;
       const amount=unitOptions.includes(chosenUnit) ? this.displayIngredientQuantity(ing,total,chosenUnit) : fmtIngredient(total,ing.u);
       return e('div',{key:i,style:{display:'flex',alignItems:'center',padding:'9px 4px',borderBottom:'1px solid '+C.line}},
-        e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},
-          e('span',{style:{display:'block'}},ing.n),
-          e('span',{style:{display:'block',fontSize:11.5,lineHeight:1.35,color:C.mut,marginTop:2}},'Prep: '+this.prepNoteFor(ing))),
+        e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},ing.n),
         e('span',{style:{flex:1,minWidth:0,textAlign:'right',display:'flex',alignItems:'flex-end',flexDirection:'column',gap:4}},
           e('span',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,fontWeight:600,color:C.sumi,whiteSpace:'nowrap'}},amount),
           unitOptions.length>1?e('select',{value:chosenUnit,'aria-label':'Choose unit for '+ing.n,onChange:(ev)=>this.setState({ingredientUnits:{...(st.ingredientUnits||{}),[unitKey]:ev.target.value}}),style:{maxWidth:'100%',appearance:'auto',border:'1px solid rgba(56,44,36,.18)',borderRadius:9,background:'#fff',color:'#6b5d50',cursor:'pointer',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:10.5,fontWeight:600,padding:'4px 6px'}},
@@ -1232,15 +1230,7 @@ class Component extends DCLogic {
       e('div',{style:{display:'flex',gap:10,marginBottom:16}}, personHead(me,sCyn,spCyn), personHead(partner,sGab,spGab)),
       e('div',{style:{display:'flex',padding:'0 4px 8px',fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.06em',color:C.mut}},
         e('span',{style:{flex:2}},'INGREDIENT'), e('span',{style:{flex:1,textAlign:'right'}},totalLabel)),
-      catMeta.map(cat=>{
-        const items = r.ingredients.filter(ing=>ing.cat===cat.id);
-        if (!items.length) return null;
-        return e('div',{key:cat.id},
-          e('div',{style:{display:'flex',alignItems:'center',gap:7,padding:'12px 4px 4px'}},
-            e('span',{style:{width:7,height:7,borderRadius:'50%',background:cat.color}}),
-            e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.1em',color:'#6b5d50'}},cat.label)),
-          items.map(row));
-      }),
+      r.ingredients.map(row),
       (()=>{const nm=this.resolveRecipe?this.resolveRecipe(st.currentRecipe):st.currentRecipe;const g=this.gutNotes[nm];
         return g?e('div',{key:'gut',style:{marginTop:14,background:'#EDF0E0',borderRadius:14,padding:'12px 14px'}},
           e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.12em',color:'#7C8A5E',marginBottom:5}},'GOOD FOR YOUR GUT'),

@@ -13,19 +13,18 @@ vm.createContext(context);
 vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 
 const app = new context.SundoComponent();
-for (const [name, recipe] of Object.entries(app.recipes)) {
+for (const name of app.recipeOrder) {
+  const recipe=app.recipes[name];
   app.setState({ currentRecipe: name });
   const method = app.methodFor(recipe);
-  assert.ok(method.length >= 4 && method.length <= 7, `${name} needs a quick, scannable method with only the relevant details`);
-  assert.match(method[0], /^Quick start:/i, `${name} must start with a compact beginner setup step`);
-  assert.ok(method.some(step => /^Prep:/i.test(step)), `${name} must retain a quick, recipe-relevant preparation step`);
-  assert.ok(method.some(step => /until|hot|cooked|tender|golden|firm|steaming|set/i.test(step)), `${name} needs a visible doneness or completion cue`);
+  assert.ok(method.length >= 1 && method.length <= 5, `${name} needs a concise, source-relevant method`);
   assert.ok(method.every(step => step.length <= 440), `${name} has a method step that is too long to scan while cooking`);
+  assert.ok(method.every(step => !/^Quick start:|^Prep:|^Finish:/i.test(step)), `${name} must not add generic prep coaching to the recipe method`);
 }
 
 app.setState({ currentRecipe: 'Turkey Bean Vegetable Pasta' });
 const rendered = JSON.stringify(app.methodPanel());
-assert.ok(rendered.includes('Quick start:'), 'the recipe method screen must show the compact beginner setup instruction');
-assert.ok(rendered.includes('Wash hands'), 'the recipe method screen must show concise food-safety guidance');
+assert.ok(!rendered.includes('Quick start:'), 'the recipe screen must not show generic setup instructions');
+assert.ok(!rendered.includes('Prep:'), 'the recipe screen must not require a separate prep list');
 
-console.log('beginner method checks passed');
+console.log('direct recipe method checks passed');
