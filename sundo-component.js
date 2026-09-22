@@ -6,13 +6,13 @@ class Component extends DCLogic {
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E', Dessert:'#9B7E9B' };
   // Three actual prep days: each slot is one six-portion batch for Wednesday through Friday.
   options = {
-    Breakfast:Array(3).fill('Salted Date & Banana Chia Pots'),
-    Snack:Array(3).fill('Healthy Cinnamon Roll Protein Muffins'),
-    Lunch:Array(3).fill('Turkey Bean Vegetable Pasta'),
-    Dinner:Array(3).fill('Turkey Chilli Loaded Potatoes'),
-    Dessert:Array(3).fill('High-Protein Carrot Cake Squares'),
+    Breakfast:Array(3).fill('Pumpkin Protein Overnight Oats'),
+    Snack:Array(3).fill('Apple & Yogurt'),
+    Lunch:Array(3).fill('Beef Bulgogi Bibimbap'),
+    Dinner:Array(3).fill('Ginger Beef, Mushroom & Spinach Rice Soup'),
+    Dessert:Array(3).fill('Matcha Yogurt Cup'),
   };
-  kcal = {'Salted Date & Banana Chia Pots':430,'Healthy Cinnamon Roll Protein Muffins':330,'Turkey Bean Vegetable Pasta':590,'Turkey Chilli Loaded Potatoes':620,'High-Protein Carrot Cake Squares':250};
+  kcal = {'Pumpkin Protein Overnight Oats':430,'Apple & Yogurt':220,'Beef Bulgogi Bibimbap':590,'Ginger Beef, Mushroom & Spinach Rice Soup':520,'Matcha Yogurt Cup':210};
   recipes = {
     'Berry Protein Overnight Oats': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:450, base:2, weeklyReference:true, weeklyReferenceDays:1, fixedPlan:true, protein:58, fiber:18, slug:'berry-protein-oats', portions:{Cynthia:{kcal:430,protein:28},Gabriel:{kcal:610,protein:36}}, ingredients:[{n:'Greek yogurt',q:2,u:'cups',cat:'protein',prot:40},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:16},{n:'Protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Mixed berries',q:2,u:'cups',cat:'veg',prot:3},{n:'Chia seeds',q:2,u:'tbsp',cat:'carb',prot:5},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:12}], method:['Stir the oats, chia, protein powder and milk until smooth.','Fold through half the berries, then refrigerate in two jars overnight.','Top with Greek yogurt and the remaining berries before eating.'] },
     'Egg & Bean Breakfast Wraps': { cuisine:'Breakfast · Prep ahead', time:'20 min', kcal:465, base:2, fixedPlan:true, protein:56, fiber:16, slug:'egg-bean-wraps', ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Wholemeal wraps',q:2,u:'',cat:'carb',prot:12},{n:'Baby spinach',q:100,u:'g',cat:'veg',prot:3},{n:'Salsa',q:100,u:'g',cat:'sauce',prot:1},{n:'Cheddar',q:40,u:'g',cat:'protein',prot:10}], method:['Warm the beans with salsa until thick.','Scramble the eggs and wilt in the spinach.','Fill each wrap with bean mixture, eggs and cheese; roll tightly and toast seam-side down.'] },
@@ -189,15 +189,14 @@ class Component extends DCLogic {
   // then distributed by the saved profile targets; they are not five-day leftovers.
   threeDayBatches = (() => {
     const replace=(name, ingredients, method)=>{ const r=this.recipes[name]; this.recipes[name]={...r,cuisine:r.cuisine.replace('Five-day','Wednesday–Friday'),base:6,weeklyReferenceDays:3,ingredients,method}; };
-    replace('Salted Date & Banana Chia Pots', [{n:'Greek yogurt',q:6,u:'cups',cat:'protein',prot:40},{n:'Chia seeds',q:6,u:'tbsp',cat:'carb',prot:5},{n:'Rolled oats',q:6,u:'tbsp',cat:'carb',prot:2},{n:'Bananas',q:3,u:'',cat:'veg',prot:1},{n:'Medjool dates',q:6,u:'',cat:'carb',prot:1},{n:'Milk',q:3,u:'cups',cat:'sauce',prot:6},{n:'Cashew butter',q:6,u:'tbsp',cat:'protein',prot:6},{n:'Cinnamon',q:3,u:'tsp',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six chia pots.','Blend the banana, dates, Greek yogurt, chia, oats, cinnamon, and milk until smooth; divide between six labelled jars.','Top with cashew butter and a pinch of flaky salt, then refrigerate overnight.']);
-    replace('Healthy Cinnamon Roll Protein Muffins', [{n:'Almond flour',q:1.5,u:'cups',cat:'carb',prot:24},{n:'Vanilla protein powder',q:3,u:'scoops',cat:'protein',prot:48},{n:'Eggs',q:3,u:'',cat:'protein',prot:12},{n:'Greek yogurt',q:1.5,u:'cups',cat:'protein',prot:20},{n:'Maple syrup',q:3,u:'tbsp',cat:'sauce',prot:0},{n:'Coconut oil',q:3,u:'tbsp',cat:'sauce',prot:0},{n:'Vanilla extract',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Baking powder',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Cinnamon',q:3,u:'tsp',cat:'sauce',prot:0},{n:'Brown sugar',q:3,u:'tbsp',cat:'sauce',prot:0}], ['This Wednesday–Friday Sundō batch makes six cinnamon-roll protein muffins.','Heat oven to 175°C / 350°F. Whisk the ingredients, swirl the cinnamon topping over the batter, and bake until firm and lightly golden.','Cool fully, then pack one labelled muffin for each Wednesday, Thursday and Friday snack.']);
-    replace('High-Protein Carrot Cake Squares', [{n:'Eggs',q:3,u:'',cat:'protein',prot:12},{n:'Greek yogurt',q:1.5,u:'cups',cat:'protein',prot:20},{n:'Milk',q:1.5,u:'cups',cat:'sauce',prot:6},{n:'Rolled oats',q:3,u:'cups',cat:'carb',prot:20},{n:'Vanilla protein powder',q:3,u:'scoops',cat:'protein',prot:48},{n:'Carrots',q:3,u:'',cat:'veg',prot:2},{n:'Coconut oil',q:3,u:'tbsp',cat:'sauce',prot:0},{n:'Baking powder',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Baking soda',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Cinnamon',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Ground ginger',q:1.5,u:'tsp',cat:'sauce',prot:0},{n:'Sweetener',q:3,u:'tbsp',cat:'sauce',prot:0},{n:'Light cream cheese',q:1.5,u:'cups',cat:'protein',prot:16}], ['Combine the cake ingredients. Bake at 350°F / 175°C for 28–30 minutes, then cool.','Mix the icing ingredients and spread over the cooled cake.']);
-    replace('Turkey Bean Vegetable Pasta', [{n:'Turkey mince',q:900,u:'g',cat:'protein',prot:66,short:'Turkey'},{n:'Wholewheat pasta',q:6,u:'cups',cat:'carb',prot:23},{n:'Cannellini beans',q:3,u:'cans',cat:'protein',prot:16},{n:'Courgette',q:3,u:'',cat:'veg',prot:2},{n:'Cherry tomatoes',q:3,u:'punnets',cat:'veg',prot:3},{n:'Tomato passata',q:6,u:'cups',cat:'sauce',prot:4}], ['Cook pasta until just tender.','Brown the 900 g turkey mince, then cook courgette and tomatoes until softened.','Add passata and beans, simmer 8 minutes, toss with pasta, and divide into six Wednesday–Friday lunch portions.']);
-    replace('Turkey Chilli Loaded Potatoes', [{n:'Turkey mince',q:750,u:'g',cat:'protein',prot:99,short:'Turkey'},{n:'Potatoes',q:12,u:'',cat:'carb',prot:14},{n:'Kidney beans',q:3,u:'cans',cat:'protein',prot:28},{n:'Chopped tomatoes',q:3,u:'cans',cat:'veg',prot:6},{n:'Red pepper',q:3,u:'',cat:'veg',prot:1},{n:'Greek yogurt',q:3,u:'cups',cat:'protein',prot:12}], ['Bake potatoes at 210°C until tender.','Brown the 750 g turkey with pepper, add beans and tomatoes, then simmer until thick.','Split potatoes and fill with chilli; top with yogurt and divide into six Wednesday–Friday dinner portions.']);
+    replace('Pumpkin Protein Overnight Oats', [{n:'Milk of choice',q:900,u:'ml',cat:'sauce',prot:45},{n:'Pumpkin purée',q:420,u:'g',cat:'veg',prot:8},{n:'Plain non-fat Greek yogurt',q:900,u:'g',cat:'protein',prot:150},{n:'Rolled oats',q:420,u:'g',cat:'carb',prot:83},{n:'Maple syrup',q:60,u:'ml',cat:'sauce',prot:0},{n:'Pumpkin pie spice',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Vanilla extract',q:1,u:'tsp',cat:'sauce',prot:0},{n:'Apples',q:6,u:'',cat:'veg',prot:0}], ['This Wednesday–Friday Sundō batch makes six pumpkin overnight-oat jars.','Whisk milk, pumpkin purée, maple syrup, pumpkin pie spice and vanilla. Fold in Greek yogurt and oats until smooth.','Divide between six labelled jars, refrigerate overnight, and add diced apple only when serving.']);
+    replace('Apple & Yogurt', [{n:'Apples',q:6,u:'',cat:'veg',prot:0},{n:'Greek yogurt',q:900,u:'g',cat:'protein',prot:60},{n:'Cinnamon',q:3,u:'tsp',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six apple-and-yogurt snack pots.','Dice the apples and divide the Greek yogurt between six labelled pots.','Keep apple separate until serving, then finish each snack with cinnamon.']);
+    replace('Matcha Yogurt Cup', [{n:'Greek yogurt',q:510,u:'g',cat:'protein',prot:17},{n:'Granola',q:6,u:'tbsp',cat:'carb',prot:2},{n:'Mixed berries',q:150,u:'g',cat:'veg',prot:1},{n:'Matcha powder',q:3,u:'tsp',cat:'sauce',prot:0},{n:'Honey',q:6,u:'tsp',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six matcha yogurt cups.','Sift matcha over the yogurt and swirl with honey. Divide between six labelled pots.','Pack berries and granola separately, then add them just before serving so the granola stays crisp.']);
+    ['Pumpkin Protein Overnight Oats','Apple & Yogurt','Matcha Yogurt Cup'].forEach(name=>{ this.recipes[name]={...this.recipes[name],batchPrep:true,batchReferenceProtein:64,weeklyReference:true,weeklyReferenceDays:3,fixedPlan:true}; });
     return true;
   })();
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Salted Date & Banana Chia Pots','Healthy Cinnamon Roll Protein Muffins','Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','High-Protein Carrot Cake Squares'];
+  recipeOrder = ['Pumpkin Protein Overnight Oats','Apple & Yogurt','Beef Bulgogi Bibimbap','Ginger Beef, Mushroom & Spinach Rice Soup','Matcha Yogurt Cup'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -224,15 +223,15 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Date-banana chia pots'},{t:'0:15',l:'Cinnamon muffins + carrot cake squares'},{t:'0:35',l:'Shared turkey batch'},{t:'1:05',l:'Pasta + chilli potatoes'},{t:'1:40',l:'Done'}];
+  timeline = [{t:'0:00',l:'Pumpkin overnight-oat jars'},{t:'0:15',l:'Apple-yogurt snack pots'},{t:'0:35',l:'Shared beef batch'},{t:'1:05',l:'Bibimbap + ginger rice soup'},{t:'1:40',l:'Done'}];
   prepSections = [
-    {id:'breakfast',title:'One Wednesday–Friday breakfast + bake session',time:'45 min + chill',color:'#C8754E',steps:['Make six salted date-and-banana chia pots: blend the batch ingredients, spoon into three Cynthia and three Gabriel jars, top with cashew butter and flaky salt, then chill overnight.','Bake one six-muffin batch of cinnamon-roll protein muffins and one six-square batch of carrot-cake squares while the chia pots chill. The carrot cake uses 3 eggs. Cool both completely before slicing or packing.','Pack the calculated Cynthia/Gabriel snack and dessert portions in labelled containers; add any extra banana slices only at breakfast time.']},
-    {id:'mains',title:'One shared Wednesday–Friday turkey prep',time:'55 min',color:'#8FB3C8',steps:['Brown one shared turkey batch of 1.65 kg, in two wide batches, until it reaches 75°C; reserve 900 g for pasta and 750 g for chilli.','Weigh and label the calculated Cynthia/Gabriel pasta and chilli allocations before adding either finish.','Finish lunch with courgette, cherry tomatoes, cannellini beans, passata and pasta; finish dinner with peppers, kidney beans, chopped tomatoes and baked potatoes.']},
-    {id:'veg',title:'One tomato, bean & vegetable prep',time:'20 min',color:'#7C8A5E',steps:['Rinse and drain the cannellini and kidney beans; halve cherry tomatoes, dice courgette and slice red peppers.','Batch-roast the potatoes until tender while the turkey browns. Cool cooked pasta promptly before boxing lunches.','The shared turkey, canned beans and tomato base keep the shop smaller while the pasta and chilli stay genuinely different meals.']},
-    {id:'store',title:'Three-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate all Wednesday–Friday portions promptly; this three-day window does not need freezing when cooled and chilled promptly.','Reheat turkey pasta and turkey chilli until steaming and at least 75°C; add yogurt just before serving.','Keep chia pots and baked snack/dessert portions chilled; pack muffins and carrot-cake squares airtight.']},
+    {id:'breakfast',title:'One Wednesday–Friday breakfast, snack & dessert session',time:'30 min + chill',color:'#C8754E',steps:['Make six pumpkin overnight-oat jars: three for Cynthia and three for Gabriel. Chill overnight and keep the diced apple separate until breakfast.','Make six apple-and-yogurt snack pots; keep diced apple separate and dust with cinnamon only when serving.','Make six matcha yogurt cups, packing the berries and granola separately so the topping stays crisp.']},
+    {id:'mains',title:'One shared Wednesday–Friday beef prep',time:'55 min',color:'#8FB3C8',steps:['Brown the calculated shared lean-beef batch in two wide batches until it reaches 75°C, then cool promptly in shallow containers.','Weigh and label Cynthia’s and Gabriel’s bibimbap and ginger-rice-soup allocations before adding either meal’s sauce or aromatics.','Finish lunch with mushrooms, rice, carrot, spinach, bean sprouts, egg and gochujang; finish dinner with mushrooms, ginger, stock, rice and spring onions.']},
+    {id:'veg',title:'One Korean-style vegetable prep',time:'20 min',color:'#7C8A5E',steps:['Slice mushrooms and onion; mince garlic; grate ginger; julienne carrots; wash spinach; rinse bean sprouts; and slice spring onions.','Cook the rice, sauté carrots, wilt spinach and blanch bean sprouts for the bibimbap containers. Keep gochujang separate until serving.','The beef, rice, mushrooms, spinach, carrots, garlic, ginger, soy sauce and spring onions deliberately overlap, so the shop stays compact.']},
+    {id:'store',title:'Three-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate all Wednesday–Friday portions promptly; this three-day window does not need freezing when cooled and chilled promptly.','Reheat bibimbap beef and ginger beef rice soup until steaming and at least 75°C; add gochujang and spring onions at serving time.','Keep overnight oats, apple-yogurt snack pots and matcha yogurt cups chilled; keep granola and apple separate until serving.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Salted Date & Banana Chia Pots', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Pumpkin Protein Overnight Oats', recipeGlow:false,
     people: {
       me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
       partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
@@ -303,7 +302,7 @@ class Component extends DCLogic {
       method:[
         `Cook one shared neutral beef batch: brown all ${fmt(totalRawGrams)} raw lean beef mince in two wide batches, without either recipe’s sauces, until it reaches 75°C.`,
         'Cool the cooked mince promptly in shallow containers, then weigh and label the four meal/person allocations below. Add each recipe’s aromatics and sauce only when assembling its lunch or dinner.',
-        `Refrigerate Wednesday and Thursday portions promptly; freeze Friday–Sunday portions on prep day and thaw the next day’s portion overnight in the refrigerator. Reheat each finished meal until steaming hot.`,
+        `Refrigerate the Wednesday–Friday portions promptly in shallow containers. Reheat each finished meal until steaming hot.`,
       ],
     };
   }
@@ -326,18 +325,18 @@ class Component extends DCLogic {
     if (recipe.planKind==='bulgogi') {
       const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'], shared=this.sharedBeefBatchPrep();
       return [
-        `This Wednesday–Sunday lunch batch makes five portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
+        `This Wednesday–Friday lunch batch makes three portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
         `Use the lunch-labelled portion from the shared neutral beef batch — ${fmt(shared.totalRawGrams)} raw lean beef mince is batch-cooked once across both lunches and dinners to 75°C. Sauté mushrooms, onion and garlic; warm the portioned beef through with soy sauce, oyster sauce, honey and sesame oil until glossy.`,
         'Cook the rice, sauté the carrots, wilt the spinach and blanch the bean sprouts. Keep each vegetable component separate for the bibimbap bowl texture.',
-        `Make five ${this.state.people.me.name} lunch containers with about ${fmt(c)} beef each and five ${this.state.people.partner.name} containers with about ${fmt(g)} beef each; divide rice and vegetables in the same proportion. Keep gochujang separate until serving.`,
+        `Make three ${this.state.people.me.name} lunch containers with about ${fmt(c)} beef each and three ${this.state.people.partner.name} containers with about ${fmt(g)} beef each; divide rice and vegetables in the same proportion. Keep gochujang separate until serving.`,
       ];
     }
     if (recipe.planKind==='riceSoup') {
       const c=totals.Cynthia.ingredients['Lean beef mince, raw'], g=totals.Gabriel.ingredients['Lean beef mince, raw'], shared=this.sharedBeefBatchPrep();
       return [
-        `This Wednesday–Sunday dinner batch makes five portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
+        `This Wednesday–Friday dinner batch makes three portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
         `Use the dinner-labelled portion from the shared neutral beef batch — ${fmt(shared.totalRawGrams)} raw lean beef mince is batch-cooked once across both lunches and dinners to 75°C. Add onion, garlic, ginger and mushrooms, then stock, soy sauce and rice vinegar; simmer for 10 minutes and wilt in spinach.`,
-        `Cook the rice separately. Make five ${this.state.people.me.name} dinners with about ${fmt(c)} beef each and five ${this.state.people.partner.name} dinners with about ${fmt(g)} beef each; add spring onions only when serving.`,
+        `Cook the rice separately. Make three ${this.state.people.me.name} dinners with about ${fmt(c)} beef each and three ${this.state.people.partner.name} dinners with about ${fmt(g)} beef each; add spring onions only when serving.`,
       ];
     }
     if (!recipe.planKind) return recipe.method;
@@ -443,9 +442,9 @@ class Component extends DCLogic {
     // The five-day cards intentionally reuse existing offline dish photography until their new shoots land.
     // This avoids broken images in installed/offline copies of the app.
     const planPhotos = {
-      'Salted Date & Banana Chia Pots':'matcha-chia', 'Healthy Cinnamon Roll Protein Muffins':'mango-oats',
-      'Turkey Bean Vegetable Pasta':'chicken-cabbage-carrot-stir-fry',
-      'Turkey Chilli Loaded Potatoes':'katsu-curry', 'High-Protein Carrot Cake Squares':'matcha-yogurt',
+      'Pumpkin Protein Overnight Oats':'mango-oats', 'Apple & Yogurt':'eggs-apple',
+      'Beef Bulgogi Bibimbap':'beef-bibimbap', 'Ginger Beef, Mushroom & Spinach Rice Soup':'sticky-beef-ginger-rice-soup',
+      'Matcha Yogurt Cup':'matcha-yogurt',
     };
     const slug = planPhotos[key] || (this.recipes[key] ? this.recipes[key].slug : 'miso-salmon');
     return 'assets/dish-'+slug+'.png';
@@ -482,9 +481,9 @@ class Component extends DCLogic {
         return (buy/1000).toFixed(buy%1000?2:0).replace(/\.0+$/,'')+' L';
       };
       return { label:'Wednesday–Friday Meal Prep', skipped:[], groups:[
-      {h:'PROTEINS & DAIRY', items:[{n:'Turkey mince',q:grams('Turkey mince'),img:'gr-chicken'},{n:'Greek yogurt',q:grams('Greek yogurt',{cup:240,cups:240})},{n:'Milk',q:litres('Milk',{cup:240,cups:240})},{n:'Vanilla protein powder',q:grams('Vanilla protein powder',{scoop:30,scoops:30})},{n:'Light cream cheese',q:grams('Light cream cheese',{cup:240,cups:240})},{n:'Eggs',q:q('Eggs')}]},
-      {h:'PRODUCE & CARBS', items:[{n:'Bananas',q:q('Bananas')},{n:'Medjool dates',q:q('Medjool dates')},{n:'Carrots',q:q('Carrots')},{n:'Courgettes',q:q('Courgette')},{n:'Cherry tomatoes',q:q('Cherry tomatoes','punnets')},{n:'Red peppers',q:q('Red pepper')},{n:'Potatoes',q:q('Potatoes')},{n:'Rolled oats',q:grams('Rolled oats',{tbsp:6,cup:90,cups:90})},{n:'Almond flour',q:grams('Almond flour',{cup:96,cups:96})},{n:'Wholewheat pasta',q:grams('Wholewheat pasta',{cup:100,cups:100})},{n:'Chia seeds',q:grams('Chia seeds',{tbsp:12})}]},
-      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Cannellini beans',q:q('Cannellini beans','cans')},{n:'Kidney beans',q:q('Kidney beans','cans')},{n:'Tomato passata',q:litres('Tomato passata',{cup:240,cups:240},500)},{n:'Chopped tomatoes',q:q('Chopped tomatoes','cans')},{n:'Cashew butter',q:grams('Cashew butter',{tbsp:16})},{n:'Coconut oil',q:grams('Coconut oil',{tbsp:14})},{n:'Maple syrup',q:litres('Maple syrup',{tbsp:15},250)},{n:'Cinnamon',q:grams('Cinnamon',{tsp:3})},{n:'Vanilla extract',q:litres('Vanilla extract',{tsp:5},50)},{n:'Brown sugar',q:grams('Brown sugar',{tbsp:13})},{n:'Baking powder',q:grams('Baking powder',{tsp:4})},{n:'Baking soda',q:grams('Baking soda',{tsp:5})},{n:'Ground ginger',q:grams('Ground ginger',{tsp:2})},{n:'Sweetener',q:grams('Sweetener',{tbsp:12})}]},
+      {h:'PROTEINS & DAIRY', items:[{n:'Lean beef mince, raw',q:grams('Lean beef mince, raw'),img:'gr-beef'},{n:'Plain non-fat Greek yogurt',q:grams('Plain non-fat Greek yogurt')},{n:'Greek yogurt',q:grams('Greek yogurt')},{n:'Eggs',q:q('Eggs')}]},
+      {h:'PRODUCE & CARBS', items:[{n:'Pumpkin purée',q:grams('Pumpkin purée')},{n:'Apples',q:q('Apples')},{n:'Mushrooms',q:grams('Mushrooms')},{n:'Yellow onion',q:q('Yellow onion')},{n:'Carrots',q:grams('Carrots')},{n:'Spinach',q:grams('Spinach')},{n:'Bean sprouts',q:grams('Bean sprouts')},{n:'Spring onions',q:q('Spring onions')},{n:'Mixed berries',q:grams('Mixed berries')},{n:'Granola',q:grams('Granola',{tbsp:8})},{n:'Rolled oats',q:grams('Rolled oats')},{n:'Jasmine rice, dry',q:grams('Jasmine rice, dry')}]},
+      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Milk of choice',q:litres('Milk of choice',{ml:1},1000)},{n:'Beef stock',q:litres('Beef stock',{ml:1},1000)},{n:'Gochujang',q:grams('Gochujang',{tbsp:18})},{n:'Soy sauce',q:grams('Soy sauce',{tbsp:18})},{n:'Oyster sauce',q:grams('Oyster sauce',{tbsp:18})},{n:'Rice vinegar',q:grams('Rice vinegar',{tbsp:15})},{n:'Toasted sesame oil',q:grams('Toasted sesame oil',{tbsp:14})},{n:'Honey',q:grams('Honey',{tsp:7})},{n:'Maple syrup',q:grams('Maple syrup',{ml:1})},{n:'Matcha powder',q:grams('Matcha powder',{tsp:2})},{n:'Pumpkin pie spice',q:grams('Pumpkin pie spice',{tsp:2})},{n:'Vanilla extract',q:grams('Vanilla extract',{tsp:5})},{n:'Cinnamon',q:grams('Cinnamon',{tsp:3})},{n:'Garlic',q:q('Garlic','cloves')},{n:'Fresh ginger',q:grams('Fresh ginger')}]},
     ]};
     }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };

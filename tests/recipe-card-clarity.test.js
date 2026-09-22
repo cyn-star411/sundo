@@ -3,10 +3,11 @@ const source=fs.readFileSync('sundo-component.js','utf8');
 const context={React:{createElement:()=>({})},DCLogic:class {setState(p){this.state={...(this.state||{}),...p}}},setTimeout,clearTimeout};
 vm.createContext(context);vm.runInContext(`${source}\n;globalThis.App=Component;`,context);
 const app=new context.App();
-app.state.currentRecipe='High-Protein Carrot Cake Squares';
+app.state.currentRecipe='Pumpkin Protein Overnight Oats';
 assert.deepStrictEqual(Array.from(app.methodFor()),[
-  'Combine the cake ingredients. Bake at 350°F / 175°C for 28–30 minutes, then cool.',
-  'Mix the icing ingredients and spread over the cooled cake.'
+  'This Wednesday–Friday Sundō batch makes six pumpkin overnight-oat jars.',
+  'Whisk milk, pumpkin purée, maple syrup, pumpkin pie spice and vanilla. Fold in Greek yogurt and oats until smooth.',
+  'Divide between six labelled jars, refrigerate overnight, and add diced apple only when serving.'
 ]);
 assert.ok(!source.includes("'Prep: '+this.prepNoteFor(ing)"),'recipe cards must not add separate prep instructions');
 assert.ok(source.includes('return this.coreMethodFor(recipe);'),'recipe cards must show recipe methods directly');
