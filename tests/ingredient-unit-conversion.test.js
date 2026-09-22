@@ -39,7 +39,7 @@ assert.ok(rendered.includes('Choose unit for Greek yogurt'), 'convertible ingred
 assert.ok(rendered.includes('"grams"'), 'the selector must visibly offer grams');
 app.setState({ ingredientUnits: { 'Salted Date & Banana Chia Pots::Greek yogurt': 'g' } });
 rendered = JSON.stringify(app.ingredientsPanel());
-assert.ok(rendered.includes('980 g'), 'selecting grams must update the amount displayed in the ingredient row');
+assert.ok(rendered.includes('1470 g'), 'selecting grams must update the amount displayed in the active six-jar batch');
 
 for (const recipe of Object.values(app.recipes)) {
   for (const ingredient of recipe.ingredients) {

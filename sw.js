@@ -1,6 +1,6 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
-// v35 uses direct recipe methods and a single clear ingredient list.
-const CACHE = 'sundo-app-v35';
+// v36 serves the Wednesday–Friday plan and its six-portion batches.
+const CACHE = 'sundo-app-v36';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','chicken-cucumber-herb-salad','egg-spinach-cucumber-salad','chicken-cabbage-carrot-stir-fry','five-spice-chicken-kale-noodles','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];
