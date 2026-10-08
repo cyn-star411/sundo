@@ -33,13 +33,13 @@ assert.deepStrictEqual(
   'whole produce must not offer misleading weight conversions'
 );
 
-app.setState({ currentRecipe: 'Coconut Mango Oats', ingredientUnits: {} });
+app.setState({ currentRecipe: 'No-Bake Fudge Brownie Cheesecake Bars', ingredientUnits: {} });
 let rendered = JSON.stringify(app.ingredientsPanel());
-assert.ok(rendered.includes('Choose unit for Greek yogurt'), 'convertible ingredients need an accessible unit selector');
+assert.ok(rendered.includes('Choose unit for Almond flour'), 'convertible ingredients need an accessible unit selector');
 assert.ok(rendered.includes('"grams"'), 'the selector must visibly offer grams');
-app.setState({ ingredientUnits: { 'Coconut Mango Oats::Greek yogurt': 'g' } });
+app.setState({ ingredientUnits: { 'No-Bake Fudge Brownie Cheesecake Bars::Almond flour': 'g' } });
 rendered = JSON.stringify(app.ingredientsPanel());
-assert.ok(rendered.includes('1000 g'), 'selecting grams must update the amount displayed in the active ten-jar batch');
+assert.ok(rendered.includes('480 g'), 'selecting grams must update the amount displayed in the active ten-bar batch');
 
 for (const recipe of Object.values(app.recipes)) {
   for (const ingredient of recipe.ingredients) {

@@ -6,13 +6,13 @@ class Component extends DCLogic {
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E', Dessert:'#9B7E9B' };
   // One true five-day batch: each repeated slot makes ten profile-divided portions for Wednesday through Sunday.
   options = {
-    Breakfast:Array(5).fill('Coconut Mango Oats'),
-    Snack:Array(5).fill('Edamame Sesame'),
-    Lunch:Array(5).fill('Honey Garlic Chicken & Miso Sesame Bean Salad'),
-    Dinner:Array(5).fill('Crispy Tofu Red Cabbage Noodle Bowls'),
-    Dessert:Array(5).fill('Sweet Potato Brownies'),
+    Breakfast:Array(5).fill('Egg & Bean Breakfast Wraps'),
+    Snack:Array(5).fill('Crab, Tofu & Corn Fritters'),
+    Lunch:Array(5).fill('Lemon Parsley Chicken Lentil Rice Bowls'),
+    Dinner:Array(5).fill('Red Lentil Spinach Curry'),
+    Dessert:Array(5).fill('No-Bake Fudge Brownie Cheesecake Bars'),
   };
-  kcal = {'Coconut Mango Oats':375,'Edamame Sesame':168,'Honey Garlic Chicken & Miso Sesame Bean Salad':560,'Crispy Tofu Red Cabbage Noodle Bowls':570,'Sweet Potato Brownies':59};
+  kcal = {'Egg & Bean Breakfast Wraps':465,'Crab, Tofu & Corn Fritters':280,'Lemon Parsley Chicken Lentil Rice Bowls':570,'Red Lentil Spinach Curry':560,'No-Bake Fudge Brownie Cheesecake Bars':310};
   recipes = {
     'Berry Protein Overnight Oats': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:450, base:2, weeklyReference:true, weeklyReferenceDays:1, fixedPlan:true, protein:58, fiber:18, slug:'berry-protein-oats', portions:{Cynthia:{kcal:430,protein:28},Gabriel:{kcal:610,protein:36}}, ingredients:[{n:'Greek yogurt',q:2,u:'cups',cat:'protein',prot:40},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:16},{n:'Protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Mixed berries',q:2,u:'cups',cat:'veg',prot:3},{n:'Chia seeds',q:2,u:'tbsp',cat:'carb',prot:5},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:12}], method:['Stir the oats, chia, protein powder and milk until smooth.','Fold through half the berries, then refrigerate in two jars overnight.','Top with Greek yogurt and the remaining berries before eating.'] },
     'Egg & Bean Breakfast Wraps': { cuisine:'Breakfast · Prep ahead', time:'20 min', kcal:465, base:2, fixedPlan:true, protein:56, fiber:16, slug:'egg-bean-wraps', ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Wholemeal wraps',q:2,u:'',cat:'carb',prot:12},{n:'Baby spinach',q:100,u:'g',cat:'veg',prot:3},{n:'Salsa',q:100,u:'g',cat:'sauce',prot:1},{n:'Cheddar',q:40,u:'g',cat:'protein',prot:10}], method:['Warm the beans with salsa until thick.','Scramble the eggs and wilt in the spinach.','Fill each wrap with bean mixture, eggs and cheese; roll tightly and toast seam-side down.'] },
@@ -189,34 +189,16 @@ class Component extends DCLogic {
   // The current window is Wednesday–Sunday. Each scheduled recipe is one true ten-portion batch,
   // then distributed by the saved profile targets.
   fiveDayBatches = (() => {
-    const replace=(name, ingredients, method)=>{ const r=this.recipes[name]; this.recipes[name]={...r,cuisine:r.cuisine.replace('Five-day','Wednesday–Friday'),base:6,weeklyReference:true,weeklyReferenceDays:3,ingredients,method}; };
-    replace('Coconut Mango Oats', [{n:'Greek yogurt',q:600,u:'g',cat:'protein',prot:60},{n:'Rolled oats',q:300,u:'g',cat:'carb',prot:36},{n:'Mango, diced',q:600,u:'g',cat:'veg',prot:6},{n:'Coconut milk',q:900,u:'ml',cat:'sauce',prot:6},{n:'Chia seeds',q:6,u:'tbsp',cat:'sauce',prot:12},{n:'Toasted coconut flakes',q:6,u:'tbsp',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six coconut-mango overnight-oat jars.','Stir oats, chia and coconut milk together, then refrigerate overnight.','Layer with Greek yogurt and diced mango; add toasted coconut just before breakfast.']);
-    replace('Edamame Sesame', [{n:'Edamame in pods',q:600,u:'g',cat:'protein',prot:51},{n:'Sesame seeds, toasted',q:3,u:'tsp',cat:'sauce',prot:3},{n:'Flaky salt',q:3,u:'pinch',cat:'sauce',prot:0},{n:'Soy sauce',q:3,u:'tsp',cat:'sauce',prot:3},{n:'Chilli flakes',q:3,u:'pinch',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six warm edamame snacks.','Boil the edamame for 4 minutes, drain, and toss with soy, toasted sesame, salt and chilli flakes.','Cool promptly and divide between six labelled snack pots; reheat briefly or eat chilled.']);
-    replace('Honey Garlic Chicken & Miso Sesame Bean Salad', [{n:'Chicken thighs, raw',q:900,u:'g',cat:'protein',prot:144,short:'Chicken'},{n:'Soy sauce (chicken)',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Dark soy sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Oyster sauce',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Garlic powder',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Honey (chicken)',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Sriracha',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Chickpeas, drained',q:240,u:'g',cat:'protein',prot:21},{n:'Shelled edamame',q:150,u:'g',cat:'protein',prot:18},{n:'Snap peas',q:105,u:'g',cat:'veg',prot:3},{n:'Purple cabbage, shredded',q:150,u:'g',cat:'veg',prot:3},{n:'Green onions',q:3,u:'',cat:'veg',prot:0},{n:'White miso',q:3,u:'tbsp',cat:'sauce',prot:6},{n:'Soy sauce (salad)',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Rice vinegar',q:2,u:'tbsp',cat:'sauce',prot:0},{n:'Toasted sesame oil',q:1,u:'tbsp',cat:'sauce',prot:0},{n:'Lime',q:2,u:'',cat:'sauce',prot:0},{n:'Sesame seeds',q:2,u:'tbsp',cat:'sauce',prot:3},{n:'Honey (salad)',q:2,u:'tsp',cat:'sauce',prot:0},{n:'Red pepper flakes',q:2,u:'tsp',cat:'sauce',prot:0}], this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'].method);
-    replace('Crispy Tofu Red Cabbage Noodle Bowls', [{n:'Firm tofu',q:900,u:'g',cat:'protein',prot:108,short:'Tofu'},{n:'Wholewheat noodles',q:540,u:'g',cat:'carb',prot:66},{n:'Red cabbage',q:900,u:'g',cat:'veg',prot:12},{n:'Spring onions',q:12,u:'',cat:'veg',prot:3},{n:'Coriander',q:60,u:'g',cat:'veg',prot:3},{n:'Light soy sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Lime',q:3,u:'',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six crispy-tofu noodle bowls.','Press and cube the tofu, then pan-fry until crisp. Cook noodles and toss with soy, lime, shredded cabbage, spring onions and coriander.','Divide the tofu, noodles and vegetables between three Cynthia and three Gabriel containers according to the saved-profile proportions; cool promptly before refrigerating.']);
-    this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad']={...this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'],base:2,portionProtein:30};
-    ['Coconut Mango Oats','Edamame Sesame','Crispy Tofu Red Cabbage Noodle Bowls'].forEach(name=>{ this.recipes[name]={...this.recipes[name],batchPrep:true,batchReferenceProtein:64,weeklyReference:true,weeklyReferenceDays:3,fixedPlan:true}; });
-    const expandToFiveDays=(name)=>{
-      const r=this.recipes[name];
-      this.recipes[name]={
-        ...r,
-        base:r.batchPrep?10:r.base,
-        weeklyReference:true,
-        weeklyReferenceDays:5,
-        ingredients:r.ingredients.map(ing=>({...ing,q:ing.q*5/3})),
-        method:r.method.map(step=>step
-          .replaceAll('Wednesday–Friday','Wednesday–Sunday')
-          .replaceAll('six ', 'ten ')
-          .replaceAll('Six ', 'Ten ')
-          .replaceAll('three Cynthia and three Gabriel','five Cynthia and five Gabriel')
-          .replaceAll('ten equal portions — three for Cynthia and three for Gabriel','ten equal portions — five for Cynthia and five for Gabriel')),
-      };
-    };
-    ['Coconut Mango Oats','Edamame Sesame','Honey Garlic Chicken & Miso Sesame Bean Salad','Crispy Tofu Red Cabbage Noodle Bowls','Sweet Potato Brownies'].forEach(expandToFiveDays);
+    const batch={base:10,weeklyReference:true,weeklyReferenceDays:5,batchPrep:true,batchReferenceProtein:64,fixedPlan:true};
+    this.recipes['Egg & Bean Breakfast Wraps']={...batch,cuisine:'Breakfast · Five-day batch',time:'45 min',kcal:465,protein:64,fiber:16,slug:'egg-bean-wraps',ingredients:[{n:'Eggs',q:20,u:'',cat:'protein',prot:120},{n:'Black beans',q:5,u:'cans',cat:'protein',prot:90},{n:'Wholemeal wraps',q:10,u:'',cat:'carb',prot:60},{n:'Baby spinach',q:10,u:'cups',cat:'veg',prot:15},{n:'Salsa',q:5,u:'cups',cat:'sauce',prot:5},{n:'Cheddar',q:2,u:'cups',cat:'protein',prot:40}],method:['This Wednesday–Sunday batch makes ten egg-and-bean breakfast wraps: five for Cynthia and five for Gabriel.','Warm the beans with salsa until thick. Scramble the eggs, wilt in the spinach, then fold through the beans and cheddar.','Fill and roll ten wraps. Cool quickly; refrigerate Wednesday–Thursday wraps and freeze Friday–Sunday wraps. Thaw overnight and reheat until steaming.']};
+    this.recipes['Crab, Tofu & Corn Fritters']={...batch,cuisine:'Japanese-inspired · Five-day snack batch',time:'40 min',kcal:280,protein:64,fiber:7,slug:'tofu-bibimbap',ingredients:[{n:'Imitation crab sticks',q:20,u:'sticks',cat:'protein',prot:60},{n:'Silken tofu',q:5,u:'packs',cat:'protein',prot:50},{n:'Corn kernels',q:5,u:'cups',cat:'veg',prot:20},{n:'Mozzarella',q:5,u:'cups',cat:'protein',prot:40},{n:'Cornstarch',q:10,u:'tbsp',cat:'carb',prot:0},{n:'Sesame oil',q:5,u:'tbsp',cat:'sauce',prot:0},{n:'Spicy mayo',q:10,u:'tbsp',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten crab, tofu and corn fritter snack portions: five for Cynthia and five for Gabriel.','Whisk silken tofu with sesame oil, salt and pepper. Fold in cornstarch, shredded imitation crab, corn and mozzarella.','Pan-fry ten fritter portions until golden, add a splash of water, cover until hot through, then cool and pack with spicy mayo. Refrigerate Wednesday–Thursday portions and freeze Friday–Sunday portions.']};
+    this.recipes['Lemon Parsley Chicken Lentil Rice Bowls']={...batch,cuisine:'Mediterranean-inspired · Five-day lunch batch',time:'60 min',kcal:570,protein:64,fiber:18,slug:'chicken-satay',ingredients:[{n:'Chicken breast, raw',q:1600,u:'g',cat:'protein',prot:368,short:'Chicken'},{n:'Cooked lentils',q:10,u:'cups',cat:'protein',prot:180},{n:'Brown rice, dry',q:5,u:'cups',cat:'carb',prot:65},{n:'Cucumber',q:5,u:'',cat:'veg',prot:5},{n:'Parsley',q:5,u:'bunches',cat:'veg',prot:5},{n:'Lemons',q:5,u:'',cat:'sauce',prot:0},{n:'Olive oil',q:10,u:'tbsp',cat:'sauce',prot:0}],method:['This Wednesday–Sunday lunch batch makes ten lemon-parsley chicken lentil rice bowls: five for Cynthia and five for Gabriel.','Roast or pan-cook the calculated chicken batch to 75°C, then cool promptly. Cook the brown rice and toss lentils, cucumber, parsley, lemon juice and olive oil together.','Use the saved-profile portions to divide chicken, rice and lentils into five Cynthia and five Gabriel containers. Refrigerate Wednesday–Thursday bowls; freeze Friday–Sunday bowls, thaw overnight, and reheat the chicken and rice until steaming.']};
+    this.recipes['Red Lentil Spinach Curry']={...batch,cuisine:'Indian-inspired · Five-day dinner batch',time:'50 min',kcal:560,protein:64,fiber:24,slug:'thai-basil-tofu',ingredients:[{n:'Red lentils',q:10,u:'cups',cat:'protein',prot:180},{n:'Light coconut milk',q:3,u:'L',cat:'sauce',prot:45},{n:'Chopped tomatoes',q:5,u:'cans',cat:'veg',prot:30},{n:'Baby spinach',q:10,u:'cups',cat:'veg',prot:30},{n:'Brown rice, dry',q:5,u:'cups',cat:'carb',prot:65},{n:'Curry powder',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Limes',q:5,u:'',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten red-lentil spinach curry dinners: five for Cynthia and five for Gabriel.','Toast curry powder briefly. Add red lentils, tomatoes and coconut milk; simmer until the lentils are tender, then wilt in the spinach. Cook brown rice separately.','Use the saved-profile proportions to make five Cynthia and five Gabriel dinners. Refrigerate Wednesday–Thursday portions; freeze Friday–Sunday portions, thaw overnight, and reheat until steaming. Finish with lime.']};
+    this.recipes['No-Bake Fudge Brownie Cheesecake Bars']={...batch,cuisine:'Dessert · Five-day batch',time:'25 min + freeze',kcal:310,protein:64,fiber:8,slug:'mango-oats',ingredients:[{n:'Almond flour',q:5,u:'cups',cat:'carb',prot:120},{n:'Unsweetened cocoa powder',q:2,u:'cups',cat:'sauce',prot:32},{n:'Maple syrup',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Coconut oil',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:16},{n:'Fat-free cream cheese',q:5,u:'cups',cat:'protein',prot:100},{n:'Vanilla extract',q:5,u:'tsp',cat:'sauce',prot:0},{n:'Lemons',q:2,u:'',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten no-bake fudge brownie cheesecake bars: five for Cynthia and five for Gabriel.','Press almond flour, cocoa, maple syrup, coconut oil, milk and vanilla into a lined tin; freeze for 10 minutes. Blend cream cheese with maple syrup, vanilla and lemon, spread it over, then freeze until firm.','Mix the cocoa fudge topping, spread it over the cheesecake layer, freeze again, then cut ten labelled bars. Keep chilled or frozen.']};
     return true;
   })();
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Coconut Mango Oats','Edamame Sesame','Honey Garlic Chicken & Miso Sesame Bean Salad','Crispy Tofu Red Cabbage Noodle Bowls','Sweet Potato Brownies'];
+  recipeOrder = ['Egg & Bean Breakfast Wraps','Crab, Tofu & Corn Fritters','Lemon Parsley Chicken Lentil Rice Bowls','Red Lentil Spinach Curry','No-Bake Fudge Brownie Cheesecake Bars'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -243,15 +225,15 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Coconut-mango oat jars'},{t:'0:20',l:'Edamame snack pots'},{t:'0:35',l:'Honey-garlic chicken'},{t:'1:15',l:'Tofu noodle bowls + brownies'},{t:'2:00',l:'Done'}];
+  timeline = [{t:'0:00',l:'Egg & bean breakfast wraps'},{t:'0:30',l:'Crab, tofu & corn fritters'},{t:'1:00',l:'Lemon-parsley chicken bowls'},{t:'1:45',l:'Lentil curry + cheesecake bars'},{t:'2:30',l:'Done'}];
   prepSections = [
-    {id:'breakfast',title:'One Wednesday–Sunday breakfast, snack & dessert session',time:'45 min + chill',color:'#C8754E',steps:['Make ten coconut-mango overnight-oat jars: five for Cynthia and five for Gabriel. Chill overnight; add mango and coconut flakes just before breakfast.','Boil, season and pack ten edamame snack portions.','Bake ten sweet-potato brownies, cool completely, then label the squares.']},
-    {id:'mains',title:'One Wednesday–Sunday chicken & tofu prep',time:'75 min',color:'#8FB3C8',steps:['Cook the calculated profile-driven chicken-thigh batch to 75°C, cool promptly, and label Cynthia’s and Gabriel’s honey-garlic portions.','Press and pan-fry the tofu until crisp; cook the wholewheat noodles and portion both using the saved-profile proportions.','Keep the miso bean salad cold; pack lime separately for the tofu noodle bowls.']},
-    {id:'veg',title:'One shared vegetable and sauce prep',time:'20 min',color:'#7C8A5E',steps:['Shred red and purple cabbage; slice both types of onion; chop coriander; rinse snap peas; and portion the mango.','Measure the shared soy sauce, sesame oil, sesame seeds, lime and honey separately for the chicken salad and tofu noodles.','Chicken, tofu, cabbage, edamame, soy, sesame, lime and honey deliberately overlap, so the shop stays compact.']},
-    {id:'store',title:'Five-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Wednesday and Thursday portions promptly. Freeze Friday–Sunday chicken and tofu portions on prep day; thaw the next portion overnight in the refrigerator.','Reheat chicken and tofu noodle bowls until steaming; keep the bean salad cold and add lime at serving time.','Keep oat jars, edamame snacks and brownies covered and chilled.']},
+    {id:'breakfast',title:'One Wednesday–Sunday breakfast, snack & dessert session',time:'65 min + chill',color:'#C8754E',steps:['Cook and roll ten egg-and-bean breakfast wraps: five for Cynthia and five for Gabriel.','Pan-fry ten crab, tofu and corn fritter snack portions; cool before packing with spicy mayo.','Assemble and cut ten no-bake fudge brownie cheesecake bars; chill until firm.']},
+    {id:'mains',title:'One Wednesday–Sunday chicken & lentil prep',time:'90 min',color:'#8FB3C8',steps:['Cook the calculated profile-driven chicken-breast batch to 75°C, cool promptly, and label Cynthia’s and Gabriel’s lemon-parsley bowl portions.','Simmer the red-lentil spinach curry and cook its brown rice; portion both using the saved-profile proportions.','Keep lemon wedges and parsley fresh for the chicken bowls, and lime wedges for curry serving.']},
+    {id:'veg',title:'One shared vegetable and sauce prep',time:'20 min',color:'#7C8A5E',steps:['Wash spinach, dice cucumber, chop parsley, and cut lemons and limes.','Measure the salsa, curry powder, olive oil and spicy mayo before cooking so packing moves quickly.','Eggs, beans, spinach, rice, citrus and dairy overlap deliberately, so the shop stays compact without repeating last week’s dishes.']},
+    {id:'store',title:'Five-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Wednesday and Thursday portions promptly. Freeze Friday–Sunday wraps, fritters, chicken bowls and lentil curry portions on prep day; thaw the next portion overnight in the refrigerator.','Reheat wraps, fritters, chicken bowls and curry until steaming. Keep cheesecake bars chilled or frozen.','Pack cucumber, parsley and citrus separately where possible so they stay fresh.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Coconut Mango Oats', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Egg & Bean Breakfast Wraps', recipeGlow:false,
     people: {
       me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
       partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
@@ -462,9 +444,9 @@ class Component extends DCLogic {
     // The five-day cards intentionally reuse existing offline dish photography until their new shoots land.
     // This avoids broken images in installed/offline copies of the app.
     const planPhotos = {
-      'Coconut Mango Oats':'mango-oats', 'Edamame Sesame':'edamame-sesame',
-      'Honey Garlic Chicken & Miso Sesame Bean Salad':'chicken-satay', 'Crispy Tofu Red Cabbage Noodle Bowls':'sesame-tofu-soba',
-      'Sweet Potato Brownies':'mango-oats',
+      'Egg & Bean Breakfast Wraps':'eggs-apple', 'Crab, Tofu & Corn Fritters':'tofu-bibimbap',
+      'Lemon Parsley Chicken Lentil Rice Bowls':'chicken-satay', 'Red Lentil Spinach Curry':'thai-basil-tofu',
+      'No-Bake Fudge Brownie Cheesecake Bars':'mango-oats',
     };
     const slug = planPhotos[key] || (this.recipes[key] ? this.recipes[key].slug : 'miso-salmon');
     return 'assets/dish-'+slug+'.png';
@@ -484,27 +466,21 @@ class Component extends DCLogic {
     const plan = this.state.activePlan;
     if (!plan) {
       const active=this.recipeOrder.map(name=>this.weeklyRecipeTotals(this.recipes[name]));
-      const amount=(name)=>active.reduce((total, recipe)=>total+(recipe.totalIngredients[name]||0),0);
-      const q=(name, unit='')=>Math.max(1,Math.ceil(amount(name)))+(unit?' '+unit:'');
-      const packs=(name, size, singular, plural=singular+'s')=>{ const n=Math.max(1,Math.ceil(amount(name)/size)); return n+' '+(n===1?singular:plural); };
-      const grams=(name, byUnit={})=>Math.max(1,Math.ceil(active.reduce((total, totals, index)=>{
-        const ingredient=this.recipes[this.recipeOrder[index]].ingredients.find((item)=>item.n===name);
-        const multiplier=ingredient && (ingredient.u==='g' ? 1 : byUnit[ingredient.u]);
-        return total+(totals.totalIngredients[name]||0)*(multiplier||0);
-      },0)))+' g';
-      const litres=(name, byUnit={}, shelfMl=1000)=>{
-        const needed=active.reduce((total, totals, index)=>{
-          const ingredient=this.recipes[this.recipeOrder[index]].ingredients.find((item)=>item.n===name);
-          return total+(totals.totalIngredients[name]||0)*(byUnit[ingredient&&ingredient.u]||0);
-        },0);
-        const buy=Math.max(shelfMl,Math.ceil(needed/shelfMl)*shelfMl);
-        return (buy/1000).toFixed(buy%1000?2:0).replace(/\.0+$/,'')+' L';
+      const entries={};
+      this.recipeOrder.forEach((recipeName,index)=>this.recipes[recipeName].ingredients.forEach(ingredient=>{
+        const key=ingredient.n;
+        if (!entries[key]) entries[key]={...ingredient,total:0};
+        entries[key].total+=active[index].totalIngredients[key]||0;
+      }));
+      const quantity=(item)=>{
+        const n=Math.max(1,Math.ceil(item.total));
+        if (item.u==='g') return n+' g';
+        if (item.u==='L') return n+' L';
+        return n+(item.u?' '+item.u:'');
       };
-      return { label:'Wednesday–Sunday Meal Prep', skipped:[], groups:[
-      {h:'PROTEINS & DAIRY', items:[{n:'Greek yogurt',q:grams('Greek yogurt')},{n:'Chicken thighs, raw',q:grams('Chicken thighs, raw'),img:'gr-chicken'},{n:'Edamame in pods',q:grams('Edamame in pods')},{n:'Chickpeas, drained',q:grams('Chickpeas, drained')},{n:'Shelled edamame',q:grams('Shelled edamame')},{n:'Firm tofu',q:grams('Firm tofu')},{n:'Egg',q:q('Egg')}]},
-      {h:'PRODUCE & CARBS', items:[{n:'Rolled oats',q:grams('Rolled oats')},{n:'Mango, diced',q:grams('Mango, diced')},{n:'Baked sweet potato',q:grams('Baked sweet potato')},{n:'Snap peas',q:grams('Snap peas')},{n:'Purple cabbage, shredded',q:grams('Purple cabbage, shredded')},{n:'Red cabbage',q:grams('Red cabbage')},{n:'Green onions',q:q('Green onions')},{n:'Spring onions',q:q('Spring onions')},{n:'Coriander',q:grams('Coriander')},{n:'Wholewheat noodles',q:grams('Wholewheat noodles')}]},
-      {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Coconut milk',q:litres('Coconut milk',{ml:1},1000)},{n:'Milk of choice',q:litres('Milk of choice',{ml:1},1000)},{n:'Chia seeds',q:grams('Chia seeds',{tbsp:12})},{n:'Toasted coconut flakes',q:grams('Toasted coconut flakes',{tbsp:5})},{n:'Sesame seeds, toasted',q:grams('Sesame seeds, toasted',{tsp:3})},{n:'Flaky salt',q:q('Flaky salt')},{n:'Soy sauce',q:grams('Soy sauce',{tsp:5})},{n:'Chilli flakes',q:q('Chilli flakes')},{n:'Soy sauce (chicken)',q:grams('Soy sauce (chicken)',{tbsp:18})},{n:'Dark soy sauce',q:grams('Dark soy sauce',{tbsp:18})},{n:'Oyster sauce',q:grams('Oyster sauce',{tbsp:18})},{n:'Garlic powder',q:grams('Garlic powder',{tsp:3})},{n:'Honey (chicken)',q:grams('Honey (chicken)',{tbsp:21})},{n:'Sriracha',q:grams('Sriracha',{tbsp:17})},{n:'White miso',q:grams('White miso',{tbsp:18})},{n:'Soy sauce (salad)',q:grams('Soy sauce (salad)',{tbsp:18})},{n:'Rice vinegar',q:grams('Rice vinegar',{tbsp:15})},{n:'Toasted sesame oil',q:grams('Toasted sesame oil',{tbsp:14})},{n:'Lime',q:q('Lime')},{n:'Sesame seeds',q:grams('Sesame seeds',{tbsp:9})},{n:'Honey (salad)',q:grams('Honey (salad)',{tsp:7})},{n:'Red pepper flakes',q:grams('Red pepper flakes',{tsp:2})},{n:'Light soy sauce',q:grams('Light soy sauce',{tbsp:18})},{n:'Unsweetened cocoa powder',q:grams('Unsweetened cocoa powder')},{n:'Salt',q:q('Salt')}]},
-    ]};
+      const groupFor=(item)=>item.cat==='protein'?'PROTEINS & DAIRY':(item.cat==='veg'||item.cat==='carb'?'PRODUCE & CARBS':'CUPBOARD · ONLY IF NEEDED');
+      const groups=['PROTEINS & DAIRY','PRODUCE & CARBS','CUPBOARD · ONLY IF NEEDED'].map(h=>({h,items:Object.values(entries).filter(item=>groupFor(item)===h).map(item=>({n:item.n,q:quantity(item),img:item.n==='Chicken breast, raw'?'gr-chicken':undefined}))})).filter(group=>group.items.length);
+      return { label:'Wednesday–Sunday Meal Prep', skipped:[], groups};
     }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
