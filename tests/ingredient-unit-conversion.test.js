@@ -43,10 +43,17 @@ assert.ok(rendered.includes('480 g'), 'selecting grams must update the amount di
 
 for (const recipe of Object.values(app.recipes)) {
   for (const ingredient of recipe.ingredients) {
-    if (['g', 'ml', 'cup', 'cups', 'tbsp', 'tsp'].includes(ingredient.u)) {
+    if (['g', 'ml', 'cup', 'cups'].includes(ingredient.u)) {
       assert.ok(
         app.unitOptionsFor(ingredient).length > 1,
         `${ingredient.n} (${ingredient.u}) needs a safe conversion choice in every recipe`
+      );
+    }
+    if (['tbsp','tsp'].includes(ingredient.u)) {
+      assert.deepStrictEqual(
+        JSON.parse(JSON.stringify(app.unitOptionsFor(ingredient))),
+        [ingredient.u],
+        `${ingredient.n} should retain its practical spoon measure without a conversion picker`
       );
     }
   }

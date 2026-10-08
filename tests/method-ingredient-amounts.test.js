@@ -1,0 +1,17 @@
+const assert=require('assert'),fs=require('fs'),vm=require('vm');
+const source=fs.readFileSync('sundo-component.js','utf8');
+const context={React:{createElement:(type,props,...children)=>({type,props,children})},DCLogic:class {setState(p){this.state={...(this.state||{}),...p}}},setTimeout,clearTimeout};
+vm.createContext(context);vm.runInContext(`${source}\n;globalThis.App=Component;`,context);
+const app=new context.App();
+const recipe=app.recipes['Lemon Parsley Chicken Lentil Rice Bowls'];
+app.updatePerson('me',{weight:65});
+const guide=app.methodIngredientsFor(recipe);
+assert.ok(guide.includes('1675 g Chicken breast, raw'),'the method ingredient guide must use the live profile-driven chicken batch amount');
+assert.ok(guide.includes('11 cups Cooked lentils'),'the method ingredient guide must show every batch ingredient amount');
+assert.strictEqual(app.methodIngredientAmount({n:'Test sauce',q:1.6,u:'tsp'},1.6),'2 tsp','teaspoons must round up to a whole number');
+assert.strictEqual(app.methodIngredientAmount({n:'Test sauce',q:1.01,u:'tbsp'},1.01),'2 tbsp','tablespoons must round up to a whole number');
+app.setState({currentRecipe:'Lemon Parsley Chicken Lentil Rice Bowls'});
+const rendered=JSON.stringify(app.methodPanel());
+assert.ok(rendered.includes('INGREDIENT AMOUNTS FOR THIS BATCH'),'the Method tab must show its own ingredient amount guide');
+assert.ok(rendered.includes('1675 g Chicken breast, raw'),'the Method tab must expose the active batch amounts without returning to Ingredients');
+console.log('method ingredient amounts stay profile-driven and round spoon measurements up');

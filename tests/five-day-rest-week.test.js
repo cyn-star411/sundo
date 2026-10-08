@@ -16,5 +16,5 @@ for (const name of planned) {
 }
 assert.ok(app.prepSections.find(x=>x.id==='store').steps.join(' ').includes('Friday–Sunday'),'storage must cover Friday–Sunday');
 assert.strictEqual(app.groceryFor().label,'Wednesday–Sunday Meal Prep');
-assert.ok(sw.includes("const CACHE = 'sundo-app-v40';"),'new plan must invalidate the prior offline cache');
+assert.ok(sw.includes("const CACHE = 'sundo-app-v41';"),'new plan must invalidate the prior offline cache');
 console.log('five-day Wednesday–Sunday replacement has ten-portion batches, storage, cart, and cache in sync');

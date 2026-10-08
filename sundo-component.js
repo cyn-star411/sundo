@@ -376,6 +376,20 @@ class Component extends DCLogic {
   methodFor(recipe=this.curRec()) {
     return this.coreMethodFor(recipe);
   }
+  methodIngredientAmount(ing, quantity) {
+    const amount=Math.ceil(quantity);
+    const unit=ing.u||'whole';
+    return amount+' '+unit;
+  }
+  methodIngredientsFor(recipe=this.curRec()) {
+    const weeklyTotals=(recipe.weeklyReference || recipe.weeklyDynamic) ? this.weeklyRecipeTotals(recipe) : null;
+    const people=this.state.people;
+    const scale=this.portionScaleFor(recipe,people.me)+this.portionScaleFor(recipe,people.partner);
+    return recipe.ingredients.map(ing=>{
+      const quantity=weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (recipe.fixedPlan ? ing.q : ing.q/(recipe.base||2)*scale);
+      return this.methodIngredientAmount(ing,quantity)+' '+ing.n;
+    }).join(' · ');
+  }
   updatePerson(key, patch) {
     const people = {...this.state.people, [key]: {...this.state.people[key], ...patch}};
     this.setState({ people });
@@ -1097,6 +1111,9 @@ class Component extends DCLogic {
     if (!ing.u) return [];
     const factors=this.conversionFactorsFor(ing), sourceForm=ing.u.replace(/s$/,'');
     const options=[ing.u];
+    // Spoon measures are already practical kitchen measures. Keep cooks in tsp/tbsp,
+    // rather than offering a distracting conversion to millilitres or litres.
+    if (ing.u==='tsp' || ing.u==='tbsp') return options;
     if (ing.u==='g') options.push('kg');
     if (this.volumeMl[ing.u]) {
       ['ml','L'].forEach(unit=>{ if (!options.includes(unit)) options.push(unit); });
@@ -1109,7 +1126,10 @@ class Component extends DCLogic {
   }
   displayIngredientQuantity(ing, quantity, unit) {
     const target=unit||ing.u;
-    if (target===ing.u) return quantity+' '+(ing.u||'whole');
+    if (target===ing.u) {
+      const amount=(target==='tsp' || target==='tbsp') ? Math.ceil(quantity) : quantity;
+      return amount+' '+(ing.u||'whole');
+    }
     const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u], targetVolume=this.volumeMl[target];
     let value;
     if (ing.u==='g' && target==='kg') value=quantity/1000;
@@ -1117,7 +1137,7 @@ class Component extends DCLogic {
     else if (sourceVolume && targetVolume) value=quantity*sourceVolume/targetVolume;
     else if (target==='g' && factors && factors[ing.u]) value=quantity*factors[ing.u];
     else return quantity+' '+(ing.u||'whole');
-    const rounded=Math.round(value*100)/100;
+    const rounded=(target==='tsp' || target==='tbsp') ? Math.ceil(value) : Math.round(value*100)/100;
     const label=rounded===1 && target.endsWith('s') ? target.slice(0,-1) : target;
     return rounded+' '+label;
   }
@@ -1235,10 +1255,14 @@ class Component extends DCLogic {
     const C=this.C;
     const tipNm=this.resolveRecipe?this.resolveRecipe(this.state.currentRecipe):this.state.currentRecipe;
     const tip=this.recipeTips[tipNm];
+    const ingredientGuide=this.methodIngredientsFor();
     return e('div',{style:{padding:'20px 24px 8px'}},
       tip?e('div',{key:'tip',style:{background:'#F6ECE1',borderRadius:14,padding:'12px 14px',marginBottom:16}},
         e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.12em',color:'#8C5B3F',marginBottom:5}},tip.k),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,lineHeight:1.55,color:this.C.body}},tip.t)):null,
+      e('div',{key:'amounts',style:{background:'#EDF0E0',borderRadius:14,padding:'12px 14px',marginBottom:18}},
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.12em',color:'#5f6b3e',marginBottom:5}},'INGREDIENT AMOUNTS FOR THIS BATCH'),
+        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,lineHeight:1.55,color:'#57493C'}},ingredientGuide)),
       this.methodFor().map((m,i)=>e('div',{key:i,style:{display:'flex',gap:14,paddingBottom:18}},
         e('div',{style:{flex:'0 0 auto',width:28,height:28,borderRadius:'50%',background:i===0?'#4A3527':C.paper,color:i===0?'#fff':C.sumi,boxShadow:i===0?'none':'inset 0 0 0 1.5px rgba(56,44,36,.18)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Newsreader',serif",fontSize:15}},i+1),
         e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:14,lineHeight:1.5,color:C.body,paddingTop:3}},m))));
