@@ -1127,7 +1127,7 @@ class Component extends DCLogic {
   displayIngredientQuantity(ing, quantity, unit) {
     const target=unit||ing.u;
     if (target===ing.u) {
-      const amount=(target==='tsp' || target==='tbsp') ? Math.ceil(quantity) : quantity;
+      const amount=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L') ? Math.ceil(quantity) : quantity;
       return amount+' '+(ing.u||'whole');
     }
     const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u], targetVolume=this.volumeMl[target];
@@ -1137,7 +1137,7 @@ class Component extends DCLogic {
     else if (sourceVolume && targetVolume) value=quantity*sourceVolume/targetVolume;
     else if (target==='g' && factors && factors[ing.u]) value=quantity*factors[ing.u];
     else return quantity+' '+(ing.u||'whole');
-    const rounded=(target==='tsp' || target==='tbsp') ? Math.ceil(value) : Math.round(value*100)/100;
+    const rounded=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L') ? Math.ceil(value) : Math.round(value*100)/100;
     const label=rounded===1 && target.endsWith('s') ? target.slice(0,-1) : target;
     return rounded+' '+label;
   }

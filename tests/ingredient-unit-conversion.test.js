@@ -27,6 +27,21 @@ assert.strictEqual(
   '4 cups',
   'the source unit should remain available after conversion'
 );
+assert.strictEqual(
+  app.displayIngredientQuantity({ n: 'Test liquid', q: 1.6, u: 'ml' }, 1.6, 'ml'),
+  '2 ml',
+  'millilitres should round up to a whole number'
+);
+assert.strictEqual(
+  app.displayIngredientQuantity({ n: 'Test liquid', q: 1.01, u: 'L' }, 1.01, 'L'),
+  '2 L',
+  'litres should round up to a whole number'
+);
+assert.strictEqual(
+  app.displayIngredientQuantity({ n: 'Test liquid', q: 1, u: 'cups' }, 1, 'L'),
+  '1 L',
+  'converted litres should round up to a whole number'
+);
 assert.deepStrictEqual(
   JSON.parse(JSON.stringify(app.unitOptionsFor({ n: 'Medjool dates', q: 4, u: '' }))),
   [],
