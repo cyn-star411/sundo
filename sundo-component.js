@@ -2,15 +2,15 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack','Lunch','Dinner','Dessert'];
-  days = [{k:'Wed',sub:'Fresh start'},{k:'Thu',sub:'Quick prep'},{k:'Fri',sub:'Finish strong'}];
+  days = [{k:'Wed',sub:'Fresh start'},{k:'Thu',sub:'Quick prep'},{k:'Fri',sub:'Finish strong'},{k:'Sat',sub:'Weekend reset'},{k:'Sun',sub:'Sunday wind-down'}];
   slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E', Dessert:'#9B7E9B' };
-  // Three actual prep days: each slot is one six-portion batch for Wednesday through Friday.
+  // One true five-day batch: each repeated slot makes ten profile-divided portions for Wednesday through Sunday.
   options = {
-    Breakfast:Array(3).fill('Coconut Mango Oats'),
-    Snack:Array(3).fill('Edamame Sesame'),
-    Lunch:Array(3).fill('Honey Garlic Chicken & Miso Sesame Bean Salad'),
-    Dinner:Array(3).fill('Crispy Tofu Red Cabbage Noodle Bowls'),
-    Dessert:Array(3).fill('Sweet Potato Brownies'),
+    Breakfast:Array(5).fill('Coconut Mango Oats'),
+    Snack:Array(5).fill('Edamame Sesame'),
+    Lunch:Array(5).fill('Honey Garlic Chicken & Miso Sesame Bean Salad'),
+    Dinner:Array(5).fill('Crispy Tofu Red Cabbage Noodle Bowls'),
+    Dessert:Array(5).fill('Sweet Potato Brownies'),
   };
   kcal = {'Coconut Mango Oats':375,'Edamame Sesame':168,'Honey Garlic Chicken & Miso Sesame Bean Salad':560,'Crispy Tofu Red Cabbage Noodle Bowls':570,'Sweet Potato Brownies':59};
   recipes = {
@@ -186,9 +186,9 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
     'Sweet Potato Brownies': { cuisine:'Dessert · Sundō adaptation', time:'35 min + cool', kcal:59, base:6, weeklyReference:true, weeklyReferenceDays:3, batchPrep:true, batchReferenceProtein:64, fixedPlan:true, protein:12, fiber:12, slug:'sweet-potato-brownies', ingredients:[{n:'Baked sweet potato',q:390,u:'g',cat:'veg',prot:6},{n:'Unsweetened cocoa powder',q:20,u:'g',cat:'sauce',prot:4},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Milk of choice',q:70,u:'ml',cat:'sauce',prot:3},{n:'Salt',q:1,u:'pinch',cat:'sauce',prot:0}], method:['This six-square Sundō adaptation uses the complete ingredient list and 170°C / 340°F baking method from @her_rebuild’s eight-serving sweet-potato brownie source; the six-square division is a planning choice.','Mash the baked sweet potato with cocoa powder, egg and salt. Stir in milk until smooth.','Spread in a lined small baking dish and bake at 170°C / 340°F for 25 minutes. Cool, then cut into six labelled squares.'] },
   };
-  // The current window is Wednesday–Friday. These quantities are six portions total,
-  // then distributed by the saved profile targets; they are not five-day leftovers.
-  threeDayBatches = (() => {
+  // The current window is Wednesday–Sunday. Each scheduled recipe is one true ten-portion batch,
+  // then distributed by the saved profile targets.
+  fiveDayBatches = (() => {
     const replace=(name, ingredients, method)=>{ const r=this.recipes[name]; this.recipes[name]={...r,cuisine:r.cuisine.replace('Five-day','Wednesday–Friday'),base:6,weeklyReference:true,weeklyReferenceDays:3,ingredients,method}; };
     replace('Coconut Mango Oats', [{n:'Greek yogurt',q:600,u:'g',cat:'protein',prot:60},{n:'Rolled oats',q:300,u:'g',cat:'carb',prot:36},{n:'Mango, diced',q:600,u:'g',cat:'veg',prot:6},{n:'Coconut milk',q:900,u:'ml',cat:'sauce',prot:6},{n:'Chia seeds',q:6,u:'tbsp',cat:'sauce',prot:12},{n:'Toasted coconut flakes',q:6,u:'tbsp',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six coconut-mango overnight-oat jars.','Stir oats, chia and coconut milk together, then refrigerate overnight.','Layer with Greek yogurt and diced mango; add toasted coconut just before breakfast.']);
     replace('Edamame Sesame', [{n:'Edamame in pods',q:600,u:'g',cat:'protein',prot:51},{n:'Sesame seeds, toasted',q:3,u:'tsp',cat:'sauce',prot:3},{n:'Flaky salt',q:3,u:'pinch',cat:'sauce',prot:0},{n:'Soy sauce',q:3,u:'tsp',cat:'sauce',prot:3},{n:'Chilli flakes',q:3,u:'pinch',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six warm edamame snacks.','Boil the edamame for 4 minutes, drain, and toss with soy, toasted sesame, salt and chilli flakes.','Cool promptly and divide between six labelled snack pots; reheat briefly or eat chilled.']);
@@ -196,6 +196,23 @@ class Component extends DCLogic {
     replace('Crispy Tofu Red Cabbage Noodle Bowls', [{n:'Firm tofu',q:900,u:'g',cat:'protein',prot:108,short:'Tofu'},{n:'Wholewheat noodles',q:540,u:'g',cat:'carb',prot:66},{n:'Red cabbage',q:900,u:'g',cat:'veg',prot:12},{n:'Spring onions',q:12,u:'',cat:'veg',prot:3},{n:'Coriander',q:60,u:'g',cat:'veg',prot:3},{n:'Light soy sauce',q:6,u:'tbsp',cat:'sauce',prot:6},{n:'Lime',q:3,u:'',cat:'sauce',prot:0}], ['This Wednesday–Friday batch makes six crispy-tofu noodle bowls.','Press and cube the tofu, then pan-fry until crisp. Cook noodles and toss with soy, lime, shredded cabbage, spring onions and coriander.','Divide the tofu, noodles and vegetables between three Cynthia and three Gabriel containers according to the saved-profile proportions; cool promptly before refrigerating.']);
     this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad']={...this.recipes['Honey Garlic Chicken & Miso Sesame Bean Salad'],base:2,portionProtein:30};
     ['Coconut Mango Oats','Edamame Sesame','Crispy Tofu Red Cabbage Noodle Bowls'].forEach(name=>{ this.recipes[name]={...this.recipes[name],batchPrep:true,batchReferenceProtein:64,weeklyReference:true,weeklyReferenceDays:3,fixedPlan:true}; });
+    const expandToFiveDays=(name)=>{
+      const r=this.recipes[name];
+      this.recipes[name]={
+        ...r,
+        base:r.batchPrep?10:r.base,
+        weeklyReference:true,
+        weeklyReferenceDays:5,
+        ingredients:r.ingredients.map(ing=>({...ing,q:ing.q*5/3})),
+        method:r.method.map(step=>step
+          .replaceAll('Wednesday–Friday','Wednesday–Sunday')
+          .replaceAll('six ', 'ten ')
+          .replaceAll('Six ', 'Ten ')
+          .replaceAll('three Cynthia and three Gabriel','five Cynthia and five Gabriel')
+          .replaceAll('ten equal portions — three for Cynthia and three for Gabriel','ten equal portions — five for Cynthia and five for Gabriel')),
+      };
+    };
+    ['Coconut Mango Oats','Edamame Sesame','Honey Garlic Chicken & Miso Sesame Bean Salad','Crispy Tofu Red Cabbage Noodle Bowls','Sweet Potato Brownies'].forEach(expandToFiveDays);
     return true;
   })();
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
@@ -226,12 +243,12 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Coconut-mango oat jars'},{t:'0:15',l:'Edamame snack pots'},{t:'0:30',l:'Honey-garlic chicken'},{t:'1:05',l:'Tofu noodle bowls + brownies'},{t:'1:40',l:'Done'}];
+  timeline = [{t:'0:00',l:'Coconut-mango oat jars'},{t:'0:20',l:'Edamame snack pots'},{t:'0:35',l:'Honey-garlic chicken'},{t:'1:15',l:'Tofu noodle bowls + brownies'},{t:'2:00',l:'Done'}];
   prepSections = [
-    {id:'breakfast',title:'One Wednesday–Friday breakfast, snack & dessert session',time:'35 min + chill',color:'#C8754E',steps:['Make six coconut-mango overnight-oat jars: three for Cynthia and three for Gabriel. Chill overnight; add mango and coconut flakes just before breakfast.','Boil, season and pack six edamame snack portions.','Bake six sweet-potato brownies, cool completely, then label the squares.']},
-    {id:'mains',title:'One Wednesday–Friday chicken & tofu prep',time:'60 min',color:'#8FB3C8',steps:['Cook the calculated profile-driven chicken-thigh batch to 75°C, cool promptly, and label Cynthia’s and Gabriel’s honey-garlic portions.','Press and pan-fry the tofu until crisp; cook the wholewheat noodles and portion both using the saved-profile proportions.','Keep the miso bean salad cold; pack lime separately for the tofu noodle bowls.']},
+    {id:'breakfast',title:'One Wednesday–Sunday breakfast, snack & dessert session',time:'45 min + chill',color:'#C8754E',steps:['Make ten coconut-mango overnight-oat jars: five for Cynthia and five for Gabriel. Chill overnight; add mango and coconut flakes just before breakfast.','Boil, season and pack ten edamame snack portions.','Bake ten sweet-potato brownies, cool completely, then label the squares.']},
+    {id:'mains',title:'One Wednesday–Sunday chicken & tofu prep',time:'75 min',color:'#8FB3C8',steps:['Cook the calculated profile-driven chicken-thigh batch to 75°C, cool promptly, and label Cynthia’s and Gabriel’s honey-garlic portions.','Press and pan-fry the tofu until crisp; cook the wholewheat noodles and portion both using the saved-profile proportions.','Keep the miso bean salad cold; pack lime separately for the tofu noodle bowls.']},
     {id:'veg',title:'One shared vegetable and sauce prep',time:'20 min',color:'#7C8A5E',steps:['Shred red and purple cabbage; slice both types of onion; chop coriander; rinse snap peas; and portion the mango.','Measure the shared soy sauce, sesame oil, sesame seeds, lime and honey separately for the chicken salad and tofu noodles.','Chicken, tofu, cabbage, edamame, soy, sesame, lime and honey deliberately overlap, so the shop stays compact.']},
-    {id:'store',title:'Three-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate all Wednesday–Friday portions promptly; this three-day window does not need freezing when cooled and chilled promptly.','Reheat chicken and tofu noodle bowls until steaming; keep the bean salad cold and add lime at serving time.','Keep oat jars, edamame snacks and brownies covered and chilled.']},
+    {id:'store',title:'Five-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Wednesday and Thursday portions promptly. Freeze Friday–Sunday chicken and tofu portions on prep day; thaw the next portion overnight in the refrigerator.','Reheat chicken and tofu noodle bowls until steaming; keep the bean salad cold and add lime at serving time.','Keep oat jars, edamame snacks and brownies covered and chilled.']},
   ];
 
   state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Coconut Mango Oats', recipeGlow:false,
@@ -345,10 +362,10 @@ class Component extends DCLogic {
     if (!recipe.planKind) return recipe.method;
     const c=totals.Cynthia.ingredients['Chicken thighs, raw'], g=totals.Gabriel.ingredients['Chicken thighs, raw'];
     return [
-      `This Wednesday–Friday batch makes three lunch portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
+      `This Wednesday–Sunday batch makes five lunch portions each for ${this.state.people.me.name} and ${this.state.people.partner.name}.`,
       `Toss all ${fmt(totals.totalIngredients['Chicken thighs, raw'])} raw chicken with the chicken soy sauce, dark soy, oyster sauce, garlic powder, honey and sriracha. Air-fry at 190°C / 375°F for 12–15 minutes, until the thickest thigh reaches 75°C.`,
       'Toss the chickpeas, edamame, snap peas, cabbage and green onions with white miso, salad soy sauce, rice vinegar, lime juice, sesame oil, honey, red pepper flakes and sesame seeds.',
-      `Cool the chicken promptly. Make three ${this.state.people.me.name} containers with about ${fmt(c)} chicken each and three ${this.state.people.partner.name} containers with about ${fmt(g)} chicken each; divide the salad in the same proportion. Reheat only the chicken until steaming; keep the salad cold and crisp.`,
+      `Cool the chicken promptly. Make five ${this.state.people.me.name} containers with about ${fmt(c)} chicken each and five ${this.state.people.partner.name} containers with about ${fmt(g)} chicken each; divide the salad in the same proportion. Freeze Friday–Sunday chicken portions on prep day; thaw overnight in the refrigerator and reheat only the chicken until steaming. Keep the salad cold and crisp.`,
     ];
   }
   beginnerCueFor(step) {
@@ -483,7 +500,7 @@ class Component extends DCLogic {
         const buy=Math.max(shelfMl,Math.ceil(needed/shelfMl)*shelfMl);
         return (buy/1000).toFixed(buy%1000?2:0).replace(/\.0+$/,'')+' L';
       };
-      return { label:'Wednesday–Friday Meal Prep', skipped:[], groups:[
+      return { label:'Wednesday–Sunday Meal Prep', skipped:[], groups:[
       {h:'PROTEINS & DAIRY', items:[{n:'Greek yogurt',q:grams('Greek yogurt')},{n:'Chicken thighs, raw',q:grams('Chicken thighs, raw'),img:'gr-chicken'},{n:'Edamame in pods',q:grams('Edamame in pods')},{n:'Chickpeas, drained',q:grams('Chickpeas, drained')},{n:'Shelled edamame',q:grams('Shelled edamame')},{n:'Firm tofu',q:grams('Firm tofu')},{n:'Egg',q:q('Egg')}]},
       {h:'PRODUCE & CARBS', items:[{n:'Rolled oats',q:grams('Rolled oats')},{n:'Mango, diced',q:grams('Mango, diced')},{n:'Baked sweet potato',q:grams('Baked sweet potato')},{n:'Snap peas',q:grams('Snap peas')},{n:'Purple cabbage, shredded',q:grams('Purple cabbage, shredded')},{n:'Red cabbage',q:grams('Red cabbage')},{n:'Green onions',q:q('Green onions')},{n:'Spring onions',q:q('Spring onions')},{n:'Coriander',q:grams('Coriander')},{n:'Wholewheat noodles',q:grams('Wholewheat noodles')}]},
       {h:'CUPBOARD · ONLY IF NEEDED', items:[{n:'Coconut milk',q:litres('Coconut milk',{ml:1},1000)},{n:'Milk of choice',q:litres('Milk of choice',{ml:1},1000)},{n:'Chia seeds',q:grams('Chia seeds',{tbsp:12})},{n:'Toasted coconut flakes',q:grams('Toasted coconut flakes',{tbsp:5})},{n:'Sesame seeds, toasted',q:grams('Sesame seeds, toasted',{tsp:3})},{n:'Flaky salt',q:q('Flaky salt')},{n:'Soy sauce',q:grams('Soy sauce',{tsp:5})},{n:'Chilli flakes',q:q('Chilli flakes')},{n:'Soy sauce (chicken)',q:grams('Soy sauce (chicken)',{tbsp:18})},{n:'Dark soy sauce',q:grams('Dark soy sauce',{tbsp:18})},{n:'Oyster sauce',q:grams('Oyster sauce',{tbsp:18})},{n:'Garlic powder',q:grams('Garlic powder',{tsp:3})},{n:'Honey (chicken)',q:grams('Honey (chicken)',{tbsp:21})},{n:'Sriracha',q:grams('Sriracha',{tbsp:17})},{n:'White miso',q:grams('White miso',{tbsp:18})},{n:'Soy sauce (salad)',q:grams('Soy sauce (salad)',{tbsp:18})},{n:'Rice vinegar',q:grams('Rice vinegar',{tbsp:15})},{n:'Toasted sesame oil',q:grams('Toasted sesame oil',{tbsp:14})},{n:'Lime',q:q('Lime')},{n:'Sesame seeds',q:grams('Sesame seeds',{tbsp:9})},{n:'Honey (salad)',q:grams('Honey (salad)',{tsp:7})},{n:'Red pepper flakes',q:grams('Red pepper flakes',{tsp:2})},{n:'Light soy sauce',q:grams('Light soy sauce',{tbsp:18})},{n:'Unsweetened cocoa powder',q:grams('Unsweetened cocoa powder')},{n:'Salt',q:q('Salt')}]},
@@ -977,7 +994,7 @@ class Component extends DCLogic {
           e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
         e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
       e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'THU–FRI · TWO-DAY PREP'),
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'WED–SUN · REST OF WEEK'),
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
       e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
         this.personCard('me'), this.personCard('partner'),
@@ -1361,7 +1378,7 @@ class Component extends DCLogic {
       e('div',{key:'h',style:{flex:'0 0 auto',padding:'14px 24px 0'}},
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
           e('div',null,
-            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'THU–FRI · TWO-DAY PREP'),
+            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'WED–SUN · REST OF WEEK'),
             e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:29,color:C.sumi,marginTop:5}},'The prep ritual')),
           e('span',{style:{display:'inline-flex',flexDirection:'column',alignItems:'center',gap:2,marginTop:4}},
             e('span',{style:{width:24,height:22,background:'#C8754E',borderRadius:'50% 50% 47% 53% / 55% 55% 46% 46%'}}),

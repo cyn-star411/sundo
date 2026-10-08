@@ -5,7 +5,7 @@ vm.createContext(context);vm.runInContext(`${source}\n;globalThis.App=Component;
 const app=new context.App();
 app.state.currentRecipe='Coconut Mango Oats';
 assert.deepStrictEqual(Array.from(app.methodFor()),[
-  'This Wednesday–Friday batch makes six coconut-mango overnight-oat jars.',
+  'This Wednesday–Sunday batch makes ten coconut-mango overnight-oat jars.',
   'Stir oats, chia and coconut milk together, then refrigerate overnight.',
   'Layer with Greek yogurt and diced mango; add toasted coconut just before breakfast.'
 ]);

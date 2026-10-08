@@ -16,9 +16,9 @@ const exclude=new Set([
   'Apple & Yogurt','Matcha Yogurt Cup','Salted Date & Banana Chia Pots','Healthy Cinnamon Roll Protein Muffins',
   'Turkey Bean Vegetable Pasta','Turkey Chilli Loaded Potatoes','High-Protein Carrot Cake Squares','Banana Protein Yogurt','Cottage Cheese Berry Cup',
 ]);
-assert.deepStrictEqual(Array.from(app.days.map(d=>d.k)),['Wed','Thu','Fri']);
+assert.deepStrictEqual(Array.from(app.days.map(d=>d.k)),['Wed','Thu','Fri','Sat','Sun']);
 for (const [slot,name] of Object.entries(planned)) {
-  assert.deepStrictEqual(Array.from(week[slot]),Array(3).fill(name),`${slot} should use its genuinely fresh Wednesday–Friday recipe`);
+  assert.deepStrictEqual(Array.from(week[slot]),Array(5).fill(name),`${slot} should use its genuinely fresh Wednesday–Sunday recipe`);
   assert.ok(app.recipes[name],`${name} must resolve to a complete recipe card`);
   assert.ok(!exclude.has(name),`${name} must not repeat either of the recent plans`);
   assert.ok(app.recipes[name].ingredients.length>0&&app.methodFor(app.recipes[name]).length>0,`${name} needs ingredients and a self-contained method`);
@@ -26,14 +26,14 @@ for (const [slot,name] of Object.entries(planned)) {
 assert.deepStrictEqual(Array.from(app.recipeOrder),Object.values(planned),'Home, recipes, and plan order must use the new roster');
 const lunch=app.weeklyRecipeTotals(app.recipes[planned.Lunch]);
 const dinner=app.weeklyRecipeTotals(app.recipes[planned.Dinner]);
-assert.strictEqual(lunch.occurrences,3); assert.strictEqual(dinner.occurrences,3);
+assert.strictEqual(lunch.occurrences,5); assert.strictEqual(dinner.occurrences,5);
 assert.ok(lunch.Gabriel.ingredients['Chicken thighs, raw']>lunch.Cynthia.ingredients['Chicken thighs, raw'],'Gabriel receives the larger profile-driven chicken allocation');
 assert.ok(dinner.Gabriel.ingredients['Firm tofu']>dinner.Cynthia.ingredients['Firm tofu'],'Gabriel receives the larger profile-driven tofu allocation');
 const cart=app.groceryFor().groups.flatMap(g=>g.items), cartNames=new Set(cart.map(x=>x.n));
 for (const recipe of Object.values(planned).map(name=>app.recipes[name])) for (const ingredient of recipe.ingredients) assert.ok(cartNames.has(ingredient.n),`cart must include active ingredient ${ingredient.n}`);
 const chicken=cart.find(x=>x.n==='Chicken thighs, raw');
 assert.strictEqual(chicken.q,Math.ceil(lunch.totalIngredients['Chicken thighs, raw'])+' g','cart chicken must equal the profile-driven lunch batch');
-assert.strictEqual(app.groceryFor().label,'Wednesday–Friday Meal Prep');
+assert.strictEqual(app.groceryFor().label,'Wednesday–Sunday Meal Prep');
 assert.ok(app.prepSections.find(x=>x.id==='mains').steps.join(' ').includes('chicken'),'prep must describe the active chicken batch');
-assert.ok(sw.includes("const CACHE = 'sundo-app-v38';"),'new plan must invalidate the prior offline cache');
-console.log('genuinely new Wednesday–Friday recipes exclude the two most recent plans and keep batches, cart, and portions synchronized');
+assert.ok(sw.includes("const CACHE = 'sundo-app-v39';"),'new plan must invalidate the prior offline cache');
+console.log('genuinely new Wednesday–Sunday recipes exclude the two most recent plans and keep batches, cart, and portions synchronized');
