@@ -38,5 +38,5 @@ assert.strictEqual(chicken.q,Math.ceil(lunch.totalIngredients['Chicken breast, r
 assert.strictEqual(app.groceryFor().label,'Wednesday–Sunday Meal Prep');
 assert.ok(app.prepSections.find(x=>x.id==='mains').steps.join(' ').includes('lentil'),'prep must describe the new chicken and lentil batches');
 assert.ok(app.prepSections.find(x=>x.id==='store').steps.join(' ').includes('Friday–Sunday'),'storage must cover Friday–Sunday frozen portions');
-assert.ok(sw.includes("const CACHE = 'sundo-app-v42';"),'replacement plan must invalidate the prior offline cache');
+assert.ok(sw.includes("const CACHE = 'sundo-app-v43';"),'replacement plan must invalidate the prior offline cache');
 console.log('new Wednesday–Sunday recipes exclude recent plans and keep ten-portion batches, cart, portions, storage, and cache in sync');

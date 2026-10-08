@@ -377,9 +377,9 @@ class Component extends DCLogic {
     return this.coreMethodFor(recipe);
   }
   methodIngredientAmount(ing, quantity) {
-    const amount=Math.ceil(quantity);
-    const unit=ing.u||'whole';
-    return amount+' '+unit;
+    const unit=this.canonicalIngredientUnit(ing,quantity);
+    if (unit===ing.u && unit!=='g' && unit!=='kg' && !this.volumeMl[unit]) return Math.ceil(quantity)+' '+(unit||'whole');
+    return this.displayIngredientQuantity(ing,quantity,unit);
   }
   methodIngredientsFor(recipe=this.curRec()) {
     const weeklyTotals=(recipe.weeklyReference || recipe.weeklyDynamic) ? this.weeklyRecipeTotals(recipe) : null;
@@ -1100,6 +1100,20 @@ class Component extends DCLogic {
     'maple syrup': {tbsp:20},
     'coconut oil': {tbsp:14},
     'brown sugar': {tbsp:13},
+    // Active-plan dry conversions. These let the card use a scale-friendly g/kg
+    // default without changing the underlying profile-responsive calculation.
+    'red lentils': {cup:192,cups:192},
+    'cooked lentils': {cup:198,cups:198},
+    'brown rice': {cup:185,cups:185},
+    'baby spinach': {cup:30,cups:30},
+    'cheddar': {cup:113,cups:113},
+    'mozzarella': {cup:113,cups:113},
+    'corn kernels': {cup:164,cups:164},
+    'almond flour': {cup:96,cups:96},
+    'unsweetened cocoa powder': {cup:85,cups:85},
+    'fat-free cream cheese': {cup:240,cups:240},
+    'cornstarch': {tbsp:8,tsp:2.7},
+    'curry powder': {tbsp:7,tsp:2.3},
   };
   volumeMl = {tsp:5,tbsp:15,cup:240,cups:240,ml:1,L:1000};
   conversionFactorsFor(ing) {
@@ -1107,37 +1121,42 @@ class Component extends DCLogic {
     const key=Object.keys(this.unitConversionTable).find(item=>name===item || name.includes(item));
     return key ? this.unitConversionTable[key] : null;
   }
+  isLiquidIngredient(ing) {
+    const name=(ing.n||'').toLowerCase();
+    return /milk|oil|salsa|mayo|sauce|syrup|stock|vinegar|mirin|honey|water|extract/.test(name);
+  }
+  canonicalIngredientUnit(ing, quantity) {
+    const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u];
+    if (this.isLiquidIngredient(ing) && sourceVolume) {
+      const ml=quantity*sourceVolume;
+      return ml>=1000 ? 'L' : 'ml';
+    }
+    const grams=ing.u==='g' ? quantity : (ing.u==='kg' ? quantity*1000 : (factors&&factors[ing.u] ? quantity*factors[ing.u] : null));
+    if (grams!==null) return 'g';
+    return ing.u;
+  }
   unitOptionsFor(ing) {
     if (!ing.u) return [];
-    const factors=this.conversionFactorsFor(ing), sourceForm=ing.u.replace(/s$/,'');
-    const options=[ing.u];
-    // Spoon measures are already practical kitchen measures. Keep cooks in tsp/tbsp,
-    // rather than offering a distracting conversion to millilitres or litres.
-    if (ing.u==='tsp' || ing.u==='tbsp') return options;
-    if (ing.u==='g') options.push('kg');
-    if (this.volumeMl[ing.u]) {
-      ['ml','L'].forEach(unit=>{ if (!options.includes(unit)) options.push(unit); });
-      if (factors && factors[ing.u]) options.push('g');
-    }
-    if (ing.u==='g' && factors) Object.keys(factors).forEach(unit=>{
-      if (unit.replace(/s$/,'')!==sourceForm && !options.includes(unit)) options.push(unit);
-    });
-    return options;
+    const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u];
+    if (this.isLiquidIngredient(ing) && sourceVolume) return ['ml','L'];
+    if (ing.u==='g' || ing.u==='kg' || (factors && factors[ing.u])) return ['g','kg'];
+    return [ing.u];
   }
   displayIngredientQuantity(ing, quantity, unit) {
     const target=unit||ing.u;
     if (target===ing.u) {
-      const amount=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L') ? Math.ceil(quantity) : quantity;
+      const amount=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L' || target==='g') ? Math.ceil(quantity) : quantity;
       return amount+' '+(ing.u||'whole');
     }
     const factors=this.conversionFactorsFor(ing), sourceVolume=this.volumeMl[ing.u], targetVolume=this.volumeMl[target];
     let value;
     if (ing.u==='g' && target==='kg') value=quantity/1000;
-    else if (ing.u==='g' && factors && factors[target]) value=quantity/factors[target];
-    else if (sourceVolume && targetVolume) value=quantity*sourceVolume/targetVolume;
+    else if (ing.u==='kg' && target==='g') value=quantity*1000;
+    else if (target==='kg' && factors && factors[ing.u]) value=quantity*factors[ing.u]/1000;
     else if (target==='g' && factors && factors[ing.u]) value=quantity*factors[ing.u];
+    else if (sourceVolume && targetVolume) value=quantity*sourceVolume/targetVolume;
     else return quantity+' '+(ing.u||'whole');
-    const rounded=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L') ? Math.ceil(value) : Math.round(value*100)/100;
+    const rounded=(target==='tsp' || target==='tbsp' || target==='ml' || target==='L' || target==='g') ? Math.ceil(value) : Math.round(value*100)/100;
     const label=rounded===1 && target.endsWith('s') ? target.slice(0,-1) : target;
     return rounded+' '+label;
   }
@@ -1224,7 +1243,8 @@ class Component extends DCLogic {
     const row = (ing,i) => {
       const total = weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (r.fixedPlan ? ing.q : ing.q/r.base*sTot);
       const unitOptions=this.unitOptionsFor(ing), unitKey=this.ingredientUnitKey(ing);
-      const chosenUnit=(st.ingredientUnits||{})[unitKey]||ing.u;
+      const defaultUnit=this.canonicalIngredientUnit(ing,total);
+      const chosenUnit=(st.ingredientUnits||{})[unitKey]||defaultUnit;
       const amount=unitOptions.includes(chosenUnit) ? this.displayIngredientQuantity(ing,total,chosenUnit) : fmtIngredient(total,ing.u);
       return e('div',{key:i,style:{display:'flex',alignItems:'center',padding:'9px 4px',borderBottom:'1px solid '+C.line}},
         e('span',{style:{flex:2,fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13.5,color:C.sumi}},ing.n),
