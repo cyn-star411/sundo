@@ -1,18 +1,18 @@
 const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
-  slots = ['Breakfast','Snack','Lunch','Dinner','Dessert'];
-  days = [{k:'Wed',sub:'Fresh start'},{k:'Thu',sub:'Quick prep'},{k:'Fri',sub:'Finish strong'},{k:'Sat',sub:'Weekend reset'},{k:'Sun',sub:'Sunday wind-down'}];
-  slotColor = { Breakfast:'#7C8A5E', Snack:'#8FB3C8', Lunch:'#CB9C8B', Dinner:'#C8754E', Dessert:'#9B7E9B' };
-  // One true five-day batch: each repeated slot makes ten profile-divided portions for Wednesday through Sunday.
+  slots = ['Breakfast','Snack 1','Lunch','Snack 2','Dinner'];
+  days = [{k:'Mon',sub:'Fresh start'},{k:'Tue',sub:'Steady fuel'},{k:'Wed',sub:'Midweek'},{k:'Thu',sub:'Train strong'},{k:'Fri',sub:'Finish strong'},{k:'Sat',sub:'Weekend reset'},{k:'Sun',sub:'Sunday wind-down'}];
+  slotColor = { Breakfast:'#7C8A5E', 'Snack 1':'#8FB3C8', Lunch:'#CB9C8B', 'Snack 2':'#9B7E9B', Dinner:'#C8754E' };
+  // One true seven-day batch: each repeated slot makes fourteen profile-divided portions for Monday through Sunday.
   options = {
-    Breakfast:Array(5).fill('Egg & Bean Breakfast Wraps'),
-    Snack:Array(5).fill('Crab, Tofu & Corn Fritters'),
-    Lunch:Array(5).fill('Lemon Parsley Chicken Lentil Rice Bowls'),
-    Dinner:Array(5).fill('Red Lentil Spinach Curry'),
-    Dessert:Array(5).fill('No-Bake Fudge Brownie Cheesecake Bars'),
+    Breakfast:Array(7).fill('Berry Protein Overnight Oats'),
+    'Snack 1':Array(7).fill('Yogurt & Fruit Pots'),
+    Lunch:Array(7).fill('Lemon Chicken Rice & Bean Bowls'),
+    'Snack 2':Array(7).fill('Cocoa Peanut Protein Yogurt'),
+    Dinner:Array(7).fill('Turkey Chilli Sweet Potatoes'),
   };
-  kcal = {'Egg & Bean Breakfast Wraps':465,'Crab, Tofu & Corn Fritters':280,'Lemon Parsley Chicken Lentil Rice Bowls':570,'Red Lentil Spinach Curry':560,'No-Bake Fudge Brownie Cheesecake Bars':310};
+  kcal = {'Berry Protein Overnight Oats':390,'Yogurt & Fruit Pots':160,'Lemon Chicken Rice & Bean Bowls':465,'Cocoa Peanut Protein Yogurt':170,'Turkey Chilli Sweet Potatoes':415};
   recipes = {
     'Berry Protein Overnight Oats': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:450, base:2, weeklyReference:true, weeklyReferenceDays:1, fixedPlan:true, protein:58, fiber:18, slug:'berry-protein-oats', portions:{Cynthia:{kcal:430,protein:28},Gabriel:{kcal:610,protein:36}}, ingredients:[{n:'Greek yogurt',q:2,u:'cups',cat:'protein',prot:40},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:16},{n:'Protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Mixed berries',q:2,u:'cups',cat:'veg',prot:3},{n:'Chia seeds',q:2,u:'tbsp',cat:'carb',prot:5},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:12}], method:['Stir the oats, chia, protein powder and milk until smooth.','Fold through half the berries, then refrigerate in two jars overnight.','Top with Greek yogurt and the remaining berries before eating.'] },
     'Egg & Bean Breakfast Wraps': { cuisine:'Breakfast · Prep ahead', time:'20 min', kcal:465, base:2, fixedPlan:true, protein:56, fiber:16, slug:'egg-bean-wraps', ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Wholemeal wraps',q:2,u:'',cat:'carb',prot:12},{n:'Baby spinach',q:100,u:'g',cat:'veg',prot:3},{n:'Salsa',q:100,u:'g',cat:'sauce',prot:1},{n:'Cheddar',q:40,u:'g',cat:'protein',prot:10}], method:['Warm the beans with salsa until thick.','Scramble the eggs and wilt in the spinach.','Fill each wrap with bean mixture, eggs and cheese; roll tightly and toast seam-side down.'] },
@@ -186,19 +186,18 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
     'Sweet Potato Brownies': { cuisine:'Dessert · Sundō adaptation', time:'35 min + cool', kcal:59, base:6, weeklyReference:true, weeklyReferenceDays:3, batchPrep:true, batchReferenceProtein:64, fixedPlan:true, protein:12, fiber:12, slug:'sweet-potato-brownies', ingredients:[{n:'Baked sweet potato',q:390,u:'g',cat:'veg',prot:6},{n:'Unsweetened cocoa powder',q:20,u:'g',cat:'sauce',prot:4},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Milk of choice',q:70,u:'ml',cat:'sauce',prot:3},{n:'Salt',q:1,u:'pinch',cat:'sauce',prot:0}], method:['This six-square Sundō adaptation uses the complete ingredient list and 170°C / 340°F baking method from @her_rebuild’s eight-serving sweet-potato brownie source; the six-square division is a planning choice.','Mash the baked sweet potato with cocoa powder, egg and salt. Stir in milk until smooth.','Spread in a lined small baking dish and bake at 170°C / 340°F for 25 minutes. Cool, then cut into six labelled squares.'] },
   };
-  // The current window is Wednesday–Sunday. Each scheduled recipe is one true ten-portion batch,
-  // then distributed by the saved profile targets.
-  fiveDayBatches = (() => {
-    const batch={base:10,weeklyReference:true,weeklyReferenceDays:5,batchPrep:true,batchReferenceProtein:64,fixedPlan:true};
-    this.recipes['Egg & Bean Breakfast Wraps']={...batch,cuisine:'Breakfast · Five-day batch',time:'45 min',kcal:465,protein:64,fiber:16,slug:'egg-bean-wraps',ingredients:[{n:'Eggs',q:20,u:'',cat:'protein',prot:120},{n:'Black beans',q:5,u:'cans',cat:'protein',prot:90},{n:'Wholemeal wraps',q:10,u:'',cat:'carb',prot:60},{n:'Baby spinach',q:10,u:'cups',cat:'veg',prot:15},{n:'Salsa',q:5,u:'cups',cat:'sauce',prot:5},{n:'Cheddar',q:2,u:'cups',cat:'protein',prot:40}],method:['This Wednesday–Sunday batch makes ten egg-and-bean breakfast wraps: five for Cynthia and five for Gabriel.','Warm the beans with salsa until thick. Scramble the eggs, wilt in the spinach, then fold through the beans and cheddar.','Fill and roll ten wraps. Cool quickly; refrigerate Wednesday–Thursday wraps and freeze Friday–Sunday wraps. Thaw overnight and reheat until steaming.']};
-    this.recipes['Crab, Tofu & Corn Fritters']={...batch,cuisine:'Japanese-inspired · Five-day snack batch',time:'40 min',kcal:280,protein:64,fiber:7,slug:'tofu-bibimbap',ingredients:[{n:'Imitation crab sticks',q:20,u:'sticks',cat:'protein',prot:60},{n:'Silken tofu',q:5,u:'packs',cat:'protein',prot:50},{n:'Corn kernels',q:5,u:'cups',cat:'veg',prot:20},{n:'Mozzarella',q:5,u:'cups',cat:'protein',prot:40},{n:'Cornstarch',q:10,u:'tbsp',cat:'carb',prot:0},{n:'Sesame oil',q:5,u:'tbsp',cat:'sauce',prot:0},{n:'Spicy mayo',q:10,u:'tbsp',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten crab, tofu and corn fritter snack portions: five for Cynthia and five for Gabriel.','Whisk silken tofu with sesame oil, salt and pepper. Fold in cornstarch, shredded imitation crab, corn and mozzarella.','Pan-fry ten fritter portions until golden, add a splash of water, cover until hot through, then cool and pack with spicy mayo. Refrigerate Wednesday–Thursday portions and freeze Friday–Sunday portions.']};
-    this.recipes['Lemon Parsley Chicken Lentil Rice Bowls']={...batch,cuisine:'Mediterranean-inspired · Five-day lunch batch',time:'60 min',kcal:570,protein:64,fiber:18,slug:'chicken-satay',ingredients:[{n:'Chicken breast, raw',q:1600,u:'g',cat:'protein',prot:368,short:'Chicken'},{n:'Cooked lentils',q:10,u:'cups',cat:'protein',prot:180},{n:'Brown rice, dry',q:5,u:'cups',cat:'carb',prot:65},{n:'Cucumber',q:5,u:'',cat:'veg',prot:5},{n:'Parsley',q:5,u:'bunches',cat:'veg',prot:5},{n:'Lemons',q:5,u:'',cat:'sauce',prot:0},{n:'Olive oil',q:10,u:'tbsp',cat:'sauce',prot:0}],method:['This Wednesday–Sunday lunch batch makes ten lemon-parsley chicken lentil rice bowls: five for Cynthia and five for Gabriel.','Roast or pan-cook the calculated chicken batch to 75°C, then cool promptly. Cook the brown rice and toss lentils, cucumber, parsley, lemon juice and olive oil together.','Use the saved-profile portions to divide chicken, rice and lentils into five Cynthia and five Gabriel containers. Refrigerate Wednesday–Thursday bowls; freeze Friday–Sunday bowls, thaw overnight, and reheat the chicken and rice until steaming.']};
-    this.recipes['Red Lentil Spinach Curry']={...batch,cuisine:'Indian-inspired · Five-day dinner batch',time:'50 min',kcal:560,protein:64,fiber:24,slug:'thai-basil-tofu',ingredients:[{n:'Red lentils',q:10,u:'cups',cat:'protein',prot:180},{n:'Light coconut milk',q:3,u:'L',cat:'sauce',prot:45},{n:'Chopped tomatoes',q:5,u:'cans',cat:'veg',prot:30},{n:'Baby spinach',q:10,u:'cups',cat:'veg',prot:30},{n:'Brown rice, dry',q:5,u:'cups',cat:'carb',prot:65},{n:'Curry powder',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Limes',q:5,u:'',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten red-lentil spinach curry dinners: five for Cynthia and five for Gabriel.','Toast curry powder briefly. Add red lentils, tomatoes and coconut milk; simmer until the lentils are tender, then wilt in the spinach. Cook brown rice separately.','Use the saved-profile proportions to make five Cynthia and five Gabriel dinners. Refrigerate Wednesday–Thursday portions; freeze Friday–Sunday portions, thaw overnight, and reheat until steaming. Finish with lime.']};
-    this.recipes['No-Bake Fudge Brownie Cheesecake Bars']={...batch,cuisine:'Dessert · Five-day batch',time:'25 min + freeze',kcal:310,protein:64,fiber:8,slug:'mango-oats',ingredients:[{n:'Almond flour',q:5,u:'cups',cat:'carb',prot:120},{n:'Unsweetened cocoa powder',q:2,u:'cups',cat:'sauce',prot:32},{n:'Maple syrup',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Coconut oil',q:10,u:'tbsp',cat:'sauce',prot:0},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:16},{n:'Fat-free cream cheese',q:5,u:'cups',cat:'protein',prot:100},{n:'Vanilla extract',q:5,u:'tsp',cat:'sauce',prot:0},{n:'Lemons',q:2,u:'',cat:'sauce',prot:0}],method:['This Wednesday–Sunday batch makes ten no-bake fudge brownie cheesecake bars: five for Cynthia and five for Gabriel.','Press almond flour, cocoa, maple syrup, coconut oil, milk and vanilla into a lined tin; freeze for 10 minutes. Blend cream cheese with maple syrup, vanilla and lemon, spread it over, then freeze until firm.','Mix the cocoa fudge topping, spread it over the cheesecake layer, freeze again, then cut ten labelled bars. Keep chilled or frozen.']};
+  // Active Monday–Sunday plan: each repeat is one true 14-portion batch (seven Cynthia + seven Gabriel portions).
+  sevenDayBatches = (() => {
+    const batch={base:14,weeklyReference:true,weeklyReferenceDays:7,batchPrep:true,fixedPlan:true};
+    this.recipes['Berry Protein Overnight Oats']={...batch,planSlot:'Breakfast',batchReferenceKcal:1064,cuisine:'Breakfast · Seven-day batch',time:'20 min + overnight',kcal:390,protein:64,fiber:12,slug:'mango-oats',portions:{Cynthia:{kcal:390,protein:30},Gabriel:{kcal:674,protein:34}},ingredients:[{n:'Plain non-fat Greek yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Rolled oats',q:770,u:'g',cat:'carb',prot:92},{n:'Protein powder',q:420,u:'g',cat:'protein',prot:336},{n:'Mixed berries',q:1750,u:'g',cat:'veg',prot:18},{n:'Chia seeds',q:175,u:'g',cat:'carb',prot:30},{n:'Milk of choice',q:1400,u:'ml',cat:'sauce',prot:45}],method:['This Monday–Sunday batch makes fourteen berry protein overnight-oat jars: seven for Cynthia and seven larger jars for Gabriel.','Whisk yogurt, milk and protein powder smooth, then stir through oats and chia. Fold in the berries.','Divide into fourteen labelled jars. Refrigerate Monday–Wednesday jars and freeze Thursday–Sunday jars; thaw overnight in the refrigerator.']};
+    this.recipes['Yogurt & Fruit Pots']={...batch,planSlot:'Snack 1',batchReferenceKcal:436,cuisine:'Snack · Seven-day batch',time:'10 min',kcal:160,protein:32,fiber:5,slug:'matcha-yogurt',portions:{Cynthia:{kcal:160,protein:15},Gabriel:{kcal:276,protein:17}},ingredients:[{n:'High-protein yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Mixed berries',q:1750,u:'g',cat:'veg',prot:18},{n:'Kiwis or mandarins',q:14,u:'',cat:'veg',prot:12}],method:['This Monday–Sunday snack batch makes fourteen yogurt and fruit pots: seven for Cynthia and seven larger pots for Gabriel.','Divide the yogurt and berries into labelled pots. Keep the kiwi or mandarin separate until eating.','Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday yogurt portions; add fresh fruit after thawing.']};
+    this.recipes['Lemon Chicken Rice & Bean Bowls']={...batch,planSlot:'Lunch',batchReferenceKcal:1268,cuisine:'Mediterranean-inspired · Seven-day lunch batch',time:'75 min',kcal:465,protein:77,fiber:15,slug:'chicken-satay',portions:{Cynthia:{kcal:465,protein:36},Gabriel:{kcal:803,protein:41}},ingredients:[{n:'Chicken breast, raw',q:3745,u:'g',cat:'protein',prot:860,short:'Chicken'},{n:'Brown rice, dry',q:750,u:'g',cat:'carb',prot:56},{n:'Black beans, drained',q:1470,u:'g',cat:'protein',prot:103},{n:'Mixed roasting vegetables',q:3150,u:'g',cat:'veg',prot:70},{n:'Salsa',q:980,u:'ml',cat:'sauce',prot:8},{n:'Avocados',q:7,u:'',cat:'veg',prot:14},{n:'Limes',q:7,u:'',cat:'sauce',prot:0},{n:'Fresh coriander',q:70,u:'g',cat:'veg',prot:2}],method:['This Monday–Sunday batch makes fourteen lemon chicken rice-and-bean bowls: seven for Cynthia and seven larger bowls for Gabriel.','Roast the vegetables. Cook the brown rice and warm the black beans. Cook the chicken to 75°C, rest briefly, then slice.','Divide chicken, rice, beans and vegetables into the saved-profile portions; add salsa, avocado, lime and coriander. Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday portions. Thaw overnight and reheat chicken, rice and beans until steaming.']};
+    this.recipes['Cocoa Peanut Protein Yogurt']={...batch,planSlot:'Snack 2',batchReferenceKcal:463,cuisine:'Snack · Seven-day batch',time:'10 min',kcal:170,protein:32,fiber:4,slug:'rice-cakes-pb',portions:{Cynthia:{kcal:170,protein:15},Gabriel:{kcal:293,protein:17}},ingredients:[{n:'High-protein yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Peanut butter',q:245,u:'g',cat:'protein',prot:61},{n:'Unsweetened cocoa powder',q:70,u:'g',cat:'sauce',prot:14},{n:'Mixed berries',q:1400,u:'g',cat:'veg',prot:14}],method:['This Monday–Sunday batch makes fourteen cocoa-peanut protein-yogurt pots: seven for Cynthia and seven larger pots for Gabriel.','Stir the yogurt, peanut butter and cocoa powder until smooth. Divide into labelled pots and top with berries.','Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday pots; thaw overnight in the refrigerator.']};
+    this.recipes['Turkey Chilli Sweet Potatoes']={...batch,planSlot:'Dinner',batchReferenceKcal:1130,cuisine:'Comfort food · Seven-day dinner batch',time:'75 min',kcal:415,protein:51,fiber:17,slug:'thai-basil-tofu',portions:{Cynthia:{kcal:415,protein:24},Gabriel:{kcal:715,protein:27}},ingredients:[{n:'Lean turkey mince, raw',q:2800,u:'g',cat:'protein',prot:588,short:'Turkey'},{n:'Sweet potatoes',q:4550,u:'g',cat:'carb',prot:73},{n:'Kidney beans, drained',q:1750,u:'g',cat:'protein',prot:123},{n:'Chopped tomatoes',q:2800,u:'g',cat:'veg',prot:42},{n:'Red peppers',q:7,u:'',cat:'veg',prot:7},{n:'Onions',q:7,u:'',cat:'veg',prot:7},{n:'Greek yogurt',q:980,u:'g',cat:'protein',prot:98},{n:'Chilli seasoning',q:70,u:'g',cat:'sauce',prot:0}],method:['This Monday–Sunday batch makes fourteen turkey-chilli sweet-potato dinners: seven for Cynthia and seven larger portions for Gabriel.','Bake the sweet potatoes until tender. Brown the turkey mince to 75°C with onion and pepper, then simmer with tomatoes, kidney beans and chilli seasoning until thick.','Divide the chilli and potatoes using the saved-profile portions; add Greek yogurt after reheating. Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday dinners. Thaw overnight and reheat until steaming.']};
     return true;
   })();
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Egg & Bean Breakfast Wraps','Crab, Tofu & Corn Fritters','Lemon Parsley Chicken Lentil Rice Bowls','Red Lentil Spinach Curry','No-Bake Fudge Brownie Cheesecake Bars'];
+  recipeOrder = ['Berry Protein Overnight Oats','Yogurt & Fruit Pots','Lemon Chicken Rice & Bean Bowls','Cocoa Peanut Protein Yogurt','Turkey Chilli Sweet Potatoes'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -225,15 +224,15 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Egg & bean breakfast wraps'},{t:'0:30',l:'Crab, tofu & corn fritters'},{t:'1:00',l:'Lemon-parsley chicken bowls'},{t:'1:45',l:'Lentil curry + cheesecake bars'},{t:'2:30',l:'Done'}];
+  timeline = [{t:'0:00',l:'Protein overnight oats + yogurt pots'},{t:'0:25',l:'Roast vegetables and sweet potatoes'},{t:'0:50',l:'Lemon chicken rice-and-bean bowls'},{t:'1:35',l:'Turkey chilli + cocoa yogurt pots'},{t:'2:10',l:'Label, chill and freeze'}];
   prepSections = [
-    {id:'breakfast',title:'One Wednesday–Sunday breakfast, snack & dessert session',time:'65 min + chill',color:'#C8754E',steps:['Cook and roll ten egg-and-bean breakfast wraps: five for Cynthia and five for Gabriel.','Pan-fry ten crab, tofu and corn fritter snack portions; cool before packing with spicy mayo.','Assemble and cut ten no-bake fudge brownie cheesecake bars; chill until firm.']},
-    {id:'mains',title:'One Wednesday–Sunday chicken & lentil prep',time:'90 min',color:'#8FB3C8',steps:['Cook the calculated profile-driven chicken-breast batch to 75°C, cool promptly, and label Cynthia’s and Gabriel’s lemon-parsley bowl portions.','Simmer the red-lentil spinach curry and cook its brown rice; portion both using the saved-profile proportions.','Keep lemon wedges and parsley fresh for the chicken bowls, and lime wedges for curry serving.']},
-    {id:'veg',title:'One shared vegetable and sauce prep',time:'20 min',color:'#7C8A5E',steps:['Wash spinach, dice cucumber, chop parsley, and cut lemons and limes.','Measure the salsa, curry powder, olive oil and spicy mayo before cooking so packing moves quickly.','Eggs, beans, spinach, rice, citrus and dairy overlap deliberately, so the shop stays compact without repeating last week’s dishes.']},
-    {id:'store',title:'Five-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Wednesday and Thursday portions promptly. Freeze Friday–Sunday wraps, fritters, chicken bowls and lentil curry portions on prep day; thaw the next portion overnight in the refrigerator.','Reheat wraps, fritters, chicken bowls and curry until steaming. Keep cheesecake bars chilled or frozen.','Pack cucumber, parsley and citrus separately where possible so they stay fresh.']},
+    {id:'breakfast',title:'One Monday–Sunday breakfast & snack session',time:'35 min + chill',color:'#C8754E',steps:['Make fourteen berry protein overnight-oat jars: seven for Cynthia and seven larger jars for Gabriel.','Pack fourteen yogurt-and-fruit pots and fourteen cocoa-peanut protein-yogurt pots, clearly labelled by person.','Keep fresh fruit separate for the later frozen snack pots.']},
+    {id:'mains',title:'One Monday–Sunday chicken & turkey prep',time:'105 min',color:'#8FB3C8',steps:['Cook the profile-driven chicken batch to 75°C, then label Cynthia’s and Gabriel’s lemon chicken rice-and-bean bowls.','Bake the sweet potatoes and simmer the turkey chilli to 75°C; portion both using the saved-profile proportions.','Keep avocado, lime and coriander fresh for the chicken bowls; add Greek yogurt after reheating the chilli.']},
+    {id:'veg',title:'One shared vegetable and sauce prep',time:'25 min',color:'#7C8A5E',steps:['Chop roasting vegetables, peppers, onions and coriander; cut limes and set aside avocados for the day of eating.','Measure salsa, chilli seasoning, cocoa and peanut butter before cooking so packing moves quickly.','Chicken, beans, yogurt, berries and vegetables overlap deliberately, so the shop stays practical without repeating last week’s dishes.']},
+    {id:'store',title:'Seven-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Monday–Wednesday portions promptly. Freeze Thursday–Sunday oats, snacks, chicken bowls and turkey-chilli dinners on prep day; thaw the next portion overnight in the refrigerator.','Reheat chicken bowls and turkey chilli until steaming; keep yogurt pots cold.','Pack avocado, coriander, lime and fresh fruit separately where possible so they stay fresh.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Egg & Bean Breakfast Wraps', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Berry Protein Overnight Oats', recipeGlow:false,
     people: {
       me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
       partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
@@ -242,17 +241,27 @@ class Component extends DCLogic {
 
   // ---- goal math ----
   targetsFor(p) {
-    const recomp = (p.goal||'').includes('fat loss');
-    const protein = Math.round(p.weight*(recomp ? 2 : 1.6));
-    const kcal = Math.round(p.weight*(recomp ? 27.5 : 32.35)/10)*10;
-    const fiber = Math.round(p.weight*(recomp ? .5 : .45));
-    return { kcal, protein, fiber };
+    const fatLoss = (p.goal||'').includes('fat loss');
+    const bmr=10*p.weight+6.25*parseFloat(p.heightLabel)-5*p.age+(p.sex==='male'?5:-161);
+    const activity=p.sex==='male'?1.4:1.375;
+    const maintenance=Math.round(bmr*activity/10)*10;
+    const kcal=Math.round((maintenance+(fatLoss?-200:200))/10)*10;
+    const protein=Math.round(p.weight*(fatLoss?2:1.6));
+    const fiber=Math.round(p.weight*(fatLoss?.5:.45));
+    return {kcal,protein,fiber,maintenance};
   }
-  mealProteinTarget(p) { return Math.round(this.targetsFor(p).protein/4); }
+  mealTargetsFor(p,slot) {
+    const shares={Breakfast:.244,'Snack 1':.10,Lunch:.291,'Snack 2':.106,Dinner:.259};
+    const proteinShares={Breakfast:.25,'Snack 1':.125,Lunch:.30,'Snack 2':.125,Dinner:.20};
+    const t=this.targetsFor(p), share=shares[slot]||.2;
+    return {kcal:Math.round(t.kcal*share),protein:Math.round(t.protein*(proteinShares[slot]||.2))};
+  }
+  mealProteinTarget(p,slot) { return this.mealTargetsFor(p,slot||'Lunch').protein; }
   portionScaleFor(recipe, person) {
-    const reference = recipe.portionProtein || recipe.protein/(recipe.base||2);
-    return this.mealProteinTarget(person)/reference;
+    const slot=recipe.planSlot||'Lunch', target=this.mealTargetsFor(person,slot).kcal;
+    return target/((recipe.portions&&recipe.portions[person.name]&&recipe.portions[person.name].kcal)||target);
   }
+  plannedDailyFor(p) { return this.slots.reduce((out,slot)=>{const t=this.mealTargetsFor(p,slot);out.kcal+=t.kcal;out.protein+=t.protein;return out;},{kcal:0,protein:0}); }
   weeklyRecipeTotals(recipe) {
     const week=this.state.week||this.buildWeek();
     const occurrences=this.slots.reduce((n,slot)=>n+(week[slot]||[]).filter(name=>name===this.recipeNameFor(recipe)).length,0);
@@ -261,12 +270,13 @@ class Component extends DCLogic {
     // A five-day bake or pot is one finished batch, not five separate two-person recipes.
     // Its size still follows saved profiles; the batch is simply divided across its actual ten portions.
     if (recipe.batchPrep) {
-      const totalTarget=people.reduce((sum,[,person])=>sum+this.mealProteinTarget(person),0);
-      const batchScale=totalTarget/(recipe.batchReferenceProtein||totalTarget);
+      const slot=recipe.planSlot||'Lunch';
+      const totalTarget=people.reduce((sum,[,person])=>sum+this.mealTargetsFor(person,slot).kcal,0);
+      const batchScale=totalTarget/(recipe.batchReferenceKcal||totalTarget);
       people.forEach(([label,person])=>{
-        const share=this.mealProteinTarget(person)/totalTarget, ingredients={};
+        const share=this.mealTargetsFor(person,slot).kcal/totalTarget, ingredients={};
         recipe.ingredients.forEach(ing=>{ ingredients[ing.n]=ing.q*batchScale*share/occurrences; });
-        out[label]={protein:this.mealProteinTarget(person),scale:batchScale*share,ingredients};
+        out[label]={protein:this.mealTargetsFor(person,slot).protein,kcal:this.mealTargetsFor(person,slot).kcal,scale:batchScale*share,ingredients};
       });
       recipe.ingredients.forEach(ing=>{
         out.totalIngredients[ing.n]=ing.q*batchScale;
@@ -494,7 +504,7 @@ class Component extends DCLogic {
       };
       const groupFor=(item)=>item.cat==='protein'?'PROTEINS & DAIRY':(item.cat==='veg'||item.cat==='carb'?'PRODUCE & CARBS':'CUPBOARD · ONLY IF NEEDED');
       const groups=['PROTEINS & DAIRY','PRODUCE & CARBS','CUPBOARD · ONLY IF NEEDED'].map(h=>({h,items:Object.values(entries).filter(item=>groupFor(item)===h).map(item=>({n:item.n,q:quantity(item),img:item.n==='Chicken breast, raw'?'gr-chicken':undefined}))})).filter(group=>group.items.length);
-      return { label:'Wednesday–Sunday Meal Prep', skipped:[], groups};
+return { label:'Monday–Sunday Meal Prep', groups };
     }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -972,7 +982,7 @@ class Component extends DCLogic {
   renderHome() {
     const C=this.C, st=this.state;
     if (st.homeView==='glance') return this.renderMeals(true);
-    const plannedAvg = this.weekPlannedKcal();
+    const plannedAvg = this.plannedDailyFor(st.people.me).kcal;
     return [
       e('div',{key:'sb',style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'16px 26px 6px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13,fontWeight:600,color:C.sumi,flex:'0 0 auto'}},
         e('span',null,'9:41'), e('span',{style:{width:16,height:8,border:'1px solid '+C.sumi,borderRadius:2,display:'inline-block'}})),
@@ -984,11 +994,11 @@ class Component extends DCLogic {
           e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
         e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
       e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'WED–SUN · REST OF WEEK'),
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'MON–SUN · CALORIE-DEFICIT WEEK'),
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
       e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
         this.personCard('me'), this.personCard('partner'),
-        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',textAlign:'center',margin:'2px 4px 16px'}},'Planned meals average ~'+plannedAvg+' kcal each'),
+        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',textAlign:'center',margin:'2px 4px 16px'}},st.people.me.name+' planned total: ~'+plannedAvg+' kcal/day · '+st.people.partner.name+' portions are shown on every recipe'),
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:8}},
           e('div',{style:{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:17,color:C.sumi}},"This week's meals"),
           e('div',{onClick:()=>this.setState({homeView:'glance'}),style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,fontWeight:600,color:'#8C5B3F',cursor:'pointer',display:'flex',alignItems:'center',gap:3}},'See all',e('span',{style:{fontSize:14}},'›'))),
@@ -1193,6 +1203,7 @@ class Component extends DCLogic {
     const C=this.C, st=this.state, r=this.curRec();
     const me = st.people.me, partner = st.people.partner;
     const sCyn = this.personPortionScale(me), sGab = this.personPortionScale(partner);
+    const weeklyTotals = (r.weeklyReference || r.weeklyDynamic) ? this.weeklyRecipeTotals(r) : null;
     const fmt = (v)=>{ const x=Math.round(v*10)/10; return x%1===0?x:x.toFixed(1); };
     // Use rounded-up household units throughout: no scale, no fractional produce, no mystery decimals.
     const unitLabel = (n, unit) => {
@@ -1203,6 +1214,11 @@ class Component extends DCLogic {
     const fmtIngredient = (v, unit)=>{ const n=Math.max(1,Math.ceil(v)); return n+(unit?' '+unitLabel(n,unit):' whole'); };
     // per-person macro split: food grams per category + nutrient protein total
     const split = (person)=>{
+      if (weeklyTotals) {
+        const out={protein:0,carb:0,veg:0}, portion=weeklyTotals[person.name];
+        r.ingredients.forEach(ing=>{ if (ing.u==='g' && out[ing.cat]!==undefined) out[ing.cat]+=portion.ingredients[ing.n]||0; });
+        return {protein:Math.round(out.protein),carb:Math.round(out.carb),veg:Math.round(out.veg),protG:portion.protein,kcal:portion.kcal};
+      }
       const scale=this.personPortionScale(person), divisor=(r.base||2)*(r.weeklyReference?(r.weeklyReferenceDays||3):1);
       const out={protein:0,carb:0,veg:0};
       r.ingredients.forEach(ing=>{
@@ -1218,7 +1234,7 @@ class Component extends DCLogic {
       if(!gItems.length) return null;
       return gItems.reduce((a,b)=>b.q>a.q?b:a);
     }).filter(Boolean);
-    const portionAmount = (ing, scale) => { const n=Math.max(1,Math.ceil(ing.q/((r.base||2)*(r.weeklyReference?(r.weeklyReferenceDays||3):1))*scale)); return n+(ing.u?' '+unitLabel(n,ing.u):' whole'); };
+    const portionAmount = (ing, scale, person) => weeklyTotals ? this.methodIngredientAmount(ing,weeklyTotals[person.name].ingredients[ing.n]||0) : (()=>{const n=Math.max(1,Math.ceil(ing.q/((r.base||2)*(r.weeklyReference?(r.weeklyReferenceDays||3):1))*scale)); return n+(ing.u?' '+unitLabel(n,ing.u):' whole');})();
     const personHead = (p, scale, sp) => e('div',{key:p.name,style:{flex:1,background:p===me?'#F6ECE1':'#F3EBDD',borderRadius:14,padding:'12px 12px'}},
       e('div',{style:{display:'flex',alignItems:'center',gap:8,marginBottom:5}},
         e('span',{style:{width:22,height:22,borderRadius:'50%',background:p.color,color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:700,fontSize:11,flexShrink:0}},p.name[0]),
@@ -1227,10 +1243,10 @@ class Component extends DCLogic {
       e('div',{style:{display:'flex',flexDirection:'column',gap:4}},
         mainItems.map(ing=>e('div',{key:ing.n,style:{display:'flex',justifyContent:'space-between',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,color:'#57493C'}},
           e('span',{style:{fontWeight:600}},ing.short||ing.n),
-          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11}},portionAmount(ing,scale)))),
+          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11}},portionAmount(ing,scale,p)))),
         e('div',{style:{display:'flex',justifyContent:'space-between',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:p.color,borderTop:'1px solid rgba(56,44,36,.10)',paddingTop:5,marginTop:2}},
-          e('span',{style:{fontWeight:700}},'Protein'),
-          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,fontWeight:700}},sp.protG+'g'))));
+          e('span',{style:{fontWeight:700}},'Protein · kcal'),
+          e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,fontWeight:700}},sp.protG+'g · '+(sp.kcal||this.mealTargetsFor(p,r.planSlot||'Lunch').kcal)))));
     const catMeta = [
       {id:'protein', label:'PROTEIN', color:'#8C5B3F'},
       {id:'carb', label:'CARBS', color:'#CB9C8B'},
@@ -1238,7 +1254,6 @@ class Component extends DCLogic {
       {id:'sauce', label:'SAUCE & EXTRAS', color:'#9a8a76'},
     ];
     const sTot = sCyn + sGab;
-    const weeklyTotals = (r.weeklyReference || r.weeklyDynamic) ? this.weeklyRecipeTotals(r) : null;
     const totalLabel = weeklyTotals ? 'TOTAL TO PREP' : (r.fixedPlan && r.base>2 ? 'TOTAL TO PREP' : 'TOTAL TO COOK');
     const row = (ing,i) => {
       const total = weeklyTotals ? weeklyTotals.totalIngredients[ing.n] : (r.fixedPlan ? ing.q : ing.q/r.base*sTot);
