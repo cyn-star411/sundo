@@ -1,3 +1,1 @@
-const assert=require('assert'),fs=require('fs'),vm=require('vm');
-const source=fs.readFileSync('sundo-component.js','utf8'),sw=fs.readFileSync('sw.js','utf8');const c={React:{createElement:()=>({})},DCLogic:class{setState(p){this.state={...(this.state||{}),...p}}},setTimeout,clearTimeout};vm.createContext(c);vm.runInContext(source+';globalThis.App=Component;',c);const app=new c.App();
-assert.strictEqual(app.days.length,7);assert.strictEqual(app.slots.length,5);for(const name of app.recipeOrder){const r=app.recipes[name];assert.strictEqual(r.base,14);assert.strictEqual(app.weeklyRecipeTotals(r).occurrences,7);}assert.strictEqual(app.groceryFor().label,'Monday–Sunday Meal Prep');assert.ok(app.prepSections.find(x=>x.id==='store').steps.join(' ').includes('Thursday–Sunday'));assert.ok(sw.includes('sundo-app-v44'));console.log('seven-day plan uses true fourteen-portion batches');
+require('./thursday-friday-plan.test.js');

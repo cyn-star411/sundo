@@ -2,17 +2,17 @@ const e = React.createElement;
 class Component extends DCLogic {
   C = { paper:'#FBF6EC', sumi:'#382C24', kinari:'#F2E8D5', sora:'#8FB3C8', tsuchi:'#CB9C8B', matcha:'#7C8A5E', yuhi:'#EC7F5E', peri:'#EFE3D0', mut:'#9a8a76', body:'#6b5d50', line:'rgba(56,44,36,.10)', card:'#ffffff' };
   slots = ['Breakfast','Snack 1','Lunch','Snack 2','Dinner'];
-  days = [{k:'Mon',sub:'Fresh start'},{k:'Tue',sub:'Steady fuel'},{k:'Wed',sub:'Midweek'},{k:'Thu',sub:'Train strong'},{k:'Fri',sub:'Finish strong'},{k:'Sat',sub:'Weekend reset'},{k:'Sun',sub:'Sunday wind-down'}];
+  days = [{k:'Tue',sub:'Steady fuel'},{k:'Wed',sub:'Midweek'},{k:'Thu',sub:'Finish strong'}];
   slotColor = { Breakfast:'#7C8A5E', 'Snack 1':'#8FB3C8', Lunch:'#CB9C8B', 'Snack 2':'#9B7E9B', Dinner:'#C8754E' };
-  // One true seven-day batch: each repeated slot makes fourteen profile-divided portions for Monday through Sunday.
+  // Tue–Thu only: every active slot is one six-portion batch (three Cynthia, three Gabriel).
   options = {
-    Breakfast:Array(7).fill('Berry Protein Overnight Oats'),
-    'Snack 1':Array(7).fill('Yogurt & Fruit Pots'),
-    Lunch:Array(7).fill('Lemon Chicken Rice & Bean Bowls'),
-    'Snack 2':Array(7).fill('Cocoa Peanut Protein Yogurt'),
-    Dinner:Array(7).fill('Turkey Chilli Sweet Potatoes'),
+    Breakfast:Array(3).fill('Green Tea Protein Overnight Oats'),
+    'Snack 1':Array(3).fill('Edamame & Clementine Snack'),
+    Lunch:Array(3).fill('Korean Gochujang Chicken Rice Bowls'),
+    'Snack 2':Array(3).fill('Matcha Yogurt Cups'),
+    Dinner:Array(3).fill('Vietnamese Lemongrass Turkey & Tofu Bowls'),
   };
-  kcal = {'Berry Protein Overnight Oats':390,'Yogurt & Fruit Pots':160,'Lemon Chicken Rice & Bean Bowls':465,'Cocoa Peanut Protein Yogurt':170,'Turkey Chilli Sweet Potatoes':415};
+  kcal = {'Green Tea Protein Overnight Oats':390,'Edamame & Clementine Snack':160,'Korean Gochujang Chicken Rice Bowls':466,'Matcha Yogurt Cups':170,'Vietnamese Lemongrass Turkey & Tofu Bowls':414};
   recipes = {
     'Berry Protein Overnight Oats': { cuisine:'Breakfast · Prep ahead', time:'10 min + overnight', kcal:450, base:2, weeklyReference:true, weeklyReferenceDays:1, fixedPlan:true, protein:58, fiber:18, slug:'berry-protein-oats', portions:{Cynthia:{kcal:430,protein:28},Gabriel:{kcal:610,protein:36}}, ingredients:[{n:'Greek yogurt',q:2,u:'cups',cat:'protein',prot:40},{n:'Rolled oats',q:2,u:'cups',cat:'carb',prot:16},{n:'Protein powder',q:2,u:'scoops',cat:'protein',prot:48},{n:'Mixed berries',q:2,u:'cups',cat:'veg',prot:3},{n:'Chia seeds',q:2,u:'tbsp',cat:'carb',prot:5},{n:'Milk',q:2,u:'cups',cat:'sauce',prot:12}], method:['Stir the oats, chia, protein powder and milk until smooth.','Fold through half the berries, then refrigerate in two jars overnight.','Top with Greek yogurt and the remaining berries before eating.'] },
     'Egg & Bean Breakfast Wraps': { cuisine:'Breakfast · Prep ahead', time:'20 min', kcal:465, base:2, fixedPlan:true, protein:56, fiber:16, slug:'egg-bean-wraps', ingredients:[{n:'Eggs',q:4,u:'',cat:'protein',prot:24},{n:'Black beans',q:240,u:'g',cat:'protein',prot:18},{n:'Wholemeal wraps',q:2,u:'',cat:'carb',prot:12},{n:'Baby spinach',q:100,u:'g',cat:'veg',prot:3},{n:'Salsa',q:100,u:'g',cat:'sauce',prot:1},{n:'Cheddar',q:40,u:'g',cat:'protein',prot:10}], method:['Warm the beans with salsa until thick.','Scramble the eggs and wilt in the spinach.','Fill each wrap with bean mixture, eggs and cheese; roll tightly and toast seam-side down.'] },
@@ -186,18 +186,18 @@ class Component extends DCLogic {
       method:['Stir honey, soy, garlic and sesame oil together.','Sear the salmon 3 min skin-side down; flip for 1.','Pour the sauce around (not on) the fish; let it bubble and reduce 2 min.','Baste the salmon in the sticky glaze; add a squeeze of lemon.','Serve over rice with steamed broccoli, glaze spooned over everything.'] },
     'Sweet Potato Brownies': { cuisine:'Dessert · Sundō adaptation', time:'35 min + cool', kcal:59, base:6, weeklyReference:true, weeklyReferenceDays:3, batchPrep:true, batchReferenceProtein:64, fixedPlan:true, protein:12, fiber:12, slug:'sweet-potato-brownies', ingredients:[{n:'Baked sweet potato',q:390,u:'g',cat:'veg',prot:6},{n:'Unsweetened cocoa powder',q:20,u:'g',cat:'sauce',prot:4},{n:'Egg',q:1,u:'',cat:'protein',prot:6},{n:'Milk of choice',q:70,u:'ml',cat:'sauce',prot:3},{n:'Salt',q:1,u:'pinch',cat:'sauce',prot:0}], method:['This six-square Sundō adaptation uses the complete ingredient list and 170°C / 340°F baking method from @her_rebuild’s eight-serving sweet-potato brownie source; the six-square division is a planning choice.','Mash the baked sweet potato with cocoa powder, egg and salt. Stir in milk until smooth.','Spread in a lined small baking dish and bake at 170°C / 340°F for 25 minutes. Cool, then cut into six labelled squares.'] },
   };
-  // Active Monday–Sunday plan: each repeat is one true 14-portion batch (seven Cynthia + seven Gabriel portions).
-  sevenDayBatches = (() => {
-    const batch={base:14,weeklyReference:true,weeklyReferenceDays:7,batchPrep:true,fixedPlan:true};
-    this.recipes['Berry Protein Overnight Oats']={...batch,planSlot:'Breakfast',batchReferenceKcal:1064,cuisine:'Breakfast · Seven-day batch',time:'20 min + overnight',kcal:390,protein:64,fiber:12,slug:'mango-oats',portions:{Cynthia:{kcal:390,protein:30},Gabriel:{kcal:674,protein:34}},ingredients:[{n:'Plain non-fat Greek yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Rolled oats',q:770,u:'g',cat:'carb',prot:92},{n:'Protein powder',q:420,u:'g',cat:'protein',prot:336},{n:'Mixed berries',q:1750,u:'g',cat:'veg',prot:18},{n:'Chia seeds',q:175,u:'g',cat:'carb',prot:30},{n:'Milk of choice',q:1400,u:'ml',cat:'sauce',prot:45}],method:['This Monday–Sunday batch makes fourteen berry protein overnight-oat jars: seven for Cynthia and seven larger jars for Gabriel.','Whisk yogurt, milk and protein powder smooth, then stir through oats and chia. Fold in the berries.','Divide into fourteen labelled jars. Refrigerate Monday–Wednesday jars and freeze Thursday–Sunday jars; thaw overnight in the refrigerator.']};
-    this.recipes['Yogurt & Fruit Pots']={...batch,planSlot:'Snack 1',batchReferenceKcal:436,cuisine:'Snack · Seven-day batch',time:'10 min',kcal:160,protein:32,fiber:5,slug:'matcha-yogurt',portions:{Cynthia:{kcal:160,protein:15},Gabriel:{kcal:276,protein:17}},ingredients:[{n:'High-protein yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Mixed berries',q:1750,u:'g',cat:'veg',prot:18},{n:'Kiwis or mandarins',q:14,u:'',cat:'veg',prot:12}],method:['This Monday–Sunday snack batch makes fourteen yogurt and fruit pots: seven for Cynthia and seven larger pots for Gabriel.','Divide the yogurt and berries into labelled pots. Keep the kiwi or mandarin separate until eating.','Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday yogurt portions; add fresh fruit after thawing.']};
-    this.recipes['Lemon Chicken Rice & Bean Bowls']={...batch,planSlot:'Lunch',batchReferenceKcal:1268,cuisine:'Mediterranean-inspired · Seven-day lunch batch',time:'75 min',kcal:465,protein:77,fiber:15,slug:'chicken-satay',portions:{Cynthia:{kcal:465,protein:36},Gabriel:{kcal:803,protein:41}},ingredients:[{n:'Chicken breast, raw',q:3745,u:'g',cat:'protein',prot:860,short:'Chicken'},{n:'Brown rice, dry',q:750,u:'g',cat:'carb',prot:56},{n:'Black beans, drained',q:1470,u:'g',cat:'protein',prot:103},{n:'Mixed roasting vegetables',q:3150,u:'g',cat:'veg',prot:70},{n:'Salsa',q:980,u:'ml',cat:'sauce',prot:8},{n:'Avocados',q:7,u:'',cat:'veg',prot:14},{n:'Limes',q:7,u:'',cat:'sauce',prot:0},{n:'Fresh coriander',q:70,u:'g',cat:'veg',prot:2}],method:['This Monday–Sunday batch makes fourteen lemon chicken rice-and-bean bowls: seven for Cynthia and seven larger bowls for Gabriel.','Roast the vegetables. Cook the brown rice and warm the black beans. Cook the chicken to 75°C, rest briefly, then slice.','Divide chicken, rice, beans and vegetables into the saved-profile portions; add salsa, avocado, lime and coriander. Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday portions. Thaw overnight and reheat chicken, rice and beans until steaming.']};
-    this.recipes['Cocoa Peanut Protein Yogurt']={...batch,planSlot:'Snack 2',batchReferenceKcal:463,cuisine:'Snack · Seven-day batch',time:'10 min',kcal:170,protein:32,fiber:4,slug:'rice-cakes-pb',portions:{Cynthia:{kcal:170,protein:15},Gabriel:{kcal:293,protein:17}},ingredients:[{n:'High-protein yogurt',q:2940,u:'g',cat:'protein',prot:294},{n:'Peanut butter',q:245,u:'g',cat:'protein',prot:61},{n:'Unsweetened cocoa powder',q:70,u:'g',cat:'sauce',prot:14},{n:'Mixed berries',q:1400,u:'g',cat:'veg',prot:14}],method:['This Monday–Sunday batch makes fourteen cocoa-peanut protein-yogurt pots: seven for Cynthia and seven larger pots for Gabriel.','Stir the yogurt, peanut butter and cocoa powder until smooth. Divide into labelled pots and top with berries.','Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday pots; thaw overnight in the refrigerator.']};
-    this.recipes['Turkey Chilli Sweet Potatoes']={...batch,planSlot:'Dinner',batchReferenceKcal:1130,cuisine:'Comfort food · Seven-day dinner batch',time:'75 min',kcal:415,protein:51,fiber:17,slug:'thai-basil-tofu',portions:{Cynthia:{kcal:415,protein:24},Gabriel:{kcal:715,protein:27}},ingredients:[{n:'Lean turkey mince, raw',q:2800,u:'g',cat:'protein',prot:588,short:'Turkey'},{n:'Sweet potatoes',q:4550,u:'g',cat:'carb',prot:73},{n:'Kidney beans, drained',q:1750,u:'g',cat:'protein',prot:123},{n:'Chopped tomatoes',q:2800,u:'g',cat:'veg',prot:42},{n:'Red peppers',q:7,u:'',cat:'veg',prot:7},{n:'Onions',q:7,u:'',cat:'veg',prot:7},{n:'Greek yogurt',q:980,u:'g',cat:'protein',prot:98},{n:'Chilli seasoning',q:70,u:'g',cat:'sauce',prot:0}],method:['This Monday–Sunday batch makes fourteen turkey-chilli sweet-potato dinners: seven for Cynthia and seven larger portions for Gabriel.','Bake the sweet potatoes until tender. Brown the turkey mince to 75°C with onion and pepper, then simmer with tomatoes, kidney beans and chilli seasoning until thick.','Divide the chilli and potatoes using the saved-profile portions; add Greek yogurt after reheating. Refrigerate Monday–Wednesday portions and freeze Thursday–Sunday dinners. Thaw overnight and reheat until steaming.']};
+  // Active Tue–Thu plan. Ingredient totals below are the baseline six-portion shop; saved profiles scale each batch.
+  tueThuBatches = (() => {
+    const batch={base:6,weeklyReference:true,weeklyReferenceDays:3,batchPrep:true,fixedPlan:true};
+    this.recipes['Green Tea Protein Overnight Oats']={...batch,planSlot:'Breakfast',batchReferenceKcal:1063,cuisine:'Breakfast · Tue–Thu batch',time:'15 min + overnight',kcal:390,protein:45,fiber:12,slug:'mango-oats',portions:{Cynthia:{kcal:390,protein:30},Gabriel:{kcal:673,protein:36}},ingredients:[{n:'Rolled oats',q:315,u:'g',cat:'carb',prot:38},{n:'0% Greek yogurt',q:900,u:'g',cat:'protein',prot:90},{n:'Protein powder',q:135,u:'g',cat:'protein',prot:108},{n:'Frozen berries',q:450,u:'g',cat:'veg',prot:5},{n:'Milk',q:900,u:'ml',cat:'sauce',prot:30},{n:'Green tea or matcha',q:12,u:'g',cat:'sauce',prot:0}],method:['Make one Tue–Thu batch: six jars, three for Cynthia and three larger jars for Gabriel.','Whisk Greek yogurt, milk, green tea or matcha and protein powder smooth; stir in oats and fold through berries.','Divide using the saved-profile portions. Refrigerate through Thursday; keep cold.']};
+    this.recipes['Edamame & Clementine Snack']={...batch,planSlot:'Snack 1',batchReferenceKcal:436,cuisine:'Snack · Tue–Thu batch',time:'10 min',kcal:160,protein:18,fiber:8,slug:'edamame-sesame',portions:{Cynthia:{kcal:160,protein:15},Gabriel:{kcal:276,protein:17}},ingredients:[{n:'Shelled edamame',q:600,u:'g',cat:'protein',prot:72},{n:'Clementines',q:9,u:'',cat:'veg',prot:5},{n:'Soy sauce',q:45,u:'ml',cat:'sauce',prot:3},{n:'Sesame seeds',q:15,u:'g',cat:'sauce',prot:3}],method:['Cook the shelled edamame, cool promptly and toss with soy and sesame.','Make six snack packs with clementines, three for Cynthia and three larger packs for Gabriel.','Refrigerate through Thursday.']};
+    this.recipes['Korean Gochujang Chicken Rice Bowls']={...batch,planSlot:'Lunch',batchReferenceKcal:1269,cuisine:'Korean-inspired · Tue–Thu lunch batch',time:'70 min',kcal:466,protein:50,fiber:13,slug:'chicken-satay',portions:{Cynthia:{kcal:466,protein:36},Gabriel:{kcal:803,protein:41}},ingredients:[{n:'Chicken breast, raw',q:900,u:'g',cat:'protein',prot:207},{n:'Jasmine rice, dry',q:350,u:'g',cat:'carb',prot:25},{n:'Shelled edamame',q:480,u:'g',cat:'protein',prot:58},{n:'Cabbage, carrot & pepper mix',q:1050,u:'g',cat:'veg',prot:20},{n:'Eggs',q:3,u:'',cat:'protein',prot:18},{n:'Gochujang',q:90,u:'g',cat:'sauce',prot:5},{n:'Soy sauce',q:90,u:'ml',cat:'sauce',prot:6},{n:'Sesame oil',q:30,u:'ml',cat:'sauce',prot:0},{n:'Fresh ginger',q:30,u:'g',cat:'sauce',prot:0},{n:'Garlic',q:30,u:'g',cat:'sauce',prot:0},{n:'Spring onions',q:60,u:'g',cat:'veg',prot:1}],method:['Cook rice and roast or stir-fry the cabbage, carrot and pepper mix. Cook chicken with gochujang, soy, sesame, ginger and garlic to 75°C.','Add edamame and divide into six profile-responsive bowls: three Cynthia and three larger Gabriel bowls; top Gabriel bowls with the three eggs.','Refrigerate through Thursday. Reheat mains until steaming hot / 75°C.']};
+    this.recipes['Matcha Yogurt Cups']={...batch,planSlot:'Snack 2',batchReferenceKcal:463,cuisine:'Snack · Tue–Thu batch',time:'10 min',kcal:170,protein:20,fiber:4,slug:'matcha-yogurt',portions:{Cynthia:{kcal:170,protein:15},Gabriel:{kcal:293,protein:17}},ingredients:[{n:'0% Greek yogurt',q:1050,u:'g',cat:'protein',prot:105},{n:'Frozen berries',q:450,u:'g',cat:'veg',prot:5},{n:'Granola or toasted oats',q:60,u:'g',cat:'carb',prot:6},{n:'Matcha or green tea',q:12,u:'g',cat:'sauce',prot:0}],method:['Whisk matcha or green tea into the yogurt. Divide with berries into six cups, three for Cynthia and three larger cups for Gabriel.','Pack granola separately so it stays crisp. Refrigerate through Thursday and keep yogurt cold.']};
+    this.recipes['Vietnamese Lemongrass Turkey & Tofu Bowls']={...batch,planSlot:'Dinner',batchReferenceKcal:1129,cuisine:'Vietnamese-inspired · Tue–Thu dinner batch',time:'65 min',kcal:414,protein:48,fiber:12,slug:'lemongrass-pork',portions:{Cynthia:{kcal:414,protein:24},Gabriel:{kcal:715,protein:27}},ingredients:[{n:'5% turkey mince',q:750,u:'g',cat:'protein',prot:150},{n:'Firm tofu',q:675,u:'g',cat:'protein',prot:81},{n:'Jasmine rice, dry',q:330,u:'g',cat:'carb',prot:23},{n:'Mushroom, spinach, cabbage & carrot mix',q:1200,u:'g',cat:'veg',prot:30},{n:'Lemongrass',q:60,u:'g',cat:'sauce',prot:0},{n:'Fish sauce',q:60,u:'ml',cat:'sauce',prot:4},{n:'Soy sauce',q:60,u:'ml',cat:'sauce',prot:4},{n:'Fresh ginger',q:30,u:'g',cat:'sauce',prot:0},{n:'Garlic',q:30,u:'g',cat:'sauce',prot:0},{n:'Limes or lemons',q:3,u:'',cat:'sauce',prot:0},{n:'Spring onions',q:60,u:'g',cat:'veg',prot:1},{n:'Oil',q:30,u:'ml',cat:'sauce',prot:0}],method:['Cook rice. Brown turkey and tofu with lemongrass, fish sauce, soy, ginger and garlic until steaming and the turkey reaches 75°C; fold in vegetables.','Divide into six profile-responsive bowls: three Cynthia and three larger Gabriel bowls. Finish with citrus and spring onions.','Refrigerate through Thursday. Reheat mains until steaming hot / 75°C.']};
     return true;
   })();
   recipeAliases = { 'Ginger Soy Salmon':'Ginger Soy Salmon Bowl' };
-  recipeOrder = ['Berry Protein Overnight Oats','Yogurt & Fruit Pots','Lemon Chicken Rice & Bean Bowls','Cocoa Peanut Protein Yogurt','Turkey Chilli Sweet Potatoes'];
+  recipeOrder = ['Green Tea Protein Overnight Oats','Edamame & Clementine Snack','Korean Gochujang Chicken Rice Bowls','Matcha Yogurt Cups','Vietnamese Lemongrass Turkey & Tofu Bowls'];
   resolveRecipe(name) {
     if (this.recipes[name]) return name;
     if (this.recipeAliases[name]) return this.recipeAliases[name];
@@ -224,15 +224,14 @@ class Component extends DCLogic {
     document.addEventListener('click', this._dishClick);
   }
   componentWillUnmount() { document.removeEventListener('click', this._dishClick); clearTimeout(this._glowT); }
-  timeline = [{t:'0:00',l:'Protein overnight oats + yogurt pots'},{t:'0:25',l:'Roast vegetables and sweet potatoes'},{t:'0:50',l:'Lemon chicken rice-and-bean bowls'},{t:'1:35',l:'Turkey chilli + cocoa yogurt pots'},{t:'2:10',l:'Label, chill and freeze'}];
+  timeline = [{t:'0:00',l:'Green tea oats + matcha yogurt cups'},{t:'0:20',l:'Edamame and vegetables'},{t:'0:40',l:'Gochujang chicken rice bowls'},{t:'1:20',l:'Lemongrass turkey & tofu bowls'},{t:'2:00',l:'Label and refrigerate through Thursday'}];
   prepSections = [
-    {id:'breakfast',title:'One Monday–Sunday breakfast & snack session',time:'35 min + chill',color:'#C8754E',steps:['Make fourteen berry protein overnight-oat jars: seven for Cynthia and seven larger jars for Gabriel.','Pack fourteen yogurt-and-fruit pots and fourteen cocoa-peanut protein-yogurt pots, clearly labelled by person.','Keep fresh fruit separate for the later frozen snack pots.']},
-    {id:'mains',title:'One Monday–Sunday chicken & turkey prep',time:'105 min',color:'#8FB3C8',steps:['Cook the profile-driven chicken batch to 75°C, then label Cynthia’s and Gabriel’s lemon chicken rice-and-bean bowls.','Bake the sweet potatoes and simmer the turkey chilli to 75°C; portion both using the saved-profile proportions.','Keep avocado, lime and coriander fresh for the chicken bowls; add Greek yogurt after reheating the chilli.']},
-    {id:'veg',title:'One shared vegetable and sauce prep',time:'25 min',color:'#7C8A5E',steps:['Chop roasting vegetables, peppers, onions and coriander; cut limes and set aside avocados for the day of eating.','Measure salsa, chilli seasoning, cocoa and peanut butter before cooking so packing moves quickly.','Chicken, beans, yogurt, berries and vegetables overlap deliberately, so the shop stays practical without repeating last week’s dishes.']},
-    {id:'store',title:'Seven-day storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate Monday–Wednesday portions promptly. Freeze Thursday–Sunday oats, snacks, chicken bowls and turkey-chilli dinners on prep day; thaw the next portion overnight in the refrigerator.','Reheat chicken bowls and turkey chilli until steaming; keep yogurt pots cold.','Pack avocado, coriander, lime and fresh fruit separately where possible so they stay fresh.']},
+    {id:'breakfast',title:'One Tue–Thu breakfast & snack session',time:'30 min + chill',color:'#C8754E',steps:['Make six green tea protein overnight-oat jars: three for Cynthia and three larger jars for Gabriel.','Pack six edamame and clementine snacks and six matcha yogurt cups; keep granola separate.','Refrigerate all cold items through Thursday.']},
+    {id:'mains',title:'One Tue–Thu chicken, turkey & tofu prep',time:'95 min',color:'#8FB3C8',steps:['Cook the profile-driven gochujang chicken bowls to 75°C; Gabriel’s three bowls include the eggs.','Cook lemongrass turkey and tofu to 75°C; divide both mains into three Cynthia and three larger Gabriel portions.','Use the shared vegetables, rice, edamame, aromatics and sauces once across the plan.']},
+    {id:'store',title:'Tue–Thu storage guide',time:'5 min',color:'#382C24',steps:['Refrigerate food through Thursday; there is no freezer step in this three-day plan.','Reheat chicken and turkey-tofu mains until steaming hot / 75°C. Keep yogurt cups cold.','Label containers by person and day.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Berry Protein Overnight Oats', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Green Tea Protein Overnight Oats', recipeGlow:false,
     people: {
       me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
       partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
@@ -264,7 +263,7 @@ class Component extends DCLogic {
   plannedDailyFor(p) { return this.slots.reduce((out,slot)=>{const t=this.mealTargetsFor(p,slot);out.kcal+=t.kcal;out.protein+=t.protein;return out;},{kcal:0,protein:0}); }
   weeklyRecipeTotals(recipe) {
     const week=this.state.week||this.buildWeek();
-    const occurrences=this.slots.reduce((n,slot)=>n+(week[slot]||[]).filter(name=>name===this.recipeNameFor(recipe)).length,0);
+    const occurrences=Math.max(1,this.slots.reduce((n,slot)=>n+(week[slot]||[]).filter(name=>name===this.recipeNameFor(recipe)).length,0));
     const people=[['Cynthia',this.state.people.me],['Gabriel',this.state.people.partner]];
     const out={occurrences,totalIngredients:{}};
     // A five-day bake or pot is one finished batch, not five separate two-person recipes.
@@ -272,7 +271,7 @@ class Component extends DCLogic {
     if (recipe.batchPrep) {
       const slot=recipe.planSlot||'Lunch';
       const totalTarget=people.reduce((sum,[,person])=>sum+this.mealTargetsFor(person,slot).kcal,0);
-      const batchScale=totalTarget/(recipe.batchReferenceKcal||totalTarget);
+      const batchScale=totalTarget/Math.max(1,recipe.batchReferenceKcal||totalTarget||1);
       people.forEach(([label,person])=>{
         const share=this.mealTargetsFor(person,slot).kcal/totalTarget, ingredients={};
         recipe.ingredients.forEach(ing=>{ ingredients[ing.n]=ing.q*batchScale*share/occurrences; });
@@ -498,13 +497,14 @@ class Component extends DCLogic {
       }));
       const quantity=(item)=>{
         const n=Math.max(1,Math.ceil(item.total));
-        if (item.u==='g') return n+' g';
+        if (item.u==='g') return n>=1000 ? (Math.ceil(n/100)/10)+' kg' : n+' g';
+        if (item.u==='ml') return n>=1000 ? (Math.ceil(n/100)/10)+' L' : n+' mL';
         if (item.u==='L') return n+' L';
-        return n+(item.u?' '+item.u:'');
+        return n+(item.u?' '+item.u:' whole');
       };
       const groupFor=(item)=>item.cat==='protein'?'PROTEINS & DAIRY':(item.cat==='veg'||item.cat==='carb'?'PRODUCE & CARBS':'CUPBOARD · ONLY IF NEEDED');
       const groups=['PROTEINS & DAIRY','PRODUCE & CARBS','CUPBOARD · ONLY IF NEEDED'].map(h=>({h,items:Object.values(entries).filter(item=>groupFor(item)===h).map(item=>({n:item.n,q:quantity(item),img:item.n==='Chicken breast, raw'?'gr-chicken':undefined}))})).filter(group=>group.items.length);
-return { label:'Monday–Sunday Meal Prep', groups };
+return { label:'Tuesday–Thursday Meal Prep', estimate:'Estimated basket £55 · non-live, conservative UK discount-shop estimate; prices vary. Ingredient reuse is included.', budget:55, groups };
     }
     const protItems = { Salmon:{n:'Salmon fillets',q:'8 portions',img:'gr-salmon'}, Tofu:{n:'Firm tofu',q:'2 blocks'}, Chicken:{n:'Chicken thigh',q:'800 g',img:'gr-chicken'}, Pork:{n:'Pork shoulder',q:'700 g'}, Beef:{n:'Beef mince',q:'700 g'}, Prawn:{n:'Raw prawns',q:'600 g'} };
     const produce = [{n:'Spring onions',q:'2 bunches',img:'gr-spring-onions'},{n:'Pak choi',q:'2 heads'},{n:'Baby spinach',q:'200 g',img:'gr-spinach'}];
@@ -533,7 +533,8 @@ return { label:'Monday–Sunday Meal Prep', groups };
   renderGroceryBody() {
     const C=this.C, st=this.state, g=this.groceryFor(), ticks=st.groceryTicks||this.defaultTicks, pantry=st.pantryHave||{};
     const out=[];
-    if (g.skipped.length) out.push(e('div',{key:'skip',style:{background:'#F3EBDD',borderRadius:12,padding:'9px 12px',margin:'6px 0 4px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,lineHeight:1.45,color:'#6B5D50'}},'Already have: '+g.skipped.join(', ')+' — left over from last week'));
+    if (g.estimate) out.push(e('div',{key:'estimate',style:{background:'#EDF0E0',borderRadius:12,padding:'10px 12px',margin:'6px 0 4px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,lineHeight:1.45,color:'#5f6b3e'}},g.estimate));
+    if ((g.skipped||[]).length) out.push(e('div',{key:'skip',style:{background:'#F3EBDD',borderRadius:12,padding:'9px 12px',margin:'6px 0 4px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,lineHeight:1.45,color:'#6B5D50'}},'Already in your pantry: '+(g.skipped||[]).join(', ')));
     out.push(e('div',{key:'hint',style:{display:'flex',alignItems:'center',gap:8,margin:'8px 0 2px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,lineHeight:1.4,color:'#9a8a76'}},
       e('span',{style:{flex:'0 0 auto',width:16,height:16,borderRadius:'50%',background:'#EDF0E0',color:'#5f6b3e',display:'flex',alignItems:'center',justifyContent:'center',fontSize:10,fontWeight:700}},'✓'),
       e('span',null,'Already got something? Tap ',e('b',{style:{color:'#5f6b3e'}},'Have it'),' and we\u2019ll leave it off your shop.')));
@@ -994,7 +995,7 @@ return { label:'Monday–Sunday Meal Prep', groups };
           e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
         e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
       e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'MON–SUN · CALORIE-DEFICIT WEEK'),
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'TUE–THU · CALORIE-DEFICIT PLAN'),
         e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
       e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
         this.personCard('me'), this.personCard('partner'),
@@ -1413,7 +1414,7 @@ return { label:'Monday–Sunday Meal Prep', groups };
       e('div',{key:'h',style:{flex:'0 0 auto',padding:'14px 24px 0'}},
         e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
           e('div',null,
-            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'WED–SUN · REST OF WEEK'),
+            e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.12em',color:C.mut}},'TUE–THU · MEAL PREP'),
             e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:29,color:C.sumi,marginTop:5}},'The prep ritual')),
           e('span',{style:{display:'inline-flex',flexDirection:'column',alignItems:'center',gap:2,marginTop:4}},
             e('span',{style:{width:24,height:22,background:'#C8754E',borderRadius:'50% 50% 47% 53% / 55% 55% 46% 46%'}}),
