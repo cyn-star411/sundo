@@ -3,8 +3,8 @@ const source=fs.readFileSync('sundo-component.js','utf8');const c={React:{create
 const app=new c.App(), C=app.state.people.me, G=app.state.people.partner;
 assert.strictEqual(app.targetsFor(C).kcal,1600); assert.strictEqual(app.targetsFor(G).kcal,2760);
 assert.strictEqual(app.plannedDailyFor(C).kcal,1600);assert.strictEqual(app.plannedDailyFor(C).protein,120);assert.strictEqual(app.plannedDailyFor(G).kcal,2760);assert.strictEqual(app.plannedDailyFor(G).protein,136);
-const r=app.recipes['Vietnamese Lemongrass Turkey & Tofu Bowls'], before=app.weeklyRecipeTotals(r);
-assert.ok(before.Gabriel.ingredients['5% turkey mince']>before.Cynthia.ingredients['5% turkey mince']);
+const r=app.recipes['Thai Peanut Turkey, Broccoli & Rice Noodle Bowls'], before=app.weeklyRecipeTotals(r);
+assert.ok(before.Gabriel.ingredients['Turkey mince, raw']>before.Cynthia.ingredients['Turkey mince, raw']);
 app.updatePerson('partner',{weight:90}); const after=app.weeklyRecipeTotals(r);
-assert.ok(after.totalIngredients['5% turkey mince']>before.totalIngredients['5% turkey mince'],'changing Gabriel profile must resize the shared batch');
+assert.ok(after.totalIngredients['Turkey mince, raw']>before.totalIngredients['Turkey mince, raw'],'changing Gabriel profile must resize the shared batch');
 console.log('deficit and muscle-gain portions remain profile driven');
