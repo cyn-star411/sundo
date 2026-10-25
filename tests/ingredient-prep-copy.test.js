@@ -15,7 +15,7 @@ vm.runInContext(`${source}\n;globalThis.SundoComponent=Component;`, context);
 const app = new context.SundoComponent();
 app.setState({ currentRecipe: 'High-Protein Carrot Cake Squares' });
 const renderedIngredients = JSON.stringify(app.ingredientsPanel());
-assert.ok(!renderedIngredients.includes('Prep:'), 'ingredient list must remain a simple list without a separate prep direction under each ingredient');
+assert.ok(renderedIngredients.includes('Prep:'), 'ingredient list must give cooks a short, actionable prep direction beside each ingredient');
 assert.ok(!renderedIngredients.includes('PROTEIN') && !renderedIngredients.includes('SAUCE & EXTRAS'), 'ingredient list must not force cooks to jump between nutrition categories');
 
 const customerFacingCopy = [
