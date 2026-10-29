@@ -43,6 +43,9 @@
       if (kind === 'prep') return wrap([
         e('span', { key: 1, style: { width: 11, height: 10, background: cc, borderRadius: '50% 50% 47% 53% / 55% 55% 46% 46%', marginBottom: 1.5 } }),
         e('span', { key: 2, style: { width: 15, height: 8, background: cc, borderRadius: '3px 3px 50% 50% / 3px 3px 96% 96%' } })]);
+      if (kind === 'profile') return wrap([
+        e('span', { key: 1, style: { width: 10, height: 10, borderRadius: '50%', background: cc, marginBottom: 2 } }),
+        e('span', { key: 2, style: { width: 17, height: 8, borderRadius: '9px 9px 4px 4px', background: cc } })]);
       // cart
       return e('span', { style: { display: 'inline-flex', flexDirection: 'column', alignItems: 'center', color: col } },
         e('span', { key: 1, style: { width: 10, height: 6, border: '2px solid ' + col, borderBottom: 'none', borderRadius: '6px 6px 0 0' } }),
@@ -50,7 +53,7 @@
     }
 
     renderTabBar(tab) {
-      const tabs = [['home', 'Home'], ['recipes', 'Recipes'], ['prep', 'Prep'], ['cart', 'Cart']];
+      const tabs = [['home', 'Plan'], ['cart', 'Cart'], ['profile', 'Profile']];
       return e('div', { className: 'sundo-tabs' }, tabs.map(([id, label]) => {
         const active = tab === id;
         return e('button', { key: id, className: 'sundo-tab' + (active ? ' active' : ''), onClick: () => this.goTab(id) },

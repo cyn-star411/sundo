@@ -990,37 +990,46 @@ return { label:'Monday–Sunday Meal Prep · 26 Oct–1 Nov', estimate:'Estimate
         stat('KCAL/DAY', t.kcal, ''), stat('PROTEIN', t.protein, 'g'), stat('FIBER', t.fiber, 'g')));
   }
   renderHome() {
-    const C=this.C, st=this.state;
-    if (st.homeView==='glance') return this.renderMeals(true);
-    const plannedAvg = this.plannedDailyFor(st.people.me).kcal;
+    const C=this.C, st=this.state, week=st.week||this.buildWeek();
+    const mine=this.plannedDailyFor(st.people.me), partner=this.plannedDailyFor(st.people.partner);
+    const period=(st.activePlan&&st.activePlan.period)||'26 Oct–1 Nov';
+    const menu=this.slots.map(slot=>({slot,name:(week[slot]||[])[0]||''})).filter(item=>item.name);
+    const slotLabel={Breakfast:'Morning','Snack 1':'Snack','Snack 2':'Treat',Lunch:'Lunch',Dinner:'Dinner'};
+    const accent={Breakfast:'#C8754E','Snack 1':'#A98B6F','Snack 2':'#9B7E9B',Lunch:'#7C8A5E',Dinner:'#8FB3C8'};
+    const open=(name)=>{this.setState({segTab:'ingredients'});this.openRecipe(name);};
     return [
-      e('div',{key:'sb',style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'16px 26px 6px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:13,fontWeight:600,color:C.sumi,flex:'0 0 auto'}},
-        e('span',null,'9:41'), e('span',{style:{width:16,height:8,border:'1px solid '+C.sumi,borderRadius:2,display:'inline-block'}})),
-      e('div',{key:'hd',style:{padding:'12px 26px 0',display:'flex',justifyContent:'space-between',alignItems:'center',flex:'0 0 auto'}},
-        e('div',{style:{display:'flex',alignItems:'center',gap:9}},
-          e('span',{style:{display:'inline-flex',flexDirection:'column',alignItems:'center',gap:2}},
-            e('span',{style:{width:19,height:18,background:'#C8754E',borderRadius:'50% 50% 47% 53% / 55% 55% 46% 46%',display:'block'}}),
-            e('span',{style:{width:27,height:15,background:'#EFE6D2',boxShadow:'inset 0 0 0 1px rgba(56,44,36,.10)',borderRadius:'4px 4px 50% 50% / 4px 4px 96% 96%',display:'block'}})),
-          e('span',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:25,color:C.sumi,lineHeight:1}},'Sundō')),
-        e('span',{onClick:()=>this.setState({tab:'profile'}),style:{width:38,height:38,borderRadius:'50%',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
-      e('div',{key:'ti',style:{padding:'20px 26px 0',flex:'0 0 auto'}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.1em',color:'#9a8a76'}},'MON 26 OCT–SUN 1 NOV · CALORIE-DEFICIT PLAN'),
-        e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:29,lineHeight:1.08,color:C.sumi,letterSpacing:'-.01em',marginTop:8}},'Your goals, ',e('span',{style:{fontWeight:600}},'recalculated'))),
-      e('div',{key:'sc',style:{flex:1,overflowY:'auto',padding:'16px 26px 8px'}},
-        this.personCard('me'), this.personCard('partner'),
-        e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',textAlign:'center',margin:'2px 4px 16px'}},st.people.me.name+' planned total: ~'+plannedAvg+' kcal/day · '+st.people.partner.name+' portions are shown on every recipe'),
-        e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:8}},
-          e('div',{style:{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:17,color:C.sumi}},"This week's meals"),
-          e('div',{onClick:()=>this.setState({homeView:'glance'}),style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,fontWeight:600,color:'#8C5B3F',cursor:'pointer',display:'flex',alignItems:'center',gap:3}},'See all',e('span',{style:{fontSize:14}},'›'))),
-        this.thisWeekMains().slice(0,3).map(n=>{
-          const r=this.recipes[n];
-          return e('div',{key:n,'data-dish':n,style:{display:'flex',alignItems:'center',gap:13,background:'#fff',borderRadius:16,padding:'10px 12px',cursor:'pointer',boxShadow:'0 3px 12px rgba(40,30,22,.05)',marginBottom:9}},
-            e('img',{src:this.dishSrc(n),alt:'',style:{width:42,height:42,borderRadius:11,flexShrink:0,objectFit:'cover'}}),
-            e('div',{style:{flex:1}},
-              e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:600,fontSize:14.5,color:C.sumi}},n),
-              e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:'#9a8a76',marginTop:1}},r.cuisine+' · '+r.time)),
-            e('span',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:16,color:'#8C5B3F'}},'›'));
+      this.statusBar(false),
+      e('div',{key:'hd',style:{padding:'14px 24px 0',display:'flex',justifyContent:'space-between',alignItems:'center',flex:'0 0 auto'}},
+        this.logoRow(),
+        e('button',{onClick:()=>this.setState({tab:'profile'}),'aria-label':'Open profile',style:{width:38,height:38,borderRadius:'50%',border:'none',background:C.sumi,color:C.kinari,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:700,fontSize:14,cursor:'pointer'}},st.people.me.name[0])),
+      e('div',{key:'scroll',style:{flex:1,overflowY:'auto',padding:'22px 24px calc(18px + env(safe-area-inset-bottom, 0px))'}},
+        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.13em',color:'#8C5B3F'}},'YOUR WEEK · '+period.toUpperCase()),
+        e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:34,lineHeight:1.03,color:C.sumi,letterSpacing:'-.025em',marginTop:7}},'A simpler plan,',e('br'),e('span',{style:{fontStyle:'italic'}},'made to repeat.')),
+        e('div',{style:{background:C.sumi,borderRadius:22,padding:'16px 17px',marginTop:18,color:C.kinari,boxShadow:'0 9px 22px rgba(56,44,36,.16)'}},
+          e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:12}},
+            e('div',null,e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:700,fontSize:15}},'One menu. Seven easy days.'),e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12,lineHeight:1.45,color:'rgba(242,232,213,.68)',marginTop:4}},'Cook once, then use the same four meals through the week.')),
+            e('button',{onClick:()=>this.setState({tab:'cart'}),style:{flex:'0 0 auto',border:'none',borderRadius:18,padding:'9px 12px',cursor:'pointer',background:'#F2E8D5',color:C.sumi,fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:700,fontSize:12}},'Shop list')),
+          e('div',{style:{display:'flex',gap:8,marginTop:15}},
+            [[st.people.me,mine],[st.people.partner,partner]].map(([person,target])=>e('div',{key:person.name,style:{flex:1,background:'rgba(242,232,213,.10)',borderRadius:13,padding:'9px 10px'}},
+              e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11,color:'rgba(242,232,213,.64)'}},person.name),
+              e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:19,marginTop:2}},target.kcal+' kcal'),
+              e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9,letterSpacing:'.06em',color:'rgba(242,232,213,.62)',marginTop:2}},target.protein+'G PROTEIN / DAY')))))),
+        e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline',margin:'24px 1px 10px'}},
+          e('div',{style:{fontFamily:"'Newsreader',serif",fontSize:22,color:C.sumi}},'Your daily menu'),
+          e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:C.mut}},'Tap for details')),
+        e('div',{style:{display:'flex',flexDirection:'column',gap:10}},menu.map(({slot,name},index)=>{
+          const r=this.recipes[name]||{}, color=accent[slot];
+          return e('button',{key:slot,onClick:()=>open(name),'data-dish':name,style:{width:'100%',border:'none',cursor:'pointer',background:index===0?'#F6ECE1':'#fff',borderRadius:18,padding:'11px 12px',display:'flex',alignItems:'center',gap:12,textAlign:'left',boxShadow:'0 3px 12px rgba(40,30,22,.055)'}},
+            e('img',{src:this.dishSrc(name),alt:'',style:{width:58,height:58,borderRadius:14,objectFit:'cover',flexShrink:0}}),
+            e('div',{style:{flex:1,minWidth:0}},
+              e('div',{style:{display:'flex',alignItems:'center',gap:6}},e('span',{style:{width:7,height:7,borderRadius:'50%',background:color}}),e('span',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:9.5,letterSpacing:'.09em',color:C.mut}},slotLabel[slot].toUpperCase())),
+              e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:19,lineHeight:1.08,color:C.sumi,marginTop:5}},name),
+              e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:11.5,color:C.mut,marginTop:4}},(this.kcalOf(name)||r.kcal||'')+' kcal · '+(r.time||'weekly batch'))),
+            e('span',{style:{width:27,height:27,borderRadius:'50%',background:'rgba(56,44,36,.06)',color:C.sumi,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},'›'));
         })),
+        e('div',{style:{marginTop:18,background:'#EDF0E0',borderRadius:17,padding:'13px 15px',display:'flex',gap:10,alignItems:'center'}},
+          e('span',{style:{width:28,height:28,borderRadius:'50%',background:'#7C8A5E',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14,flexShrink:0}},'✓'),
+          e('div',{style:{fontFamily:"'Hanken Grotesk',sans-serif",fontSize:12.5,lineHeight:1.45,color:'#57493C'}},'This is the whole week at a glance — no duplicate days, no extra prep checklist. Your cart holds the complete batch.'))
     ];
   }
 
