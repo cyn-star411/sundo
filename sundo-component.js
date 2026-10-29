@@ -1409,17 +1409,17 @@ return { label:'Monday–Sunday Meal Prep · 26 Oct–1 Nov', estimate:'Estimate
         ['ingredients','method'].map(t=>e('button',{key:(swipe?'sw-':'seg-')+t,onClick:()=>setTab(t),style:{flex:1,padding:'10px',borderRadius:22,border:'none',cursor:'pointer',background:active===t?'#4A3527':'transparent',color:active===t?C.kinari:'#6B5D50',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:14,fontWeight:600,textTransform:'capitalize',boxShadow:active===t?'0 4px 10px rgba(74,53,39,.24)':'none'}},t))));
     let body;
     if (swipe) {
-      body = e('div',{key:'b',style:{flex:1,overflow:'hidden',position:'relative'}},
+      body = e('div',{key:'b',style:{flex:1,minHeight:0,overflow:'hidden',position:'relative'}},
         e('div',{style:{display:'flex',width:'200%',height:'100%',transform:'translateX('+(st.swipeIdx===0?'0':'-50%')+')',transition:'transform .35s cubic-bezier(.4,0,.2,1)'}},
-          e('div',{style:{width:'50%',overflowY:'auto'}}, this.ingredientsPanel()),
-          e('div',{style:{width:'50%',overflowY:'auto'}}, this.methodPanel())),
+          e('div',{style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.ingredientsPanel()),
+          e('div',{style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.methodPanel())),
         e('div',{style:{position:'absolute',bottom:10,left:0,right:0,display:'flex',justifyContent:'center',gap:7}},
           [0,1].map(i=>e('span',{key:'sw-dot-'+i,style:{width:i===st.swipeIdx?20:7,height:7,borderRadius:7,background:i===st.swipeIdx?'#4A3527':'rgba(56,44,36,.2)',transition:'all .25s'}}))));
     } else {
-      body = e('div',{key:'b',style:{flex:1,overflowY:'auto'}}, active==='ingredients'?this.ingredientsPanel():this.methodPanel());
+      body = e('div',{key:'b',style:{flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(32px + env(safe-area-inset-bottom, 0px))'}}, active==='ingredients'?this.ingredientsPanel():this.methodPanel());
     }
     const glow = (!swipe && st.recipeGlow) ? e('div',{key:'glow',style:{position:'absolute',inset:0,borderRadius:44,border:'3px solid #8C5B3F',boxShadow:'0 0 0 5px rgba(140,91,63,.22)',pointerEvents:'none',zIndex:20}}) : null;
-    const sheet = e('div',{key:'sheet',style:{flex:1,display:'flex',flexDirection:'column',background:C.paper,borderRadius:'26px 26px 0 0',marginTop:-22,position:'relative',zIndex:2,overflow:'hidden',boxShadow:'0 -6px 20px rgba(40,30,22,.07)'}}, toggle, body);
+    const sheet = e('div',{key:'sheet',style:{flex:1,minHeight:0,display:'flex',flexDirection:'column',background:C.paper,borderRadius:'26px 26px 0 0',marginTop:-22,position:'relative',zIndex:2,overflow:'hidden',boxShadow:'0 -6px 20px rgba(40,30,22,.07)'}}, toggle, body);
     return e('div',{key:swipe?'rsw':'rseg',style:{height:'100%',position:'relative',display:'flex',flexDirection:'column',background:C.peri}}, this.statusBar(false), header, sheet, glow, this.subSheet());
   }
 
