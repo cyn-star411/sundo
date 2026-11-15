@@ -231,7 +231,7 @@ class Component extends DCLogic {
   }
   openRecipe(name) {
     const key = this.resolveRecipe(name);
-    this.setState({ currentRecipe:key, recipeGlow:true });
+    this.setState({ currentRecipe:key, recipeGlow:true, recipeHeaderCollapsed:false });
     clearTimeout(this._glowT);
     this._glowT = setTimeout(()=>this.setState({recipeGlow:false}), 1500);
   }
@@ -250,7 +250,7 @@ class Component extends DCLogic {
     {id:'store',title:'Cool, label and store in this order',time:'20 min',color:'#382C24',steps:['Portion first, then spread hot mains in shallow containers until no longer steaming before sealing.','Refrigerate Sunday–Tuesday mains and snacks; freeze Wednesday–Friday lunch, dinner and tofu portions promptly after cooling.','Label every container by person and day. Thaw frozen meals in the fridge overnight; reheat chicken or turkey mains until steaming hot / 75°C, then add cold components.']},
   ];
 
-  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Matcha Berry Soy Protein Oats', recipeGlow:false,
+  state = { dayFilter:'all', selected:null, swapOpen:false, cooked:{}, week:null, segTab:'ingredients', swipeIdx:0, servings:2, openSection:'breakfast', prepDone:{}, currentRecipe:'Matcha Berry Soy Protein Oats', recipeGlow:false, recipeHeaderCollapsed:false,
     people: {
       me: { name:'Cynthia', heightLabel:'163 cm', weight:60, age:30, workouts:3, activity:'desk job + 2–3 training sessions', goal:'fat loss + muscle gain', sex:'female', color:'#CB9C8B' },
       partner: { name:'Gabriel', heightLabel:'180 cm', weight:85, age:30, workouts:3, activity:'mostly seated + some walking + 2–3 training sessions', goal:'lean muscle gain + cardio support', sex:'male', color:'#8FB3C8' },
@@ -1404,7 +1404,11 @@ return { label:'Sunday–Friday Meal Prep · 15–20 Nov', estimate:'Estimated b
     const metaRow = (kind,label) => e('div',{key:kind,style:{display:'flex',alignItems:'center',gap:11}},
       e('div',{style:{width:30,height:30,borderRadius:'50%',background:'rgba(251,248,242,.72)',display:'flex',alignItems:'center',justifyContent:'center',flex:'0 0 auto'}}, glyph(kind)),
       e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.06em',fontWeight:500,color:C.sumi}}, label.toUpperCase()));
-    const header = e('div',{key:'h',style:{flex:'0 0 auto',background:C.peri,position:'relative',padding:'10px 20px 12px',borderBottom:'1px solid rgba(56,44,36,.08)'}},
+    const onRecipeScroll = (ev) => {
+      const recipeHeaderCollapsed = ev.currentTarget.scrollTop > 12;
+      if (!!this.state.recipeHeaderCollapsed !== recipeHeaderCollapsed) this.setState({recipeHeaderCollapsed});
+    };
+    const header = e('div',{key:'h','aria-hidden':st.recipeHeaderCollapsed||undefined,style:{flex:'0 0 auto',background:C.peri,position:'relative',maxHeight:st.recipeHeaderCollapsed?0:126,overflow:'hidden',padding:st.recipeHeaderCollapsed?'0 20px':'10px 20px 12px',opacity:st.recipeHeaderCollapsed?0:1,borderBottom:st.recipeHeaderCollapsed?'none':'1px solid rgba(56,44,36,.08)',pointerEvents:st.recipeHeaderCollapsed?'none':'auto',transition:'max-height .22s ease, padding .22s ease, opacity .16s ease'}},
       e('div',{style:{display:'flex',alignItems:'center',gap:12}},
         e('button',{onClick:()=>this.setState({tab:this.state.prevTab||'home'}),'aria-label':'Back to plan',style:{width:36,height:36,borderRadius:'50%',border:'none',background:'rgba(251,248,242,.92)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,lineHeight:1,color:C.sumi,boxShadow:'0 2px 8px rgba(40,30,22,.14)',cursor:'pointer',flex:'0 0 auto'}},'‹'),
         e('div',{style:{flex:1,minWidth:0}},
@@ -1420,12 +1424,12 @@ return { label:'Sunday–Friday Meal Prep · 15–20 Nov', estimate:'Estimated b
     if (swipe) {
       body = e('div',{key:'b',style:{flex:1,minHeight:0,overflow:'hidden',position:'relative'}},
         e('div',{style:{display:'flex',width:'200%',height:'100%',transform:'translateX('+(st.swipeIdx===0?'0':'-50%')+')',transition:'transform .35s cubic-bezier(.4,0,.2,1)'}},
-          e('div',{style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.ingredientsPanel()),
-          e('div',{style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.methodPanel())),
+          e('div',{onScroll:onRecipeScroll,style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.ingredientsPanel()),
+          e('div',{onScroll:onRecipeScroll,style:{width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'}}, this.methodPanel())),
         e('div',{style:{position:'absolute',bottom:10,left:0,right:0,display:'flex',justifyContent:'center',gap:7}},
           [0,1].map(i=>e('span',{key:'sw-dot-'+i,style:{width:i===st.swipeIdx?20:7,height:7,borderRadius:7,background:i===st.swipeIdx?'#4A3527':'rgba(56,44,36,.2)',transition:'all .25s'}}))));
     } else {
-      body = e('div',{key:'b',style:{flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(32px + env(safe-area-inset-bottom, 0px))'}}, active==='ingredients'?this.ingredientsPanel():this.methodPanel());
+      body = e('div',{key:'b',onScroll:onRecipeScroll,style:{flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(32px + env(safe-area-inset-bottom, 0px))'}}, active==='ingredients'?this.ingredientsPanel():this.methodPanel());
     }
     const glow = (!swipe && st.recipeGlow) ? e('div',{key:'glow',style:{position:'absolute',inset:0,borderRadius:44,border:'3px solid #8C5B3F',boxShadow:'0 0 0 5px rgba(140,91,63,.22)',pointerEvents:'none',zIndex:20}}) : null;
     const sheet = e('div',{key:'sheet',style:{flex:1,minHeight:0,display:'flex',flexDirection:'column',background:C.paper,borderRadius:'26px 26px 0 0',marginTop:-22,position:'relative',zIndex:2,overflow:'hidden',boxShadow:'0 -6px 20px rgba(40,30,22,.07)'}}, toggle, body);

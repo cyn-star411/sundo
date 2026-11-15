@@ -1,8 +1,8 @@
 // Offline service worker for Sundō. Bump CACHE when app files change.
 // v51 fixes recipe-page scrolling on mobile, including clearance above swipe dots.
 // v52 delivers the Sunday–Friday Asian calorie-deficit plan and refreshes installed clients.
-// v55 compacts recipe headers so Ingredients and Method stay usable on phones.
-const CACHE = 'sundo-app-v55';
+// v56 collapses recipe detail headers while scrolling so cooking information fills the phone screen.
+const CACHE = 'sundo-app-v56';
 const FONTS = Array.from({ length: 22 }, (_, i) => './fonts/f' + (i + 1) + '.woff2');
 const DISHES = ['banana-smoothie','beef-bibimbap','beef-krapow','char-siu-pork','chicken-satay','chicken-cucumber-herb-salad','egg-spinach-cucumber-salad','chicken-cabbage-carrot-stir-fry','five-spice-chicken-kale-noodles','edamame-sesame','eggs-apple','garlic-prawn-don','ginger-soy-salmon','hainanese-chicken','honey-garlic-salmon','katsu-curry','lemongrass-pork','mango-oats','mapo-tofu','matcha-chia','matcha-yogurt','miso-salmon','pad-thai','prawn-pad-see-ew','rice-cakes-pb','salmon-eggs','salmon-sushi-bowl','sesame-tofu-soba','teriyaki-tofu-soba','thai-basil-tofu','tofu-bibimbap','tofu-poke','tom-kha-salmon'];
 const GROCERY = ['gr-carrots','gr-chicken','gr-miso','gr-rice','gr-salmon','gr-spinach','gr-spring-onions'];
