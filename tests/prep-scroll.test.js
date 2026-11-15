@@ -18,5 +18,8 @@ assert.ok(recipeSource.includes("flex:1,minHeight:0,overflow:'hidden',position:'
 assert.ok(recipeSource.includes("width:'50%',minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(56px + env(safe-area-inset-bottom, 0px))'"), 'Ingredient and method pages must have their own touch-scroll region and enough bottom clearance for the swipe dots');
 assert.ok(recipeSource.includes("flex:1,minHeight:0,overflowY:'auto',WebkitOverflowScrolling:'touch',overscrollBehavior:'contain',paddingBottom:'calc(32px + env(safe-area-inset-bottom, 0px))'"), 'Segmented recipe panels must remain touch-scrollable to their final row');
 assert.ok(recipeSource.includes("flex:1,minHeight:0,display:'flex',flexDirection:'column'"), 'Recipe sheet must be shrinkable so its scrollable body is not clipped');
+assert.ok(recipeSource.includes("'Back to plan'"), 'Recipe detail must retain an accessible compact back control');
+assert.ok(recipeSource.includes("WebkitLineClamp:2"), 'Long recipe titles must stay within a compact two-line recipe header');
+assert.ok(!recipeSource.includes("width:170,height:170"), 'Recipe detail must not reserve a viewport-consuming 170px hero image above Ingredients and Method');
 
 console.log('prep screen scroll containment checks passed');

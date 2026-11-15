@@ -1404,16 +1404,15 @@ return { label:'Sunday–Friday Meal Prep · 15–20 Nov', estimate:'Estimated b
     const metaRow = (kind,label) => e('div',{key:kind,style:{display:'flex',alignItems:'center',gap:11}},
       e('div',{style:{width:30,height:30,borderRadius:'50%',background:'rgba(251,248,242,.72)',display:'flex',alignItems:'center',justifyContent:'center',flex:'0 0 auto'}}, glyph(kind)),
       e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:11,letterSpacing:'.06em',fontWeight:500,color:C.sumi}}, label.toUpperCase()));
-    const header = e('div',{key:'h',style:{flex:'0 0 auto',background:C.peri,position:'relative'}},
-      e('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'12px 20px 0',position:'relative',zIndex:3}},
-        e('div',{onClick:()=>this.setState({tab:this.state.prevTab||'home'}),style:{width:38,height:38,borderRadius:'50%',background:'rgba(251,248,242,.92)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,color:C.sumi,boxShadow:'0 2px 8px rgba(40,30,22,.14)',cursor:'pointer'}},'‹'),
-        e('div',{style:{width:38,height:38,borderRadius:'50%',background:C.yuhi,display:'flex',alignItems:'center',justifyContent:'center',fontSize:14,color:'#fff',boxShadow:'0 4px 10px rgba(236,127,94,.4)'}},'♡')),
-      e('div',{style:{position:'absolute',right:-16,top:58,width:170,height:170,borderRadius:'50%',background:'rgba(255,255,255,.42)',padding:6,boxShadow:'0 16px 32px rgba(40,30,22,.2)',zIndex:1}},
-        e('image-slot',{key:heroId,id:heroId,shape:'circle',fit:'cover',placeholder:'photo',src:this.dishSrc(rname),style:{width:'100%',height:'100%',borderRadius:'50%',display:'block',overflow:'hidden'}})),
-      e('div',{style:{padding:'16px 24px 30px',position:'relative',zIndex:2,maxWidth:214}},
-        e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:10,letterSpacing:'.14em',color:'#8C5B3F',fontWeight:500}},rec.cuisine.toUpperCase()),
-        e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:400,fontSize:30,color:C.sumi,marginTop:7,lineHeight:1.05}}, tparts.slice(0,-1).join(' ')+' ', e('span',{style:{fontWeight:600}}, tparts.slice(-1)[0])),
-        e('div',{style:{display:'flex',flexDirection:'column',gap:11,marginTop:20}}, metaRow('clock',rec.time), metaRow('people','serves '+rec.base), metaRow('flame',rec.kcal+' kcal'))));
+    const header = e('div',{key:'h',style:{flex:'0 0 auto',background:C.peri,position:'relative',padding:'10px 20px 12px',borderBottom:'1px solid rgba(56,44,36,.08)'}},
+      e('div',{style:{display:'flex',alignItems:'center',gap:12}},
+        e('button',{onClick:()=>this.setState({tab:this.state.prevTab||'home'}),'aria-label':'Back to plan',style:{width:36,height:36,borderRadius:'50%',border:'none',background:'rgba(251,248,242,.92)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,lineHeight:1,color:C.sumi,boxShadow:'0 2px 8px rgba(40,30,22,.14)',cursor:'pointer',flex:'0 0 auto'}},'‹'),
+        e('div',{style:{flex:1,minWidth:0}},
+          e('div',{style:{fontFamily:"'JetBrains Mono',monospace",fontSize:8.5,letterSpacing:'.11em',color:'#8C5B3F',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},rec.cuisine.toUpperCase()),
+          e('div',{style:{fontFamily:"'Newsreader',serif",fontWeight:500,fontSize:22,lineHeight:1.05,color:C.sumi,marginTop:3,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}},rname)),
+        e('div',{style:{width:36,height:36,borderRadius:'50%',background:C.yuhi,display:'flex',alignItems:'center',justifyContent:'center',fontSize:14,color:'#fff',boxShadow:'0 4px 10px rgba(236,127,94,.4)',flex:'0 0 auto'}},'♡')),
+      e('div',{style:{display:'flex',gap:12,margin:'9px 0 0 48px',fontFamily:"'JetBrains Mono',monospace",fontSize:9,letterSpacing:'.06em',color:C.body}},
+        e('span',null,rec.time.toUpperCase()),e('span',null,'SERVES '+rec.base),e('span',null,rec.kcal+' KCAL')));
     const toggle = e('div',{key:'t',style:{flex:'0 0 auto',padding:'18px 24px 6px'}},
       e('div',{style:{display:'flex',background:'#EEEAE0',borderRadius:26,padding:4,position:'relative'}},
         ['ingredients','method'].map(t=>e('button',{key:(swipe?'sw-':'seg-')+t,onClick:()=>setTab(t),style:{flex:1,padding:'10px',borderRadius:22,border:'none',cursor:'pointer',background:active===t?'#4A3527':'transparent',color:active===t?C.kinari:'#6B5D50',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:14,fontWeight:600,textTransform:'capitalize',boxShadow:active===t?'0 4px 10px rgba(74,53,39,.24)':'none'}},t))));
